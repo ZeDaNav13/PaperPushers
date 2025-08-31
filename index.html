@@ -3,376 +3,280 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PaperPushers | We solve problems for our clients</title>
+  <title>PaperPushers — Design, brand & web</title>
   <meta name="description" content="PaperPushers helps teams succeed with smart design, branding, and web solutions." />
+
+  <!-- Fav / metadata -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
 
-  <!-- Open Graph / Twitter Card -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="PaperPushers" />
-  <meta property="og:description" content="Smart design, branding, and web solutions for ambitious teams." />
-  <meta property="og:image" content="<!-- TODO: Absolute URL to a social share image -->" />
-  <meta property="og:url" content="<!-- TODO: Site URL -->" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PaperPushers",
-    "url": "<!-- TODO: Site URL -->",
-    "logo": "<!-- TODO: Logo URL -->",
-    "sameAs": []
-  }
-  </script>
-
   <style>
-    /* ====== Design tokens (brand) ====== */
+    /* =====================
+       Stripe‑inspired vibe (not a copy): dark UI, big type, soft gradients, glass surfaces
+       Brand: drunk tank pink (#ff91af), mustard (#e1ad01), off‑white (#f8f8f5)
+       ===================== */
     :root{
-      --bg: #0b0f14;            /* page background */
-      --surface: #121821;       /* cards, nav */
-      --text: #f8f8f5;          /* off-white */
-      --muted: #cfcac2;         /* subtle off-white */
-      --brand: #ff91af;         /* drunk tank pink */
-      --brand-2:#e1ad01;        /* mustard yellow */
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#f8f8f5; --surface:#ffffff; --text:#0e1620; --muted:#4a5568; }
+      --bg: #0b0f14;
+      --surface: rgba(255,255,255,.04);
+      --border: rgba(255,255,255,.08);
+      --text: #f8f8f5;
+      --muted: #b8c0cc;
+      --brand: #ff91af;
+      --brand2:#e1ad01;
+      --radius: 18px;
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --maxw: 1120px;
     }
 
-    /* ====== Base ====== */
-    *,*::before,*::after{ box-sizing:border-box }
-    html{ scroll-behavior:smooth }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif; color:var(--text);
-      background: radial-gradient(1200px 600px at 80% -10%, rgba(255,145,175,.25), transparent 60%) , var(--bg);
-      line-height:1.6; 
+      margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 85% -10%, rgba(255,145,175,.25), transparent 60%),
+                  radial-gradient(900px 500px at -10% 10%, rgba(225,173,1,.18), transparent 60%),
+                  #0b0f14;
+      letter-spacing:.1px;
     }
-    img{ max-width:100%; height:auto; display:block }
-    a{ color: var(--brand) }
-    .container{ width:min(1100px, 92%); margin-inline:auto }
-    .btn{ display:inline-block; padding:12px 18px; border-radius:calc(var(--radius) - 8px); border:1px solid transparent; font-weight:600; text-decoration:none; transition:.2s ease; box-shadow:var(--shadow);
-    }
-    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:white }
-    .btn.primary:hover{ transform:translateY(-2px); }
-    .btn.ghost{ background:transparent; border-color:rgba(255,255,255,.15); color:var(--text) }
-    .btn.ghost:hover{ border-color:var(--brand); color:var(--brand) }
+    .container{width:min(var(--maxw),92%); margin-inline:auto}
 
-    /* ====== Nav ====== */
-    .nav{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:rgba(10,14,20,.6); border-bottom:1px solid rgba(255,255,255,.06) }
-    .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:12px 0 }
-    .logo{ display:flex; align-items:center; gap:10px; font-weight:800 }
-    .logo svg{ width:36px; height:36px }
-    .nav-links{ display:flex; gap:18px; align-items:center }
-    .nav-links a{ text-decoration:none; color:var(--muted); font-weight:600 }
-    .nav-links a:hover{ color:var(--text) }
-    .menu-toggle{ display:none }
-    @media (max-width: 780px){
-      .nav-links{ display:none }
-      .menu-toggle{ display:block; background:none; border:1px solid rgba(255,255,255,.12); color:var(--text); padding:8px 10px; border-radius:10px }
-      #mobileMenu{ display:none; position:absolute; right:4%; top:56px; background:var(--surface); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:8px; width:min(250px, 88vw); box-shadow:var(--shadow) }
-      #mobileMenu a{ display:block; padding:10px 12px; color:var(--muted); text-decoration:none; border-radius:8px }
-      #mobileMenu a:hover{ background:rgba(255,255,255,.04); color:var(--text) }
-    }
+    /* Top ribbon */
+    .ribbon{position:relative; overflow:hidden}
+    .ribbon::before{content:""; position:absolute; inset:auto 0 0 0; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent)}
 
-    /* ====== Sections ====== */
-    section{ padding: clamp(48px, 8vw, 96px) 0 }
-    .hero{ padding-top: 72px; }
-    .hero-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center }
-    .kicker{ color:var(--brand-2); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.85rem }
-    h1{ font-size: clamp(2.1rem, 3vw + 1rem, 3.4rem); line-height:1.12; margin:.4em 0 }
-    p.lead{ color:var(--muted); font-size:1.15rem }
-    .hero-cta{ display:flex; gap:12px; margin-top:22px; flex-wrap:wrap }
-    .hero-card{ background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow) }
+    /* Nav */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(150%) blur(10px); background:rgba(5,9,14,.55); border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; text-decoration:none; color:var(--text)}
+    .brand-badge{width:34px;height:34px;border-radius:9px;background:conic-gradient(from 210deg, var(--brand), var(--brand2)); display:grid; place-items:center; box-shadow:var(--shadow)}
+    .brand-badge span{font-weight:900}
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav-links a{color:var(--muted); text-decoration:none; font-weight:600}
+    .nav-links a:hover{color:var(--text)}
+    .menu{display:none}
+    @media (max-width:860px){ .nav-links{display:none} .menu{display:block} }
 
-    .pill{ display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(255,255,255,.12); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:600; font-size:.9rem }
+    /* Buttons */
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); text-decoration:none; font-weight:700; transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{border-color:transparent; background:linear-gradient(135deg, var(--brand), var(--brand2)); color:#111; box-shadow:var(--shadow)}
 
-    .badges{ display:flex; gap:10px; flex-wrap:wrap }
+    /* Hero */
+    .hero{padding: clamp(56px, 6vw, 88px) 0 24px; position:relative}
+    .grid-hero{display:grid; grid-template-columns: 1.15fr 1fr; gap:40px; align-items:center}
+    .super{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.03); color:var(--muted); font-weight:700; font-size:.9rem}
+    h1{font-size:clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.06; margin:.45em 0}
+    .lead{color:var(--muted); font-size:1.12rem; max-width:60ch}
 
-    .services-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px }
-    .card{ background:var(--surface); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); transition: transform .2s ease }
-    .card:hover{ transform: translateY(-4px) }
-    .card h3{ margin-top:0 }
-    .muted{ color:var(--muted) }
+    /* Hero visual */
+    .hero-visual{position:relative}
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .orb{position:absolute; inset:-60px -80px auto auto; width:240px; height:240px; background:radial-gradient(circle at 30% 30%, rgba(255,145,175,.6), transparent 60%), radial-gradient(circle at 70% 60%, rgba(225,173,1,.55), transparent 60%); filter:blur(30px); opacity:.8; pointer-events:none}
+    .hero-img{border-radius:14px; width:100%; aspect-ratio: 16/10; object-fit:cover}
+    .caps{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+    .cap{font-size:.85rem; color:var(--muted); border:1px solid var(--border); padding:6px 10px; border-radius:999px}
 
-    @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr }
-      .services-grid{ grid-template-columns: 1fr 1fr }
-    }
-    @media (max-width: 640px){ .services-grid{ grid-template-columns: 1fr } }
+    @media (max-width:980px){ .grid-hero{grid-template-columns:1fr} .orb{inset:auto -40px -40px auto} }
 
-    .logos{ display:grid; grid-template-columns: repeat(6, 1fr); gap:20px; align-items:center; opacity:.9 }
-    @media (max-width: 980px){ .logos{ grid-template-columns: repeat(3, 1fr) } }
+    /* Logos */
+    .logos{padding: 26px 0 10px}
+    .marquee{display:grid; grid-template-columns: repeat(6,1fr); gap:22px; align-items:center; opacity:.9}
+    .marquee img{filter:grayscale(1) brightness(.9); opacity:.9}
+    @media (max-width:900px){ .marquee{grid-template-columns: repeat(3,1fr)} }
 
-    .features{ display:grid; grid-template-columns: 1fr 1fr; gap:24px }
-    @media (max-width: 900px){ .features{ grid-template-columns: 1fr } }
+    /* Sections */
+    section{padding: clamp(48px, 6vw, 84px) 0}
+    .section-title{font-size:clamp(1.6rem, 2.4vw + .6rem, 2.2rem)}
 
-    .testimonial{ display:grid; grid-template-columns: 72px 1fr; gap:14px; align-items:center }
-    .avatar{ width:72px; height:72px; border-radius:50%; border:2px solid rgba(255,255,255,.14); object-fit:cover }
+    /* Cards */
+    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:20px}
+    .card{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; transition:transform .2s, border-color .2s}
+    .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.22)}
+    .card h3{margin:.2rem 0  .2rem}
+    .muted{color:var(--muted)}
+    @media (max-width:980px){ .cards{grid-template-columns: 1fr 1fr} }
+    @media (max-width:640px){ .cards{grid-template-columns:1fr} }
 
-    .contact{ display:grid; grid-template-columns: 1.1fr 1fr; gap:32px }
-    @media (max-width: 900px){ .contact{ grid-template-columns: 1fr } }
+    /* Feature grid */
+    .features{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+    @media (max-width:900px){ .features{grid-template-columns:1fr} }
 
-    form{ display:grid; gap:12px }
-    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.03); color:var(--text); font:inherit }
-    textarea{ min-height:120px; resize:vertical }
-    label{ font-weight:600; font-size:.95rem }
-    small.help{ color:var(--muted) }
+    /* Contact */
+    .contact{display:grid; grid-template-columns: 1.1fr 1fr; gap:26px}
+    @media (max-width:900px){ .contact{grid-template-columns:1fr} }
+    form{display:grid; gap:12px}
+    label{font-weight:700; font-size:.95rem}
+    input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text); font:inherit}
+    textarea{min-height:120px; resize:vertical}
 
-    footer{ border-top:1px solid rgba(255,255,255,.08); padding:30px 0; color:var(--muted) }
+    /* Footer */
+    footer{border-top:1px solid var(--border); color:var(--muted); padding:30px 0}
 
-    /* ====== Reveal on scroll ====== */
-    .reveal{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease }
-    .reveal.visible{ opacity:1; transform: none }
-
-    /* ====== Skip link ====== */
-    .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden }
-    .skip-link:focus{ left:10px; top:10px; width:auto; height:auto; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:999 }
+    /* Subtle grid background */
+    .gridbg{position:absolute; inset:0; background:linear-gradient(to bottom, rgba(255,255,255,.04), transparent 35%), repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px); mask-image: radial-gradient(70% 60% at 50% 0%, black, transparent 70%); pointer-events:none}
   </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <header class="nav">
-    <div class="container nav-inner" role="navigation" aria-label="Main">
-      <a href="#" class="logo" aria-label="Home">
-        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" role="img">
-          <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g)"/>
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ff91af" />
-              <stop offset="100%" stop-color="#e1ad01" />
-            </linearGradient>
-          </defs>
-          <text x="50%" y="61%" text-anchor="middle" font-size="28" fill="#fff" font-family="Inter, Arial, sans-serif">P</text>
-        </svg>
-        <span>PaperPushers</span>
+  <div class="gridbg" aria-hidden="true"></div>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav ribbon">
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <div class="brand-badge"><span>P</span></div>
+        PaperPushers
       </a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a class="btn ghost" href="#contact">Get a quote</a>
+        <a class="btn" href="#contact">Get a quote</a>
       </nav>
-      <button class="menu-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="mobileMenu" id="menuBtn">Menu</button>
-      <div id="mobileMenu" role="menu" aria-labelledby="menuBtn">
-        <a role="menuitem" href="#services">Services</a>
-        <a role="menuitem" href="#work">Work</a>
-        <a role="menuitem" href="#about">About</a>
-        <a role="menuitem" href="#contact">Contact</a>
-        <a role="menuitem" class="btn primary" href="#contact">Get a quote</a>
-      </div>
+      <button class="menu btn" style="padding:8px 12px">Menu</button>
     </div>
   </header>
 
-  <main id="main">
-    <!-- ===== Hero ===== -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="kicker">Digital Studio</span>
-          <h1>PaperPushers builds <span style="background:linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">fast, beautiful</span> websites that convert.</h1>
-          <p class="lead">We partner with ambitious teams to design, develop, and launch websites and brands that win customers.</p>
-          <div class="hero-cta">
-            <a class="btn primary" href="#contact">Start a project</a>
-            <a class="btn ghost" href="#work">See our work</a>
-          </div>
-          <div class="badges" style="margin-top:18px">
-            <span class="pill" aria-label="Fast turnaround">⚡ Fast turnaround</span>
-            <span class="pill" aria-label="SEO friendly">🔎 SEO friendly</span>
-            <span class="pill" aria-label="Responsive design">📱 Responsive</span>
-          </div>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container grid-hero">
+      <div>
+        <span class="super">✨ Design & Web Studio</span>
+        <h1>Crafting <span style="background:linear-gradient(135deg, var(--brand), var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent">delightful, high‑performance</span> websites for ambitious teams.</h1>
+        <p class="lead">From brand to build, we design systems that scale and ship experiences that convert.</p>
+        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+          <a class="btn primary" href="#contact">Start a project</a>
+          <a class="btn" href="#work">See our work</a>
         </div>
-        <div class="hero-card">
-          <!-- Hero image (you can swap this URL for your own) -->
-          <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1200&auto=format&fit=crop" alt="Team collaborating on laptops" loading="eager" />
+        <div class="caps" aria-label="Highlights">
+          <span class="cap">⚡ Lightning-fast</span>
+          <span class="cap">🔎 SEO-first</span>
+          <span class="cap">♿ Accessible</span>
         </div>
       </div>
-    </section>
-
-    <!-- ===== Logos / social proof ===== -->
-    <section aria-label="Trusted by">
-      <div class="container">
-        <div class="logos">
-          <img src="https://dummyimage.com/220x80/1e293b/ffffff&text=Client+1" alt="Client 1 logo" loading="lazy" />
-          <img src="https://dummyimage.com/220x80/1e293b/ffffff&text=Client+2" alt="Client 2 logo" loading="lazy" />
-          <img src="https://dummyimage.com/220x80/1e293b/ffffff&text=Client+3" alt="Client 3 logo" loading="lazy" />
-          <img src="https://dummyimage.com/220x80/1e293b/ffffff&text=Client+4" alt="Client 4 logo" loading="lazy" />
-          <img src="https://dummyimage.com/220x80/1e293b/ffffff&text=Client+5" alt="Client 5 logo" loading="lazy" />
-          <img src="https://dummyimage.com/220x80/1e293b/ffffff&text=Client+6" alt="Client 6 logo" loading="lazy" />
+      <div class="hero-visual">
+        <div class="orb" aria-hidden="true"></div>
+        <div class="glass">
+          <img class="hero-img" src="https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" />
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== Services ===== -->
-    <section id="services" aria-labelledby="services-title">
-      <div class="container">
-        <h2 id="services-title">Services</h2>
-        <p class="muted">Choose a package or mix and match. Tailored for your goals.</p>
-        <div class="services-grid">
-          <article class="card reveal">
-            <h3>Web Design & Development</h3>
-            <p>Custom, responsive websites built for speed, accessibility, and SEO. From landing pages to complex sites.</p>
-            <ul>
-              <li>Design system & components</li>
-              <li>Jamstack & CMS integrations</li>
-              <li>Performance & accessibility audits</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <h3>Branding</h3>
-            <p>Identity, logo, and guidelines that scale across web and print.</p>
-            <ul>
-              <li>Logo & visual identity</li>
-              <li>Color, type, and imagery</li>
-              <li>Brand book & templates</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <h3>Growth & SEO</h3>
-            <p>Increase qualified traffic and conversions with technical SEO and content strategy.</p>
-            <ul>
-              <li>Site speed & Core Web Vitals</li>
-              <li>On-page & technical SEO</li>
-              <li>Content planning</li>
-            </ul>
-          </article>
-        </div>
+  <!-- ================= LOGOS ================= -->
+  <section aria-label="Trusted by" class="ribbon">
+    <div class="container logos">
+      <div class="marquee">
+        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+1" alt="Client 1" />
+        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+2" alt="Client 2" />
+        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+3" alt="Client 3" />
+        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+4" alt="Client 4" />
+        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+5" alt="Client 5" />
+        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+6" alt="Client 6" />
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== Work / Case studies ===== -->
-    <section id="work" aria-labelledby="work-title">
-      <div class="container">
-        <h2 id="work-title">Selected Work</h2>
-        <div class="features">
-          <article class="card reveal">
-            <h3>Project Alpha</h3>
-            <p class="muted">E‑commerce redesign that lifted checkout conversion by 28%.</p>
-            <img src="https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1200&auto=format&fit=crop" alt="E‑commerce interface mockups" loading="lazy" />
-          </article>
-          <article class="card reveal">
-            <h3>Project Beta</h3>
-            <p class="muted">Brand refresh and website for a SaaS startup across 5 markets.</p>
-            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1200&auto=format&fit=crop" alt="Branding and UI boards" loading="lazy" />
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== About ===== -->
-    <section id="about" aria-labelledby="about-title">
-      <div class="container">
-        <h2 id="about-title">About us</h2>
-        <div class="features">
-          <div class="card reveal">
-            <p><strong>PaperPushers</strong> is a product design studio based in Lisbon. We combine strategy, design, and engineering to ship high‑quality websites and products.</p>
-            <ul class="muted">
-              <li>Founded: 2025</li>
-              <li>Team: 5 designers & engineers</li>
-              <li>HQ: Lisbon, Portugal</li>
-            </ul>
-          </div>
-          <div class="card reveal">
-            <div class="testimonial">
-              <img class="avatar" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=300&auto=format&fit=crop" alt="Headshot of a client" loading="lazy" />
-              <div>
-                <p>“They delivered on time, on budget, and beyond expectations.”</p>
-                <p class="muted">— Happy Client, COO at Example Co.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Contact ===== -->
-    <section id="contact" aria-labelledby="contact-title">
-      <div class="container contact">
-        <div>
-          <h2 id="contact-title">Let's talk</h2>
-          <p class="muted">Tell us about your goals. We'll reply within 1 business day.</p>
-          <form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
-            <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-
-            <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="name@company.com" required autocomplete="email" />
-            </div>
-            <div>
-              <label for="company">Company</label>
-              <input id="company" name="company" placeholder="Company name" autocomplete="organization" />
-            </div>
-            <div>
-              <label for="message">Project details</label>
-              <textarea id="message" name="message" placeholder="What are you building? Timeline, budget, and goals…" required></textarea>
-              <small class="help">This static form works out of the box on Netlify. Or replace action with Formspree, EmailJS, etc.</small>
-            </div>
-            <div>
-              <button class="btn primary" type="submit">Send message</button>
-            </div>
-          </form>
-        </div>
-
-        <aside class="card reveal" aria-label="Contact details">
-          <h3>Contact details</h3>
-          <p class="muted">Prefer email? Reach us at <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
-          <ul>
-            <li><strong>HQ:</strong> Lisbon, Portugal</li>
-            <li><strong>Phone:</strong> +351 210 000 000</li>
-            <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
-          </ul>
-          <div style="height:200px; border-radius:12px; overflow:hidden">
-            <iframe title="Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-9.25%2C38.68%2C-9.08%2C38.78&amp;layer=mapnik" style="border:0; width:100%; height:100%"></iframe>
-          </div>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <footer>
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
     <div class="container">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
-        <span>© <span id="year"></span> PaperPushers. All rights reserved.</span>
-        <div style="display:flex; gap:16px">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">LinkedIn</a>
+      <h2 class="section-title">What we do</h2>
+      <p class="muted">Pick a lane or go end‑to‑end. We meet you where you are.</p>
+      <div class="cards" style="margin-top:14px">
+        <article class="card">
+          <h3>Brand & Identity</h3>
+          <p class="muted">Logos, design systems, and guidelines that travel from pitch decks to product UI.</p>
+        </article>
+        <article class="card">
+          <h3>Web Design & Build</h3>
+          <p class="muted">Modern stacks (Jamstack, headless CMS) with excellent Core Web Vitals and a11y.</p>
+        </article>
+        <article class="card">
+          <h3>Growth & SEO</h3>
+          <p class="muted">Technical SEO, content frameworks, and analytics to turn traffic into trials.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section id="work">
+    <div class="container">
+      <h2 class="section-title">Selected work</h2>
+      <div class="features" style="margin-top:12px">
+        <article class="card">
+          <h3>Project Alpha → +28% checkout</h3>
+          <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" />
+        </article>
+        <article class="card">
+          <h3>Project Beta → 5‑market rebrand</h3>
+          <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About PaperPushers</h2>
+      <div class="features">
+        <div class="card">
+          <p><strong>PaperPushers</strong> is a Lisbon‑based studio blending strategy, design, and engineering. We ship high‑quality websites and product UI.</p>
+          <ul class="muted">
+            <li>Founded 2025 • HQ Lisbon</li>
+            <li>Small, senior team</li>
+            <li>Remote‑friendly</li>
+          </ul>
         </div>
+        <div class="card">
+          <p class="muted">“They delivered on time, on budget, and beyond expectations.” — COO, Example Co.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="container contact">
+      <div>
+        <h2 class="section-title">Let’s talk</h2>
+        <p class="muted">Tell us about your goals. We’ll reply within 1 business day.</p>
+        <form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="name@company.com" required autocomplete="email" />
+          <label for="message">Project details</label>
+          <textarea id="message" name="message" placeholder="What are you building? Timeline, budget, and goals…" required></textarea>
+          <button class="btn primary" type="submit">Send message</button>
+        </form>
+      </div>
+      <aside class="card" aria-label="Contact details">
+        <h3>Contact details</h3>
+        <p class="muted">Prefer email? <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
+        <ul>
+          <li><strong>HQ:</strong> Lisbon, Portugal</li>
+          <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <span>© <span id="year"></span> PaperPushers</span>
+      <div style="display:flex; gap:14px">
+        <a class="muted" href="#">Privacy</a>
+        <a class="muted" href="#">Terms</a>
+        <a class="muted" href="#">LinkedIn</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Current year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu toggle
-    const btn = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-    btn?.addEventListener('click', () => {
-      const open = menu.style.display === 'block';
-      menu.style.display = open ? 'none' : 'block';
-      btn.setAttribute('aria-expanded', String(!open));
-    });
-    // Close when clicking a link
-    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
-      menu.style.display='none'; btn.setAttribute('aria-expanded', 'false');
-    }));
-
-    // Reveal on scroll
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible') })
-    }, { threshold: .1 });
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
   </script>
 </body>
 </html>
