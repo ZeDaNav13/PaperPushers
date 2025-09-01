@@ -8,16 +8,17 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
   <style>
     /* =====================
-       Brand tokens
+       Brand tokens — more pink, subtle yellow
        ===================== */
     :root{
       --bg: #f8f8f5;               /* off‑white background */
       --surface: #ffffff;           /* cards */
       --border: rgba(20, 23, 31, .12);
       --text: #0e1620;              /* near-black for contrast */
-      --muted: #4a5568;             /* secondary text */
+      --muted: #565f6b;             /* secondary text */
       --pink: #ff91af;              /* drunk tank pink */
-      --yellow: #e1ad01;            /* danger/mustard yellow */
+      --pink-deep: #ff6d9a;         /* punchier pink for accents */
+      --yellow: #e1ad01;            /* danger/mustard yellow (subtle) */
       --radius: 18px;
       --shadow: 0 24px 60px rgba(0,0,0,.10);
       --maxw: 1120px;
@@ -37,35 +38,32 @@
       background: var(--bg);
       overflow-x:hidden;
     }
-    a{ color: var(--text) }
+    a{ color: var(--text); text-decoration-color: rgba(255,109,154,.35) }
     img{ max-width:100%; height:auto; display:block }
     .container{ width:min(var(--maxw), 92%); margin-inline:auto }
 
-    /* = Animated background layers (LIVELY) = */
+    /* = Animated background layers (LIVELY & QUIRKY) = */
     .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
-    .blob{ position:absolute; border-radius:50%; filter: blur(50px); opacity:.45 }
-    .blob.pink{ background: radial-gradient(circle at 30% 30%, rgba(255,145,175,.95), rgba(255,145,175,0)); width:900px; height:900px; left:-200px; top:-220px; animation: float1 16s ease-in-out infinite }
-    .blob.yellow{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.9), rgba(225,173,1,0)); width:1100px; height:1100px; right:-260px; top:40px; animation: float2 18s ease-in-out infinite }
-    .blob.soft{ background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.95), rgba(255,255,255,0)); width:1200px; height:1200px; left:30%; bottom:-320px; opacity:.25; animation: float3 20s ease-in-out infinite }
+    .blob{ position:absolute; border-radius:50%; filter: blur(60px); opacity:.55; transform: translate3d(0,0,0) }
+    .blob.pink{ background: radial-gradient(circle at 30% 30%, rgba(255,145,175,.95), rgba(255,145,175,0)); width:1200px; height:1200px; left:-260px; top:-280px; animation: float1 14s ease-in-out infinite }
+    .blob.pink2{ background: radial-gradient(circle at 60% 40%, rgba(255,109,154,.9), rgba(255,109,154,0)); width:900px; height:900px; right:10%; top:50%; animation: float3 16s ease-in-out infinite }
+    .blob.yellow{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.45), rgba(225,173,1,0)); width:1100px; height:1100px; right:-320px; top:40px; animation: float2 18s ease-in-out infinite }
 
-    @keyframes float1{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(70px,40px) scale(1.12)} }
-    @keyframes float2{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-90px,-50px) scale(1.1)} }
-    @keyframes float3{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-70px,60px) scale(1.08)} }
+    @keyframes float1{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(90px,40px) scale(1.14)} }
+    @keyframes float2{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-110px,-60px) scale(1.12)} }
+    @keyframes float3{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-70px,60px) scale(1.1)} }
 
-    /* Flow lines (SVG strokes that animate) */
-    .flow{ position:fixed; inset:0; opacity:.55 }
-    .flow path{ fill:none; stroke-linecap:round; stroke-width:3.2; stroke: url(#gradPY); stroke-dasharray: 14 18; animation: dash 12s linear infinite }
-    .flow g:nth-child(2) path{ stroke-dasharray: 10 22; animation-duration: 14s; opacity:.75 }
-    .flow g:nth-child(3) path{ stroke-dasharray: 20 20; animation-duration: 16s; opacity:.6 }
+    /* Flow lines (SVG strokes that animate + react to mouse) */
+    .flow{ position:fixed; inset:0; opacity:.6 }
+    .flow path{ fill:none; stroke-linecap:round; stroke-width:3.2; stroke: url(#gradPY); stroke-dasharray: 14 18; animation: dash 11s linear infinite }
+    .flow g:nth-child(2) path{ stroke-dasharray: 10 22; animation-duration: 13s; opacity:.8 }
+    .flow g:nth-child(3) path{ stroke-dasharray: 20 20; animation-duration: 15s; opacity:.65 }
     @keyframes dash{ to{ stroke-dashoffset: -1000 } }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .blob, .flow path{ animation: none !important }
-    }
+    @media (prefers-reduced-motion: reduce){ .blob, .flow path{ animation: none !important } }
 
     /* = Navigation = */
-    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background: rgba(255,255,255,.7); border-bottom:1px solid var(--border) }
+    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background: rgba(255,255,255,.8); border-bottom:1px solid var(--border) }
     .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
     .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:900; letter-spacing:.2px }
     .badge{ width:36px; height:36px; border-radius:10px; background: conic-gradient(from 220deg, var(--pink), var(--yellow)); display:grid; place-items:center; color:#111; font-weight:900 }
@@ -75,9 +73,9 @@
     .menu{ display:none }
     @media (max-width:860px){ .links{ display:none } .menu{ display:inline-flex } }
 
-    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background: var(--surface); color:var(--text); text-decoration:none; font-weight:800; transition:.2s; box-shadow: var(--shadow) }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:14px; border:1px solid var(--border); background: var(--surface); color:var(--text); text-decoration:none; font-weight:900; transition:.2s; box-shadow: var(--shadow) }
     .btn:hover{ transform: translateY(-2px) }
-    .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--pink), var(--yellow)); color:#111 }
+    .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--pink-deep), var(--pink)); color:#111 }
 
     /* = Sections = */
     section{ padding: clamp(56px, 7vw, 96px) 0 }
@@ -86,11 +84,11 @@
     .hero .grid{ display:grid; grid-template-columns: 1.15fr 1fr; gap:44px; align-items:center }
     @media (max-width:980px){ .hero .grid{ grid-template-columns:1fr } }
     .kicker{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:#fff; color:#5b6472; font-weight:800; font-size:.9rem }
-    h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.06; margin:.45em 0 }
+    h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0 }
     .lead{ color:#5b6472; font-size:1.15rem; max-width:60ch }
 
     .visual{ position:relative }
-    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82)); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow: var(--shadow) }
+    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86)); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow: var(--shadow) }
     .hero-img{ border-radius:12px; width:100%; aspect-ratio:16/10; object-fit:cover }
 
     .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px }
@@ -104,19 +102,28 @@
     .card:hover{ transform: translateY(-3px); border-color: rgba(14,22,32,.2) }
     .muted{ color:#5b6472 }
 
-    /* Work cards fix: consistent image sizing */
+    /* Work cards fix: consistent image sizing + fallbacks */
     .work-card img{ width:100%; height:260px; object-fit:cover; border-radius:12px }
     @media (min-width:1200px){ .work-card img{ height:300px } }
 
-    /* = Contact = */
+    /* = Contact (improved readability & spacing) = */
     .contact{ display:grid; grid-template-columns: 1.1fr 1fr; gap:26px }
     @media (max-width:900px){ .contact{ grid-template-columns:1fr } }
-    label{ font-weight:800; font-size:.95rem }
-    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
-    textarea{ min-height:120px; resize:vertical }
+    .contact .card{ background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92)); border: 1px solid rgba(255,109,154,.25) }
+    .contact h2{ margin-top:0 }
+    .fields{ display:grid; gap:14px; margin-top:12px }
+    label{ font-weight:900; font-size:.95rem }
+    input, textarea{ width:100%; padding:14px 16px; border-radius:14px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
+    textarea{ min-height:140px; resize:vertical }
+    .form-actions{ margin-top:8px }
 
-    /* = Footer = */
-    footer{ border-top:1px solid var(--border); color:#5b6472; padding:30px 0 }
+    /* = Footer (better treatment) = */
+    footer{ margin-top:12px; background: linear-gradient(180deg, rgba(255,145,175,.25), rgba(255,145,175,.08)); border-top:1px solid rgba(255,109,154,.35); color:#3a434d; }
+    .footer-inner{ padding:28px 0; display:grid; grid-template-columns: 1fr auto; align-items:center; gap:16px }
+    .foot-brand{ display:flex; align-items:center; gap:10px; font-weight:900 }
+    .foot-badge{ width:30px; height:30px; border-radius:9px; background: conic-gradient(from 220deg, var(--pink-deep), var(--pink)); display:grid; place-items:center }
+    .foot-links{ display:flex; gap:16px }
+    .foot-links a{ color:#3a434d; text-decoration:none; font-weight:700 }
 
     /* = Skip link = */
     .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden }
@@ -126,15 +133,15 @@
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Animated background: large moving blobs + flowing gradient lines (lively) -->
+  <!-- Animated background: large moving blobs + flowing gradient lines (lively, pink-forward) -->
   <div class="bg-layer" aria-hidden="true">
     <div class="blob pink"></div>
+    <div class="blob pink2"></div>
     <div class="blob yellow"></div>
-    <div class="blob soft"></div>
     <svg class="flow" viewBox="0 0 1200 800" preserveAspectRatio="none">
       <defs>
         <linearGradient id="gradPY" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="var(--pink)"/>
+          <stop offset="0%" stop-color="var(--pink-deep)"/>
           <stop offset="100%" stop-color="var(--yellow)"/>
         </linearGradient>
       </defs>
@@ -183,7 +190,7 @@
       <div class="container grid">
         <div>
           <span class="kicker">✨ Design & Web Studio</span>
-          <h1>Big, bold, and <span style="background:linear-gradient(135deg, var(--pink), var(--yellow)); -webkit-background-clip:text; background-clip:text; color:transparent">beautifully smooth</span>.</h1>
+          <h1>Big, bold, and <span style="background:linear-gradient(135deg, var(--pink-deep), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent">beautifully smooth</span>.</h1>
           <p class="lead">We craft brands and websites with motion that feels natural—never noisy. Strategic design, meticulous build, measurable growth.</p>
           <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
             <a class="btn primary" href="#contact">Start a project</a>
@@ -197,7 +204,7 @@
         </div>
         <div class="visual">
           <div class="glass">
-            <img class="hero-img" src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop'" />
+            <img class="hero-img" src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" loading="eager" onerror="this.onerror=null; this.src='https://picsum.photos/seed/paperpushers-hero/1600/1000'" />
           </div>
         </div>
       </div>
@@ -232,17 +239,17 @@
         <div class="cards" style="margin-top:12px">
           <article class="card work-card">
             <h3>Project Alpha → +28% checkout</h3>
-            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop'" />
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/alpha/1600/900'" />
             <p class="muted">E‑commerce redesign with streamlined checkout and improved performance.</p>
           </article>
           <article class="card work-card">
             <h3>Project Beta → 5‑market rebrand</h3>
-            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520974718246-78f1dbfbaaa4?q=80&w=1600&auto=format&fit=crop'" />
+            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/beta/1600/900'" />
             <p class="muted">Unified identity and web for expansion across EU regions.</p>
           </article>
           <article class="card work-card">
             <h3>Project Gamma → +42% sign‑ups</h3>
-            <img src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop'" />
+            <img src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/gamma/1600/900'" />
             <p class="muted">Product‑led site with clearer value props and faster LCP.</p>
           </article>
         </div>
@@ -275,20 +282,20 @@
     <!-- =============== CONTACT =============== -->
     <section id="contact">
       <div class="container contact">
-        <div>
+        <div class="card">
           <h2 class="section-title">Let’s talk</h2>
           <p class="muted">Tell us about your goals. We’ll reply within 1 business day.</p>
-          <form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
-            <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <div class="fields">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
             <label for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="name@company.com" required autocomplete="email" />
             <label for="message">Project details</label>
             <textarea id="message" name="message" placeholder="What are you building? Timeline, budget, and goals…" required></textarea>
-            <button class="btn primary" type="submit">Send message</button>
-          </form>
+            <div class="form-actions">
+              <button class="btn primary" type="submit">Send message</button>
+            </div>
+          </div>
         </div>
         <aside class="card" aria-label="Contact details">
           <h3>Contact details</h3>
@@ -303,13 +310,16 @@
   </main>
 
   <footer>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
-      <span>© <span id="year"></span> PaperPushers</span>
-      <div style="display:flex; gap:14px">
-        <a class="muted" href="#">Privacy</a>
-        <a class="muted" href="#">Terms</a>
-        <a class="muted" href="#">LinkedIn</a>
+    <div class="container footer-inner">
+      <div class="foot-brand">
+        <div class="foot-badge">P</div>
+        <span>© <span id="year"></span> PaperPushers</span>
       </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">LinkedIn</a>
+      </nav>
     </div>
   </footer>
 
@@ -324,6 +334,13 @@
       menu.style.display = open ? 'none' : 'block';
       btn.setAttribute('aria-expanded', String(!open));
     });
+    // Quirky mouse‑reactive flow (very light)
+    const flow = document.querySelector('.flow');
+    window.addEventListener('pointermove', (e)=>{
+      const x = (e.clientX / window.innerWidth - .5) * 6; // -3..3
+      const y = (e.clientY / window.innerHeight - .5) * 6;
+      flow.style.transform = `translate(${x}px, ${y}px)`;
+    }, { passive:true });
   </script>
 </body>
 </html>
