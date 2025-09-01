@@ -8,19 +8,25 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
   <style>
     :root{
-      --bg: #f8f8f5;               /* off‑white background */
-      --surface: #ffffff;           /* cards */
-      --border: rgba(20,23,31,.12);
-      --text: #0e1620;              /* body text */
-      --muted: #6f7b88;             /* lighter grey for readability */
-      --muted-dark: #2c3440;        /* darker grey for nav links */
-      --pink: #ff91af;              /* drunk tank pink */
-      --pink-deep: #ff6d9a;         /* accent pink */
-      --yellow: #e1ad01;            /* subtle accent */
+      /* DARK THEME (back to darker, as requested) */
+      --bg: #0b0f14;               /* deep blue‑black */
+      --surface: #121821;          /* cards */
+      --border: rgba(255,255,255,.10);
+      --text: #f2f6fb;             /* near‑white */
+      --muted: #b6c2cf;            /* lighter for readability */
+      --muted-dark: #8fa1b4;       /* nav link grey on dark */
+      --pink: #ff91af;             /* drunk tank pink */
+      --pink-deep: #ff6d9a;        /* accent pink */
+      --yellow: #e1ad01;           /* subtle accent */
       --radius: 18px;
-      --shadow: 0 24px 60px rgba(0,0,0,.10);
+      --shadow: 0 24px 60px rgba(0,0,0,.35);
       --maxw: 1120px;
     }
+    @media (prefers-color-scheme: light){
+      /* optional light tint */
+      :root{ --bg:#f8f8f5; --surface:#ffffff; --text:#0e1620; --muted:#6f7b88; --muted-dark:#2c3440; --border:rgba(20,23,31,.12) }
+    }
+
     body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); overflow-x:hidden }
     img{max-width:100%; display:block}
     a{ color: var(--text) }
@@ -28,10 +34,10 @@
 
     /* Blobby animated background (no flow lines) */
     .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
-    .blob{ position:absolute; border-radius:50%; filter: blur(60px); opacity:.5 }
+    .blob{ position:absolute; border-radius:50%; filter: blur(70px); opacity:.5 }
     .blob.p1{ background: radial-gradient(circle at 30% 30%, rgba(255,109,154,.95), rgba(255,109,154,0)); width:1200px; height:1200px; left:-260px; top:-300px; animation: f1 18s ease-in-out infinite }
     .blob.p2{ background: radial-gradient(circle at 60% 40%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:900px; height:900px; right:-200px; top:20%; animation: f2 22s ease-in-out infinite }
-    .blob.y1{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.35), rgba(225,173,1,0)); width:1100px; height:1100px; right:-320px; bottom:-200px; animation: f3 26s ease-in-out infinite }
+    .blob.y1{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.30), rgba(225,173,1,0)); width:1100px; height:1100px; right:-320px; bottom:-200px; animation: f3 26s ease-in-out infinite }
     @keyframes f1{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,40px) scale(1.12)} }
     @keyframes f2{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,60px) scale(1.08)} }
     @keyframes f3{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-110px,-40px) scale(1.1)} }
@@ -41,20 +47,15 @@
     .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:var(--shadow); will-change:transform; transition:transform .3s ease-out }
     .card.parallax{ transform: translateY(var(--parallax,0px)); }
 
-    /* Section dividers */
-    .divider{position:relative; height:80px; overflow:hidden}
-    .divider svg{position:absolute; top:0; left:0; width:100%; height:100%}
-    .divider path{fill:var(--surface)}
-
     /* NAV */
-    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--border) }
+    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:rgba(9,13,19,.65); border-bottom:1px solid var(--border) }
     .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
     .brand{ display:flex; align-items:center; gap:12px; font-weight:900; text-decoration:none }
     .brand .logo{ width:34px; height:34px; border-radius:10px; background:conic-gradient(from 220deg, var(--pink-deep), var(--pink)); display:grid; place-items:center; color:#111 }
     .brand span{ color: var(--pink-deep); letter-spacing:.2px }
     .links{ display:flex; gap:18px; align-items:center }
     .links a{ color: var(--muted-dark); text-decoration:none; font-weight:800 }
-    .links a:hover{ color:#1f2630 }
+    .links a:hover{ color:#dfe7f1 }
     .menu{ display:none }
     @media (max-width:860px){ .links{ display:none } .menu{ display:inline-flex } }
 
@@ -63,13 +64,13 @@
     .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--pink-deep), var(--pink)); color:#111 }
 
     /* Sections */
-    section{ padding: clamp(48px, 6.5vw, 84px) 0 }
+    section{ padding: clamp(44px, 6vw, 80px) 0 }
 
     /* HERO */
     .hero h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0 }
     .lead{ color: var(--muted); font-size:1.15rem; max-width:62ch }
 
-    /* Services grid */
+    /* Grids */
     .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px }
     @media (max-width:980px){ .grid-3{ grid-template-columns:1fr 1fr } }
     @media (max-width:640px){ .grid-3{ grid-template-columns:1fr } }
@@ -80,11 +81,11 @@
     /* CONTACT (condensed) */
     #contact .card{ padding:18px }
     .fields{ display:grid; gap:12px; margin-top:8px }
-    label{ font-weight:900; font-size:.95rem; color:#28313b }
-    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
+    label{ font-weight:900; font-size:.95rem; color:#e7edf6 }
+    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:#0f141c; color:#eaf2fb; font:inherit }
     textarea{ min-height:110px; resize:vertical }
     .form-actions{ margin-top:6px }
-    .contact-aside a{ color: var(--text); text-decoration:underline; text-decoration-color: rgba(255,109,154,.45) }
+    .contact-aside a{ color: var(--text); text-decoration:underline; text-decoration-color: rgba(255,109,154,.6) }
 
     /* FOOTER (higher contrast, white text) */
     footer{ background: linear-gradient(180deg, var(--pink-deep), var(--pink)); color:#fff }
@@ -94,7 +95,7 @@
     .foot-links a{ color:#fff; text-decoration:none; font-weight:800 }
 
     /* Floating CTA */
-    .floating-cta{position:fixed; top:40%; left:40%; z-index:999; background:linear-gradient(135deg,var(--pink-deep),var(--pink)); color:#111; padding:14px 20px; border-radius:14px; font-weight:900; box-shadow:0 12px 30px rgba(0,0,0,.25); text-decoration:none;}
+    .floating-cta{position:fixed; left:0; top:0; z-index:999; background:linear-gradient(135deg,var(--pink-deep),var(--pink)); color:#111; padding:14px 20px; border-radius:14px; font-weight:900; box-shadow:0 12px 30px rgba(0,0,0,.35); text-decoration:none; will-change:transform}
   </style>
 </head>
 <body>
@@ -130,8 +131,6 @@
       </div>
     </section>
 
-    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z"></path></svg></div>
-
     <!-- SERVICES -->
     <section id="services">
       <div class="container">
@@ -144,8 +143,6 @@
         </div>
       </div>
     </section>
-
-    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,0 900,80 1200,0 L1200,80 L0,80 Z"></path></svg></div>
 
     <!-- WORK -->
     <section id="work">
@@ -171,8 +168,6 @@
       </div>
     </section>
 
-    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z"></path></svg></div>
-
     <!-- ABOUT -->
     <section id="about">
       <div class="container">
@@ -185,9 +180,7 @@
       </div>
     </section>
 
-    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,0 900,80 1200,0 L1200,80 L0,80 Z"></path></svg></div>
-
-    <!-- CONTACT (condensed, high-contrast email) -->
+    <!-- CONTACT (condensed, dark fields) -->
     <section id="contact">
       <div class="container" style="display:grid; grid-template-columns:1.1fr 1fr; gap:20px">
         <div class="card parallax">
@@ -234,28 +227,35 @@
     // Year
     document.getElementById('year').textContent=new Date().getFullYear();
 
-    // Gentle parallax for cards
-    const cards=document.querySelectorAll('.card.parallax');
-    window.addEventListener('scroll',()=>{
-      const y=window.scrollY;
-      cards.forEach(c=>{
-        const speed=0.12;
-        c.style.setProperty('--parallax', (y*speed - c.offsetTop*speed)+'px');
+    // Safer, gentle parallax based on viewport position (no overlap with titles)
+    const parallaxItems=[...document.querySelectorAll('.card.parallax')];
+    const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+    function updateParallax(){
+      const vh=window.innerHeight;
+      parallaxItems.forEach(el=>{
+        const r=el.getBoundingClientRect();
+        const center=(r.top + r.height/2) - vh/2; // 0 at center of screen
+        const offset=clamp(center*0.04, -10, 10); // translate only a few px
+        el.style.setProperty('--parallax', offset+'px');
       });
-    }, {passive:true});
-
-    // Floating CTA bounce like screensaver
-    const cta=document.querySelector('.floating-cta');
-    let x=200,y=200,dx=2,dy=2;
-    function animate(){
-      const w=window.innerWidth,h=window.innerHeight;
-      x+=dx; y+=dy;
-      if(x<=0||x+cta.offsetWidth>=w) dx*=-1;
-      if(y<=0||y+cta.offsetHeight>=h) dy*=-1;
-      cta.style.transform=`translate(${x}px,${y}px)`;
-      requestAnimationFrame(animate);
     }
-    animate();
+    const raf=()=>{ updateParallax(); requestAnimationFrame(raf) };
+    requestAnimationFrame(raf);
+
+    // Floating CTA bounce within viewport bounds (never off-screen)
+    const cta=document.querySelector('.floating-cta');
+    let x=100, y=120, dx=1.6, dy=1.3;
+    function bounce(){
+      const maxX=window.innerWidth - cta.offsetWidth - 12; // padding
+      const maxY=window.innerHeight - cta.offsetHeight - 12;
+      x+=dx; y+=dy;
+      if(x<12){ x=12; dx*=-1 } else if(x>maxX){ x=maxX; dx*=-1 }
+      if(y<12){ y=12; dy*=-1 } else if(y>maxY){ y=maxY; dy*=-1 }
+      cta.style.transform=`translate3d(${x}px,${y}px,0)`;
+      requestAnimationFrame(bounce);
+    }
+    window.addEventListener('resize',()=>{ x=Math.min(x, window.innerWidth - cta.offsetWidth - 12); y=Math.min(y, window.innerHeight - cta.offsetHeight - 12); });
+    requestAnimationFrame(bounce);
   </script>
 </body>
 </html>
