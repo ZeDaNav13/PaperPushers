@@ -3,267 +3,297 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PaperPushers — La Da Di La Da</title>
-  <meta name="description" content="PaperPushers helps teams succeed with smart design, branding, and web solutions." />
-
-  <!-- Fav / metadata -->
+  <title>PaperPushers — Design, brand & web</title>
+  <meta name="description" content="PaperPushers designs brands and builds high‑performance websites that convert." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
-
   <style>
     /* =====================
-       Stripe‑inspired vibe (not a copy): dark UI, big type, soft gradients, glass surfaces
-       Brand: drunk tank pink (#ff91af), mustard (#e1ad01), off‑white (#f8f8f5)
+       Brand tokens
        ===================== */
     :root{
-      --bg: #0b0f14;
-      --surface: rgba(255,255,255,.04);
-      --border: rgba(255,255,255,.08);
-      --text: #f8f8f5;
-      --muted: #b8c0cc;
-      --brand: #ff91af;
-      --brand2:#e1ad01;
+      --bg: #f8f8f5;               /* off‑white background */
+      --surface: #ffffff;           /* cards */
+      --border: rgba(20, 23, 31, .12);
+      --text: #0e1620;              /* near-black for contrast */
+      --muted: #4a5568;             /* secondary text */
+      --pink: #ff91af;              /* drunk tank pink */
+      --yellow: #e1ad01;            /* danger/mustard yellow */
       --radius: 18px;
-      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --shadow: 0 24px 60px rgba(0,0,0,.10);
       --maxw: 1120px;
     }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 85% -10%, rgba(255,145,175,.25), transparent 60%),
-                  radial-gradient(900px 500px at -10% 10%, rgba(225,173,1,.18), transparent 60%),
-                  #0b0f14;
-      letter-spacing:.1px;
+    @media (prefers-color-scheme: dark){
+      :root{ /* Optional dark auto-tint */
+        --bg:#0b0f14; --surface: #11161f; --text:#f1f5f9; --muted:#9aa6b2; --border: rgba(255,255,255,.12);
+      }
     }
-    .container{width:min(var(--maxw),92%); margin-inline:auto}
 
-    /* Top ribbon */
-    .ribbon{position:relative; overflow:hidden}
-    .ribbon::before{content:""; position:absolute; inset:auto 0 0 0; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent)}
+    /* = Base = */
+    *,*::before,*::after{ box-sizing:border-box }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0; color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+    a{ color: var(--text) }
+    .container{ width:min(var(--maxw), 92%); margin-inline:auto }
 
-    /* Nav */
-    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(150%) blur(10px); background:rgba(5,9,14,.55); border-bottom:1px solid var(--border)}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; text-decoration:none; color:var(--text)}
-    .brand-badge{width:34px;height:34px;border-radius:9px;background:conic-gradient(from 210deg, var(--brand), var(--brand2)); display:grid; place-items:center; box-shadow:var(--shadow)}
-    .brand-badge span{font-weight:900}
-    .nav-links{display:flex; gap:18px; align-items:center}
-    .nav-links a{color:var(--muted); text-decoration:none; font-weight:600}
-    .nav-links a:hover{color:var(--text)}
-    .menu{display:none}
-    @media (max-width:860px){ .nav-links{display:none} .menu{display:block} }
+    /* = Animated background layers = */
+    .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
+    .blob{ position:absolute; border-radius:50%; filter: blur(40px); opacity:.35 }
+    .blob.pink{ background: radial-gradient(circle at 30% 30%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:560px; height:560px; left:-120px; top:-120px; animation: float1 26s ease-in-out infinite }
+    .blob.yellow{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.85), rgba(225,173,1,0)); width:620px; height:620px; right:-160px; top:140px; animation: float2 30s ease-in-out infinite }
+    .blob.soft{ background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.9), rgba(255,255,255,0)); width:700px; height:700px; left:40%; bottom:-220px; opacity:.25; animation: float3 34s ease-in-out infinite }
 
-    /* Buttons */
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); text-decoration:none; font-weight:700; transition:.2s}
-    .btn:hover{transform:translateY(-2px)}
-    .btn.primary{border-color:transparent; background:linear-gradient(135deg, var(--brand), var(--brand2)); color:#111; box-shadow:var(--shadow)}
+    @keyframes float1{ 0%,100%{ transform: translateY(0) translateX(0) scale(1) } 50%{ transform: translateY(40px) translateX(20px) scale(1.08) } }
+    @keyframes float2{ 0%,100%{ transform: translateY(0) translateX(0) scale(1) } 50%{ transform: translateY(-30px) translateX(-30px) scale(1.06) } }
+    @keyframes float3{ 0%,100%{ transform: translateY(0) translateX(0) scale(1) } 50%{ transform: translateY(30px) translateX(-20px) scale(1.05) } }
 
-    /* Hero */
-    .hero{padding: clamp(56px, 6vw, 88px) 0 24px; position:relative}
-    .grid-hero{display:grid; grid-template-columns: 1.15fr 1fr; gap:40px; align-items:center}
-    .super{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.03); color:var(--muted); font-weight:700; font-size:.9rem}
-    h1{font-size:clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.06; margin:.45em 0}
-    .lead{color:var(--muted); font-size:1.12rem; max-width:60ch}
+    /* Flow lines (SVG strokes that animate) */
+    .flow{ position:fixed; inset:0; opacity:.45 }
+    .flow path{ fill:none; stroke-linecap:round; stroke-width:2.2; stroke: url(#gradPY); stroke-dasharray: 14 18; animation: dash 18s linear infinite }
+    .flow g:nth-child(2) path{ stroke-dasharray: 10 22; animation-duration: 22s; opacity:.7 }
+    .flow g:nth-child(3) path{ stroke-dasharray: 20 20; animation-duration: 26s; opacity:.5 }
+    @keyframes dash{ to{ stroke-dashoffset: -1000 } }
 
-    /* Hero visual */
-    .hero-visual{position:relative}
-    .glass{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
-    .orb{position:absolute; inset:-60px -80px auto auto; width:240px; height:240px; background:radial-gradient(circle at 30% 30%, rgba(255,145,175,.6), transparent 60%), radial-gradient(circle at 70% 60%, rgba(225,173,1,.55), transparent 60%); filter:blur(30px); opacity:.8; pointer-events:none}
-    .hero-img{border-radius:14px; width:100%; aspect-ratio: 16/10; object-fit:cover}
-    .caps{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
-    .cap{font-size:.85rem; color:var(--muted); border:1px solid var(--border); padding:6px 10px; border-radius:999px}
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .blob, .flow path{ animation: none !important }
+    }
 
-    @media (max-width:980px){ .grid-hero{grid-template-columns:1fr} .orb{inset:auto -40px -40px auto} }
+    /* = Navigation = */
+    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background: rgba(255,255,255,.55); border-bottom:1px solid var(--border) }
+    .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:900; letter-spacing:.2px }
+    .badge{ width:36px; height:36px; border-radius:10px; background: conic-gradient(from 220deg, var(--pink), var(--yellow)); display:grid; place-items:center; color:#111; font-weight:900 }
+    .links{ display:flex; gap:18px; align-items:center }
+    .links a{ color:var(--muted); text-decoration:none; font-weight:700 }
+    .links a:hover{ color:var(--text) }
+    .menu{ display:none }
+    @media (max-width:860px){ .links{ display:none } .menu{ display:inline-flex } }
 
-    /* Logos */
-    .logos{padding: 26px 0 10px}
-    .marquee{display:grid; grid-template-columns: repeat(6,1fr); gap:22px; align-items:center; opacity:.9}
-    .marquee img{filter:grayscale(1) brightness(.9); opacity:.9}
-    @media (max-width:900px){ .marquee{grid-template-columns: repeat(3,1fr)} }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background: var(--surface); color:var(--text); text-decoration:none; font-weight:800; transition:.2s; box-shadow: var(--shadow) }
+    .btn:hover{ transform: translateY(-2px) }
+    .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--pink), var(--yellow)); color:#111 }
 
-    /* Sections */
-    section{padding: clamp(48px, 6vw, 84px) 0}
-    .section-title{font-size:clamp(1.6rem, 2.4vw + .6rem, 2.2rem)}
+    /* = Sections = */
+    section{ padding: clamp(56px, 7vw, 96px) 0 }
 
-    /* Cards */
-    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:20px}
-    .card{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; transition:transform .2s, border-color .2s}
-    .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.22)}
-    .card h3{margin:.2rem 0  .2rem}
-    .muted{color:var(--muted)}
-    @media (max-width:980px){ .cards{grid-template-columns: 1fr 1fr} }
-    @media (max-width:640px){ .cards{grid-template-columns:1fr} }
+    /* = Hero = */
+    .hero .grid{ display:grid; grid-template-columns: 1.15fr 1fr; gap:44px; align-items:center }
+    @media (max-width:980px){ .hero .grid{ grid-template-columns:1fr } }
+    .kicker{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:#fff; color:#5b6472; font-weight:800; font-size:.9rem }
+    h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.06; margin:.45em 0 }
+    .lead{ color:#5b6472; font-size:1.15rem; max-width:60ch }
 
-    /* Feature grid */
-    .features{display:grid; grid-template-columns:1fr 1fr; gap:22px}
-    @media (max-width:900px){ .features{grid-template-columns:1fr} }
+    .visual{ position:relative }
+    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.75)); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow: var(--shadow) }
+    .hero-img{ border-radius:12px; width:100%; aspect-ratio:16/10; object-fit:cover }
 
-    /* Contact */
-    .contact{display:grid; grid-template-columns: 1.1fr 1fr; gap:26px}
-    @media (max-width:900px){ .contact{grid-template-columns:1fr} }
-    form{display:grid; gap:12px}
-    label{font-weight:700; font-size:.95rem}
-    input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text); font:inherit}
-    textarea{min-height:120px; resize:vertical}
+    .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px }
+    .pill{ font-size:.9rem; color:#5b6472; border:1px solid var(--border); padding:6px 10px; border-radius:999px; background:#fff }
 
-    /* Footer */
-    footer{border-top:1px solid var(--border); color:var(--muted); padding:30px 0}
+    /* = Cards & grids = */
+    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px }
+    @media (max-width:980px){ .cards{ grid-template-columns: 1fr 1fr } }
+    @media (max-width:640px){ .cards{ grid-template-columns: 1fr } }
+    .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; transition:transform .2s, border-color .2s; box-shadow: var(--shadow) }
+    .card:hover{ transform: translateY(-3px); border-color: rgba(14,22,32,.2) }
+    .muted{ color:#5b6472 }
 
-    /* Subtle grid background */
-    .gridbg{position:absolute; inset:0; background:linear-gradient(to bottom, rgba(255,255,255,.04), transparent 35%), repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 40px); mask-image: radial-gradient(70% 60% at 50% 0%, black, transparent 70%); pointer-events:none}
+    /* = Contact = */
+    .contact{ display:grid; grid-template-columns: 1.1fr 1fr; gap:26px }
+    @media (max-width:900px){ .contact{ grid-template-columns:1fr } }
+    label{ font-weight:800; font-size:.95rem }
+    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
+    textarea{ min-height:120px; resize:vertical }
+
+    /* = Footer = */
+    footer{ border-top:1px solid var(--border); color:#5b6472; padding:30px 0 }
+
+    /* = Skip link = */
+    .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden }
+    .skip-link:focus{ left:10px; top:10px; width:auto; height:auto; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:999 }
   </style>
 </head>
 <body>
-  <div class="gridbg" aria-hidden="true"></div>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- ================= NAV ================= -->
-  <header class="nav ribbon">
-    <div class="container nav-inner">
-      <a class="brand" href="#">
-        <div class="brand-badge"><span>P</span></div>
+  <!-- Animated background: large moving blobs + flowing gradient lines -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="blob pink"></div>
+    <div class="blob yellow"></div>
+    <div class="blob soft"></div>
+    <svg class="flow" viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="gradPY" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="var(--pink)"/>
+          <stop offset="100%" stop-color="var(--yellow)"/>
+        </linearGradient>
+      </defs>
+      <g>
+        <path d="M0,200 C200,120 300,260 500,200 C700,140 900,260 1200,180"/>
+      </g>
+      <g>
+        <path d="M0,420 C220,500 360,340 560,420 C760,500 980,360 1200,420"/>
+      </g>
+      <g>
+        <path d="M0,640 C260,560 420,740 660,640 C900,540 1080,720 1200,660"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- =============== NAV =============== -->
+  <header class="nav">
+    <div class="container inner">
+      <a class="brand" href="#" aria-label="Home">
+        <div class="badge">P</div>
         PaperPushers
       </a>
-      <nav class="nav-links" aria-label="Primary">
+      <nav class="links" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a class="btn" href="#contact">Get a quote</a>
       </nav>
-      <button class="menu btn" style="padding:8px 12px">Menu</button>
+      <button class="menu btn" id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </div>
+    <div id="mobileMenu" class="container" style="display:none; padding-bottom:12px">
+      <div class="card" role="menu" aria-label="Mobile">
+        <a role="menuitem" href="#services">Services</a>
+        <a role="menuitem" href="#work">Work</a>
+        <a role="menuitem" href="#about">About</a>
+        <a role="menuitem" href="#contact">Contact</a>
+        <a role="menuitem" class="btn primary" href="#contact" style="margin-top:8px">Get a quote</a>
+      </div>
     </div>
   </header>
 
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="container grid-hero">
-      <div>
-        <span class="super">✨ Design & Web Studio</span>
-        <h1>Crafting <span style="background:linear-gradient(135deg, var(--brand), var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent">delightful, high‑performance</span> websites for ambitious teams.</h1>
-        <p class="lead">From brand to build, we design systems that scale and ship experiences that convert.</p>
-        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
-          <a class="btn primary" href="#contact">Start a project</a>
-          <a class="btn" href="#work">See our work</a>
+  <main id="main">
+    <!-- =============== HERO =============== -->
+    <section class="hero">
+      <div class="container grid">
+        <div>
+          <span class="kicker">✨ Design & Web Studio</span>
+          <h1>Big, bold, and <span style="background:linear-gradient(135deg, var(--pink), var(--yellow)); -webkit-background-clip:text; background-clip:text; color:transparent">beautifully smooth</span>.</h1>
+          <p class="lead">We craft brands and websites with motion that feels natural—never noisy. Strategic design, meticulous build, measurable growth.</p>
+          <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+            <a class="btn primary" href="#contact">Start a project</a>
+            <a class="btn" href="#work">See our work</a>
+          </div>
+          <div class="pills" aria-label="Highlights">
+            <span class="pill">⚡ Lightning-fast</span>
+            <span class="pill">🔎 SEO-first</span>
+            <span class="pill">♿ Accessible</span>
+          </div>
         </div>
-        <div class="caps" aria-label="Highlights">
-          <span class="cap">⚡ Lightning-fast</span>
-          <span class="cap">🔎 SEO-first</span>
-          <span class="cap">♿ Accessible</span>
+        <div class="visual">
+          <div class="glass">
+            <img class="hero-img" src="https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" />
+          </div>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="orb" aria-hidden="true"></div>
-        <div class="glass">
-          <img class="hero-img" src="https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" />
+    </section>
+
+    <!-- =============== SERVICES =============== -->
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">What we do</h2>
+        <p class="muted">Pick a lane or go end‑to‑end. We meet you where you are.</p>
+        <div class="cards" style="margin-top:14px">
+          <article class="card">
+            <h3>Brand & Identity</h3>
+            <p class="muted">Logos, design systems, and guidelines that travel from pitch decks to product UI.</p>
+          </article>
+          <article class="card">
+            <h3>Web Design & Build</h3>
+            <p class="muted">Modern stacks (Jamstack, headless CMS) with excellent Core Web Vitals and a11y.</p>
+          </article>
+          <article class="card">
+            <h3>Growth & SEO</h3>
+            <p class="muted">Technical SEO, content frameworks, and analytics to turn traffic into trials.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ================= LOGOS ================= -->
-  <section aria-label="Trusted by" class="ribbon">
-    <div class="container logos">
-      <div class="marquee">
-        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+1" alt="Client 1" />
-        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+2" alt="Client 2" />
-        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+3" alt="Client 3" />
-        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+4" alt="Client 4" />
-        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+5" alt="Client 5" />
-        <img src="https://dummyimage.com/200x64/1e293b/ffffff&text=Client+6" alt="Client 6" />
+    <!-- =============== WORK =============== -->
+    <section id="work">
+      <div class="container">
+        <h2 class="section-title">Selected work</h2>
+        <div class="cards" style="margin-top:12px">
+          <article class="card">
+            <h3>Project Alpha → +28% checkout</h3>
+            <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" />
+          </article>
+          <article class="card">
+            <h3>Project Beta → 5‑market rebrand</h3>
+            <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" />
+          </article>
+          <article class="card">
+            <h3>Project Gamma → +42% sign‑ups</h3>
+            <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" />
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ================= SERVICES ================= -->
-  <section id="services">
-    <div class="container">
-      <h2 class="section-title">What we do</h2>
-      <p class="muted">Pick a lane or go end‑to‑end. We meet you where you are.</p>
-      <div class="cards" style="margin-top:14px">
-        <article class="card">
-          <h3>Brand & Identity</h3>
-          <p class="muted">Logos, design systems, and guidelines that travel from pitch decks to product UI.</p>
-        </article>
-        <article class="card">
-          <h3>Web Design & Build</h3>
-          <p class="muted">Modern stacks (Jamstack, headless CMS) with excellent Core Web Vitals and a11y.</p>
-        </article>
-        <article class="card">
-          <h3>Growth & SEO</h3>
-          <p class="muted">Technical SEO, content frameworks, and analytics to turn traffic into trials.</p>
-        </article>
+    <!-- =============== ABOUT =============== -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About PaperPushers</h2>
+        <div class="cards">
+          <div class="card">
+            <p><strong>PaperPushers</strong> is a Lisbon‑based studio blending strategy, design, and engineering. We ship high‑quality websites and product UI.</p>
+            <ul class="muted">
+              <li>Founded 2025 • HQ Lisbon</li>
+              <li>Small, senior team</li>
+              <li>Remote‑friendly</li>
+            </ul>
+          </div>
+          <div class="card">
+            <p class="muted">“They delivered on time, on budget, and beyond expectations.” — COO, Example Co.</p>
+          </div>
+          <div class="card">
+            <p class="muted"><strong>Values:</strong> craft > speed, clarity > cleverness, outcomes > outputs.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ================= WORK ================= -->
-  <section id="work">
-    <div class="container">
-      <h2 class="section-title">Selected work</h2>
-      <div class="features" style="margin-top:12px">
-        <article class="card">
-          <h3>Project Alpha → +28% checkout</h3>
-          <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" />
-        </article>
-        <article class="card">
-          <h3>Project Beta → 5‑market rebrand</h3>
-          <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" />
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">About PaperPushers</h2>
-      <div class="features">
-        <div class="card">
-          <p><strong>PaperPushers</strong> is a Lisbon‑based studio blending strategy, design, and engineering. We ship high‑quality websites and product UI.</p>
-          <ul class="muted">
-            <li>Founded 2025 • HQ Lisbon</li>
-            <li>Small, senior team</li>
-            <li>Remote‑friendly</li>
+    <!-- =============== CONTACT =============== -->
+    <section id="contact">
+      <div class="container contact">
+        <div>
+          <h2 class="section-title">Let’s talk</h2>
+          <p class="muted">Tell us about your goals. We’ll reply within 1 business day.</p>
+          <form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@company.com" required autocomplete="email" />
+            <label for="message">Project details</label>
+            <textarea id="message" name="message" placeholder="What are you building? Timeline, budget, and goals…" required></textarea>
+            <button class="btn primary" type="submit">Send message</button>
+          </form>
+        </div>
+        <aside class="card" aria-label="Contact details">
+          <h3>Contact details</h3>
+          <p class="muted">Prefer email? <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
+          <ul>
+            <li><strong>HQ:</strong> Lisbon, Portugal</li>
+            <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
           </ul>
-        </div>
-        <div class="card">
-          <p class="muted">“They delivered on time, on budget, and beyond expectations.” — COO, Example Co.</p>
-        </div>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ================= CONTACT ================= -->
-  <section id="contact">
-    <div class="container contact">
-      <div>
-        <h2 class="section-title">Let’s talk</h2>
-        <p class="muted">Tell us about your goals. We’ll reply within 1 business day.</p>
-        <form name="contact" method="post" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
-          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-          <label for="name">Name</label>
-          <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="name@company.com" required autocomplete="email" />
-          <label for="message">Project details</label>
-          <textarea id="message" name="message" placeholder="What are you building? Timeline, budget, and goals…" required></textarea>
-          <button class="btn primary" type="submit">Send message</button>
-        </form>
-      </div>
-      <aside class="card" aria-label="Contact details">
-        <h3>Contact details</h3>
-        <p class="muted">Prefer email? <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
-        <ul>
-          <li><strong>HQ:</strong> Lisbon, Portugal</li>
-          <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
-        </ul>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
   <footer>
     <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
       <span>© <span id="year"></span> PaperPushers</span>
@@ -276,7 +306,16 @@
   </footer>
 
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Mobile menu
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', ()=>{
+      const open = menu.style.display === 'block';
+      menu.style.display = open ? 'none' : 'block';
+      btn.setAttribute('aria-expanded', String(!open));
+    });
   </script>
 </body>
 </html>
