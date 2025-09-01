@@ -3,73 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PaperPushers — Business Toolboxes</title>
-  <meta name="description" content="PaperPushers has the right toolbox for your business, from branding and design, to high‑performance websites and everyday apps." />
+  <title>PaperPushers — Design, brand & web</title>
+  <meta name="description" content="PaperPushers designs brands and builds high‑performance websites that convert." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
   <style>
-    /* =====================
-       Brand tokens — more pink, subtle yellow
-       ===================== */
     :root{
       --bg: #f8f8f5;               /* off‑white background */
       --surface: #ffffff;           /* cards */
-      --border: rgba(20, 23, 31, .12);
-      --text: #0e1620;              /* near-black for contrast */
-      --muted: #565f6b;             /* secondary text */
+      --border: rgba(20,23,31,.12);
+      --text: #0e1620;              /* body text */
+      --muted: #6f7b88;             /* lighter grey for readability */
+      --muted-dark: #2c3440;        /* darker grey for nav links */
       --pink: #ff91af;              /* drunk tank pink */
-      --pink-deep: #ff6d9a;         /* punchier pink for accents */
-      --yellow: #e1ad01;            /* danger/mustard yellow (subtle) */
+      --pink-deep: #ff6d9a;         /* accent pink */
+      --yellow: #e1ad01;            /* subtle accent */
       --radius: 18px;
       --shadow: 0 24px 60px rgba(0,0,0,.10);
       --maxw: 1120px;
     }
-    @media (prefers-color-scheme: dark){
-      :root{ /* Optional dark auto-tint */
-        --bg:#0b0f14; --surface: #11161f; --text:#f1f5f9; --muted:#9aa6b2; --border: rgba(255,255,255,.12);
-      }
-    }
+    body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); overflow-x:hidden }
+    img{max-width:100%; display:block}
+    a{ color: var(--text) }
+    .container{width:min(var(--maxw),92%); margin-inline:auto}
 
-    /* = Base = */
-    *,*::before,*::after{ box-sizing:border-box }
-    html{ scroll-behavior:smooth }
-    body{
-      margin:0; color:var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      background: var(--bg);
-      overflow-x:hidden;
-    }
-    a{ color: var(--text); text-decoration-color: rgba(255,109,154,.35) }
-    img{ max-width:100%; height:auto; display:block }
-    .container{ width:min(var(--maxw), 92%); margin-inline:auto }
-
-    /* = Animated background layers (LIVELY & QUIRKY) = */
+    /* Blobby animated background (no flow lines) */
     .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
-    .blob{ position:absolute; border-radius:50%; filter: blur(60px); opacity:.55; transform: translate3d(0,0,0) }
-    .blob.pink{ background: radial-gradient(circle at 30% 30%, rgba(255,145,175,.95), rgba(255,145,175,0)); width:1200px; height:1200px; left:-260px; top:-280px; animation: float1 14s ease-in-out infinite }
-    .blob.pink2{ background: radial-gradient(circle at 60% 40%, rgba(255,109,154,.9), rgba(255,109,154,0)); width:900px; height:900px; right:10%; top:50%; animation: float3 16s ease-in-out infinite }
-    .blob.yellow{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.45), rgba(225,173,1,0)); width:1100px; height:1100px; right:-320px; top:40px; animation: float2 18s ease-in-out infinite }
+    .blob{ position:absolute; border-radius:50%; filter: blur(60px); opacity:.5 }
+    .blob.p1{ background: radial-gradient(circle at 30% 30%, rgba(255,109,154,.95), rgba(255,109,154,0)); width:1200px; height:1200px; left:-260px; top:-300px; animation: f1 18s ease-in-out infinite }
+    .blob.p2{ background: radial-gradient(circle at 60% 40%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:900px; height:900px; right:-200px; top:20%; animation: f2 22s ease-in-out infinite }
+    .blob.y1{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.35), rgba(225,173,1,0)); width:1100px; height:1100px; right:-320px; bottom:-200px; animation: f3 26s ease-in-out infinite }
+    @keyframes f1{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,40px) scale(1.12)} }
+    @keyframes f2{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,60px) scale(1.08)} }
+    @keyframes f3{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-110px,-40px) scale(1.1)} }
+    @media (prefers-reduced-motion: reduce){ .blob{ animation:none !important } }
 
-    @keyframes float1{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(90px,40px) scale(1.14)} }
-    @keyframes float2{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-110px,-60px) scale(1.12)} }
-    @keyframes float3{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-70px,60px) scale(1.1)} }
+    /* Cards */
+    .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:var(--shadow); will-change:transform; transition:transform .3s ease-out }
+    .card.parallax{ transform: translateY(var(--parallax,0px)); }
 
-    /* Flow lines (SVG strokes that animate + react to mouse) */
-    .flow{ position:fixed; inset:0; opacity:.6 }
-    .flow path{ fill:none; stroke-linecap:round; stroke-width:3.2; stroke: url(#gradPY); stroke-dasharray: 14 18; animation: dash 11s linear infinite }
-    .flow g:nth-child(2) path{ stroke-dasharray: 10 22; animation-duration: 13s; opacity:.8 }
-    .flow g:nth-child(3) path{ stroke-dasharray: 20 20; animation-duration: 15s; opacity:.65 }
-    @keyframes dash{ to{ stroke-dashoffset: -1000 } }
+    /* Section dividers */
+    .divider{position:relative; height:80px; overflow:hidden}
+    .divider svg{position:absolute; top:0; left:0; width:100%; height:100%}
+    .divider path{fill:var(--surface)}
 
-    @media (prefers-reduced-motion: reduce){ .blob, .flow path{ animation: none !important } }
-
-    /* = Navigation = */
-    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background: rgba(255,255,255,.8); border-bottom:1px solid var(--border) }
+    /* NAV */
+    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--border) }
     .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
-    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:900; letter-spacing:.2px }
-    .badge{ width:36px; height:36px; border-radius:10px; background: conic-gradient(from 220deg, var(--pink), var(--yellow)); display:grid; place-items:center; color:#111; font-weight:900 }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:900; text-decoration:none }
+    .brand .logo{ width:34px; height:34px; border-radius:10px; background:conic-gradient(from 220deg, var(--pink-deep), var(--pink)); display:grid; place-items:center; color:#111 }
+    .brand span{ color: var(--pink-deep); letter-spacing:.2px }
     .links{ display:flex; gap:18px; align-items:center }
-    .links a{ color:var(--muted); text-decoration:none; font-weight:700 }
-    .links a:hover{ color:var(--text) }
+    .links a{ color: var(--muted-dark); text-decoration:none; font-weight:800 }
+    .links a:hover{ color:#1f2630 }
     .menu{ display:none }
     @media (max-width:860px){ .links{ display:none } .menu{ display:inline-flex } }
 
@@ -77,177 +62,107 @@
     .btn:hover{ transform: translateY(-2px) }
     .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--pink-deep), var(--pink)); color:#111 }
 
-    /* = Sections = */
-    section{ padding: clamp(56px, 7vw, 96px) 0 }
+    /* Sections */
+    section{ padding: clamp(48px, 6.5vw, 84px) 0 }
 
-    /* = Hero = */
-    .hero .grid{ display:grid; grid-template-columns: 1.15fr 1fr; gap:44px; align-items:center }
-    @media (max-width:980px){ .hero .grid{ grid-template-columns:1fr } }
-    .kicker{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:#fff; color:#5b6472; font-weight:800; font-size:.9rem }
-    h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0 }
-    .lead{ color:#5b6472; font-size:1.15rem; max-width:60ch }
+    /* HERO */
+    .hero h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0 }
+    .lead{ color: var(--muted); font-size:1.15rem; max-width:62ch }
 
-    .visual{ position:relative }
-    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86)); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow: var(--shadow) }
-    .hero-img{ border-radius:12px; width:100%; aspect-ratio:16/10; object-fit:cover }
+    /* Services grid */
+    .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px }
+    @media (max-width:980px){ .grid-3{ grid-template-columns:1fr 1fr } }
+    @media (max-width:640px){ .grid-3{ grid-template-columns:1fr } }
 
-    .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px }
-    .pill{ font-size:.9rem; color:#5b6472; border:1px solid var(--border); padding:6px 10px; border-radius:999px; background:#fff }
-
-    /* = Cards & grids = */
-    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; align-items:start }
-    @media (max-width:980px){ .cards{ grid-template-columns: 1fr 1fr } }
-    @media (max-width:640px){ .cards{ grid-template-columns: 1fr } }
-    .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; transition:transform .2s, border-color .2s; box-shadow: var(--shadow) }
-    .card:hover{ transform: translateY(-3px); border-color: rgba(14,22,32,.2) }
-    .muted{ color:#5b6472 }
-
-    /* Work cards fix: consistent image sizing + fallbacks */
+    /* Work cards */
     .work-card img{ width:100%; height:260px; object-fit:cover; border-radius:12px }
-    @media (min-width:1200px){ .work-card img{ height:300px } }
 
-    /* = Contact (improved readability & spacing) = */
-    .contact{ display:grid; grid-template-columns: 1.1fr 1fr; gap:26px }
-    @media (max-width:900px){ .contact{ grid-template-columns:1fr } }
-    .contact .card{ background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.92)); border: 1px solid rgba(255,109,154,.25) }
-    .contact h2{ margin-top:0 }
-    .fields{ display:grid; gap:14px; margin-top:12px }
-    label{ font-weight:900; font-size:.95rem }
-    input, textarea{ width:100%; padding:14px 16px; border-radius:14px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
-    textarea{ min-height:140px; resize:vertical }
-    .form-actions{ margin-top:8px }
+    /* CONTACT (condensed) */
+    #contact .card{ padding:18px }
+    .fields{ display:grid; gap:12px; margin-top:8px }
+    label{ font-weight:900; font-size:.95rem; color:#28313b }
+    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
+    textarea{ min-height:110px; resize:vertical }
+    .form-actions{ margin-top:6px }
+    .contact-aside a{ color: var(--text); text-decoration:underline; text-decoration-color: rgba(255,109,154,.45) }
 
-    /* = Footer (better treatment) = */
-    footer{ margin-top:12px; background: linear-gradient(180deg, rgba(255,145,175,.25), rgba(255,145,175,.08)); border-top:1px solid rgba(255,109,154,.35); color:#3a434d; }
-    .footer-inner{ padding:28px 0; display:grid; grid-template-columns: 1fr auto; align-items:center; gap:16px }
+    /* FOOTER (higher contrast, white text) */
+    footer{ background: linear-gradient(180deg, var(--pink-deep), var(--pink)); color:#fff }
+    .footer-inner{ padding:26px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap }
     .foot-brand{ display:flex; align-items:center; gap:10px; font-weight:900 }
-    .foot-badge{ width:30px; height:30px; border-radius:9px; background: conic-gradient(from 220deg, var(--pink-deep), var(--pink)); display:grid; place-items:center }
     .foot-links{ display:flex; gap:16px }
-    .foot-links a{ color:#3a434d; text-decoration:none; font-weight:700 }
+    .foot-links a{ color:#fff; text-decoration:none; font-weight:800 }
 
-    /* = Skip link = */
-    .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden }
-    .skip-link:focus{ left:10px; top:10px; width:auto; height:auto; background:#000; color:#fff; padding:8px 10px; border-radius:8px; z-index:999 }
+    /* Floating CTA */
+    .floating-cta{position:fixed; top:40%; left:40%; z-index:999; background:linear-gradient(135deg,var(--pink-deep),var(--pink)); color:#111; padding:14px 20px; border-radius:14px; font-weight:900; box-shadow:0 12px 30px rgba(0,0,0,.25); text-decoration:none;}
   </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <!-- Animated background: large moving blobs + flowing gradient lines (lively, pink-forward) -->
   <div class="bg-layer" aria-hidden="true">
-    <div class="blob pink"></div>
-    <div class="blob pink2"></div>
-    <div class="blob yellow"></div>
-    <svg class="flow" viewBox="0 0 1200 800" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="gradPY" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="var(--pink-deep)"/>
-          <stop offset="100%" stop-color="var(--yellow)"/>
-        </linearGradient>
-      </defs>
-      <g>
-        <path d="M0,200 C200,120 300,260 500,200 C700,140 900,260 1200,180"/>
-      </g>
-      <g>
-        <path d="M0,420 C220,500 360,340 560,420 C760,500 980,360 1200,420"/>
-      </g>
-      <g>
-        <path d="M0,640 C260,560 420,740 660,640 C900,540 1080,720 1200,660"/>
-      </g>
-    </svg>
+    <div class="blob p1"></div>
+    <div class="blob p2"></div>
+    <div class="blob y1"></div>
   </div>
 
-  <!-- =============== NAV =============== -->
+  <!-- NAV -->
   <header class="nav">
     <div class="container inner">
-      <a class="brand" href="#" aria-label="Home">
-        <div class="badge">P</div>
-        PaperPushers
+      <a class="brand" href="#">
+        <div class="logo">P</div>
+        <span>PaperPushers</span>
       </a>
       <nav class="links" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a class="btn" href="#contact">Get a quote</a>
       </nav>
-      <button class="menu btn" id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
-    </div>
-    <div id="mobileMenu" class="container" style="display:none; padding-bottom:12px">
-      <div class="card" role="menu" aria-label="Mobile">
-        <a role="menuitem" href="#services">Services</a>
-        <a role="menuitem" href="#work">Work</a>
-        <a role="menuitem" href="#about">About</a>
-        <a role="menuitem" href="#contact">Contact</a>
-        <a role="menuitem" class="btn primary" href="#contact" style="margin-top:8px">Get a quote</a>
-      </div>
+      <a class="btn primary" href="#contact">Get a quote</a>
     </div>
   </header>
 
   <main id="main">
-    <!-- =============== HERO =============== -->
+    <!-- HERO -->
     <section class="hero">
-      <div class="container grid">
-        <div>
-          <span class="kicker">✨ Design & Web Studio</span>
-          <h1>Big, bold, and <span style="background:linear-gradient(135deg, var(--pink-deep), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent">beautifully smooth</span>.</h1>
-          <p class="lead">We craft brands and websites with motion that feels natural—never noisy. Strategic design, meticulous build, measurable growth.</p>
-          <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
-            <a class="btn primary" href="#contact">Start a project</a>
-            <a class="btn" href="#work">See our work</a>
-          </div>
-          <div class="pills" aria-label="Highlights">
-            <span class="pill">⚡ Lightning-fast</span>
-            <span class="pill">🔎 SEO-first</span>
-            <span class="pill">♿ Accessible</span>
-          </div>
-        </div>
-        <div class="visual">
-          <div class="glass">
-            <img class="hero-img" src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" loading="eager" onerror="this.onerror=null; this.src='https://picsum.photos/seed/paperpushers-hero/1600/1000'" />
-          </div>
-        </div>
+      <div class="container">
+        <h1>PaperPushers</h1>
+        <p class="lead">We craft brands and websites with motion that feels natural—never noisy. Strategic design, meticulous build, measurable growth.</p>
       </div>
     </section>
 
-    <!-- =============== SERVICES =============== -->
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z"></path></svg></div>
+
+    <!-- SERVICES -->
     <section id="services">
       <div class="container">
-        <h2 class="section-title">What we do</h2>
-        <p class="muted">Pick a lane or go end‑to‑end. We meet you where you are.</p>
-        <div class="cards" style="margin-top:14px">
-          <article class="card">
-            <h3>Brand & Identity</h3>
-            <p class="muted">Logos, design systems, and guidelines that travel from pitch decks to product UI.</p>
-          </article>
-          <article class="card">
-            <h3>Web Design & Build</h3>
-            <p class="muted">Modern stacks (Jamstack, headless CMS) with excellent Core Web Vitals and a11y.</p>
-          </article>
-          <article class="card">
-            <h3>Growth & SEO</h3>
-            <p class="muted">Technical SEO, content frameworks, and analytics to turn traffic into trials.</p>
-          </article>
+        <h2>What we do</h2>
+        <p class="lead">Pick a lane or go end‑to‑end. We meet you where you are.</p>
+        <div class="grid-3">
+          <article class="card parallax"><h3>Brand & Identity</h3><p class="muted">Logos, design systems, guidelines that travel from decks to product UI.</p></article>
+          <article class="card parallax"><h3>Web Design & Build</h3><p class="muted">Modern stacks (Jamstack, headless CMS) with excellent Core Web Vitals.</p></article>
+          <article class="card parallax"><h3>Growth & SEO</h3><p class="muted">Technical SEO, content frameworks, analytics to turn traffic into trials.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- =============== WORK =============== -->
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,0 900,80 1200,0 L1200,80 L0,80 Z"></path></svg></div>
+
+    <!-- WORK -->
     <section id="work">
       <div class="container">
-        <h2 class="section-title">Selected work</h2>
-        <div class="cards" style="margin-top:12px">
-          <article class="card work-card">
+        <h2>Selected work</h2>
+        <div class="grid-3">
+          <article class="card parallax work-card">
             <h3>Project Alpha → +28% checkout</h3>
             <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/alpha/1600/900'" />
             <p class="muted">E‑commerce redesign with streamlined checkout and improved performance.</p>
           </article>
-          <article class="card work-card">
+          <article class="card parallax work-card">
             <h3>Project Beta → 5‑market rebrand</h3>
             <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/beta/1600/900'" />
             <p class="muted">Unified identity and web for expansion across EU regions.</p>
           </article>
-          <article class="card work-card">
+          <article class="card parallax work-card">
             <h3>Project Gamma → +42% sign‑ups</h3>
             <img src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/gamma/1600/900'" />
             <p class="muted">Product‑led site with clearer value props and faster LCP.</p>
@@ -256,36 +171,29 @@
       </div>
     </section>
 
-    <!-- =============== ABOUT =============== -->
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z"></path></svg></div>
+
+    <!-- ABOUT -->
     <section id="about">
       <div class="container">
-        <h2 class="section-title">About PaperPushers</h2>
-        <div class="cards">
-          <div class="card">
-            <p><strong>PaperPushers</strong> is a Lisbon‑based studio blending strategy, design, and engineering. We ship high‑quality websites and product UI.</p>
-            <ul class="muted">
-              <li>Founded 2025 • HQ Lisbon</li>
-              <li>Small, senior team</li>
-              <li>Remote‑friendly</li>
-            </ul>
-          </div>
-          <div class="card">
-            <p class="muted">“They delivered on time, on budget, and beyond expectations.” — COO, Example Co.</p>
-          </div>
-          <div class="card">
-            <p class="muted"><strong>Values:</strong> craft > speed, clarity > cleverness, outcomes > outputs.</p>
-          </div>
+        <h2>About PaperPushers</h2>
+        <div class="grid-3">
+          <div class="card parallax"><p><strong>PaperPushers</strong> is a Lisbon‑based studio blending strategy, design, and engineering. We ship high‑quality websites and product UI.</p></div>
+          <div class="card parallax"><p class="muted">“They delivered on time, on budget, and beyond expectations.” — COO, Example Co.</p></div>
+          <div class="card parallax"><p class="muted"><strong>Values:</strong> craft > speed, clarity > cleverness, outcomes > outputs.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- =============== CONTACT =============== -->
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,0 900,80 1200,0 L1200,80 L0,80 Z"></path></svg></div>
+
+    <!-- CONTACT (condensed, high-contrast email) -->
     <section id="contact">
-      <div class="container contact">
-        <div class="card">
-          <h2 class="section-title">Let’s talk</h2>
+      <div class="container" style="display:grid; grid-template-columns:1.1fr 1fr; gap:20px">
+        <div class="card parallax">
+          <h2>Let’s talk</h2>
           <p class="muted">Tell us about your goals. We’ll reply within 1 business day.</p>
-          <div class="fields">
+          <form class="fields">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
             <label for="email">Email</label>
@@ -295,12 +203,12 @@
             <div class="form-actions">
               <button class="btn primary" type="submit">Send message</button>
             </div>
-          </div>
+          </form>
         </div>
-        <aside class="card" aria-label="Contact details">
+        <aside class="card parallax contact-aside" aria-label="Contact details">
           <h3>Contact details</h3>
           <p class="muted">Prefer email? <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
-          <ul>
+          <ul class="muted">
             <li><strong>HQ:</strong> Lisbon, Portugal</li>
             <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
           </ul>
@@ -311,10 +219,7 @@
 
   <footer>
     <div class="container footer-inner">
-      <div class="foot-brand">
-        <div class="foot-badge">P</div>
-        <span>© <span id="year"></span> PaperPushers</span>
-      </div>
+      <div class="foot-brand">© <span id="year"></span> PaperPushers</div>
       <nav class="foot-links" aria-label="Footer">
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
@@ -323,24 +228,34 @@
     </div>
   </footer>
 
+  <a href="#contact" class="floating-cta">Get a quote</a>
+
   <script>
     // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Mobile menu
-    const btn = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-    btn?.addEventListener('click', ()=>{
-      const open = menu.style.display === 'block';
-      menu.style.display = open ? 'none' : 'block';
-      btn.setAttribute('aria-expanded', String(!open));
-    });
-    // Quirky mouse‑reactive flow (very light)
-    const flow = document.querySelector('.flow');
-    window.addEventListener('pointermove', (e)=>{
-      const x = (e.clientX / window.innerWidth - .5) * 6; // -3..3
-      const y = (e.clientY / window.innerHeight - .5) * 6;
-      flow.style.transform = `translate(${x}px, ${y}px)`;
-    }, { passive:true });
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Gentle parallax for cards
+    const cards=document.querySelectorAll('.card.parallax');
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY;
+      cards.forEach(c=>{
+        const speed=0.12;
+        c.style.setProperty('--parallax', (y*speed - c.offsetTop*speed)+'px');
+      });
+    }, {passive:true});
+
+    // Floating CTA bounce like screensaver
+    const cta=document.querySelector('.floating-cta');
+    let x=200,y=200,dx=2,dy=2;
+    function animate(){
+      const w=window.innerWidth,h=window.innerHeight;
+      x+=dx; y+=dy;
+      if(x<=0||x+cta.offsetWidth>=w) dx*=-1;
+      if(y<=0||y+cta.offsetHeight>=h) dy*=-1;
+      cta.style.transform=`translate(${x}px,${y}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 </body>
 </html>
