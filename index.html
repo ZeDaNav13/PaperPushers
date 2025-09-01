@@ -38,24 +38,25 @@
       overflow-x:hidden;
     }
     a{ color: var(--text) }
+    img{ max-width:100%; height:auto; display:block }
     .container{ width:min(var(--maxw), 92%); margin-inline:auto }
 
-    /* = Animated background layers = */
+    /* = Animated background layers (LIVELY) = */
     .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
-    .blob{ position:absolute; border-radius:50%; filter: blur(40px); opacity:.35 }
-    .blob.pink{ background: radial-gradient(circle at 30% 30%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:560px; height:560px; left:-120px; top:-120px; animation: float1 26s ease-in-out infinite }
-    .blob.yellow{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.85), rgba(225,173,1,0)); width:620px; height:620px; right:-160px; top:140px; animation: float2 30s ease-in-out infinite }
-    .blob.soft{ background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.9), rgba(255,255,255,0)); width:700px; height:700px; left:40%; bottom:-220px; opacity:.25; animation: float3 34s ease-in-out infinite }
+    .blob{ position:absolute; border-radius:50%; filter: blur(50px); opacity:.45 }
+    .blob.pink{ background: radial-gradient(circle at 30% 30%, rgba(255,145,175,.95), rgba(255,145,175,0)); width:900px; height:900px; left:-200px; top:-220px; animation: float1 16s ease-in-out infinite }
+    .blob.yellow{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.9), rgba(225,173,1,0)); width:1100px; height:1100px; right:-260px; top:40px; animation: float2 18s ease-in-out infinite }
+    .blob.soft{ background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.95), rgba(255,255,255,0)); width:1200px; height:1200px; left:30%; bottom:-320px; opacity:.25; animation: float3 20s ease-in-out infinite }
 
-    @keyframes float1{ 0%,100%{ transform: translateY(0) translateX(0) scale(1) } 50%{ transform: translateY(40px) translateX(20px) scale(1.08) } }
-    @keyframes float2{ 0%,100%{ transform: translateY(0) translateX(0) scale(1) } 50%{ transform: translateY(-30px) translateX(-30px) scale(1.06) } }
-    @keyframes float3{ 0%,100%{ transform: translateY(0) translateX(0) scale(1) } 50%{ transform: translateY(30px) translateX(-20px) scale(1.05) } }
+    @keyframes float1{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(70px,40px) scale(1.12)} }
+    @keyframes float2{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-90px,-50px) scale(1.1)} }
+    @keyframes float3{ 0%,100%{ transform: translate(0,0) scale(1)} 50%{ transform: translate(-70px,60px) scale(1.08)} }
 
     /* Flow lines (SVG strokes that animate) */
-    .flow{ position:fixed; inset:0; opacity:.45 }
-    .flow path{ fill:none; stroke-linecap:round; stroke-width:2.2; stroke: url(#gradPY); stroke-dasharray: 14 18; animation: dash 18s linear infinite }
-    .flow g:nth-child(2) path{ stroke-dasharray: 10 22; animation-duration: 22s; opacity:.7 }
-    .flow g:nth-child(3) path{ stroke-dasharray: 20 20; animation-duration: 26s; opacity:.5 }
+    .flow{ position:fixed; inset:0; opacity:.55 }
+    .flow path{ fill:none; stroke-linecap:round; stroke-width:3.2; stroke: url(#gradPY); stroke-dasharray: 14 18; animation: dash 12s linear infinite }
+    .flow g:nth-child(2) path{ stroke-dasharray: 10 22; animation-duration: 14s; opacity:.75 }
+    .flow g:nth-child(3) path{ stroke-dasharray: 20 20; animation-duration: 16s; opacity:.6 }
     @keyframes dash{ to{ stroke-dashoffset: -1000 } }
 
     /* Respect reduced motion */
@@ -64,7 +65,7 @@
     }
 
     /* = Navigation = */
-    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background: rgba(255,255,255,.55); border-bottom:1px solid var(--border) }
+    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background: rgba(255,255,255,.7); border-bottom:1px solid var(--border) }
     .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
     .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:900; letter-spacing:.2px }
     .badge{ width:36px; height:36px; border-radius:10px; background: conic-gradient(from 220deg, var(--pink), var(--yellow)); display:grid; place-items:center; color:#111; font-weight:900 }
@@ -89,19 +90,23 @@
     .lead{ color:#5b6472; font-size:1.15rem; max-width:60ch }
 
     .visual{ position:relative }
-    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.75)); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow: var(--shadow) }
+    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82)); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow: var(--shadow) }
     .hero-img{ border-radius:12px; width:100%; aspect-ratio:16/10; object-fit:cover }
 
     .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px }
     .pill{ font-size:.9rem; color:#5b6472; border:1px solid var(--border); padding:6px 10px; border-radius:999px; background:#fff }
 
     /* = Cards & grids = */
-    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px }
+    .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; align-items:start }
     @media (max-width:980px){ .cards{ grid-template-columns: 1fr 1fr } }
     @media (max-width:640px){ .cards{ grid-template-columns: 1fr } }
     .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; transition:transform .2s, border-color .2s; box-shadow: var(--shadow) }
     .card:hover{ transform: translateY(-3px); border-color: rgba(14,22,32,.2) }
     .muted{ color:#5b6472 }
+
+    /* Work cards fix: consistent image sizing */
+    .work-card img{ width:100%; height:260px; object-fit:cover; border-radius:12px }
+    @media (min-width:1200px){ .work-card img{ height:300px } }
 
     /* = Contact = */
     .contact{ display:grid; grid-template-columns: 1.1fr 1fr; gap:26px }
@@ -121,7 +126,7 @@
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Animated background: large moving blobs + flowing gradient lines -->
+  <!-- Animated background: large moving blobs + flowing gradient lines (lively) -->
   <div class="bg-layer" aria-hidden="true">
     <div class="blob pink"></div>
     <div class="blob yellow"></div>
@@ -192,7 +197,7 @@
         </div>
         <div class="visual">
           <div class="glass">
-            <img class="hero-img" src="https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" />
+            <img class="hero-img" src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Interface mockups on a desk" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop'" />
           </div>
         </div>
       </div>
@@ -225,17 +230,20 @@
       <div class="container">
         <h2 class="section-title">Selected work</h2>
         <div class="cards" style="margin-top:12px">
-          <article class="card">
+          <article class="card work-card">
             <h3>Project Alpha → +28% checkout</h3>
-            <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" />
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop'" />
+            <p class="muted">E‑commerce redesign with streamlined checkout and improved performance.</p>
           </article>
-          <article class="card">
+          <article class="card work-card">
             <h3>Project Beta → 5‑market rebrand</h3>
-            <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" />
+            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520974718246-78f1dbfbaaa4?q=80&w=1600&auto=format&fit=crop'" />
+            <p class="muted">Unified identity and web for expansion across EU regions.</p>
           </article>
-          <article class="card">
+          <article class="card work-card">
             <h3>Project Gamma → +42% sign‑ups</h3>
-            <img style="border-radius:12px; margin-top:8px" src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" />
+            <img src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520975922203-b86b0fd6cf5c?q=80&w=1600&auto=format&fit=crop'" />
+            <p class="muted">Product‑led site with clearer value props and faster LCP.</p>
           </article>
         </div>
       </div>
