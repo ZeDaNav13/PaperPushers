@@ -233,13 +233,13 @@
       </div>
     </section>
 
-    <!-- CONTACT (condensed, dark fields) -->
+    <!-- CONTACT (single combined card) -->
     <section id="contact">
-      <div class="container" style="display:grid; grid-template-columns:1.1fr 1fr; gap:20px">
+      <div class="container">
         <div class="card parallax">
           <h2>Let’s open the box</h2>
           <p class="muted">Tell us what you’re building, breaking, or dreaming up. We’ll reply within 1 business day with the right tools in hand.</p>
-          <form class="fields">
+          <form class="fields" aria-label="Contact form">
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="Your name" required autocomplete="name" />
             <label for="email">Email</label>
@@ -250,15 +250,18 @@
               <button class="btn primary" type="submit">Hand me the wrench</button>
             </div>
           </form>
+
+          <hr style="border:none; border-top:1px solid var(--border); margin:18px 0" aria-hidden="true" />
+
+          <div class="muted" aria-label="Contact details">
+            <h3 style="margin-top:0">Contact us</h3>
+            <p>Prefer email? <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
+            <ul>
+              <li><strong>HQ:</strong> Lisbon, Portugal</li>
+              <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
+            </ul>
+          </div>
         </div>
-        <aside class="card parallax contact-aside" aria-label="Contact details">
-          <h3>Contact us</h3>
-          <p class="muted">Prefer email? <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
-          <ul class="muted">
-            <li><strong>HQ:</strong> Lisbon, Portugal</li>
-            <li><strong>Hours:</strong> Mon–Fri, 9:00–18:00</li>
-          </ul>
-        </aside>
       </div>
     </section>
   </main>
