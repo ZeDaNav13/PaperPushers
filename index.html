@@ -7,71 +7,69 @@
   <meta name="description" content="PaperPushers is a quirky, agile business toolbox—websites, SEO, social, brand, interiors, business design, and custom tools." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
   <style>
-    /* =============================
-       GLOBAL CONFIG — tweak your site here
-       ============================= */
-    :root{
-      /* ==== COLORS ==== */
-      --bg: #E1AC01;              /* Page background (dark) YELLOW*/
-      --surface: #121821;         /* Card/background surfaces */
-      --border: rgba(255,255,255,.10); /* Subtle borders on dark */
-      --text: #f2f6fb;            /* Primary text */
-      --muted: #b6c2cf;          /* Secondary text for readability */
-      --muted-dark: #8fa1b4;      /* Nav/link grey on dark */
-      --pink: #ff91af;            /* Brand pink (primary accent) */
-      --pink-deep: #ff6d9a;       /* Stronger pink (buttons/gradients) */
-      --yellow: #e1ad01;          /* Yellow accent (use sparingly) */
+/* =============================
+GLOBAL CONFIG — tweak your site here
+============================= */
+:root{
+/* ==== COLORS ==== */
+--bg: #f4f5f9; /* Neutral light background */
+--surface: #ffffff; /* Cards and surfaces */
+--border: rgba(20,20,20,.15);
+--text: #101010; /* Primary text (dark for contrast) */
+--muted: #555; /* Secondary text */
+--muted-dark: #333; /* Nav link grey */
 
-      /* ==== TYPOGRAPHY & LAYOUT ==== */
-      --maxw: 1120px;             /* Max content width */
-      --section-pad-min: 44px;    /* Section padding min */
-      --section-pad-max: 80px;    /* Section padding max */
-      --radius: 18px;             /* Global corner radius */
-      --shadow: 0 24px 60px rgba(0,0,0,.35); /* Card/button shadow */
 
-      /* ==== NAV BAR ==== */
-      --nav-bg: rgba(9,13,19,.65); /* Sticky nav background */
-      --nav-link: var(--muted-dark); /* Nav link color */
-      --nav-link-hover: #dfe7f1;     /* Nav hover color */
-      --brand-name-color: var(--pink-deep); /* "PaperPushers" text color in nav */
+--main: #ff6d9a; /* Main brand color (pink) */
+--accent: #FDCC2A; /* Accent color (yellow) */
 
-      /* ==== BUTTONS ==== */
-      --btn-radius: 14px;                     /* Button corner radius */
-      --btn-shadow: 0 12px 30px rgba(0,0,0,.35); /* Button shadow */
-      --btn-grad-from: var(--pink-deep);      /* Button gradient start */
-      --btn-grad-to: var(--pink);             /* Button gradient end */
 
-      /* ==== BLOBS (animated background) ==== */
-      --blob-opacity: .5;         /* Transparency of blobs */
-      --blob-blur: 70px;          /* How soft the blobs look */
-      /* Sizes */
-      --blob1-size: 1200px;       /* Blob 1 diameter */
-      --blob2-size: 900px;        /* Blob 2 diameter */
-      --blob3-size: 1100px;       /* Blob 3 diameter */
-      /* Speeds */
-      --blob1-speed: 18s;         /* Animation duration for blob 1 */
-      --blob2-speed: 22s;         /* Animation duration for blob 2 */
-      --blob3-speed: 26s;         /* Animation duration for blob 3 */
+--radius: 18px;
+--shadow: 0 20px 40px rgba(0,0,0,.15);
+--maxw: 1120px;
 
-      /* ==== PARALLAX (card drift) ==== */
-      --parallax-strength: 0.04;  /* Higher = stronger parallax */
-      --parallax-max: 10px;       /* Max translateY amount */
 
-      /* ==== WORK CARD IMAGES ==== */
-      --work-img-h: 260px;        /* Work card image height */
-      --work-img-h-lg: 300px;     /* Work card image height on wide screens */
+/* ==== NAV BAR ==== */
+--nav-bg: rgba(255,255,255,.9);
+--nav-link: var(--muted-dark);
+--nav-link-hover: var(--main);
+--brand-name-color: var(--main);
 
-      /* ==== CONTACT FORM ==== */
-      --contact-pad: 18px;        /* Card padding in contact section */
-      --field-gap: 12px;          /* Vertical gap between fields */
-      --field-radius: 12px;       /* Input & textarea radius */
 
-      /* ==== FLOATING CTA (screensaver chip) ==== */
-      --cta-speed-x: 1.6;         /* Horizontal speed (px/frame) */
-      --cta-speed-y: 1.3;         /* Vertical speed (px/frame) */
-      --cta-padding: 12px;        /* Keep CTA away from viewport edges */
-    }
+/* ==== BUTTONS ==== */
+--btn-radius: 14px;
+--btn-shadow: 0 8px 20px rgba(0,0,0,.25);
+--btn-grad-from: var(--main);
+--btn-grad-to: var(--accent);
 
+
+/* ==== BLOBS ==== */
+--blob-opacity: .5;
+--blob-blur: 70px;
+--blob1-size: 1200px;
+--blob2-size: 900px;
+--blob3-size: 1100px;
+--blob1-speed: 18s;
+--blob2-speed: 22s;
+--blob3-speed: 26s;
+
+
+/* ==== PARALLAX ==== */
+--parallax-strength: 0.04;
+--parallax-max: 10px;
+
+
+/* ==== CONTACT ==== */
+--contact-pad: 18px;
+--field-gap: 12px;
+--field-radius: 12px;
+
+
+/* ==== FLOATING CTA ==== */
+--cta-speed-x: 1.6;
+--cta-speed-y: 1.3;
+--cta-padding: 12px;
+}
     /* = Base = */
     body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); overflow-x:hidden }
     img{max-width:100%; display:block}
