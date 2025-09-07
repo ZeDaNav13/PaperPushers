@@ -12,7 +12,7 @@
        ============================= */
     :root{
       /* ==== COLORS ==== */
-      --bg: #fff7fa;              /* Light with pink tint (vibrant, not washed) */
+      --bg: #fff7fa;              /* Light with pink tint (vibrant) */
       --surface: #ffffff;         /* Cards and surfaces */
       --border: rgba(20,20,20,.15);
       --text: #101010;            /* Primary text */
@@ -32,39 +32,31 @@
       --nav-link-hover: var(--main);
       --brand-name-color: var(--main);
 
-      /* ==== BUTTONS ==== */
-      --btn-radius: 14px;
-      --btn-shadow: 0 8px 22px rgba(255,109,154,.35);
-      --btn-grad-from: var(--main);
-      --btn-grad-to: var(--accent);
+      /* ==== BUTTONS (GLOBAL DEFAULTS) ==== */
+      --btn-radius: 14px;                                  /* Corner radius */
+      --btn-shadow-global: 0 8px 22px rgba(255,109,154,.35);/* Default shadow */
+      --btn-grad-from: var(--main);                        /* Default gradient start */
+      --btn-grad-to: var(--accent);                        /* Default gradient end */
+      --btn-text-default: #111;                            /* Default text on buttons */
 
       /* ==== BLOBS ==== */
       --blob-opacity: .75;        /* Stronger presence */
       --blob-blur: 50px;          /* Sharper than before */
-      --blob1-size: 1250px;
-      --blob2-size: 1000px;
-      --blob3-size: 1100px;
-      --blob1-speed: 16s;         /* Slightly faster for lively vibe */
-      --blob2-speed: 19s;
-      --blob3-speed: 22s;
+      --blob1-size: 1250px; --blob2-size: 1000px; --blob3-size: 1100px;
+      --blob1-speed: 16s; --blob2-speed: 19s; --blob3-speed: 22s;
 
       /* ==== PARALLAX ==== */
       --parallax-strength: 0.05;  /* A bit stronger */
       --parallax-max: 12px;
 
       /* ==== WORK CARD IMAGES ==== */
-      --work-img-h: 260px;
-      --work-img-h-lg: 300px;
+      --work-img-h: 260px; --work-img-h-lg: 300px;
 
       /* ==== CONTACT ==== */
-      --contact-pad: 22px;
-      --field-gap: 12px;
-      --field-radius: 12px;
+      --contact-pad: 22px; --field-gap: 12px; --field-radius: 12px;
 
       /* ==== FLOATING CTA ==== */
-      --cta-speed-x: 1.8;
-      --cta-speed-y: 1.5;
-      --cta-padding: 12px;
+      --cta-speed-x: 1.8; --cta-speed-y: 1.5; --cta-padding: 12px;
     }
 
     /* = Base = */
@@ -93,8 +85,46 @@
     @keyframes f2{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,60px) scale(1.08)} }
     @keyframes f3{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-110px,-40px) scale(1.1)} }
 
-    .card{ background:var(--surface); border:1px solid rgba(255,109,154,.25); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); will-change:transform; transition:transform .3s ease-out; overflow:hidden }
+    /* =============================
+       THEMEABLE PRIMITIVES
+       - You can override per-element via inline style="--var:value"
+       ============================= */
+
+    /* Buttons: use per-element vars if provided, else fall back to global defaults */
+    .btn{
+      --btn-from: var(--btn-from, var(--btn-grad-from));  /* per-element start */
+      --btn-to:   var(--btn-to, var(--btn-grad-to));      /* per-element end */
+      --btn-text: var(--btn-text, var(--btn-text-default));
+      --btn-border: var(--btn-border, var(--border));
+      --btn-shadow: var(--btn-shadow, var(--btn-shadow-global));
+
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 18px; border-radius:var(--btn-radius);
+      border:1px solid var(--btn-border);
+      background: linear-gradient(135deg, var(--btn-from), var(--btn-to));
+      color: var(--btn-text); text-decoration:none; font-weight:900;
+      transition:.2s; box-shadow: var(--btn-shadow)
+    }
+    .btn:hover{ transform: translateY(-2px) }
+    .btn.solid{ background: var(--btn-from); }
+    .btn.ghost{ background: transparent; color: var(--btn-from); border-color: currentColor; }
+
+    /* Cards: per-element vars */
+    .card{
+      --card-bg: var(--card-bg, var(--surface));
+      --card-border: var(--card-border, var(--border));
+      --card-text: var(--card-text, inherit);
+      --card-shadow: var(--card-shadow, var(--shadow));
+
+      background: var(--card-bg); color: var(--card-text);
+      border:1px solid var(--card-border); border-radius:var(--radius);
+      padding:22px; box-shadow:var(--card-shadow); will-change:transform;
+      transition:transform .3s ease-out; overflow:hidden
+    }
     .card.parallax{ transform: translateY(var(--parallax,0px)); }
+
+    /* Headings & utility tints */
+    .tint{ color: var(--tint, var(--main)) }
 
     /* NAV */
     .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:var(--nav-bg); border-bottom:1px solid var(--border) }
@@ -106,17 +136,9 @@
     .links a{ color: var(--nav-link); text-decoration:none; font-weight:800 }
     .links a:hover{ color: var(--nav-link-hover) }
 
-    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:var(--btn-radius); border:1px solid var(--border); background: var(--surface); color:var(--text); text-decoration:none; font-weight:900; transition:.2s; box-shadow: var(--btn-shadow) }
-    .btn:hover{ transform: translateY(-2px) }
-    .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to)); color:#111 }
-
     section{ padding: clamp(44px, 6vw, 84px) 0 }
-
     .hero h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0; color:var(--main) }
     .lead{ color: var(--muted); font-size:1.15rem; max-width:62ch }
-
-    h2{ color: var(--text); font-size: clamp(1.6rem, 2vw + .8rem, 2.2rem); margin-bottom:.4rem }
-    h2 + .lead{ color:#222 }
 
     .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px }
     @media (max-width:980px){ .grid-3{ grid-template-columns:1fr 1fr } }
@@ -138,7 +160,15 @@
     .foot-links{ display:flex; gap:16px }
     .foot-links a{ color:#fff; text-decoration:none; font-weight:800 }
 
-    .floating-cta{position:fixed; left:0; top:0; z-index:999; background:linear-gradient(135deg,var(--main),var(--accent)); color:#111; padding:14px 20px; border-radius:var(--btn-radius); font-weight:900; box-shadow:var(--btn-shadow); text-decoration:none; will-change:transform}
+    /* Floating CTA (themeable via --btn-* vars) */
+    .floating-cta{
+      position:fixed; left:0; top:0; z-index:999;
+      /* Per-element overrides allowed: --btn-from/--btn-to/--btn-text */
+      background:linear-gradient(135deg,var(--btn-from, var(--btn-grad-from)), var(--btn-to, var(--btn-grad-to)));
+      color:var(--btn-text, var(--btn-text-default));
+      padding:14px 20px; border-radius:var(--btn-radius); font-weight:900;
+      box-shadow:var(--btn-shadow, var(--btn-shadow-global)); text-decoration:none; will-change:transform
+    }
   </style>
 </head>
 <body>
@@ -161,7 +191,8 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="btn primary" href="#toolbox">Open the Toolbox</a>
+      <!-- Example: per-element themed button (nav CTA) -->
+      <a class="btn" href="#toolbox" style="--btn-from:#111; --btn-to:#333; --btn-text:#fff; --btn-border:#111; --btn-shadow:0 8px 22px rgba(0,0,0,.35)">Open the Toolbox</a>
     </div>
   </header>
 
@@ -172,8 +203,10 @@
         <h1>Your business toolbox, always ready.</h1>
         <p class="lead">From websites to workspaces, from SEO to social, from business plans to brand identities — we’re the quirky, agile toolbox that adapts to whatever your venture needs. Strong core tools, with the right add-ons for every unique project.</p>
         <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
-          <a class="btn primary" href="#contact">Start building</a>
-          <a class="btn" href="#toolbox">Peek inside</a>
+          <!-- Example: custom pink→yellow hero CTA -->
+          <a class="btn" href="#contact" style="--btn-from:#ff6d9a; --btn-to:#FDCC2A; --btn-text:#111">Start building</a>
+          <!-- Example: ghost style using per-element --btn-from -->
+          <a class="btn ghost" href="#toolbox" style="--btn-from:#ff6d9a">Peek inside</a>
         </div>
       </div>
     </section>
@@ -181,15 +214,16 @@
     <!-- TOOLBOX (formerly Services) -->
     <section id="toolbox">
       <div class="container">
-        <h2>The Toolbox</h2>
+        <h2 class="tint" style="--tint:#101010">The Toolbox</h2>
         <p class="lead">We don’t have “one thing.” We have a set. A box. A kit. Pull out what you need, mix and match, and let us do the pushing.</p>
         <div class="grid-3">
-          <article class="card parallax"><h3>Web & Digital</h3><p class="muted">Full-scale sites, complex platforms, SEO, and campaigns that hum.</p></article>
-          <article class="card parallax"><h3>Brand & Identity</h3><p class="muted">Logos, systems, and voices that cut through the noise.</p></article>
-          <article class="card parallax"><h3>Business Design</h3><p class="muted">Plans, analysis, and strategies — the sturdy wrench in the box.</p></article>
-          <article class="card parallax"><h3>Social & Media</h3><p class="muted">Campaigns with a wink, a nudge, and measurable reach.</p></article>
-          <article class="card parallax"><h3>Spaces & Interiors</h3><p class="muted">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p></article>
-          <article class="card parallax"><h3>Tools & Systems</h3><p class="muted">Inward and outward platforms, custom-fitted to your processes.</p></article>
+          <!-- Per-card themes (examples) -->
+          <article class="card parallax" style="--card-border:#ff6d9a80; --card-bg:#fff; --card-shadow:0 16px 40px rgba(255,109,154,.25)"><h3>Web & Digital</h3><p class="muted">Full-scale sites, complex platforms, SEO, and campaigns that hum.</p></article>
+          <article class="card parallax" style="--card-border:#FDCC2A80; --card-bg:#fffbe8; --card-shadow:0 16px 40px rgba(253,204,42,.25)"><h3>Brand & Identity</h3><p class="muted">Logos, systems, and voices that cut through the noise.</p></article>
+          <article class="card parallax" style="--card-border:#1112; --card-bg:#f7f7f9"><h3>Business Design</h3><p class="muted">Plans, analysis, and strategies — the sturdy wrench in the box.</p></article>
+          <article class="card parallax" style="--card-border:#9b59b680; --card-bg:#fbf5ff"><h3>Social & Media</h3><p class="muted">Campaigns with a wink, a nudge, and measurable reach.</p></article>
+          <article class="card parallax" style="--card-border:#20bf6b80; --card-bg:#effaf3"><h3>Spaces & Interiors</h3><p class="muted">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p></article>
+          <article class="card parallax" style="--card-border:#0984e380; --card-bg:#eef6ff"><h3>Tools & Systems</h3><p class="muted">Inward and outward platforms, custom-fitted to your processes.</p></article>
         </div>
       </div>
     </section>
@@ -199,17 +233,17 @@
       <div class="container">
         <h2>Work pulled from the box</h2>
         <div class="grid-3">
-          <article class="card parallax work-card">
+          <article class="card parallax work-card" style="--card-border:#ff6d9a80">
             <h3>Project Alpha → Checkout that clicks</h3>
             <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/alpha/1600/900'" />
             <p class="muted">An e-commerce rebuild with the right tools for speed, flow, and +28% conversions.</p>
           </article>
-          <article class="card parallax work-card">
+          <article class="card parallax work-card" style="--card-border:#FDCC2A80">
             <h3>Project Beta → Identity toolkit for 5 markets</h3>
             <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1600&auto=format&fit=crop" alt="Branding boards" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/beta/1600/900'" />
             <p class="muted">A brand system portable enough to roll across borders without breaking.</p>
           </article>
-          <article class="card parallax work-card">
+          <article class="card parallax work-card" style="--card-border:#0984e380">
             <h3>Project Gamma → Growth screwdriver</h3>
             <img src="https://images.unsplash.com/photo-1551281044-8d8d0d90aa9b?q=80&w=1600&auto=format&fit=crop" alt="Product UI mocks" loading="lazy" onerror="this.onerror=null; this.src='https://picsum.photos/seed/gamma/1600/900'" />
             <p class="muted">Sharper UX + SEO combo that cranked +42% more sign-ups into place.</p>
@@ -223,9 +257,9 @@
       <div class="container">
         <h2>About PaperPushers</h2>
         <div class="grid-3">
-          <div class="card parallax"><p><strong>We’re a Lisbon-based business toolbox team.</strong> A strong core set, expanded with the right specialists for every project’s flavor. We don’t just deliver outputs — we shape outcomes.</p></div>
-          <div class="card parallax"><p class="muted">“They didn’t just bring the right tools — they invented a few on the way.” — COO, Example Co.</p></div>
-          <div class="card parallax"><p class="muted"><strong>Our values:</strong> agility over rigidity. Sleight over noise. Outcomes over outputs.</p></div>
+          <div class="card parallax" style="--card-border:#1112"><p><strong>We’re a Lisbon-based business toolbox team.</strong> A strong core set, expanded with the right specialists for every project’s flavor. We don’t just deliver outputs — we shape outcomes.</p></div>
+          <div class="card parallax" style="--card-border:#ff6d9a80"><p class="muted">“They didn’t just bring the right tools — they invented a few on the way.” — COO, Example Co.</p></div>
+          <div class="card parallax" style="--card-border:#FDCC2A80"><p class="muted"><strong>Our values:</strong> agility over rigidity. Sleight over noise. Outcomes over outputs.</p></div>
         </div>
       </div>
     </section>
@@ -233,7 +267,7 @@
     <!-- CONTACT (single combined card) -->
     <section id="contact">
       <div class="container">
-        <div class="card parallax">
+        <div class="card parallax" style="--card-border:#ff6d9a80; --card-bg:#fff; --card-shadow:0 16px 40px rgba(255,109,154,.25)">
           <h2>Let’s open the box</h2>
           <p class="muted">Tell us what you’re building, breaking, or dreaming up. We’ll reply within 1 business day with the right tools in hand.</p>
           <form class="fields" aria-label="Contact form">
@@ -244,7 +278,8 @@
             <label for="message">What’s the project?</label>
             <textarea id="message" name="message" placeholder="Give us the brief, the mess, or both." required></textarea>
             <div class="form-actions">
-              <button class="btn primary" type="submit">Hand me the wrench</button>
+              <!-- Per-element themed submit button example (yellow→pink) -->
+              <button class="btn" type="submit" style="--btn-from:#FDCC2A; --btn-to:#ff6d9a; --btn-text:#111">Hand me the wrench</button>
             </div>
           </form>
 
@@ -274,7 +309,8 @@
     </div>
   </footer>
 
-  <a href="#toolbox" class="floating-cta">Open the Toolbox</a>
+  <!-- Floating CTA with its own color override example -->
+  <a href="#toolbox" class="floating-cta" style="--btn-from:#111; --btn-to:#ff6d9a; --btn-text:#fff; --btn-shadow:0 10px 26px rgba(0,0,0,.35)">Open the Toolbox</a>
 
   <script>
     /* =============================
