@@ -26,10 +26,10 @@ body{
 .container{width:min(1100px,92vw); margin:0 auto; padding:40px 0}
 .container.inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
 
-/* Header (colored) */
+/* Header — single colour (main) */
 .nav{
   position:sticky; top:0; z-index:50;
-  background: linear-gradient(90deg, var(--main), var(--secondary));
+  background: var(--main);
   color:#fff;
   border-bottom:1px solid rgba(255,255,255,.25);
   box-shadow: 0 8px 20px rgba(0,0,0,.06);
@@ -48,7 +48,14 @@ body{
 }
 .links a:hover::after{width:100%}
 
-/* Buttons (no black border) */
+/* Header CTA — secondary colour */
+.nav .btn{
+  --btn-from: var(--secondary);
+  --btn-to: var(--secondary); /* solid secondary */
+  --btn-text:#111;
+}
+
+/* Buttons (no borders) */
 .btn{
   --btn-from: var(--main);
   --btn-to: var(--secondary);
@@ -119,7 +126,7 @@ a{color: color-mix(in oklab, var(--purple) 70%, var(--text));}
 a:hover{filter:saturate(1.1)}
 .muted{color:var(--muted)}
 
-/* Footer (colored) */
+/* Footer — coloured */
 footer{
   border-top:1px solid rgba(255,255,255,.25);
   background: linear-gradient(90deg, var(--purple), var(--mint));
@@ -129,25 +136,27 @@ footer{
 .foot-links a{color:#fff; text-decoration:none; margin:0 8px}
 .foot-brand{font-weight:800}
 
-/* Floating CTA (will bounce via JS) */
+/* Floating CTA (bounced via JS) */
 .floating-cta{
   position:fixed; left:24px; top:24px; z-index:40; text-decoration:none;
   padding:12px 16px; border-radius:999px; font-weight:900; border:0;
   --btn-from: var(--main); --btn-to: var(--purple); --btn-text:#fff;
   background: linear-gradient(135deg, var(--btn-from), var(--btn-to)); color:var(--btn-text);
   box-shadow: 0 16px 36px color-mix(in oklab, var(--purple) 35%, transparent);
-  will-change: transform;
+  will-change: transform, filter, background;
 }
 
-/* BG blobs */
+/* BG blobs — bigger, faster, less blur */
 .bg-layer{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none}
-.blob{position:absolute; filter: blur(50px); opacity:.6; will-change: transform; mix-blend-mode: multiply}
-.blob.p1{width:520px; height:520px; background:var(--main); top:-80px; left:-80px; border-radius:50%; animation: floaty 18s ease-in-out infinite}
-.blob.p2{width:420px; height:420px; background:var(--purple); bottom:-140px; right:8%; border-radius:50%; animation: floaty 22s ease-in-out infinite reverse}
-.blob.y1{width:560px; height:560px; background: radial-gradient(circle at 40% 40%, var(--secondary), color-mix(in oklab, var(--secondary) 40%, var(--mint))); top:30%; right:-160px; border-radius:55%; animation: floaty 26s ease-in-out infinite}
+.blob{
+  position:absolute; filter: blur(28px); opacity:.75; will-change: transform; mix-blend-mode: multiply
+}
+.blob.p1{width:680px; height:680px; background:var(--main); top:-120px; left:-120px; border-radius:50%; animation: floaty 12s ease-in-out infinite}
+.blob.p2{width:560px; height:560px; background:var(--purple); bottom:-160px; right:8%; border-radius:50%; animation: floaty 14s ease-in-out infinite reverse}
+.blob.y1{width:720px; height:720px; background: radial-gradient(circle at 40% 40%, var(--secondary), color-mix(in oklab, var(--secondary) 40%, var(--mint))); top:26%; right:-220px; border-radius:55%; animation: floaty 16s ease-in-out infinite}
 @keyframes floaty{
   0%,100%{ transform: translate3d(0,0,0) }
-  50%{ transform: translate3d(0, -16px, 0) }
+  50%{ transform: translate3d(0, -28px, 0) }
 }
 @media (prefers-reduced-motion: reduce){
   .blob{animation:none}
