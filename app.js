@@ -1,33 +1,47 @@
-// Year stamp
-document.addEventListener('DOMContentLoaded', () => {
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
-});
 
-// Simple parallax on scroll
+// === Screensaver-style floating CTA ===
 (function(){
-  const els = Array.from(document.querySelectorAll('.parallax'));
-  if (!els.length) return;
-  const max = 12; // px
-  const lerp = (a,b,t)=>a+(b-a)*t;
-  let ticking = false;
+  const el = document.querySelector('.floating-cta');
+  if (!el) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches) return;
 
-  function update(){
-    const wh = window.innerHeight;
-    els.forEach(el=>{
-      const rect = el.getBoundingClientRect();
-      const mid = rect.top + rect.height/2;
-      const t = Math.max(-1, Math.min(1, (mid - wh/2)/(wh/2)));
-      const dy = lerp(max, -max, (t+1)/2);
-      el.style.transform = `translate3d(0, ${dy.toFixed(1)}px, 0)`;
-    });
-    ticking = false;
+  let vx = 1.2, vy = 1.0; // px per frame baseline; scaled by DPR
+  const speed = Math.max(0.8, Math.min(2.2, window.devicePixelRatio || 1));
+  vx *= speed; vy *= speed;
+
+  let x = 24, y = 24; // start
+  function size(){ return {w: el.offsetWidth, h: el.offsetHeight}; }
+  function bounds(){ return {w: window.innerWidth, h: window.innerHeight}; }
+
+  function step(){
+    const b = bounds();
+    const s = size();
+    x += vx; y += vy;
+    if (x <= 8 || x + s.w >= b.w - 8) { vx = -vx; x = Math.max(8, Math.min(x, b.w - s.w - 8)); flash(); }
+    if (y <= 8 || y + s.h >= b.h - 8) { vy = -vy; y = Math.max(8, Math.min(y, b.h - s.h - 8)); flash(); }
+    el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    raf = requestAnimationFrame(step);
   }
 
-  function onScroll(){
-    if (!ticking){ requestAnimationFrame(update); ticking = true; }
+  function flash(){
+    el.style.filter = 'hue-rotate(15deg) saturate(1.15)';
+    clearTimeout(flash.t);
+    flash.t = setTimeout(()=>{ el.style.filter=''; },120);
   }
-  update();
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
+
+  // Pause on hover/focus
+  let raf; const pause = ()=> cancelAnimationFrame(raf);
+  const resume = ()=> { cancelAnimationFrame(raf); raf = requestAnimationFrame(step); };
+  el.addEventListener('mouseenter', pause);
+  el.addEventListener('mouseleave', resume);
+  el.addEventListener('focusin', pause);
+  el.addEventListener('focusout', resume);
+
+  // Recalculate on resize
+  window.addEventListener('resize', ()=>{});
+
+  // Kick off
+  el.style.willChange = 'transform';
+  raf = requestAnimationFrame(step);
 })();
