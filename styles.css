@@ -1,7 +1,7 @@
 /* === THEME TOKENS === */
 :root{
   --main:#FF6DAA;            /* drunk tank pink */
-  --secondary:#D8FF37;       /* electric lime */
+  --secondary:#E1AD01;       /* electric lime */
   --purple:#7A3FFF;          /* highlight */
   --mint:#37FDB2;            /* 4th accent */
   --bg:#FFF7FB;
@@ -149,7 +149,7 @@ footer{
 /* BG blobs — bigger, faster, less blur */
 .bg-layer{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none}
 .blob{
-  position:absolute; filter: blur(28px); opacity:.75; will-change: transform; mix-blend-mode: multiply
+  position:absolute; filter: blur(12px); opacity:.85; will-change: transform; mix-blend-mode: multiply
 }
 .blob.p1{width:680px; height:680px; background:var(--main); top:-120px; left:-120px; border-radius:50%; animation: floaty 12s ease-in-out infinite}
 .blob.p2{width:560px; height:560px; background:var(--purple); bottom:-160px; right:8%; border-radius:50%; animation: floaty 14s ease-in-out infinite reverse}
