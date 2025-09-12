@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PaperPushers — Business Toolbox</title>
-  <meta name="description" content="PaperPushers is a quirky, agile business toolbox—websites, SEO, social, brand, interiors, business design, and custom tools." />
+  <meta name="description" content="We are PaperPushers, a quirky and agile business toolbox. Websites, SEO, social, brand, business design, interior workspaces, and custom tools." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff6d9a'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
   <link rel="stylesheet" href="styles.css" />
   <script src="app.js" defer></script>
@@ -40,7 +40,7 @@
     <section class="hero">
       <div class="container">
         <h1>Your business toolbox, always ready.</h1>
-        <p class="lead">From websites to workspaces, from SEO to social, from business plans to brand identities — we’re the quirky, agile toolbox that adapts to whatever your venture needs. Strong core tools, with the right add-ons for every unique project.</p>
+        <p class="lead">From websites to workspaces, from SEO to social, from business plans to brand identities — we’re the flexible toolbox that fits whatever your venture needs. Solid core tools, with the right add-ons for every unique project.</p>
         <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
           <!-- custom pink→yellow hero CTA -->
           <a class="btn" href="#contact" style="--btn-from:#ff6d9a; --btn-to:#FDCC2A; --btn-text:#111">Start building</a>
@@ -58,7 +58,7 @@
         <div class="grid-3">
           <!-- Per-card themes -->
           <article class="card parallax" style="--card-border:#ff6d9a80; --card-bg:#fff; --card-shadow:0 16px 40px rgba(255,109,154,.25)"><h3>Web & Digital</h3><p class="muted">Full-scale sites, complex platforms, SEO, and campaigns that hum.</p></article>
-          <article class="card parallax" style="--card-border:#FDCC2A80; --card-bg:#fffbe8; --card-shadow:0 16px 40px rgba(253,204,42,.25)"><h3>Brand & Identity</h3><p class="muted">Logos, systems, and voices that cut through the noise.</p></article>
+          <article class="card parallax" style="--card-border:#FDCC2A80; --card-bg:#fffbe8; --card-shadow:0 16px 40px rgba(253,204,42,.25)"><h3>Brand & Identity</h3><p class="muted">Logos, systems, and identities that make your real voice impossible to miss.</p></article>
           <article class="card parallax" style="--card-border:#1112; --card-bg:#f7f7f9"><h3>Business Design</h3><p class="muted">Plans, analysis, and strategies — the sturdy wrench in the box.</p></article>
           <article class="card parallax" style="--card-border:#9b59b680; --card-bg:#fbf5ff"><h3>Social & Media</h3><p class="muted">Campaigns with a wink, a nudge, and measurable reach.</p></article>
           <article class="card parallax" style="--card-border:#20bf6b80; --card-bg:#effaf3"><h3>Spaces & Interiors</h3><p class="muted">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p></article>
@@ -151,89 +151,5 @@
 
   <!-- Floating CTA (with its own color override) -->
   <a href="#toolbox" class="floating-cta" style="--btn-from:#111; --btn-to:#ff6d9a; --btn-text:#fff; --btn-shadow:0 10px 26px rgba(0,0,0,.35)">Open the Toolbox</a>
-
-  <!-- ===== ADMIN PANEL (Design Tuner) ===== -->
-  <button id="tuner-toggle" aria-label="Open design tuner" style="position:fixed; right:16px; bottom:16px; z-index:1000; border:none; border-radius:999px; padding:12px 14px; font-weight:900; cursor:pointer; box-shadow:0 10px 26px rgba(0,0,0,.25); background:linear-gradient(135deg,#111,#333); color:#fff">🎛️ Tuner</button>
-  <div id="tuner" aria-live="polite" style="position:fixed; right:16px; bottom:70px; width:min(420px,94vw); max-height:78vh; overflow:auto; background:#ffffff; color:#111; border:1px solid rgba(0,0,0,.12); border-radius:16px; box-shadow:0 30px 60px rgba(0,0,0,.25); z-index:1000; display:none">
-    <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-bottom:1px solid rgba(0,0,0,.08); position:sticky; top:0; background:#fff; border-top-left-radius:16px; border-top-right-radius:16px">
-      <strong>PaperPushers — Live Design Tuner</strong>
-      <div style="display:flex; gap:8px; align-items:center">
-        <button id="tuner-min" title="Collapse" style="border:none; background:#f3f3f6; padding:6px 10px; border-radius:10px; cursor:pointer">—</button>
-        <button id="tuner-close" title="Close" style="border:none; background:#f3f3f6; padding:6px 10px; border-radius:10px; cursor:pointer">✕</button>
-      </div>
-    </div>
-
-    <div style="padding:12px">
-      <!-- GLOBAL THEME -->
-      <details open>
-        <summary style="font-weight:800; cursor:pointer">Global theme</summary>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px">
-          <label>--main <input type="color" id="var-main" value="#ff6d9a" style="width:100%"></label>
-          <label>--accent <input type="color" id="var-accent" value="#FDCC2A" style="width:100%"></label>
-          <label>--bg <input type="color" id="var-bg" value="#fff7fa" style="width:100%"></label>
-          <label>--surface <input type="color" id="var-surface" value="#ffffff" style="width:100%"></label>
-          <label>--text <input type="color" id="var-text" value="#101010" style="width:100%"></label>
-          <label>--muted <input type="color" id="var-muted" value="#444444" style="width:100%"></label>
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px">
-          <label>Parallax strength <input type="range" id="var-parallax-strength" min="0" max="0.15" step="0.005"></label>
-          <label>Parallax max (px) <input type="range" id="var-parallax-max" min="0" max="30" step="1"></label>
-          <label>Blob opacity <input type="range" id="var-blob-opacity" min="0" max="1" step="0.05"></label>
-          <label>Blob blur (px) <input type="range" id="var-blob-blur" min="0" max="140" step="1"></label>
-        </div>
-      </details>
-
-      <!-- BUTTON THEMES -->
-      <details style="margin-top:12px">
-        <summary style="font-weight:800; cursor:pointer">Button theming (per element)</summary>
-        <div style="display:grid; gap:10px; margin-top:10px">
-          <label>Target selector
-            <input id="btn-selector" placeholder="e.g. .hero .btn:first-child or #contact .btn" style="width:100%; padding:8px 10px; border-radius:10px; border:1px solid rgba(0,0,0,.12)">
-          </label>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
-            <label>--btn-from <input type="color" id="btn-from" value="#ff6d9a" style="width:100%"></label>
-            <label>--btn-to <input type="color" id="btn-to" value="#FDCC2A" style="width:100%"></label>
-            <label>--btn-text <input type="color" id="btn-text" value="#111111" style="width:100%"></label>
-            <label>--btn-border <input type="color" id="btn-border" value="#222222" style="width:100%"></label>
-          </div>
-          <div>
-            <button id="btn-apply" style="border:none; background:#111; color:#fff; padding:8px 12px; border-radius:10px; cursor:pointer">Apply to target</button>
-            <button id="btn-copy" style="border:1px solid rgba(0,0,0,.15); background:#fff; color:#111; padding:8px 12px; border-radius:10px; cursor:pointer">Copy snippet</button>
-          </div>
-          <textarea id="btn-snippet" rows="3" style="width:100%; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; border:1px solid rgba(0,0,0,.12); border-radius:10px; padding:8px"></textarea>
-        </div>
-      </details>
-
-      <!-- CARD THEMES -->
-      <details style="margin-top:12px">
-        <summary style="font-weight:800; cursor:pointer">Card theming (per element)</summary>
-        <div style="display:grid; gap:10px; margin-top:10px">
-          <label>Target selector
-            <input id="card-selector" placeholder="e.g. #toolbox .card:nth-child(2)" style="width:100%; padding:8px 10px; border-radius:10px; border:1px solid rgba(0,0,0,.12)">
-          </label>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
-            <label>--card-bg <input type="color" id="card-bg" value="#ffffff" style="width:100%"></label>
-            <label>--card-border <input type="color" id="card-border" value="#ff6d9a" style="width:100%"></label>
-            <label>--card-text <input type="color" id="card-text" value="#111111" style="width:100%"></label>
-            <label>Shadow (rgba) <input id="card-shadow" value="0 16px 40px rgba(255,109,154,.25)" style="width:100%; padding:8px 10px; border-radius:10px; border:1px solid rgba(0,0,0,.12)"></label>
-          </div>
-          <div>
-            <button id="card-apply" style="border:none; background:#111; color:#fff; padding:8px 12px; border-radius:10px; cursor:pointer">Apply to target</button>
-            <button id="card-copy" style="border:1px solid rgba(0,0,0,.15); background:#fff; color:#111; padding:8px 12px; border-radius:10px; cursor:pointer">Copy snippet</button>
-          </div>
-          <textarea id="card-snippet" rows="3" style="width:100%; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; border:1px solid rgba(0,0,0,.12); border-radius:10px; padding:8px"></textarea>
-        </div>
-      </details>
-
-      <!-- EXPORT -->
-      <details style="margin-top:12px">
-        <summary style="font-weight:800; cursor:pointer">Export global tokens</summary>
-        <div style="display:grid; gap:8px; margin-top:10px">
-          <button id="export-css" style="border:none; background:#111; color:#fff; padding:8px 12px; border-radius:10px; cursor:pointer">Copy :root CSS</button>
-          <textarea id="css-export" rows="8" style="width:100%; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; border:1px solid rgba(0,0,0,.12); border-radius:10px; padding:8px"></textarea>
-        </div>
-      </details>
-    </div>
-  </div>
 </body>
 </html>
