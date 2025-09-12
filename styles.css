@@ -149,14 +149,14 @@ footer{
 /* BG blobs — bigger, faster, less blur */
 .bg-layer{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none}
 .blob{
-  position:absolute; filter: blur(12px); opacity:.85; will-change: transform; mix-blend-mode: multiply
+  position:absolute; filter: blur(12px); opacity:.75; will-change: transform; mix-blend-mode: multiply
 }
-.blob.p1{width:680px; height:680px; background:var(--main); top:-120px; left:-120px; border-radius:50%; animation: floaty 12s ease-in-out infinite}
-.blob.p2{width:560px; height:560px; background:var(--purple); bottom:-160px; right:8%; border-radius:50%; animation: floaty 14s ease-in-out infinite reverse}
-.blob.y1{width:720px; height:720px; background: radial-gradient(circle at 40% 40%, var(--secondary), color-mix(in oklab, var(--secondary) 40%, var(--mint))); top:26%; right:-220px; border-radius:55%; animation: floaty 16s ease-in-out infinite}
+.blob.p1{width:680px; height:680px; background:var(--main); top:-120px; left:-120px; border-radius:50%; animation: floaty 6s ease-in-out infinite}
+.blob.p2{width:560px; height:560px; background:var(--purple); bottom:-160px; right:8%; border-radius:50%; animation: floaty 8s ease-in-out infinite reverse}
+.blob.y1{width:720px; height:720px; background: radial-gradient(circle at 40% 40%, var(--secondary), color-mix(in oklab, var(--secondary) 40%, var(--mint))); top:26%; right:-220px; border-radius:55%; animation: floaty 10s ease-in-out infinite}
 @keyframes floaty{
   0%,100%{ transform: translate3d(0,0,0) }
-  50%{ transform: translate3d(0, -28px, 0) }
+  50%{ transform: translate3d(0, -60px, 0) }
 }
 @media (prefers-reduced-motion: reduce){
   .blob{animation:none}
