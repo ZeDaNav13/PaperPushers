@@ -1,26 +1,41 @@
-/* === PaperPushers Theme Colors === */
+/* === PaperPushers Theme === */
 :root {
-  --intro-bg: linear-gradient(135deg, #fef9c3, #fef08a);
-  --about-bg: linear-gradient(135deg, #111827, #1f2937);
-  --services-bg: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-  --portfolio-bg: linear-gradient(135deg, #7c3aed, #a78bfa);
-  --contact-bg: linear-gradient(135deg, #fef2f2, #fecaca);
-  --footer-bg: linear-gradient(135deg, #111827, #1f2937);
+  --main: #D2009E;
+  --secondary: #FFF53E;
+  --highlight: #77FD3E;
+  --offwhite: #F9F9F9;
+
+  --intro-bg: var(--main);
+  --about-bg: var(--offwhite);
+  --services-bg: var(--secondary);
+  --portfolio-bg: var(--main);
+  --contact-bg: var(--offwhite);
+  --footer-bg: #111;
 }
 
-.fp-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* Optional: text colors per section */
-.section.intro { color: #000; }
-.section.about { color: #fff; }
-.section.services { color: #000; }
-.section.portfolio { color: #fff; }
-.section.contact { color: #000; }
-.section.footer { color: #fff; }
+/* Section text alignment */
+.section {
+  text-align: center;
+  padding: 2rem;
+  color: #111;
+}
+
+.section h1,
+.section h2 {
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.section.intro,
+.section.portfolio {
+  color: white;
+}
+
+.section.footer {
+  color: var(--offwhite);
+}

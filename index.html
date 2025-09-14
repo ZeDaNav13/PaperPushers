@@ -4,13 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PaperPushers</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
   <!-- fullPage.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
 
-  <!-- Theme colors -->
+  <!-- Theme -->
   <link rel="stylesheet" href="theme.css">
 </head>
 <body class="font-sans">
@@ -19,15 +24,15 @@
     <!-- Intro -->
     <div class="section intro relative">
       <div class="fp-bg" style="background: var(--intro-bg);"></div>
-      <h1 class="text-6xl font-bold mb-6">PaperPushers</h1>
-      <p class="text-xl max-w-2xl">The quirky, agile business toolbox.</p>
+      <h1 class="text-7xl md:text-8xl font-black mb-6">PaperPushers</h1>
+      <p class="text-2xl md:text-3xl font-bold">The quirky, agile business toolbox.</p>
     </div>
 
     <!-- About -->
     <div class="section about relative">
       <div class="fp-bg" style="background: var(--about-bg);"></div>
-      <h2 class="text-5xl font-bold mb-6">About Us</h2>
-      <p class="text-xl max-w-3xl">
+      <h2 class="text-6xl font-black mb-6" style="color: var(--main);">About Us</h2>
+      <p class="text-2xl md:text-3xl font-semibold max-w-3xl mx-auto">
         Business tools don’t have to be boring. <br/>
         We make them smart, agile, and joyful.
       </p>
@@ -36,19 +41,19 @@
     <!-- Services -->
     <div class="section services relative">
       <div class="fp-bg" style="background: var(--services-bg);"></div>
-      <h2 class="text-5xl font-bold mb-12">Our Services</h2>
-      <div class="grid md:grid-cols-3 gap-12 max-w-5xl">
+      <h2 class="text-6xl font-black mb-12" style="color: var(--main);">Our Services</h2>
+      <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
         <div>
-          <h3 class="text-2xl font-bold mb-4">💡 Smart Tools</h3>
-          <p>Streamline workflows, without the snooze factor.</p>
+          <h3 class="text-3xl font-black mb-4">💡 Smart Tools</h3>
+          <p class="text-xl">Streamline workflows, without the snooze factor.</p>
         </div>
         <div>
-          <h3 class="text-2xl font-bold mb-4">⚡ Agile by Nature</h3>
-          <p>Adapt fast, stay quirky.</p>
+          <h3 class="text-3xl font-black mb-4">⚡ Agile by Nature</h3>
+          <p class="text-xl">Adapt fast, stay quirky.</p>
         </div>
         <div>
-          <h3 class="text-2xl font-bold mb-4">😊 People First</h3>
-          <p>Joyful, human-centered work.</p>
+          <h3 class="text-3xl font-black mb-4">😊 People First</h3>
+          <p class="text-xl">Joyful, human-centered work.</p>
         </div>
       </div>
     </div>
@@ -56,24 +61,24 @@
     <!-- Portfolio -->
     <div class="section portfolio relative">
       <div class="fp-bg" style="background: var(--portfolio-bg);"></div>
-      <h2 class="text-5xl font-bold mb-12">Our Work</h2>
-      <div class="grid md:grid-cols-3 gap-6 max-w-6xl">
-        <img src="https://picsum.photos/500/300?random=1" class="rounded-xl shadow-lg" alt="work">
-        <img src="https://picsum.photos/500/300?random=2" class="rounded-xl shadow-lg" alt="work">
-        <img src="https://picsum.photos/500/300?random=3" class="rounded-xl shadow-lg" alt="work">
+      <h2 class="text-6xl font-black mb-12" style="color: var(--secondary);">Our Work</h2>
+      <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <img src="https://picsum.photos/500/300?random=1" class="rounded-xl shadow-xl border-4 border-white" alt="work">
+        <img src="https://picsum.photos/500/300?random=2" class="rounded-xl shadow-xl border-4 border-white" alt="work">
+        <img src="https://picsum.photos/500/300?random=3" class="rounded-xl shadow-xl border-4 border-white" alt="work">
       </div>
     </div>
 
     <!-- Contact -->
     <div class="section contact relative">
       <div class="fp-bg" style="background: var(--contact-bg);"></div>
-      <h2 class="text-5xl font-bold mb-6">Get in Touch</h2>
-      <p class="mb-8 text-xl">Ready to push some paper? Let’s get quirky together.</p>
+      <h2 class="text-6xl font-black mb-6" style="color: var(--main);">Get in Touch</h2>
+      <p class="mb-8 text-2xl font-semibold">Ready to push some paper? Let’s get quirky together.</p>
       <form class="max-w-xl mx-auto grid gap-4">
-        <input type="text" placeholder="Your Name" class="border px-4 py-3 rounded-md" />
-        <input type="email" placeholder="Your Email" class="border px-4 py-3 rounded-md" />
-        <textarea placeholder="Your Message" class="border px-4 py-3 rounded-md" rows="5"></textarea>
-        <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-full">
+        <input type="text" placeholder="Your Name" class="border px-4 py-3 rounded-md text-lg" />
+        <input type="email" placeholder="Your Email" class="border px-4 py-3 rounded-md text-lg" />
+        <textarea placeholder="Your Message" class="border px-4 py-3 rounded-md text-lg" rows="5"></textarea>
+        <button type="submit" class="bg-[var(--main)] hover:bg-pink-700 text-white font-black py-4 px-6 rounded-full text-xl">
           Send Message
         </button>
       </form>
@@ -82,7 +87,7 @@
     <!-- Footer -->
     <div class="section footer relative">
       <div class="fp-bg" style="background: var(--footer-bg);"></div>
-      <p>© <span id="year"></span> PaperPushers. All rights reserved.</p>
+      <p class="text-lg">© <span id="year"></span> PaperPushers. All rights reserved.</p>
     </div>
   </div>
 
@@ -96,7 +101,6 @@
       parallaxOptions: { type: 'reveal', percentage: 62, property: 'translate' },
       responsiveWidth: 768
     });
-
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
