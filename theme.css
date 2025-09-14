@@ -10,25 +10,37 @@
   --services-bg: var(--secondary);
   --portfolio-bg: var(--main);
   --contact-bg: var(--offwhite);
-  --footer-bg: #111;
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
 }
 
-/* Section text alignment */
 .section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 2rem;
-  color: #111;
+  position: relative;
+  overflow: hidden;
 }
 
 .section h1,
 .section h2 {
   font-weight: 900;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   text-transform: uppercase;
+  line-height: 1.1;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .section.intro,
@@ -36,6 +48,34 @@ body {
   color: white;
 }
 
-.section.footer {
-  color: var(--offwhite);
+/* Blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: blobMove 20s infinite alternate ease-in-out;
+}
+
+@keyframes blobMove {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(200px, -150px) scale(1.2); }
+  100% { transform: translate(-200px, 150px) scale(0.9); }
+}
+
+/* Floating CTA */
+#floating-cta {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: white;
+  background: var(--main);
+  z-index: 1000;
+  pointer-events: auto;
+  user-select: none;
 }
