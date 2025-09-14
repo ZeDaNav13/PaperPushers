@@ -17,24 +17,28 @@
 </head>
 <body class="font-sans">
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="nav-inner">
-      <div class="nav-brand">PaperPushers</div>
-      <a class="nav-link" href="#services">Services</a>
-      <a class="nav-link" href="#work">Work</a>
-      <a class="nav-link" href="#about">About</a>
-      <a class="nav-link" href="#contact">Contact</a>
-      <a class="nav-cta" href="#contact">Get a quote</a>
+  <!-- REAL HEADER -->
+  <header class="header">
+    <div class="inner">
+      <div class="brand">PaperPushers</div>
+      <nav class="nav">
+        <a href="#services" data-anchor="services">Services</a>
+        <a href="#work" data-anchor="work">Work</a>
+        <a href="#about" data-anchor="about">About</a>
+        <a href="#contact" data-anchor="contact">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <button class="btn-quote" data-anchor="contact">Get a quote</button>
+      </div>
     </div>
-  </div>
+  </header>
 
   <!-- Floating CTA -->
   <button id="floating-cta">Start a project</button>
 
   <div id="fullpage">
     <!-- HERO -->
-    <div class="section intro" id="home">
+    <div class="section" id="home">
       <div class="fp-bg bg-stripe-intro"></div>
       <div class="blob w-72 h-72" style="background:#FFF53E; top:10%; left:10%"></div>
       <div class="blob w-60 h-60" style="background:#77FD3E; bottom:12%; right:12%"></div>
@@ -49,14 +53,14 @@
           Strategic design, meticulous build, measurable growth.
         </p>
         <div class="mt-10 flex items-center justify-center gap-4">
-          <a href="#contact" class="btn btn-primary">Start a project</a>
-          <a href="#work" class="btn btn-ghost">See our work</a>
+          <a data-anchor="contact" class="btn btn-primary cursor-pointer">Start a project</a>
+          <a data-anchor="work" class="btn btn-outline cursor-pointer">See our work</a>
         </div>
       </div>
     </div>
 
     <!-- SERVICES -->
-    <div class="section services" id="services">
+    <div class="section" id="services">
       <div class="fp-bg bg-stripe-services"></div>
       <div class="blob w-64 h-64" style="background:#D2009E; top:12%; left:18%"></div>
       <div class="blob w-72 h-72" style="background:#77FD3E; bottom:10%; right:15%"></div>
@@ -70,25 +74,26 @@
           Pick a lane or go end-to-end. We meet you where you are.
         </p>
 
+        <!-- Three separate cards -->
         <div class="grid-3 max-w-6xl mx-auto text-left">
-          <div class="glass p-6 md:p-8">
+          <article class="glass p-6 md:p-8">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Brand & Identity</h3>
             <p class="text-base md:text-lg">Logos, design systems, guidelines that travel from decks to product UI.</p>
-          </div>
-          <div class="glass p-6 md:p-8">
+          </article>
+          <article class="glass p-6 md:p-8">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Web Design & Build</h3>
             <p class="text-base md:text-lg">Modern stacks (Jamstack, headless CMS) with excellent Core Web Vitals.</p>
-          </div>
-          <div class="glass p-6 md:p-8">
+          </article>
+          <article class="glass p-6 md:p-8">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Growth & SEO</h3>
             <p class="text-base md:text-lg">Technical SEO, content frameworks, analytics to turn traffic into trials.</p>
-          </div>
+          </article>
         </div>
       </div>
     </div>
 
     <!-- SELECTED WORK -->
-    <div class="section portfolio" id="work">
+    <div class="section" id="work">
       <div class="fp-bg bg-stripe-portfolio"></div>
       <div class="blob w-72 h-72" style="background:#FFF53E; top:12%; left:10%"></div>
       <div class="blob w-64 h-64" style="background:#77FD3E; bottom:12%; right:12%"></div>
@@ -99,25 +104,26 @@
           Selected work
         </h2>
 
+        <!-- Three separate cards -->
         <div class="grid-3 max-w-6xl mx-auto text-left">
-          <div class="glass p-6 md:p-8 text-on-dark">
+          <article class="glass p-6 md:p-8 text-on-dark">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Project Alpha → +28% checkout</h3>
             <p class="text-base md:text-lg">E-commerce redesign with streamlined checkout and improved performance.</p>
-          </div>
-          <div class="glass p-6 md:p-8 text-on-dark">
+          </article>
+          <article class="glass p-6 md:p-8 text-on-dark">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Project Beta → 5-market rebrand</h3>
             <p class="text-base md:text-lg">Unified identity and web for expansion across EU regions.</p>
-          </div>
-          <div class="glass p-6 md:p-8 text-on-dark">
+          </article>
+          <article class="glass p-6 md:p-8 text-on-dark">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Project Gamma → +42% sign-ups</h3>
             <p class="text-base md:text-lg">Product-led site with clearer value props and faster LCP.</p>
-          </div>
+          </article>
         </div>
       </div>
     </div>
 
     <!-- ABOUT -->
-    <div class="section about" id="about">
+    <div class="section" id="about">
       <div class="fp-bg bg-stripe-about"></div>
       <div class="blob w-64 h-64" style="background:#D2009E; top:15%; right:15%"></div>
       <div class="blob w-72 h-72" style="background:#77FD3E; bottom:10%; left:12%"></div>
@@ -128,29 +134,30 @@
           About PaperPushers
         </h2>
 
+        <!-- Three separate cards -->
         <div class="grid-3 max-w-6xl mx-auto text-left">
-          <div class="glass p-6 md:p-8 text-on-light">
+          <article class="glass p-6 md:p-8 text-on-light">
             <p class="text-base md:text-lg">
               PaperPushers is a Lisbon-based studio blending strategy, design, and engineering.
               We ship high-quality websites and product UI.
             </p>
-          </div>
-          <div class="glass p-6 md:p-8 text-on-light">
+          </article>
+          <article class="glass p-6 md:p-8 text-on-light">
             <p class="text-base md:text-lg italic">
               “They delivered on time, on budget, and beyond expectations.” — COO, Example Co.
             </p>
-          </div>
-          <div class="glass p-6 md:p-8 text-on-light">
+          </article>
+          <article class="glass p-6 md:p-8 text-on-light">
             <p class="text-base md:text-lg">
               Values: <strong>craft &gt; speed</strong>, <strong>clarity &gt; cleverness</strong>, <strong>outcomes &gt; outputs</strong>.
             </p>
-          </div>
+          </article>
         </div>
       </div>
     </div>
 
     <!-- CONTACT (+ condensed footer) -->
-    <div class="section contact" id="contact">
+    <div class="section" id="contact">
       <div class="fp-bg bg-stripe-contact"></div>
       <div class="blob w-72 h-72" style="background:#D2009E; top:14%; right:18%"></div>
       <div class="blob w-64 h-64" style="background:#77FD3E; bottom:12%; left:14%"></div>
@@ -169,13 +176,13 @@
           <!-- Form -->
           <form class="grid gap-4">
             <label class="font-bold" for="name">Name</label>
-            <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/70" placeholder="Your name" />
+            <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/80" placeholder="Your name" />
 
             <label class="font-bold" for="email">Email</label>
-            <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/70" placeholder="you@example.com" />
+            <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/80" placeholder="you@example.com" />
 
             <label class="font-bold" for="details">Project details</label>
-            <textarea id="details" rows="6" class="border px-4 py-3 rounded-md text-lg bg-white/70" placeholder="Tell us a bit about scope, timeline, and budget"></textarea>
+            <textarea id="details" rows="6" class="border px-4 py-3 rounded-md text-lg bg-white/80" placeholder="Tell us about scope, timeline, and budget"></textarea>
 
             <button type="submit" class="btn btn-primary mt-2">Send message</button>
           </form>
@@ -189,12 +196,9 @@
 
             <div class="mt-6 pt-6 border-t border-white/30 text-sm opacity-80">
               <span>© <span id="year"></span> PaperPushers</span>
-              <span class="mx-2">·</span>
-              <a href="#" class="underline">Privacy</a>
-              <span class="mx-2">·</span>
-              <a href="#" class="underline">Terms</a>
-              <span class="mx-2">·</span>
-              <a href="#" class="underline" target="_blank" rel="noopener">LinkedIn</a>
+              <span class="mx-2">·</span><a href="#" class="underline">Privacy</a>
+              <span class="mx-2">·</span><a href="#" class="underline">Terms</a>
+              <span class="mx-2">·</span><a href="#" class="underline" target="_blank" rel="noopener">LinkedIn</a>
             </div>
           </aside>
         </div>
@@ -203,11 +207,13 @@
   </div>
 
   <script>
-    /* fullPage init */
+    /* fullPage init with named anchors for smooth nav */
+    const anchors=['home','services','work','about','contact'];
     new fullpage('#fullpage',{
-      autoScrolling:true,
+      anchors,
       navigation:true,
       navigationPosition:'right',
+      autoScrolling:true,
       scrollingSpeed:900,
       parallax:true,
       parallaxOptions:{type:'reveal',percentage:62,property:'translate'},
@@ -215,7 +221,17 @@
     });
     document.getElementById('year').textContent=new Date().getFullYear();
 
-    /* Floating CTA screensaver bounce — fixed size, color swap on edge */
+    /* Header nav -> fullPage API */
+    document.querySelectorAll('[data-anchor], .nav a[href^="#"], .btn-quote, .btn[href^="#"]').forEach(el=>{
+      el.addEventListener('click',(e)=>{
+        const attr=el.getAttribute('data-anchor');
+        const href=el.getAttribute('href');
+        const target=attr || (href?href.replace('#',''):null);
+        if(target){ e.preventDefault(); fullpage_api.moveTo(target); }
+      });
+    });
+
+    /* Floating CTA — fixed size, bounce, color swap on edge */
     const cta=document.getElementById('floating-cta');
     let x=160, y=120, dx=2.2, dy=2.0;
     const palette=['#D2009E','#FFF53E','#77FD3E'];
@@ -223,9 +239,7 @@
       const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
       if(x<=0 || x+bw>=w){dx=-dx; cta.style.background=palette[Math.floor(Math.random()*palette.length)];}
       if(y<=0 || y+bh>=h){dy=-dy; cta.style.background=palette[Math.floor(Math.random()*palette.length)];}
-      x+=dx; y+=dy;
-      cta.style.transform=`translate(${x}px, ${y}px)`;
-      requestAnimationFrame(tick);
+      x+=dx; y+=dy; cta.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
     }
     tick();
   </script>
