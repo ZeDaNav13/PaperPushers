@@ -10,26 +10,28 @@
 
 body{font-family:'Montserrat',sans-serif;overflow:hidden;}
 
-/* ===== Header ===== */
+/* ===== Header (flat top bar) ===== */
 .header{
   position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;
   display:flex;align-items:center;
-  background:rgba(10,10,15,.28);backdrop-filter:blur(10px);
-  box-shadow:0 8px 30px rgba(0,0,0,.15);
+  background:rgba(10,10,15,.42);
+  backdrop-filter:blur(10px);
+  box-shadow:0 8px 30px rgba(0,0,0,.22);
 }
 .header .inner{
   width:100%;max-width:1200px;margin:0 auto;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
   padding:0 16px;
 }
-.brand{font-weight:900;letter-spacing:-.5px;color:#fff;font-size:1.1rem;}
+.brand{font-weight:900;letter-spacing:-.5px;color:#fff;font-size:1.1rem}
 .nav{display:flex;gap:20px;justify-content:center}
-.nav a{color:#fff;text-decoration:none;font-weight:700;opacity:.9}
+.nav a{color:#fff;text-decoration:none;font-weight:700;opacity:.92}
 .nav a:hover{opacity:1}
 .header-cta{display:flex;justify-content:flex-end}
 .header-cta .btn-quote{
-  border:none;border-radius:9999px;padding:10px 16px;
-  font-weight:900;color:#0b0b0e;background:var(--secondary);
+  border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#0b0b0e;
+  background:linear-gradient(135deg, var(--secondary), #ffe84a);
+  box-shadow:0 6px 18px rgba(255,245,62,.35);
 }
 
 /* ===== Sections ===== */
@@ -63,10 +65,11 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
   100%{transform:translate(15%, -8%) scale(0.95)}
 }
 
-/* Floating CTA (screensaver bounce) */
+/* Floating CTA */
 #floating-cta{
-  position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:9999px;
-  font-weight:900;font-size:1.05rem;color:#0b0b0e;background:var(--secondary);
+  position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;
+  font-weight:900;font-size:1.05rem;color:#0b0b0e;
+  background:linear-gradient(135deg, var(--secondary), #ffe84a);
   z-index:1000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
@@ -79,20 +82,44 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
   box-shadow:0 16px 50px rgba(0,0,0,.25);
 }
 
-/* Buttons */
-.btn{display:inline-block;border-radius:9999px;padding:14px 22px;font-weight:900}
-.btn-primary{background:var(--secondary);color:#0b0b0e}
-.btn-primary:hover{filter:brightness(0.95)}
-.btn-outline{border:2px solid rgba(255,255,255,.9);color:#fff;background:transparent}
-.btn-outline:hover{background:rgba(255,255,255,.12)}
+/* Buttons (gradient) */
+.btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900; transition:transform .12s ease, filter .12s ease; }
+.btn:active{transform:translateY(1px)}
+.btn-primary{
+  background:linear-gradient(135deg, var(--secondary), #ffe84a);
+  color:#0b0b0e; box-shadow:0 8px 22px rgba(255,245,62,.35);
+}
+.btn-primary:hover{filter:brightness(.96)}
+.btn-outline{
+  color:#fff; background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.5); box-shadow:0 8px 22px rgba(0,0,0,.25);
+}
+.btn-outline:hover{filter:brightness(1.05)}
 
 /* Utilities */
 .container{max-width:1200px;margin-inline:auto;padding-inline:1rem}
 .grid-3{display:grid;gap:24px}
 @media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-.text-on-dark{color:var(--text-light)}
+.text-on-dark{color:rgba(255,255,255,.96)}
+.text-soft-on-dark{color:rgba(255,255,255,.82)}
 .text-on-light{color:var(--text-dark)}
 .text-glow{text-shadow:0 6px 30px rgba(0,0,0,.45)}
+
+/* Full-slide vignette */
+.vignette-bottom{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,.18) 100%);
+}
+
+/* Contact card sizing (prevent slide under header) */
+.contact-card{
+  max-height:calc(100vh - 72px - 120px);
+  overflow:auto;
+  scrollbar-width:thin;
+}
+@media (max-width: 768px){
+  .contact-card{ max-height:calc(100vh - 72px - 90px); }
+}
 
 /* Stripe-inspired backgrounds */
 .bg-stripe-intro{

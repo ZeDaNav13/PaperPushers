@@ -17,7 +17,7 @@
 </head>
 <body class="font-sans">
 
-  <!-- REAL HEADER -->
+  <!-- REAL HEADER (flat top, no rounded pill) -->
   <header class="header">
     <div class="inner">
       <div class="brand">PaperPushers</div>
@@ -90,6 +90,8 @@
           </article>
         </div>
       </div>
+      <!-- Full-slide vignette -->
+      <div class="vignette-bottom"></div>
     </div>
 
     <!-- SELECTED WORK -->
@@ -120,6 +122,8 @@
           </article>
         </div>
       </div>
+      <!-- Full-slide vignette -->
+      <div class="vignette-bottom"></div>
     </div>
 
     <!-- ABOUT -->
@@ -136,18 +140,18 @@
 
         <!-- Three separate cards -->
         <div class="grid-3 max-w-6xl mx-auto text-left">
-          <article class="glass p-6 md:p-8 text-on-light">
+          <article class="glass p-6 md:p-8 text-soft-on-dark">
             <p class="text-base md:text-lg">
               PaperPushers is a Lisbon-based studio blending strategy, design, and engineering.
               We ship high-quality websites and product UI.
             </p>
           </article>
-          <article class="glass p-6 md:p-8 text-on-light">
+          <article class="glass p-6 md:p-8 text-soft-on-dark">
             <p class="text-base md:text-lg italic">
               “They delivered on time, on budget, and beyond expectations.” — COO, Example Co.
             </p>
           </article>
-          <article class="glass p-6 md:p-8 text-on-light">
+          <article class="glass p-6 md:p-8 text-soft-on-dark">
             <p class="text-base md:text-lg">
               Values: <strong>craft &gt; speed</strong>, <strong>clarity &gt; cleverness</strong>, <strong>outcomes &gt; outputs</strong>.
             </p>
@@ -171,18 +175,18 @@
           Tell us about your goals. We’ll reply within 1 business day.
         </p>
 
-        <!-- Glass card: form + aside -->
-        <div class="glass max-w-6xl mx-auto p-6 md:p-10 grid gap-8 md:grid-cols-2 text-left">
+        <!-- Glass card: form + aside (internal scroll if needed) -->
+        <div class="glass contact-card max-w-6xl mx-auto p-6 md:p-10 grid gap-8 md:grid-cols-2 text-left">
           <!-- Form -->
           <form class="grid gap-4">
             <label class="font-bold" for="name">Name</label>
-            <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/80" placeholder="Your name" />
+            <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name" />
 
             <label class="font-bold" for="email">Email</label>
-            <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/80" placeholder="you@example.com" />
+            <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="you@example.com" />
 
             <label class="font-bold" for="details">Project details</label>
-            <textarea id="details" rows="6" class="border px-4 py-3 rounded-md text-lg bg-white/80" placeholder="Tell us about scope, timeline, and budget"></textarea>
+            <textarea id="details" rows="6" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget"></textarea>
 
             <button type="submit" class="btn btn-primary mt-2">Send message</button>
           </form>
@@ -207,7 +211,7 @@
   </div>
 
   <script>
-    /* fullPage init with named anchors for smooth nav */
+    /* fullPage init with named anchors for smooth nav + header padding */
     const anchors=['home','services','work','about','contact'];
     new fullpage('#fullpage',{
       anchors,
@@ -215,13 +219,14 @@
       navigationPosition:'right',
       autoScrolling:true,
       scrollingSpeed:900,
+      paddingTop:'72px',           // reserve space for header
       parallax:true,
       parallaxOptions:{type:'reveal',percentage:62,property:'translate'},
       responsiveWidth:768
     });
-    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('year')?.textContent=new Date().getFullYear();
 
-    /* Header nav -> fullPage API */
+    /* Header nav & buttons -> fullPage API */
     document.querySelectorAll('[data-anchor], .nav a[href^="#"], .btn-quote, .btn[href^="#"]').forEach(el=>{
       el.addEventListener('click',(e)=>{
         const attr=el.getAttribute('data-anchor');
@@ -231,14 +236,14 @@
       });
     });
 
-    /* Floating CTA — fixed size, bounce, color swap on edge */
+    /* Floating CTA — fixed size, bounce, gradient color swap on edges */
     const cta=document.getElementById('floating-cta');
     let x=160, y=120, dx=2.2, dy=2.0;
     const palette=['#D2009E','#FFF53E','#77FD3E'];
     function tick(){
       const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
-      if(x<=0 || x+bw>=w){dx=-dx; cta.style.background=palette[Math.floor(Math.random()*palette.length)];}
-      if(y<=0 || y+bh>=h){dy=-dy; cta.style.background=palette[Math.floor(Math.random()*palette.length)];}
+      if(x<=0 || x+bw>=w){dx=-dx; const c=palette[Math.floor(Math.random()*palette.length)]; cta.style.background=`linear-gradient(135deg, ${c}, #ffffff)`;}
+      if(y<=0 || y+bh>=h){dy=-dy; const c=palette[Math.floor(Math.random()*palette.length)]; cta.style.background=`linear-gradient(135deg, ${c}, #ffffff)`;}
       x+=dx; y+=dy; cta.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
     }
     tick();
