@@ -8,6 +8,7 @@
   --text-light:#ffffff;
 }
 
+html, body{height:100%;}
 body{font-family:'Montserrat',sans-serif;overflow:hidden;}
 
 /* ===== Header (flat top bar) ===== */
@@ -36,7 +37,9 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
 
 /* ===== Sections ===== */
 .section{
-  position:relative;overflow:hidden;
+  position:relative;
+  height:100vh;           /* enforce real slide height */
+  overflow:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem;color:var(--text-light);
 }
@@ -111,14 +114,17 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
   background:linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,.18) 100%);
 }
 
-/* Contact card sizing (prevent slide under header) */
+/* Contact card sizing */
 .contact-card{
-  max-height:calc(100vh - 72px - 120px);
+  max-height:calc(100vh - 72px - 140px); /* header + title + margin */
   overflow:auto;
   scrollbar-width:thin;
 }
-@media (max-width: 768px){
-  .contact-card{ max-height:calc(100vh - 72px - 90px); }
+/* make sure contact slide never exceeds viewport visually */
+.contact-title{line-height:1.05}
+@media (max-height: 800px){
+  .contact-title{font-size: clamp(2rem, 6vw, 4rem) !important;}
+  .contact-card{max-height:calc(100vh - 72px - 110px);}
 }
 
 /* Stripe-inspired backgrounds */
