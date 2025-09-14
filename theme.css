@@ -1,10 +1,9 @@
-/* === PaperPushers Theme (Stripe-inspired) === */
+/* === PaperPushers Theme (Stripe-inspired, with glass) === */
 :root{
   --main:#D2009E;         /* magenta */
   --secondary:#FFF53E;    /* yellow */
   --highlight:#77FD3E;    /* lime */
   --offwhite:#F9F9F9;
-
   --text-dark:#0b0b0e;
   --text-light:#ffffff;
 }
@@ -18,23 +17,42 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
 }
 .section h1,.section h2{
   font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;
-  opacity:0;animation:fadeInUp 900ms ease forwards; /* headline reveal */
+  opacity:0;animation:fadeInUp 900ms ease forwards;
 }
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
-/* Parallax BG layer */
-.fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%;}
+/* Fixed top navbar */
+.navbar{
+  position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.navbar > .nav-inner{
+  pointer-events:auto;
+  display:flex;align-items:center;gap:28px;
+  padding:12px 20px;border-radius:9999px;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(10px);
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+.nav-brand{font-weight:900;letter-spacing:-.5px;color:#fff;margin-right:8px}
+.nav-link{color:#fff;text-decoration:none;font-weight:700}
+.nav-link:hover{opacity:.8}
+.nav-cta{
+  border:none;border-radius:9999px;padding:10px 16px;
+  font-weight:900;color:#0b0b0e;background:var(--secondary);
+}
 
-/* Soft grain overlay (very subtle) */
+/* Parallax BG layer + soft grain */
+.fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%;}
 .fp-bg::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
   background-image:
-    radial-gradient(transparent 0, rgba(0,0,0,.02) 100%),
+    radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),
     repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);
   mix-blend-mode:overlay;opacity:.35;
 }
 
-/* Floating ambient blobs (behind content, subtle) */
+/* Ambient blobs */
 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;
   animation:blobMove 22s ease-in-out infinite alternate;}
 @keyframes blobMove{
@@ -45,17 +63,40 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
 
 /* Floating CTA — fixed size + screensaver bounce */
 #floating-cta{
-  position:fixed;inset:auto auto auto auto; /* we move via transform only */
-  width:180px;height:60px;line-height:60px;text-align:center;border-radius:9999px;
+  position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:9999px;
   font-weight:900;font-size:1.1rem;color:#fff;background:var(--main);
   z-index:1000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
-/* ===== Stripe-inspired background sets =====
-   Achieved via layered radial/conic gradients + slow pan
-*/
+/* Glass card (Contact) */
+.glass{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:24px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
 
-/* Intro: indigo → violet mesh with magenta glow */
+/* Contrast helpers */
+.text-on-dark{color:var(--text-light)}
+.text-on-light{color:var(--text-dark)}
+.text-glow{ text-shadow:0 6px 30px rgba(0,0,0,.45); }
+
+/* Buttons */
+.btn{
+  display:inline-block;border-radius:9999px;padding:14px 22px;font-weight:900;
+}
+.btn-primary{background:var(--secondary);color:#0b0b0e}
+.btn-primary:hover{filter:brightness(0.95)}
+.btn-ghost{background:rgba(255,255,255,.15);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.25)}
+
+/* Responsive containers */
+.container{max-width:1200px;margin-inline:auto;padding-inline:1rem}
+.grid-3{display:grid;gap:24px}
+@media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+/* Stripe-inspired background sets */
 .bg-stripe-intro{
   background:
     radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),
@@ -63,8 +104,6 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
     conic-gradient(from 200deg at 70% 30%, #5b21b6, #7c3aed, #d946ef, #4f46e5, #5b21b6);
   animation:bg-pan 18s ease-in-out infinite alternate;
 }
-
-/* About: midnight slate with cyan & violet blooms */
 .bg-stripe-about{
   background:
     radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),
@@ -72,8 +111,6 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
     linear-gradient(180deg, #0b1020, #0f172a);
   animation:bg-pan 22s ease-in-out infinite alternate-reverse;
 }
-
-/* Services: electric aqua field with yellow light */
 .bg-stripe-services{
   background:
     radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),
@@ -81,8 +118,6 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
     linear-gradient(160deg, #0ea5e9 0%, #22d3ee 50%, #0ea5e9 100%);
   animation:bg-pan 20s ease-in-out infinite alternate;
 }
-
-/* Portfolio: deep magenta canvas with neon rings */
 .bg-stripe-portfolio{
   background:
     radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),
@@ -90,8 +125,6 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
     conic-gradient(from 120deg at 50% 50%, #3b0764, #7e22ce, #D2009E, #3b0764);
   animation:bg-pan 24s ease-in-out infinite alternate-reverse;
 }
-
-/* Contact: warm off-white wash with pink/cyan accents */
 .bg-stripe-contact{
   background:
     radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),
@@ -99,15 +132,7 @@ body{font-family:'Montserrat',sans-serif;overflow:hidden;}
     linear-gradient(180deg, #F9F9F9, #f3f4f6);
   animation:bg-pan 26s ease-in-out infinite alternate;
 }
-
-/* slow drift */
 @keyframes bg-pan{
   0%{background-position:0% 40%, 100% 60%, 50% 50%}
   100%{background-position:100% 60%, 0% 40%, 50% 50%}
 }
-
-/* Helpful utilities for contrast per slide */
-.text-on-dark{color:var(--text-light)}
-.text-on-light{color:var(--text-dark)}
-/* Extra pop for ultra-large titles on dark BGs */
-.text-glow{ text-shadow:0 6px 30px rgba(0,0,0,.45); }
