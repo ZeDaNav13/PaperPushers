@@ -133,27 +133,32 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Floating CTA logic
-    const cta = document.getElementById('floating-cta');
-    let x = 100, y = 100;
-    let dx = 2, dy = 2;
-    let colors = ["#D2009E", "#FFF53E", "#77FD3E", "#000", "#fff"];
-    function animateCTA() {
-      const rect = cta.getBoundingClientRect();
-      if (x + rect.width >= window.innerWidth || x <= 0) {
-        dx = -dx;
-        cta.style.background = colors[Math.floor(Math.random()*colors.length)];
-      }
-      if (y + rect.height >= window.innerHeight || y <= 0) {
-        dy = -dy;
-        cta.style.background = colors[Math.floor(Math.random()*colors.length)];
-      }
-      x += dx; y += dy;
-      cta.style.left = x + "px";
-      cta.style.top = y + "px";
-      requestAnimationFrame(animateCTA);
+ const cta = document.getElementById('floating-cta');
+  let x = 200, y = 200;
+  let dx = 2, dy = 2;
+  let colors = ["#D2009E", "#FFF53E", "#77FD3E"];
+
+  function animateCTA() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const btnW = cta.offsetWidth;
+    const btnH = cta.offsetHeight;
+
+    if (x + btnW >= w || x <= 0) {
+      dx = -dx;
+      cta.style.background = colors[Math.floor(Math.random() * colors.length)];
     }
-    cta.style.position = "fixed";
-    animateCTA();
+    if (y + btnH >= h || y <= 0) {
+      dy = -dy;
+      cta.style.background = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    x += dx;
+    y += dy;
+    cta.style.transform = `translate(${x}px, ${y}px)`;
+    requestAnimationFrame(animateCTA);
+  }
+  animateCTA();
   </script>
 </body>
 </html>

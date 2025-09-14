@@ -1,4 +1,3 @@
-/* === PaperPushers Theme === */
 :root {
   --main: #D2009E;
   --secondary: #FFF53E;
@@ -10,6 +9,9 @@
   --services-bg: var(--secondary);
   --portfolio-bg: var(--main);
   --contact-bg: var(--offwhite);
+
+  --text-dark: #111;
+  --text-light: #fff;
 }
 
 body {
@@ -43,12 +45,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.section.intro,
-.section.portfolio {
-  color: white;
-}
-
-/* Blobs */
+/* Blob styling */
 .blob {
   position: absolute;
   border-radius: 50%;
@@ -59,17 +56,17 @@ body {
 
 @keyframes blobMove {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(200px, -150px) scale(1.2); }
-  100% { transform: translate(-200px, 150px) scale(0.9); }
+  50% { transform: translate(150px, -100px) scale(1.2); }
+  100% { transform: translate(-150px, 100px) scale(0.9); }
 }
 
 /* Floating CTA */
 #floating-cta {
   position: fixed;
-  bottom: 50%;
-  right: 50%;
-  transform: translate(50%, 50%);
-  padding: 1rem 2rem;
+  width: 160px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
   border-radius: 9999px;
   font-weight: 900;
   font-size: 1.2rem;
