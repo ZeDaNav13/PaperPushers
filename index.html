@@ -19,6 +19,7 @@
        GLOBAL CONFIG — tweak your site here
        ============================= */
     :root{
+<<<<<<< HEAD
       /* ==== COLORS ==== */
 <<<<<<< HEAD
       --bg: ##FF88AA;              /* Page background (dark) */
@@ -82,6 +83,21 @@
     }
 
     /* = Base = */
+=======
+      --bg: #f8f8f5;               /* off‑white background */
+      --surface: #ffffff;           /* cards */
+      --border: rgba(20,23,31,.12);
+      --text: #0e1620;              /* body text */
+      --muted: #6f7b88;             /* lighter grey for readability */
+      --muted-dark: #2c3440;        /* darker grey for nav links */
+      --pink: #ff91af;              /* drunk tank pink */
+      --pink-deep: #ff6d9a;         /* accent pink */
+      --yellow: #e1ad01;            /* subtle accent */
+      --radius: 18px;
+      --shadow: 0 24px 60px rgba(0,0,0,.10);
+      --maxw: 1120px;
+    }
+>>>>>>> parent of 065393b (Update index.html)
     body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); overflow-x:hidden }
     img{max-width:100%; display:block}
     a{ color: var(--text) }
@@ -89,10 +105,17 @@
 
     /* Blobby animated background (flow lines removed) */
     .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
+<<<<<<< HEAD
     .blob{ position:absolute; border-radius:50%; filter: blur(var(--blob-blur)); opacity:var(--blob-opacity) }
     .blob.p1{ background: radial-gradient(circle at 30% 30%, rgba(255,109,154,.95), rgba(255,109,154,0)); width:var(--blob1-size); height:var(--blob1-size); left:-260px; top:-300px; animation: f1 var(--blob1-speed) ease-in-out infinite }
     .blob.p2{ background: radial-gradient(circle at 60% 40%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:var(--blob2-size); height:var(--blob2-size); right:-200px; top:20%; animation: f2 var(--blob2-speed) ease-in-out infinite }
     .blob.y1{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.30), rgba(225,173,1,0)); width:var(--blob3-size); height:var(--blob3-size); right:-320px; bottom:-200px; animation: f3 var(--blob3-speed) ease-in-out infinite }
+=======
+    .blob{ position:absolute; border-radius:50%; filter: blur(60px); opacity:.5 }
+    .blob.p1{ background: radial-gradient(circle at 30% 30%, rgba(255,109,154,.95), rgba(255,109,154,0)); width:1200px; height:1200px; left:-260px; top:-300px; animation: f1 18s ease-in-out infinite }
+    .blob.p2{ background: radial-gradient(circle at 60% 40%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:900px; height:900px; right:-200px; top:20%; animation: f2 22s ease-in-out infinite }
+    .blob.y1{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.35), rgba(225,173,1,0)); width:1100px; height:1100px; right:-320px; bottom:-200px; animation: f3 26s ease-in-out infinite }
+>>>>>>> parent of 065393b (Update index.html)
     @keyframes f1{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,40px) scale(1.12)} }
     @keyframes f2{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,60px) scale(1.08)} }
     @keyframes f3{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-110px,-40px) scale(1.1)} }
@@ -102,6 +125,7 @@
     .card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); will-change:transform; transition:transform .3s ease-out }
     .card.parallax{ transform: translateY(var(--parallax,0px)); }
 
+<<<<<<< HEAD
 =======
       --bg: #fff7fa;              /* Light with pink tint (vibrant) */
       --surface: #ffffff;         /* Cards and surfaces */
@@ -220,6 +244,15 @@
 >>>>>>> parent of 89436a5 (New structure)
     /* NAV */
     .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:var(--nav-bg); border-bottom:1px solid var(--border) }
+=======
+    /* Section dividers */
+    .divider{position:relative; height:80px; overflow:hidden}
+    .divider svg{position:absolute; top:0; left:0; width:100%; height:100%}
+    .divider path{fill:var(--surface)}
+
+    /* NAV */
+    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--border) }
+>>>>>>> parent of 065393b (Update index.html)
     .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
     .brand{ display:flex; align-items:center; gap:12px; font-weight:900; text-decoration:none }
 <<<<<<< HEAD
@@ -229,8 +262,15 @@
 >>>>>>> parent of 89436a5 (New structure)
     .brand span{ color: var(--brand-name-color); letter-spacing:.2px }
     .links{ display:flex; gap:18px; align-items:center }
+<<<<<<< HEAD
     .links a{ color: var(--nav-link); text-decoration:none; font-weight:800 }
     .links a:hover{ color: var(--nav-link-hover) }
+=======
+    .links a{ color: var(--muted-dark); text-decoration:none; font-weight:800 }
+    .links a:hover{ color:#1f2630 }
+    .menu{ display:none }
+    @media (max-width:860px){ .links{ display:none } .menu{ display:inline-flex } }
+>>>>>>> parent of 065393b (Update index.html)
 
 <<<<<<< HEAD
     .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:var(--btn-radius); border:1px solid var(--border); background: var(--surface); color:var(--text); text-decoration:none; font-weight:900; transition:.2s; box-shadow: var(--btn-shadow) }
@@ -238,7 +278,11 @@
     .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to)); color:#111 }
 
     /* Sections */
+<<<<<<< HEAD
     section{ padding: clamp(var(--section-pad-min), 6vw, var(--section-pad-max)) 0 }
+=======
+    section{ padding: clamp(48px, 6.5vw, 84px) 0 }
+>>>>>>> parent of 065393b (Update index.html)
 
     /* HERO */
     .hero h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0 }
@@ -251,7 +295,7 @@
 >>>>>>> parent of 89436a5 (New structure)
     .lead{ color: var(--muted); font-size:1.15rem; max-width:62ch }
 
-    /* Grids */
+    /* Services grid */
     .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px }
     @media (max-width:980px){ .grid-3{ grid-template-columns:1fr 1fr } }
     @media (max-width:640px){ .grid-3{ grid-template-columns:1fr } }
@@ -262,13 +306,20 @@
 
 <<<<<<< HEAD
     /* CONTACT (condensed) */
+<<<<<<< HEAD
     #contact .card{ padding: var(--contact-pad) }
     .fields{ display:grid; gap: var(--field-gap); margin-top:8px }
     label{ font-weight:900; font-size:.95rem; color:#e7edf6 }
     input, textarea{ width:100%; padding:12px 14px; border-radius: var(--field-radius); border:1px solid var(--border); background:#0f141c; color:#eaf2fb; font:inherit }
+=======
+    #contact .card{ padding:18px }
+    .fields{ display:grid; gap:12px; margin-top:8px }
+    label{ font-weight:900; font-size:.95rem; color:#28313b }
+    input, textarea{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:#fff; color:var(--text); font:inherit }
+>>>>>>> parent of 065393b (Update index.html)
     textarea{ min-height:110px; resize:vertical }
     .form-actions{ margin-top:6px }
-    .contact-aside a{ color: var(--text); text-decoration:underline; text-decoration-color: rgba(255,109,154,.6) }
+    .contact-aside a{ color: var(--text); text-decoration:underline; text-decoration-color: rgba(255,109,154,.45) }
 
     /* FOOTER */
     footer{ background: linear-gradient(180deg, var(--pink-deep), var(--pink)); color:#fff }
@@ -291,7 +342,11 @@
 
 <<<<<<< HEAD
     /* Floating CTA */
+<<<<<<< HEAD
     .floating-cta{position:fixed; left:0; top:0; z-index:999; background:linear-gradient(135deg,var(--btn-grad-from),var(--btn-grad-to)); color:#111; padding:14px 20px; border-radius:var(--btn-radius); font-weight:900; box-shadow:var(--btn-shadow); text-decoration:none; will-change:transform}
+=======
+    .floating-cta{position:fixed; top:40%; left:40%; z-index:999; background:linear-gradient(135deg,var(--pink-deep),var(--pink)); color:#111; padding:14px 20px; border-radius:14px; font-weight:900; box-shadow:0 12px 30px rgba(0,0,0,.25); text-decoration:none;}
+>>>>>>> parent of 065393b (Update index.html)
   </style>
 >>>>>>> parent of 235563b (Update index.html)
 =======
@@ -347,8 +402,15 @@
       </div>
     </section>
 
+<<<<<<< HEAD
     <!-- TOOLBOX (Services) -->
     <section id="toolbox">
+=======
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z"></path></svg></div>
+
+    <!-- SERVICES -->
+    <section id="services">
+>>>>>>> parent of 065393b (Update index.html)
       <div class="container">
         <h2 class="tint" style="--tint:#101010">The Toolbox</h2>
         <p class="lead">We don’t have “one thing.” We have a set. A box. A kit. Pull out what you need, mix and match, and let us do the pushing.</p>
@@ -363,6 +425,8 @@
         </div>
       </div>
     </section>
+
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,0 900,80 1200,0 L1200,80 L0,80 Z"></path></svg></div>
 
     <!-- WORK -->
     <section id="work">
@@ -388,6 +452,8 @@
       </div>
     </section>
 
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,0 C300,80 900,0 1200,80 L1200,0 L0,0 Z"></path></svg></div>
+
     <!-- ABOUT -->
     <section id="about">
       <div class="container">
@@ -400,7 +466,13 @@
       </div>
     </section>
 
+<<<<<<< HEAD
     <!-- CONTACT (single combined card) -->
+=======
+    <div class="divider"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,80 C300,0 900,80 1200,0 L1200,80 L0,80 Z"></path></svg></div>
+
+    <!-- CONTACT (condensed, high-contrast email) -->
+>>>>>>> parent of 065393b (Update index.html)
     <section id="contact">
       <div class="container">
         <div class="card parallax" style="--card-border:#ff6d9a80; --card-bg:#fff; --card-shadow:0 16px 40px rgba(255,109,154,.25)">
@@ -541,6 +613,7 @@
       const getVar=n=>getComputedStyle(root).getPropertyValue(n).trim();
       const setVar=(n,v)=>root.style.setProperty(n,v);
 
+<<<<<<< HEAD
       // Year stamp
       const yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -690,6 +763,30 @@
         });
       }
     })();
+=======
+    // Gentle parallax for cards
+    const cards=document.querySelectorAll('.card.parallax');
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY;
+      cards.forEach(c=>{
+        const speed=0.12;
+        c.style.setProperty('--parallax', (y*speed - c.offsetTop*speed)+'px');
+      });
+    }, {passive:true});
+
+    // Floating CTA bounce like screensaver
+    const cta=document.querySelector('.floating-cta');
+    let x=200,y=200,dx=2,dy=2;
+    function animate(){
+      const w=window.innerWidth,h=window.innerHeight;
+      x+=dx; y+=dy;
+      if(x<=0||x+cta.offsetWidth>=w) dx*=-1;
+      if(y<=0||y+cta.offsetHeight>=h) dy*=-1;
+      cta.style.transform=`translate(${x}px,${y}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+>>>>>>> parent of 065393b (Update index.html)
   </script>
 </body>
 </html>
