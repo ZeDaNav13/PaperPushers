@@ -1,4 +1,5 @@
-:root {
+/* === PaperPushers Theme === */
+:root{
   --main:#D2009E;
   --secondary:#FFF53E;
   --highlight:#77FD3E;
@@ -7,40 +8,98 @@
   --text-light:#ffffff;
 }
 
-body { font-family:'Montserrat',sans-serif; }
+html, body{height:100%;}
+body{font-family:'Montserrat',sans-serif;}
 
-/* HEADER */
-.header{position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;display:flex;align-items:center;background:rgba(10,10,15,.42);backdrop-filter:blur(10px);}
-.header .inner{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 16px;}
-.brand{font-weight:900;color:#fff}
+/* Header */
+.header{
+  position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;
+  display:flex;align-items:center;
+  background:rgba(10,10,15,.42);backdrop-filter:blur(10px);
+  box-shadow:0 8px 30px rgba(0,0,0,.22);
+}
+.header .inner{
+  width:100%;max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 16px;
+}
+.brand{font-weight:900;letter-spacing:-.5px;color:#fff;font-size:1.1rem}
 .nav{display:flex;gap:20px;justify-content:center}
-.nav a{color:#fff;font-weight:700;opacity:.92}
+.nav a{color:#fff;text-decoration:none;font-weight:700;opacity:.92}
 .nav a:hover{opacity:1}
 .header-cta{display:flex;justify-content:flex-end}
-.btn-quote{border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#0b0b0e;background:linear-gradient(135deg,var(--secondary),#ffe84a);cursor:pointer}
+.header-cta .btn-quote{
+  border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#0b0b0e;
+  background:linear-gradient(135deg, var(--secondary), #ffe84a);
+  box-shadow:0 6px 18px rgba(255,245,62,.35);
+  cursor:pointer;
+}
 
-/* SECTION */
-.section{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;color:var(--text-light);overflow:hidden;position:relative}
-.section h1,.section h2{font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;opacity:0;animation:fadeInUp .9s ease forwards}
+/* Sections (fullPage handles height) */
+.section{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;color:var(--text-light);
+}
+/* Smooth bottom vignette applied to every slide (fixes "abrupt cut") */
+.section::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%);
+}
+.section h1,.section h2{
+  font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;
+  opacity:0;animation:fadeInUp 900ms ease forwards;
+}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
-/* BG + blobs */
+/* Keep real content above the vignette */
+.section > .container{position:relative;z-index:1}
+
+/* Background + grain */
 .fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%;}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;animation:blobMove 22s ease-in-out infinite alternate}
-@keyframes blobMove{0%{transform:translate(-15%,-10%) scale(1)}50%{transform:translate(10%,5%) scale(1.15)}100%{transform:translate(15%,-8%) scale(.95)}}
+.fp-bg::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:
+    radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);
+  mix-blend-mode:overlay;opacity:.35;
+}
 
-/* CTA */
-#floating-cta{position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;font-weight:900;font-size:1.05rem;color:#0b0b0e;background:linear-gradient(135deg,var(--secondary),#ffe84a);z-index:1000;cursor:pointer}
+/* Ambient blobs */
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;
+  animation:blobMove 22s ease-in-out infinite alternate;}
+@keyframes blobMove{
+  0%{transform:translate(-15%, -10%) scale(1)}
+  50%{transform:translate(10%, 5%) scale(1.15)}
+  100%{transform:translate(15%, -8%) scale(0.95)}
+}
 
-/* Glass */
-.glass{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 16px 50px rgba(0,0,0,.25)}
+/* Floating CTA */
+#floating-cta{
+  position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;
+  font-weight:900;font-size:1.05rem;color:#0b0b0e;
+  background:linear-gradient(135deg, var(--secondary), #ffe84a);
+  z-index:1000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
+  cursor:pointer;
+}
+
+/* Glass card */
+.glass{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:20px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 16px 50px rgba(0,0,0,.25);
+  will-change: transform;                /* helps parallax perf */
+  transition: transform .18s ease-out;   /* smooth parallax */
+}
 
 /* Buttons */
 .btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900;cursor:pointer}
-.btn-primary{background:linear-gradient(135deg,var(--secondary),#ffe84a);color:#0b0b0e}
-.btn-outline{color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.5)}
+.btn-primary{background:linear-gradient(135deg, var(--secondary), #ffe84a);color:#0b0b0e;box-shadow:0 8px 22px rgba(255,245,62,.35)}
+.btn-outline{color:#fff;background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.5)}
 
-/* Utils */
+/* Utilities */
 .container{max-width:1200px;margin-inline:auto;padding-inline:1rem}
 .grid-3{display:grid;gap:24px}
 @media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
@@ -49,12 +108,55 @@ body { font-family:'Montserrat',sans-serif; }
 .text-on-light{color:var(--text-dark)}
 .text-glow{text-shadow:0 6px 30px rgba(0,0,0,.45)}
 
-/* Contact card */
-.contact-card{max-height:calc(100vh - 72px - 130px);overflow:auto}
+/* Contact card sizing (keep slide tidy) */
+.contact-card{
+  max-height:calc(100vh - 72px - 130px);
+  overflow:auto;
+  scrollbar-width:thin;
+}
+.contact-title{line-height:1.05}
+@media (max-height: 800px){
+  .contact-title{font-size: clamp(2rem, 6vw, 4rem) !important;}
+  .contact-card{max-height:calc(100vh - 72px - 110px);}
+}
 
-/* Stripe-inspired BGs */
-.bg-stripe-intro{background:conic-gradient(from 200deg at 70% 30%,#5b21b6,#7c3aed,#d946ef,#4f46e5,#5b21b6)}
-.bg-stripe-services{background:linear-gradient(160deg,#0ea5e9 0%,#22d3ee 50%,#0ea5e9 100%)}
-.bg-stripe-portfolio{background:conic-gradient(from 120deg at 50% 50%,#3b0764,#7e22ce,#D2009E,#3b0764)}
-.bg-stripe-about{background:linear-gradient(180deg,#0b1020,#0f172a)}
-.bg-stripe-contact{background:linear-gradient(180deg,#F9F9F9,#f3f4f6)}
+/* Stripe-inspired backgrounds */
+.bg-stripe-intro{
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),
+    conic-gradient(from 200deg at 70% 30%, #5b21b6, #7c3aed, #d946ef, #4f46e5, #5b21b6);
+  animation:bg-pan 18s ease-in-out infinite alternate;
+}
+.bg-stripe-services{
+  background:
+    radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),
+    radial-gradient(600px 400px at 20% 70%, rgba(34,211,238,.35), transparent 60%),
+    linear-gradient(160deg, #0ea5e9 0%, #22d3ee 50%, #0ea5e9 100%);
+  animation:bg-pan 20s ease-in-out infinite alternate;
+}
+.bg-stripe-portfolio{
+  background:
+    radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),
+    radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),
+    conic-gradient(from 120deg at 50% 50%, #3b0764, #7e22ce, #D2009E, #3b0764);
+  animation:bg-pan 24s ease-in-out infinite alternate-reverse;
+}
+.bg-stripe-about{
+  background:
+    radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),
+    radial-gradient(700px 400px at 85% 20%, rgba(168,85,247,.28), transparent 60%),
+    linear-gradient(180deg, #0b1020, #0f172a);
+  animation:bg-pan 22s ease-in-out infinite alternate-reverse;
+}
+.bg-stripe-contact{
+  background:
+    radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),
+    radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),
+    linear-gradient(180deg, #F9F9F9, #f3f4f6);
+  animation:bg-pan 26s ease-in-out infinite alternate;
+}
+@keyframes bg-pan{
+  0%{background-position:0% 40%, 100% 60%, 50% 50%}
+  100%{background-position:100% 60%, 0% 40%, 50% 50%}
+}
