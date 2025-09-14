@@ -1,121 +1,101 @@
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Lightbulb, Zap, Smile } from "lucide-react";
-
-export default function PaperPushersSite() {
-  return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-white shadow-md z-50">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          <h1 className="text-2xl font-extrabold text-yellow-600">PaperPushers</h1>
-          <nav className="space-x-6 hidden md:flex">
-            <a href="#home" className="hover:text-yellow-600 transition">Home</a>
-            <a href="#about" className="hover:text-yellow-600 transition">About</a>
-            <a href="#services" className="hover:text-yellow-600 transition">Services</a>
-            <a href="#portfolio" className="hover:text-yellow-600 transition">Portfolio</a>
-            <a href="#contact" className="hover:text-yellow-600 transition">Contact</a>
-          </nav>
-          <Button className="rounded-full px-6 py-2 text-white bg-yellow-500 hover:bg-yellow-600">Join Us</Button>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section id="home" className="flex flex-col items-center justify-center text-center py-40 px-6 bg-gradient-to-b from-yellow-50 to-white">
-        <motion.h2 
-          className="text-6xl font-extrabold mb-6 text-yellow-600"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Quirky. Agile. Human.
-        </motion.h2>
-        <p className="text-xl mb-8 max-w-2xl">
-          PaperPushers is your playful business toolbox—designed to help teams stay sharp, adaptive, and joyful.
-        </p>
-        <Button className="rounded-full text-lg px-8 py-3 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-white">
-          Get Started
-        </Button>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24 px-6 bg-gray-50 text-center">
-        <h3 className="text-4xl font-bold mb-8 text-yellow-600">About Us</h3>
-        <p className="max-w-3xl mx-auto text-lg mb-8">
-          We believe business tools don’t have to be boring. That’s why PaperPushers combines smart features with a quirky spirit, making work agile and delightful for everyone.
-        </p>
-        <Button className="rounded-full px-6 py-2 text-white bg-yellow-500 hover:bg-yellow-600">Learn More</Button>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-24 px-6 text-center">
-        <h3 className="text-4xl font-bold mb-12 text-yellow-600">Our Services</h3>
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          <motion.div whileHover={{ scale: 1.05 }}>
-            <Card className="rounded-2xl shadow-md h-full">
-              <CardContent className="flex flex-col items-center p-8">
-                <Lightbulb className="w-12 h-12 text-yellow-500 mb-4" />
-                <h4 className="text-2xl font-bold mb-3">Smart Tools</h4>
-                <p className="text-center">All-in-one features to streamline workflows, minus the corporate snooze factor.</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div whileHover={{ scale: 1.05 }}>
-            <Card className="rounded-2xl shadow-md h-full">
-              <CardContent className="flex flex-col items-center p-8">
-                <Zap className="w-12 h-12 text-yellow-500 mb-4" />
-                <h4 className="text-2xl font-bold mb-3">Agile by Nature</h4>
-                <p className="text-center">Adapt quickly to change, stay nimble, and keep the quirky energy flowing.</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div whileHover={{ scale: 1.05 }}>
-            <Card className="rounded-2xl shadow-md h-full">
-              <CardContent className="flex flex-col items-center p-8">
-                <Smile className="w-12 h-12 text-yellow-500 mb-4" />
-                <h4 className="text-2xl font-bold mb-3">People First</h4>
-                <p className="text-center">Our tools are designed to keep teams happy, connected, and productive.</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section id="portfolio" className="py-24 px-6 bg-gray-50 text-center">
-        <h3 className="text-4xl font-bold mb-12 text-yellow-600">Our Work</h3>
-        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {[1,2,3,4,5,6].map((item) => (
-            <motion.div key={item} whileHover={{ scale: 1.05 }} className="rounded-2xl overflow-hidden shadow-md">
-              <img src={`https://picsum.photos/500/300?random=${item}`} alt="portfolio" className="w-full h-64 object-cover" />
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 text-center">
-        <h3 className="text-4xl font-bold mb-6 text-yellow-600">Get in Touch</h3>
-        <p className="max-w-2xl mx-auto mb-8">
-          Ready to join the quirky side of business? Drop us a line and let’s start pushing paper the fun way.
-        </p>
-        <form className="max-w-2xl mx-auto grid gap-6">
-          <input type="text" placeholder="Your Name" className="border rounded-lg px-4 py-3 w-full" />
-          <input type="email" placeholder="Your Email" className="border rounded-lg px-4 py-3 w-full" />
-          <textarea placeholder="Your Message" className="border rounded-lg px-4 py-3 w-full" rows="5"></textarea>
-          <Button className="rounded-full text-lg px-8 py-3 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-white">
-            Send Message
-          </Button>
-        </form>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-200 text-center py-8">
-        <p>© {new Date().getFullYear()} PaperPushers. All rights reserved.</p>
-      </footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaperPushers</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS for animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Header -->
+  <header class="fixed top-0 w-full bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-extrabold text-yellow-600">PaperPushers</h1>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#home" class="hover:text-yellow-600 transition">Home</a>
+        <a href="#about" class="hover:text-yellow-600 transition">About</a>
+        <a href="#services" class="hover:text-yellow-600 transition">Services</a>
+        <a href="#portfolio" class="hover:text-yellow-600 transition">Portfolio</a>
+        <a href="#contact" class="hover:text-yellow-600 transition">Contact</a>
+      </nav>
+      <a href="#contact" class="rounded-full px-6 py-2 text-white bg-yellow-500 hover:bg-yellow-600">Join Us</a>
     </div>
-  );
-}
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="flex flex-col items-center justify-center text-center py-40 px-6 bg-gradient-to-b from-yellow-50 to-white">
+    <h2 class="text-6xl font-extrabold mb-6 text-yellow-600" data-aos="fade-up">Quirky. Agile. Human.</h2>
+    <p class="text-xl mb-8 max-w-2xl">PaperPushers is your playful business toolbox—designed to help teams stay sharp, adaptive, and joyful.</p>
+    <a href="#about" class="rounded-full text-lg px-8 py-3 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-white">Get Started</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-6 bg-gray-50 text-center">
+    <h3 class="text-4xl font-bold mb-8 text-yellow-600" data-aos="fade-up">About Us</h3>
+    <p class="max-w-3xl mx-auto text-lg mb-8">We believe business tools don’t have to be boring. That’s why PaperPushers combines smart features with a quirky spirit, making work agile and delightful for everyone.</p>
+    <a href="#services" class="rounded-full px-6 py-2 text-white bg-yellow-500 hover:bg-yellow-600">Learn More</a>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 px-6 text-center">
+    <h3 class="text-4xl font-bold mb-12 text-yellow-600" data-aos="fade-up">Our Services</h3>
+    <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div class="rounded-2xl shadow-md p-8" data-aos="zoom-in">
+        <div class="text-yellow-500 text-5xl mb-4">💡</div>
+        <h4 class="text-2xl font-bold mb-3">Smart Tools</h4>
+        <p>All-in-one features to streamline workflows, minus the corporate snooze factor.</p>
+      </div>
+      <div class="rounded-2xl shadow-md p-8" data-aos="zoom-in" data-aos-delay="100">
+        <div class="text-yellow-500 text-5xl mb-4">⚡</div>
+        <h4 class="text-2xl font-bold mb-3">Agile by Nature</h4>
+        <p>Adapt quickly to change, stay nimble, and keep the quirky energy flowing.</p>
+      </div>
+      <div class="rounded-2xl shadow-md p-8" data-aos="zoom-in" data-aos-delay="200">
+        <div class="text-yellow-500 text-5xl mb-4">😊</div>
+        <h4 class="text-2xl font-bold mb-3">People First</h4>
+        <p>Our tools are designed to keep teams happy, connected, and productive.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-24 px-6 bg-gray-50 text-center">
+    <h3 class="text-4xl font-bold mb-12 text-yellow-600" data-aos="fade-up">Our Work</h3>
+    <div class="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <img src="https://picsum.photos/500/300?random=1" alt="portfolio" class="rounded-2xl shadow-md" data-aos="zoom-in" />
+      <img src="https://picsum.photos/500/300?random=2" alt="portfolio" class="rounded-2xl shadow-md" data-aos="zoom-in" />
+      <img src="https://picsum.photos/500/300?random=3" alt="portfolio" class="rounded-2xl shadow-md" data-aos="zoom-in" />
+      <img src="https://picsum.photos/500/300?random=4" alt="portfolio" class="rounded-2xl shadow-md" data-aos="zoom-in" />
+      <img src="https://picsum.photos/500/300?random=5" alt="portfolio" class="rounded-2xl shadow-md" data-aos="zoom-in" />
+      <img src="https://picsum.photos/500/300?random=6" alt="portfolio" class="rounded-2xl shadow-md" data-aos="zoom-in" />
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-6 text-center">
+    <h3 class="text-4xl font-bold mb-6 text-yellow-600" data-aos="fade-up">Get in Touch</h3>
+    <p class="max-w-2xl mx-auto mb-8">Ready to join the quirky side of business? Drop us a line and let’s start pushing paper the fun way.</p>
+    <form class="max-w-2xl mx-auto grid gap-6">
+      <input type="text" placeholder="Your Name" class="border rounded-lg px-4 py-3 w-full" />
+      <input type="email" placeholder="Your Email" class="border rounded-lg px-4 py-3 w-full" />
+      <textarea placeholder="Your Message" class="border rounded-lg px-4 py-3 w-full" rows="5"></textarea>
+      <button type="submit" class="rounded-full text-lg px-8 py-3 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-white">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-200 text-center py-8">
+    <p>© <span id="year"></span> PaperPushers. All rights reserved.</p>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
