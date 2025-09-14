@@ -40,15 +40,56 @@
   <!-- Floating CTA -->
   <button id="floating-cta" aria-label="Start a project">Start a project</button>
 
+  <!-- Color Tuner (floating) -->
+  <button id="tuner-toggle" aria-label="Open color tuner">🎛️</button>
+  <div id="tuner" class="tuner hidden">
+    <div class="tuner-row">
+      <label>Main</label>
+      <input type="color" id="col-main" value="#D2009E" />
+    </div>
+    <div class="tuner-row">
+      <label>Secondary</label>
+      <input type="color" id="col-secondary" value="#FFF53E" />
+    </div>
+    <div class="tuner-row">
+      <label>Highlight</label>
+      <input type="color" id="col-highlight" value="#77FD3E" />
+    </div>
+    <div class="tuner-row">
+      <label>Off-white</label>
+      <input type="color" id="col-offwhite" value="#F9F9F9" />
+    </div>
+    <div class="tuner-row">
+      <label>Buttons: A</label>
+      <select id="btnA">
+        <option value="var(--main)">Main</option>
+        <option value="var(--secondary)" selected>Secondary</option>
+        <option value="var(--highlight)">Highlight</option>
+      </select>
+    </div>
+    <div class="tuner-row">
+      <label>Buttons: B</label>
+      <select id="btnB">
+        <option value="var(--main)">Main</option>
+        <option value="var(--secondary)">Secondary</option>
+        <option value="var(--highlight)" selected>Highlight</option>
+      </select>
+    </div>
+    <div class="tuner-row">
+      <label>Angle</label>
+      <input type="range" id="grad-angle" min="0" max="360" value="135" />
+    </div>
+    <div class="tuner-actions">
+      <button id="close-tuner" class="btn btn-outline">Close</button>
+      <button id="reset-tuner" class="btn btn-primary">Reset</button>
+    </div>
+  </div>
+
   <!-- Slides -->
   <div id="fullpage">
     <!-- HERO -->
     <div class="section" data-anchor="home">
       <div class="fp-bg bg-stripe-intro"></div>
-      <div class="blob w-72 h-72" style="background:#FFF53E; top:10%; left:10%"></div>
-      <div class="blob w-60 h-60" style="background:#77FD3E; bottom:12%; right:12%"></div>
-      <div class="blob w-72 h-72" style="background:#ffffff; top:60%; left:50%"></div>
-
       <div class="container">
         <h1 class="text-glow text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] mb-6" style="color:#FFF53E">
           PaperPushers
@@ -67,10 +108,6 @@
     <!-- SERVICES -->
     <div class="section" data-anchor="services">
       <div class="fp-bg bg-stripe-services"></div>
-      <div class="blob w-64 h-64" style="background:#D2009E; top:12%; left:18%"></div>
-      <div class="blob w-72 h-72" style="background:#77FD3E; bottom:10%; right:15%"></div>
-      <div class="blob w-56 h-56" style="background:#ffffff; top:55%; left:55%"></div>
-
       <div class="container text-on-dark">
         <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">
           What we do
@@ -78,7 +115,6 @@
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
           Pick a lane or go end-to-end. We meet you where you are.
         </p>
-
         <div class="grid-3 max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Brand & Identity</h3>
@@ -99,15 +135,10 @@
     <!-- WORK -->
     <div class="section" data-anchor="work">
       <div class="fp-bg bg-stripe-portfolio"></div>
-      <div class="blob w-72 h-72" style="background:#FFF53E; top:12%; left:10%"></div>
-      <div class="blob w-64 h-64" style="background:#77FD3E; bottom:12%; right:12%"></div>
-      <div class="blob w-56 h-56" style="background:#ffffff; top:60%; left:55%"></div>
-
       <div class="container">
         <h2 class="text-glow text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-8" style="color:#FFF53E">
           Selected work
         </h2>
-
         <div class="grid-3 max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8 text-on-dark">
             <h3 class="text-2xl md:text-3xl font-black mb-2">Project Alpha → +28% checkout</h3>
@@ -128,15 +159,10 @@
     <!-- ABOUT -->
     <div class="section" data-anchor="about">
       <div class="fp-bg bg-stripe-about"></div>
-      <div class="blob w-64 h-64" style="background:#D2009E; top:15%; right:15%"></div>
-      <div class="blob w-72 h-72" style="background:#77FD3E; bottom:10%; left:12%"></div>
-      <div class="blob w-56 h-56" style="background:#FFF53E; top:55%; right:40%"></div>
-
       <div class="container">
         <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-8" style="color:#D2009E">
           About PaperPushers
         </h2>
-
         <div class="grid-3 max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark">
             <p class="text-base md:text-lg">
@@ -161,10 +187,6 @@
     <!-- CONTACT -->
     <div class="section" data-anchor="contact">
       <div class="fp-bg bg-stripe-contact"></div>
-      <div class="blob w-72 h-72" style="background:#D2009E; top:14%; right:18%"></div>
-      <div class="blob w-64 h-64" style="background:#77FD3E; bottom:12%; left:14%"></div>
-      <div class="blob w-56 h-56" style="background:#FFF53E; top:55%; left:55%"></div>
-
       <div class="container text-on-light">
         <h2 class="contact-title text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] mb-4" style="color:#D2009E">
           Let’s talk
@@ -172,28 +194,21 @@
         <p class="mb-6 text-lg md:text-2xl lg:text-2xl font-semibold">
           Tell us about your goals. We’ll reply within 1 business day.
         </p>
-
-        <!-- One big glass card = parallax as well -->
         <div class="glass contact-card parallax-card max-w-6xl mx-auto p-6 md:p-8 grid gap-6 md:grid-cols-2 text-left">
           <form class="grid gap-3">
             <label class="font-bold" for="name">Name</label>
             <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name" />
-
             <label class="font-bold" for="email">Email</label>
             <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="you@example.com" />
-
             <label class="font-bold" for="details">Project details</label>
             <textarea id="details" rows="5" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget"></textarea>
-
             <button type="submit" class="btn btn-primary mt-1">Send message</button>
           </form>
-
           <aside class="grid gap-2">
             <h3 class="text-2xl md:text-3xl font-black mb-1">Contact details</h3>
             <p class="text-base md:text-lg">Prefer email? <a href="mailto:hello@paperpushers.example" class="underline font-bold">hello@paperpushers.example</a></p>
             <p class="text-base md:text-lg">HQ: Lisbon, Portugal</p>
             <p class="text-base md:text-lg">Hours: Mon–Fri, 9:00–18:00</p>
-
             <div class="mt-4 pt-4 border-t border-white/30 text-sm opacity-80">
               <span>© <span id="year"></span> PaperPushers</span>
               <span class="mx-2">·</span><a href="#" class="underline">Privacy</a>
@@ -231,14 +246,21 @@
       const y = document.getElementById('year');
       if (y) y.textContent = new Date().getFullYear();
 
-      // Floating CTA bounce
+      // Floating CTA bounce with two-color gradients
       const cta = document.getElementById('floating-cta');
       let x = 160, yPos = 120, dx = 2.2, dy = 2.0;
-      const palette = ['#D2009E','#FFF53E','#77FD3E'];
+      function pickTwo(){
+        const cols = [getVar('--main'), getVar('--secondary'), getVar('--highlight')];
+        let i = Math.floor(Math.random()*cols.length);
+        let j = (i + 1 + Math.floor(Math.random()* (cols.length-1))) % cols.length;
+        return [cols[i], cols[j]];
+      }
+      function getVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+      function grad(a,b){ const ang = getComputedStyle(document.documentElement).getPropertyValue('--grad-angle').trim() || '135deg'; return `linear-gradient(${ang}, ${a}, ${b})`; }
       function tick(){
         const w = window.innerWidth, h = window.innerHeight, bw = 180, bh = 60;
-        if (x <= 0 || x + bw >= w) { dx = -dx; cta.style.background = `linear-gradient(135deg, ${palette[Math.floor(Math.random()*palette.length)]}, #ffffff)`; }
-        if (yPos <= 0 || yPos + bh >= h) { dy = -dy; cta.style.background = `linear-gradient(135deg, ${palette[Math.floor(Math.random()*palette.length)]}, #ffffff)`; }
+        if (x <= 0 || x + bw >= w){ dx = -dx; const [a,b] = pickTwo(); cta.style.background = grad(a,b); }
+        if (yPos <= 0 || yPos + bh >= h){ dy = -dy; const [a,b] = pickTwo(); cta.style.background = grad(a,b); }
         x += dx; yPos += dy; cta.style.transform = `translate(${x}px, ${yPos}px)`; requestAnimationFrame(tick);
       }
       tick();
@@ -253,22 +275,75 @@
           const strength = 10; // px base
           section.addEventListener('mousemove', (e) => {
             const rect = section.getBoundingClientRect();
-            const rx = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5..0.5
-            const ry = (e.clientY - rect.top) / rect.height - 0.5;  // -0.5..0.5
+            const rx = (e.clientX - rect.left) / rect.width - 0.5;
+            const ry = (e.clientY - rect.top) / rect.height - 0.5;
             cards.forEach((card, idx) => {
-              const mult = 1 + idx * 0.25; // stagger depth
+              const mult = 1 + idx * 0.25;
               const tx = (-rx * strength * mult).toFixed(2);
               const ty = (-ry * strength * mult).toFixed(2);
               card.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
             });
           });
           section.addEventListener('mouseleave', () => {
-            cards.forEach((card) => {
-              card.style.transform = 'translate3d(0,0,0)';
-            });
+            cards.forEach((card) => { card.style.transform = 'translate3d(0,0,0)'; });
           });
         });
       }
+
+      // ===== Color Tuner =====
+      const toggle = document.getElementById('tuner-toggle');
+      const tuner = document.getElementById('tuner');
+      const closeBtn = document.getElementById('close-tuner');
+      const resetBtn = document.getElementById('reset-tuner');
+
+      const inputs = {
+        main: document.getElementById('col-main'),
+        secondary: document.getElementById('col-secondary'),
+        highlight: document.getElementById('col-highlight'),
+        offwhite: document.getElementById('col-offwhite'),
+        btnA: document.getElementById('btnA'),
+        btnB: document.getElementById('btnB'),
+        angle: document.getElementById('grad-angle'),
+      };
+
+      function setVar(name, value){
+        document.documentElement.style.setProperty(name, value);
+      }
+
+      function applyButtonGradient(){
+        setVar('--btnA', inputs.btnA.value);
+        setVar('--btnB', inputs.btnB.value);
+        setVar('--grad-angle', inputs.angle.value + 'deg');
+      }
+
+      function applyColors(){
+        setVar('--main', inputs.main.value);
+        setVar('--secondary', inputs.secondary.value);
+        setVar('--highlight', inputs.highlight.value);
+        setVar('--offwhite', inputs.offwhite.value);
+        applyButtonGradient();
+      }
+
+      toggle.addEventListener('click', ()=> tuner.classList.toggle('hidden'));
+      closeBtn.addEventListener('click', ()=> tuner.classList.add('hidden'));
+      Object.values(inputs).forEach(el=>{
+        el.addEventListener('input', applyColors);
+        el.addEventListener('change', applyColors);
+      });
+
+      resetBtn.addEventListener('click', ()=>{
+        inputs.main.value = '#D2009E';
+        inputs.secondary.value = '#FFF53E';
+        inputs.highlight.value = '#77FD3E';
+        inputs.offwhite.value = '#F9F9F9';
+        inputs.btnA.value = 'var(--secondary)';
+        inputs.btnB.value = 'var(--highlight)';
+        inputs.angle.value = 135;
+        applyColors();
+      });
+
+      // kick once
+      applyColors();
     });
   </script>
 </body>
