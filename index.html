@@ -1,276 +1,121 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PaperPushers — Business Toolbox</title>
-  <meta name="description" content="PaperPushers is a quirky, agile business toolbox—websites, SEO, social, brand, interiors, business design, and custom tools." />
-<<<<<<< HEAD
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff6d9a'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
-  <link rel="stylesheet" href="styles_v2.css" />
-  <script src="app_v2.js" defer></script>
-=======
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff91af'/><text x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'>P</text></svg>">
-  <style>
-    /* =============================
-       GLOBAL CONFIG — tweak your site here
-       ============================= */
-    :root{
-      /* ==== COLORS ==== */
-      --bg: #E1AC01;              /* Page background (dark) YELLOW*/
-      --surface: #121821;         /* Card/background surfaces */
-      --border: rgba(255,255,255,.10); /* Subtle borders on dark */
-      --text: #f2f6fb;            /* Primary text */
-      --muted: #b6c2cf;          /* Secondary text for readability */
-      --muted-dark: #8fa1b4;      /* Nav/link grey on dark */
-      --pink: #ff91af;            /* Brand pink (primary accent) */
-      --pink-deep: #ff6d9a;       /* Stronger pink (buttons/gradients) */
-      --yellow: #e1ad01;          /* Yellow accent (use sparingly) */
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Lightbulb, Zap, Smile } from "lucide-react";
 
-      /* ==== TYPOGRAPHY & LAYOUT ==== */
-      --maxw: 1120px;             /* Max content width */
-      --section-pad-min: 44px;    /* Section padding min */
-      --section-pad-max: 80px;    /* Section padding max */
-      --radius: 18px;             /* Global corner radius */
-      --shadow: 0 24px 60px rgba(0,0,0,.35); /* Card/button shadow */
+export default function PaperPushersSite() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-white shadow-md z-50">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+          <h1 className="text-2xl font-extrabold text-yellow-600">PaperPushers</h1>
+          <nav className="space-x-6 hidden md:flex">
+            <a href="#home" className="hover:text-yellow-600 transition">Home</a>
+            <a href="#about" className="hover:text-yellow-600 transition">About</a>
+            <a href="#services" className="hover:text-yellow-600 transition">Services</a>
+            <a href="#portfolio" className="hover:text-yellow-600 transition">Portfolio</a>
+            <a href="#contact" className="hover:text-yellow-600 transition">Contact</a>
+          </nav>
+          <Button className="rounded-full px-6 py-2 text-white bg-yellow-500 hover:bg-yellow-600">Join Us</Button>
+        </div>
+      </header>
 
-      /* ==== NAV BAR ==== */
-      --nav-bg: rgba(9,13,19,.65); /* Sticky nav background */
-      --nav-link: var(--muted-dark); /* Nav link color */
-      --nav-link-hover: #dfe7f1;     /* Nav hover color */
-      --brand-name-color: var(--pink-deep); /* "PaperPushers" text color in nav */
+      {/* Hero Section */}
+      <section id="home" className="flex flex-col items-center justify-center text-center py-40 px-6 bg-gradient-to-b from-yellow-50 to-white">
+        <motion.h2 
+          className="text-6xl font-extrabold mb-6 text-yellow-600"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Quirky. Agile. Human.
+        </motion.h2>
+        <p className="text-xl mb-8 max-w-2xl">
+          PaperPushers is your playful business toolbox—designed to help teams stay sharp, adaptive, and joyful.
+        </p>
+        <Button className="rounded-full text-lg px-8 py-3 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-white">
+          Get Started
+        </Button>
+      </section>
 
-      /* ==== BUTTONS ==== */
-      --btn-radius: 14px;                     /* Button corner radius */
-      --btn-shadow: 0 12px 30px rgba(0,0,0,.35); /* Button shadow */
-      --btn-grad-from: var(--pink-deep);      /* Button gradient start */
-      --btn-grad-to: var(--pink);             /* Button gradient end */
+      {/* About Section */}
+      <section id="about" className="py-24 px-6 bg-gray-50 text-center">
+        <h3 className="text-4xl font-bold mb-8 text-yellow-600">About Us</h3>
+        <p className="max-w-3xl mx-auto text-lg mb-8">
+          We believe business tools don’t have to be boring. That’s why PaperPushers combines smart features with a quirky spirit, making work agile and delightful for everyone.
+        </p>
+        <Button className="rounded-full px-6 py-2 text-white bg-yellow-500 hover:bg-yellow-600">Learn More</Button>
+      </section>
 
-      /* ==== BLOBS (animated background) ==== */
-      --blob-opacity: .5;         /* Transparency of blobs */
-      --blob-blur: 70px;          /* How soft the blobs look */
-      /* Sizes */
-      --blob1-size: 1200px;       /* Blob 1 diameter */
-      --blob2-size: 900px;        /* Blob 2 diameter */
-      --blob3-size: 1100px;       /* Blob 3 diameter */
-      /* Speeds */
-      --blob1-speed: 18s;         /* Animation duration for blob 1 */
-      --blob2-speed: 22s;         /* Animation duration for blob 2 */
-      --blob3-speed: 26s;         /* Animation duration for blob 3 */
+      {/* Services Section */}
+      <section id="services" className="py-24 px-6 text-center">
+        <h3 className="text-4xl font-bold mb-12 text-yellow-600">Our Services</h3>
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Card className="rounded-2xl shadow-md h-full">
+              <CardContent className="flex flex-col items-center p-8">
+                <Lightbulb className="w-12 h-12 text-yellow-500 mb-4" />
+                <h4 className="text-2xl font-bold mb-3">Smart Tools</h4>
+                <p className="text-center">All-in-one features to streamline workflows, minus the corporate snooze factor.</p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-      /* ==== PARALLAX (card drift) ==== */
-      --parallax-strength: 0.04;  /* Higher = stronger parallax */
-      --parallax-max: 10px;       /* Max translateY amount */
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Card className="rounded-2xl shadow-md h-full">
+              <CardContent className="flex flex-col items-center p-8">
+                <Zap className="w-12 h-12 text-yellow-500 mb-4" />
+                <h4 className="text-2xl font-bold mb-3">Agile by Nature</h4>
+                <p className="text-center">Adapt quickly to change, stay nimble, and keep the quirky energy flowing.</p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-      /* ==== WORK CARD IMAGES ==== */
-      --work-img-h: 260px;        /* Work card image height */
-      --work-img-h-lg: 300px;     /* Work card image height on wide screens */
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Card className="rounded-2xl shadow-md h-full">
+              <CardContent className="flex flex-col items-center p-8">
+                <Smile className="w-12 h-12 text-yellow-500 mb-4" />
+                <h4 className="text-2xl font-bold mb-3">People First</h4>
+                <p className="text-center">Our tools are designed to keep teams happy, connected, and productive.</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
 
-      /* ==== CONTACT FORM ==== */
-      --contact-pad: 18px;        /* Card padding in contact section */
-      --field-gap: 12px;          /* Vertical gap between fields */
-      --field-radius: 12px;       /* Input & textarea radius */
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-24 px-6 bg-gray-50 text-center">
+        <h3 className="text-4xl font-bold mb-12 text-yellow-600">Our Work</h3>
+        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {[1,2,3,4,5,6].map((item) => (
+            <motion.div key={item} whileHover={{ scale: 1.05 }} className="rounded-2xl overflow-hidden shadow-md">
+              <img src={`https://picsum.photos/500/300?random=${item}`} alt="portfolio" className="w-full h-64 object-cover" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-      /* ==== FLOATING CTA (screensaver chip) ==== */
-      --cta-speed-x: 1.6;         /* Horizontal speed (px/frame) */
-      --cta-speed-y: 1.3;         /* Vertical speed (px/frame) */
-      --cta-padding: 12px;        /* Keep CTA away from viewport edges */
-    }
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-6 text-center">
+        <h3 className="text-4xl font-bold mb-6 text-yellow-600">Get in Touch</h3>
+        <p className="max-w-2xl mx-auto mb-8">
+          Ready to join the quirky side of business? Drop us a line and let’s start pushing paper the fun way.
+        </p>
+        <form className="max-w-2xl mx-auto grid gap-6">
+          <input type="text" placeholder="Your Name" className="border rounded-lg px-4 py-3 w-full" />
+          <input type="email" placeholder="Your Email" className="border rounded-lg px-4 py-3 w-full" />
+          <textarea placeholder="Your Message" className="border rounded-lg px-4 py-3 w-full" rows="5"></textarea>
+          <Button className="rounded-full text-lg px-8 py-3 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-white">
+            Send Message
+          </Button>
+        </form>
+      </section>
 
-    /* = Base = */
-    body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); overflow-x:hidden }
-    img{max-width:100%; display:block}
-    a{ color: var(--text) }
-    .container{width:min(var(--maxw),92%); margin-inline:auto}
-
-    /* Blobby animated background (flow lines removed) */
-    .bg-layer{ position:fixed; inset:0; pointer-events:none; z-index:-1 }
-    .blob{ position:absolute; border-radius:50%; filter: blur(var(--blob-blur)); opacity:var(--blob-opacity) }
-    .blob.p1{ background: radial-gradient(circle at 30% 30%, rgba(255,109,154,.95), rgba(255,109,154,0)); width:var(--blob1-size); height:var(--blob1-size); left:-260px; top:-300px; animation: f1 var(--blob1-speed) ease-in-out infinite }
-    .blob.p2{ background: radial-gradient(circle at 60% 40%, rgba(255,145,175,.9), rgba(255,145,175,0)); width:var(--blob2-size); height:var(--blob2-size); right:-200px; top:20%; animation: f2 var(--blob2-speed) ease-in-out infinite }
-    .blob.y1{ background: radial-gradient(circle at 70% 30%, rgba(225,173,1,.30), rgba(225,173,1,0)); width:var(--blob3-size); height:var(--blob3-size); right:-320px; bottom:-200px; animation: f3 var(--blob3-speed) ease-in-out infinite }
-    @keyframes f1{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,40px) scale(1.12)} }
-    @keyframes f2{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,60px) scale(1.08)} }
-    @keyframes f3{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-110px,-40px) scale(1.1)} }
-    @media (prefers-reduced-motion: reduce){ .blob{ animation:none !important } }
-
-    /* Cards */
-    .card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); will-change:transform; transition:transform .3s ease-out }
-    .card.parallax{ transform: translateY(var(--parallax,0px)); }
-
-    /* NAV */
-    .nav{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(150%) blur(10px); background:var(--nav-bg); border-bottom:1px solid var(--border) }
-    .nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
-    .brand{ display:flex; align-items:center; gap:12px; font-weight:900; text-decoration:none }
-    .brand .logo{ width:34px; height:34px; border-radius:10px; background:conic-gradient(from 220deg, var(--pink-deep), var(--pink)); display:grid; place-items:center; color:#111 }
-    .brand span{ color: var(--brand-name-color); letter-spacing:.2px }
-    .links{ display:flex; gap:18px; align-items:center }
-    .links a{ color: var(--nav-link); text-decoration:none; font-weight:800 }
-    .links a:hover{ color: var(--nav-link-hover) }
-
-    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:var(--btn-radius); border:1px solid var(--border); background: var(--surface); color:var(--text); text-decoration:none; font-weight:900; transition:.2s; box-shadow: var(--btn-shadow) }
-    .btn:hover{ transform: translateY(-2px) }
-    .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to)); color:#111 }
-
-    /* Sections */
-    section{ padding: clamp(var(--section-pad-min), 6vw, var(--section-pad-max)) 0 }
-
-    /* HERO */
-    .hero h1{ font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem); line-height:1.04; margin:.45em 0 }
-    .lead{ color: var(--muted); font-size:1.15rem; max-width:62ch }
-
-    /* Grids */
-    .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px }
-    @media (max-width:980px){ .grid-3{ grid-template-columns:1fr 1fr } }
-    @media (max-width:640px){ .grid-3{ grid-template-columns:1fr } }
-
-    /* Work cards */
-    .work-card img{ width:100%; height:var(--work-img-h); object-fit:cover; border-radius:12px }
-    @media (min-width:1200px){ .work-card img{ height:var(--work-img-h-lg) } }
-
-    /* CONTACT (condensed) */
-    #contact .card{ padding: var(--contact-pad) }
-    .fields{ display:grid; gap: var(--field-gap); margin-top:8px }
-    label{ font-weight:900; font-size:.95rem; color:#e7edf6 }
-    input, textarea{ width:100%; padding:12px 14px; border-radius: var(--field-radius); border:1px solid var(--border); background:#0f141c; color:#eaf2fb; font:inherit }
-    textarea{ min-height:110px; resize:vertical }
-    .form-actions{ margin-top:6px }
-    .contact-aside a{ color: var(--text); text-decoration:underline; text-decoration-color: rgba(255,109,154,.6) }
-
-    /* FOOTER */
-    footer{ background: linear-gradient(180deg, var(--pink-deep), var(--pink)); color:#fff }
-    .footer-inner{ padding:26px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap }
-    .foot-brand{ display:flex; align-items:center; gap:10px; font-weight:900 }
-    .foot-links{ display:flex; gap:16px }
-    .foot-links a{ color:#fff; text-decoration:none; font-weight:800 }
-
-    /* Floating CTA */
-    .floating-cta{position:fixed; left:0; top:0; z-index:999; background:linear-gradient(135deg,var(--btn-grad-from),var(--btn-grad-to)); color:#111; padding:14px 20px; border-radius:var(--btn-radius); font-weight:900; box-shadow:var(--btn-shadow); text-decoration:none; will-change:transform}
-  </style>
->>>>>>> parent of 66bd035 (Update index.html)
-</head>
-<body>
-  <div class="bg-layer" aria-hidden="true">
-    <div class="blob p1"></div>
-    <div class="blob p2"></div>
-    <div class="blob y1"></div>
-  </div>
-
-  <header class="nav">
-    <div class="container inner">
-      <a class="brand" href="#">
-        <div class="logo">P</div>
-        <span>PaperPushers</span>
-      </a>
-      <nav class="links" aria-label="Primary">
-        <a href="#toolbox">The Toolbox</a>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn" href="#toolbox" style="--btn-from:#111; --btn-to:#333; --btn-text:#fff; --btn-border:#111">Open the Toolbox</a>
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-200 text-center py-8">
+        <p>© {new Date().getFullYear()} PaperPushers. All rights reserved.</p>
+      </footer>
     </div>
-  </header>
-
-  <main id="main">
-    <section class="hero">
-      <div class="container">
-        <h1>Your business toolbox, always ready.</h1>
-        <p class="lead">From websites to workspaces, from SEO to social, from business plans to brand identities — we’re the quirky, agile toolbox that adapts to whatever your venture needs. Strong core tools, with the right add-ons for every unique project.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="#contact" style="--btn-from:#ff6d9a; --btn-to:#FDCC2A; --btn-text:#111">Start building</a>
-          <a class="btn ghost" href="#toolbox" style="--btn-from:#ff6d9a">Peek inside</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="toolbox">
-      <div class="container">
-        <h2 class="tint" style="--tint:#101010">The Toolbox</h2>
-        <p class="lead">We don’t have “one thing.” We have a set. A box. A kit. Pull out what you need, mix and match, and let us do the pushing.</p>
-        <div class="grid-3">
-          <article class="card parallax"><h3>Web & Digital</h3><p class="muted">Full-scale sites, complex platforms, SEO, and campaigns that hum.</p></article>
-          <article class="card parallax"><h3>Brand & Identity</h3><p class="muted">Logos, systems, and voices that cut through the noise.</p></article>
-          <article class="card parallax"><h3>Business Design</h3><p class="muted">Plans, analysis, and strategies — the sturdy wrench in the box.</p></article>
-          <article class="card parallax"><h3>Social & Media</h3><p class="muted">Campaigns with a wink, a nudge, and measurable reach.</p></article>
-          <article class="card parallax"><h3>Spaces & Interiors</h3><p class="muted">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p></article>
-          <article class="card parallax"><h3>Tools & Systems</h3><p class="muted">Inward and outward platforms, custom-fitted to your processes.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="container">
-        <h2>Work pulled from the box</h2>
-        <div class="grid-3">
-          <article class="card parallax work-card">
-            <h3>Project Alpha → Checkout that clicks</h3>
-            <img src="https://picsum.photos/seed/alpha/600/400" alt="Team collaborating" loading="lazy" />
-            <p class="muted">An e-commerce rebuild with the right tools for speed, flow, and +28% conversions.</p>
-          </article>
-          <article class="card parallax work-card">
-            <h3>Project Beta → Identity toolkit for 5 markets</h3>
-            <img src="https://picsum.photos/seed/beta/600/400" alt="Branding boards" loading="lazy" />
-            <p class="muted">A brand system portable enough to roll across borders without breaking.</p>
-          </article>
-          <article class="card parallax work-card">
-            <h3>Project Gamma → Growth screwdriver</h3>
-            <img src="https://picsum.photos/seed/gamma/600/400" alt="Product UI mocks" loading="lazy" />
-            <p class="muted">Sharper UX + SEO combo that cranked +42% more sign-ups into place.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <h2>About PaperPushers</h2>
-        <div class="grid-3">
-          <div class="card parallax"><p><strong>We’re a Lisbon-based business toolbox team.</strong> A strong core set, expanded with the right specialists for every project’s flavor. We don’t just deliver outputs — we shape outcomes.</p></div>
-          <div class="card parallax"><p class="muted">“They didn’t just bring the right tools — they invented a few on the way.” — COO, Example Co.</p></div>
-          <div class="card parallax"><p class="muted"><strong>Our values:</strong> agility over rigidity. Sleight over noise. Outcomes over outputs.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="card parallax">
-          <h2>Let’s open the box</h2>
-          <form class="fields">
-            <label for="name">Name</label>
-            <input id="name" name="name" placeholder="Your name" required />
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="name@company.com" required />
-            <label for="message">What’s the project?</label>
-            <textarea id="message" name="message" placeholder="Give us the brief, the mess, or both." required></textarea>
-            <div class="form-actions">
-              <button class="btn" type="submit" style="--btn-from:#FDCC2A; --btn-to:#ff6d9a; --btn-text:#111">Hand me the wrench</button>
-            </div>
-          </form>
-          <hr />
-          <div class="muted">
-            <h3>Contact us</h3>
-            <p>Email: <a href="mailto:hello@paperpushers.example">hello@paperpushers.example</a></p>
-            <p>HQ: Lisbon, Portugal</p>
-            <p>Hours: Mon–Fri, 9:00–18:00</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div class="foot-brand">© <span id="year"></span> PaperPushers</div>
-      <nav class="foot-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">LinkedIn</a>
-      </nav>
-    </div>
-  </footer>
-
-  <a href="#toolbox" class="floating-cta">Open the Toolbox</a>
-</body>
-</html>
+  );
+}
