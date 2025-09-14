@@ -1,4 +1,4 @@
-/* === PaperPushers Theme (with 2-color gradients + live tuner) === */
+/* === PaperPushers Theme (solid header, visible tuner, working CTA) === */
 :root{
   --main:#D2009E;
   --secondary:#FFF53E;
@@ -16,12 +16,12 @@
 html, body{height:100%;}
 body{font-family:'Montserrat',sans-serif;}
 
-/* Header */
+/* Header: solid top bar (no transparency) */
 .header{
   position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;
   display:flex;align-items:center;
-  background:rgba(10,10,15,.42);backdrop-filter:blur(10px);
-  box-shadow:0 8px 30px rgba(0,0,0,.22);
+  background:#0b0b0e; /* solid */
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 .header .inner{
   width:100%;max-width:1200px;margin:0 auto;
@@ -46,13 +46,12 @@ body{font-family:'Montserrat',sans-serif;}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem;color:var(--text-light);
 }
-/* Smooth bottom vignette for whole slide */
+/* Smooth bottom vignette for whole slide (fixes abrupt cut) */
 .section::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%);
 }
 .section > .container{position:relative;z-index:1}
-
 .section h1,.section h2{
   font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;
   opacity:0;animation:fadeInUp 900ms ease forwards;
@@ -69,28 +68,28 @@ body{font-family:'Montserrat',sans-serif;}
   mix-blend-mode:overlay;opacity:.35;
 }
 
-/* Floating CTA — two-color gradients (updated via JS) */
+/* Floating CTA — always above everything, two-color gradients */
 #floating-cta{
   position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;
   font-weight:900;font-size:1.05rem;color:#0b0b0e;
   background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB));
-  z-index:1000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
+  z-index:12000; /* higher than fullPage controls */
+  user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
   cursor:pointer;
 }
 
-/* Color tuner UI */
+/* Color tuner UI — bottom-left and very visible */
 #tuner-toggle{
-  position:fixed;right:16px;bottom:16px;z-index:1100;
-  width:48px;height:48px;border-radius:12px;border:none;cursor:pointer;
+  position:fixed;left:16px;bottom:16px;z-index:12000;
+  width:54px;height:54px;border-radius:14px;border:1px solid rgba(0,0,0,.1);cursor:pointer;
   background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB));
-  color:#0b0b0e;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.2);
+  color:#0b0b0e;font-weight:900;box-shadow:0 10px 28px rgba(0,0,0,.25);
 }
 .tuner{
-  position:fixed;right:16px;bottom:76px;z-index:1100;
-  width:280px;padding:14px;border-radius:16px;
-  background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
-  color:#0b0b0e;
+  position:fixed;left:16px;bottom:80px;z-index:12000;
+  width:300px;padding:14px;border-radius:16px;
+  background:#ffffff;box-shadow:0 20px 50px rgba(0,0,0,.25);
+  color:#0b0b0e;border:1px solid #e5e7eb;
 }
 .tuner.hidden{display:none}
 .tuner .tuner-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
@@ -99,7 +98,7 @@ body{font-family:'Montserrat',sans-serif;}
 .tuner select, .tuner input[type="range"]{flex:1}
 .tuner .tuner-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
 
-/* Ambient blobs (optional—remove if you want pure stripe look) */
+/* Ambient blobs (optional; remove if you want cleaner) */
 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;
   animation:blobMove 22s ease-in-out infinite alternate;}
 @keyframes blobMove{
@@ -108,7 +107,7 @@ body{font-family:'Montserrat',sans-serif;}
   100%{transform:translate(15%, -8%) scale(0.95)}
 }
 
-/* Glass card (with parallax perf hints) */
+/* Glass cards (parallax perf) */
 .glass{
   background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.25);
@@ -127,7 +126,7 @@ body{font-family:'Montserrat',sans-serif;}
 }
 .btn-outline{
   color:#fff; 
-  background:linear-gradient(var(--grad-angle), rgba(255,255,255,.18), rgba(255,255,255,.06));
+  background:linear-gradient(var(--grad-angle), rgba(255,255,255,.20), rgba(255,255,255,.08));
   border:1px solid rgba(255,255,255,.5); 
   box-shadow:0 8px 22px rgba(0,0,0,.25);
 }
@@ -141,19 +140,27 @@ body{font-family:'Montserrat',sans-serif;}
 .text-on-light{color:var(--text-dark)}
 .text-glow{text-shadow:0 6px 30px rgba(0,0,0,.45)}
 
-/* Contact card sizing */
+/* Contact card sizing + visible footer strip */
 .contact-card{
-  max-height:calc(100vh - 72px - 130px);
+  max-height:calc(100vh - 72px - 170px); /* leave room for title + footer strip */
   overflow:auto;
   scrollbar-width:thin;
 }
 .contact-title{line-height:1.05}
-@media (max-height: 800px){
-  .contact-title{font-size: clamp(2rem, 6vw, 4rem) !important;}
-  .contact-card{max-height:calc(100vh - 72px - 110px);}
+.contact-footer{
+  margin-top:18px;
+  font-size:.95rem;
+  color:#111827;
+  background:#ffffffcc;
+  backdrop-filter:saturate(120%) blur(6px);
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
 }
+.contact-footer a{color:#0b0b0e;text-decoration:underline}
 
-/* Stripe-inspired backgrounds */
+/* Stripe-inspired backgrounds (kept) */
 .bg-stripe-intro{
   background:
     radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),
