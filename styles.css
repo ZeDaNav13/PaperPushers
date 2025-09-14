@@ -1,3 +1,4 @@
+/* === THEME TOKENS === */
 :root{
   --main:#FF6DAA;            /* drunk tank pink */
   --secondary:#D8FF37;       /* electric lime */
@@ -25,11 +26,12 @@ body{
 .container{width:min(1100px,92vw); margin:0 auto; padding:40px 0}
 .container.inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
 
-/* Header */
+/* Header (colored) */
 .nav{
   position:sticky; top:0; z-index:50;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--main) 22%, white), rgba(255,255,255,.9));
-  border-bottom:1px solid var(--border);
+  background: linear-gradient(90deg, var(--main), var(--secondary));
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.25);
   box-shadow: 0 8px 20px rgba(0,0,0,.06);
 }
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; font-weight:800}
@@ -38,38 +40,36 @@ body{
   background: radial-gradient(60% 60% at 30% 30%, var(--secondary), var(--main));
   color:#101; font-weight:900; box-shadow:0 6px 18px color-mix(in oklab, var(--main) 35%, transparent);
 }
-
-.links a{color:inherit; text-decoration:none; margin:0 10px; font-weight:700; position:relative}
+.links a{color:#fff; text-decoration:none; margin:0 10px; font-weight:700; position:relative}
 .links a::after{
   content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0;
-  background: linear-gradient(90deg, var(--main), var(--purple));
+  background: linear-gradient(90deg, #fff, var(--mint));
   border-radius:3px; transition:width .25s ease;
 }
 .links a:hover::after{width:100%}
 
-/* Buttons */
+/* Buttons (no black border) */
 .btn{
   --btn-from: var(--main);
   --btn-to: var(--secondary);
   --btn-text:#111;
-  --btn-border:#0f0f12;
   --btn-shadow: 0 14px 28px color-mix(in oklab, var(--main) 35%, transparent);
   display:inline-block; padding:12px 16px; border-radius:14px; font-weight:900; letter-spacing:.2px;
-  color:var(--btn-text); text-decoration:none; border:1px solid var(--btn-border);
+  color:var(--btn-text); text-decoration:none; border:none;
   background: linear-gradient(135deg, var(--btn-from), var(--btn-to));
   box-shadow: var(--btn-shadow);
   transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
 }
 .btn.ghost{
   background:linear-gradient(135deg, color-mix(in oklab, var(--surface) 80%, var(--main)), color-mix(in oklab, var(--surface) 80%, var(--secondary)));
-  color:var(--text); border:1px solid var(--border);
+  color:var(--text); border:none;
 }
 .btn:hover{transform:translateY(-2px) scale(1.01); filter:saturate(1.05)}
 .btn:active{transform:translateY(0) scale(.995)}
 
 /* Hero */
 .hero{padding:84px 0 46px; background: radial-gradient(800px 600px at 90% -10%, color-mix(in oklab, var(--secondary) 20%, white), transparent 70%)}
-.hero h1{font-size: clamp(28px, 5vw, 48px); line-height:1.1; margin:0 0 10px}
+.hero h1{font-size: clamp(28px, 5vw, 48px); line-height:1.1; margin:0 0 10px; color:var(--purple)}
 .lead{font-size: clamp(16px, 2.2vw, 20px); color:var(--muted); max-width:60ch}
 
 /* Grid & Cards */
@@ -93,8 +93,16 @@ body{
 .card h3{margin-top:6px; margin-bottom:8px}
 .card p{margin:0}
 
-/* Work cards */
-.work-card img{width:100%; height:auto; border-radius:12px; display:block; margin:10px 0}
+/* Work cards: square, center-cropped images */
+.work-card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  object-position:center;
+  border-radius:12px;
+  display:block;
+  margin:10px 0;
+}
 
 /* Sections */
 section{scroll-margin-top:80px}
@@ -111,22 +119,24 @@ a{color: color-mix(in oklab, var(--purple) 70%, var(--text));}
 a:hover{filter:saturate(1.1)}
 .muted{color:var(--muted)}
 
-/* Footer */
+/* Footer (colored) */
 footer{
-  border-top:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.9), color-mix(in oklab, var(--purple) 10%, white));
+  border-top:1px solid rgba(255,255,255,.25);
+  background: linear-gradient(90deg, var(--purple), var(--mint));
+  color:#fff;
 }
 .footer-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 0}
-.foot-links a{color:inherit; text-decoration:none; margin:0 8px}
+.foot-links a{color:#fff; text-decoration:none; margin:0 8px}
 .foot-brand{font-weight:800}
 
-/* Floating CTA */
+/* Floating CTA (will bounce via JS) */
 .floating-cta{
-  position:fixed; right:18px; bottom:18px; z-index:40; text-decoration:none;
+  position:fixed; left:24px; top:24px; z-index:40; text-decoration:none;
   padding:12px 16px; border-radius:999px; font-weight:900; border:0;
   --btn-from: var(--main); --btn-to: var(--purple); --btn-text:#fff;
   background: linear-gradient(135deg, var(--btn-from), var(--btn-to)); color:var(--btn-text);
   box-shadow: 0 16px 36px color-mix(in oklab, var(--purple) 35%, transparent);
+  will-change: transform;
 }
 
 /* BG blobs */
