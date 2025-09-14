@@ -1,78 +1,113 @@
-:root {
-  --main: #D2009E;
-  --secondary: #FFF53E;
-  --highlight: #77FD3E;
-  --offwhite: #F9F9F9;
+/* === PaperPushers Theme (Stripe-inspired) === */
+:root{
+  --main:#D2009E;         /* magenta */
+  --secondary:#FFF53E;    /* yellow */
+  --highlight:#77FD3E;    /* lime */
+  --offwhite:#F9F9F9;
 
-  --intro-bg: var(--main);
-  --about-bg: var(--offwhite);
-  --services-bg: var(--secondary);
-  --portfolio-bg: var(--main);
-  --contact-bg: var(--offwhite);
-
-  --text-dark: #111;
-  --text-light: #fff;
+  --text-dark:#0b0b0e;
+  --text-light:#ffffff;
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  overflow: hidden;
+/* Base layout & type */
+body{font-family:'Montserrat',sans-serif;overflow:hidden;}
+.section{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;color:var(--text-light);
+}
+.section h1,.section h2{
+  font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;
+  opacity:0;animation:fadeInUp 900ms ease forwards; /* headline reveal */
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* Parallax BG layer */
+.fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%;}
+
+/* Soft grain overlay (very subtle) */
+.fp-bg::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:
+    radial-gradient(transparent 0, rgba(0,0,0,.02) 100%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);
+  mix-blend-mode:overlay;opacity:.35;
 }
 
-.section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
+/* Floating ambient blobs (behind content, subtle) */
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;
+  animation:blobMove 22s ease-in-out infinite alternate;}
+@keyframes blobMove{
+  0%{transform:translate(-15%, -10%) scale(1)}
+  50%{transform:translate(10%, 5%) scale(1.15)}
+  100%{transform:translate(15%, -8%) scale(0.95)}
 }
 
-.section h1,
-.section h2 {
-  font-weight: 900;
-  letter-spacing: -2px;
-  text-transform: uppercase;
-  line-height: 1.1;
-  opacity: 0;
-  animation: fadeInUp 1s forwards;
+/* Floating CTA — fixed size + screensaver bounce */
+#floating-cta{
+  position:fixed;inset:auto auto auto auto; /* we move via transform only */
+  width:180px;height:60px;line-height:60px;text-align:center;border-radius:9999px;
+  font-weight:900;font-size:1.1rem;color:#fff;background:var(--main);
+  z-index:1000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ===== Stripe-inspired background sets =====
+   Achieved via layered radial/conic gradients + slow pan
+*/
+
+/* Intro: indigo → violet mesh with magenta glow */
+.bg-stripe-intro{
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),
+    conic-gradient(from 200deg at 70% 30%, #5b21b6, #7c3aed, #d946ef, #4f46e5, #5b21b6);
+  animation:bg-pan 18s ease-in-out infinite alternate;
 }
 
-/* Blob styling */
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  animation: blobMove 20s infinite alternate ease-in-out;
+/* About: midnight slate with cyan & violet blooms */
+.bg-stripe-about{
+  background:
+    radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),
+    radial-gradient(700px 400px at 85% 20%, rgba(168,85,247,.28), transparent 60%),
+    linear-gradient(180deg, #0b1020, #0f172a);
+  animation:bg-pan 22s ease-in-out infinite alternate-reverse;
 }
 
-@keyframes blobMove {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(150px, -100px) scale(1.2); }
-  100% { transform: translate(-150px, 100px) scale(0.9); }
+/* Services: electric aqua field with yellow light */
+.bg-stripe-services{
+  background:
+    radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),
+    radial-gradient(600px 400px at 20% 70%, rgba(34,211,238,.35), transparent 60%),
+    linear-gradient(160deg, #0ea5e9 0%, #22d3ee 50%, #0ea5e9 100%);
+  animation:bg-pan 20s ease-in-out infinite alternate;
 }
 
-/* Floating CTA */
-#floating-cta {
-  position: fixed;
-  width: 160px;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
-  border-radius: 9999px;
-  font-weight: 900;
-  font-size: 1.2rem;
-  color: white;
-  background: var(--main);
-  z-index: 1000;
-  pointer-events: auto;
-  user-select: none;
+/* Portfolio: deep magenta canvas with neon rings */
+.bg-stripe-portfolio{
+  background:
+    radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),
+    radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),
+    conic-gradient(from 120deg at 50% 50%, #3b0764, #7e22ce, #D2009E, #3b0764);
+  animation:bg-pan 24s ease-in-out infinite alternate-reverse;
 }
+
+/* Contact: warm off-white wash with pink/cyan accents */
+.bg-stripe-contact{
+  background:
+    radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),
+    radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),
+    linear-gradient(180deg, #F9F9F9, #f3f4f6);
+  animation:bg-pan 26s ease-in-out infinite alternate;
+}
+
+/* slow drift */
+@keyframes bg-pan{
+  0%{background-position:0% 40%, 100% 60%, 50% 50%}
+  100%{background-position:100% 60%, 0% 40%, 50% 50%}
+}
+
+/* Helpful utilities for contrast per slide */
+.text-on-dark{color:var(--text-light)}
+.text-on-light{color:var(--text-dark)}
+/* Extra pop for ultra-large titles on dark BGs */
+.text-glow{ text-shadow:0 6px 30px rgba(0,0,0,.45); }

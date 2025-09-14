@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>PaperPushers</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Montserrat -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
   <!-- fullPage.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
-
   <!-- Theme -->
-  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body class="font-sans">
 
@@ -25,69 +22,80 @@
 
   <div id="fullpage">
     <!-- Intro -->
-    <div class="section intro relative">
-      <div class="fp-bg" style="background: var(--intro-bg);"></div>
-      <div class="blob w-72 h-72 bg-[var(--secondary)]"></div>
-      <div class="blob w-64 h-64 bg-[var(--highlight)]"></div>
-      <div class="blob w-80 h-80 bg-white"></div>
+    <div class="section intro">
+      <div class="fp-bg bg-stripe-intro"></div>
+
+      <!-- ambient blobs -->
+      <div class="blob w-72 h-72" style="background:#FFF53E; top:10%; left:10%"></div>
+      <div class="blob w-60 h-60" style="background:#77FD3E; bottom:12%; right:12%"></div>
+      <div class="blob w-72 h-72" style="background:#ffffff; top:60%; left:50%"></div>
 
       <div>
-        <h1 class="text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black mb-6">PaperPushers</h1>
-        <p class="text-2xl md:text-3xl font-bold">The quirky, agile business toolbox.</p>
+        <h1 class="text-glow text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] mb-6" style="color:#FFF53E">
+          PaperPushers
+        </h1>
+        <p class="text-on-dark text-2xl md:text-3xl font-bold">
+          The quirky, agile business toolbox.
+        </p>
       </div>
     </div>
 
     <!-- About -->
-    <div class="section about relative">
-      <div class="fp-bg" style="background: var(--about-bg);"></div>
-      <div class="blob w-64 h-64 bg-[var(--main)]"></div>
-      <div class="blob w-72 h-72 bg-[var(--highlight)]"></div>
-      <div class="blob w-56 h-56 bg-[var(--secondary)]"></div>
+    <div class="section about">
+      <div class="fp-bg bg-stripe-about"></div>
+      <div class="blob w-64 h-64" style="background:#D2009E; top:15%; right:15%"></div>
+      <div class="blob w-72 h-72" style="background:#77FD3E; bottom:10%; left:12%"></div>
+      <div class="blob w-56 h-56" style="background:#FFF53E; top:55%; right:40%"></div>
 
       <div>
-        <h2 class="text-6xl md:text-8xl lg:text-9xl xl:text-[9rem] font-black mb-6" style="color: var(--main);">About Us</h2>
-        <p class="text-2xl md:text-3xl font-semibold max-w-4xl mx-auto">
-          Business tools don’t have to be boring. <br/>
-          We make them smart, agile, and joyful.
+        <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-6" style="color:#D2009E">
+          About Us
+        </h2>
+        <p class="text-on-light text-lg md:text-2xl lg:text-3xl font-semibold max-w-4xl mx-auto">
+          Business tools don’t have to be boring. <br/> We make them smart, agile, and joyful.
         </p>
       </div>
     </div>
 
     <!-- Services -->
-    <div class="section services relative">
-      <div class="fp-bg" style="background: var(--services-bg);"></div>
-      <div class="blob w-64 h-64 bg-[var(--main)]"></div>
-      <div class="blob w-80 h-80 bg-[var(--highlight)]"></div>
-      <div class="blob w-56 h-56 bg-white"></div>
+    <div class="section services">
+      <div class="fp-bg bg-stripe-services"></div>
+      <div class="blob w-64 h-64" style="background:#D2009E; top:12%; left:18%"></div>
+      <div class="blob w-72 h-72" style="background:#77FD3E; bottom:10%; right:15%"></div>
+      <div class="blob w-56 h-56" style="background:#ffffff; top:55%; left:55%"></div>
 
-      <div>
-        <h2 class="text-6xl md:text-8xl lg:text-9xl xl:text-[9rem] font-black mb-12" style="color: var(--main);">Our Services</h2>
+      <div class="text-on-dark">
+        <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-12" style="color:#D2009E">
+          Our Services
+        </h2>
         <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           <div>
-            <h3 class="text-3xl font-black mb-4">💡 Smart Tools</h3>
-            <p class="text-xl">Streamline workflows, without the snooze factor.</p>
+            <h3 class="text-2xl md:text-3xl lg:text-4xl font-black mb-4">💡 Smart Tools</h3>
+            <p class="text-lg md:text-xl">Streamline workflows, without the snooze factor.</p>
           </div>
           <div>
-            <h3 class="text-3xl font-black mb-4">⚡ Agile by Nature</h3>
-            <p class="text-xl">Adapt fast, stay quirky.</p>
+            <h3 class="text-2xl md:text-3xl lg:text-4xl font-black mb-4">⚡ Agile by Nature</h3>
+            <p class="text-lg md:text-xl">Adapt fast, stay quirky.</p>
           </div>
           <div>
-            <h3 class="text-3xl font-black mb-4">😊 People First</h3>
-            <p class="text-xl">Joyful, human-centered work.</p>
+            <h3 class="text-2xl md:text-3xl lg:text-4xl font-black mb-4">😊 People First</h3>
+            <p class="text-lg md:text-xl">Joyful, human-centered work.</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Portfolio -->
-    <div class="section portfolio relative">
-      <div class="fp-bg" style="background: var(--portfolio-bg);"></div>
-      <div class="blob w-72 h-72 bg-[var(--secondary)]"></div>
-      <div class="blob w-64 h-64 bg-[var(--highlight)]"></div>
-      <div class="blob w-56 h-56 bg-white"></div>
+    <div class="section portfolio">
+      <div class="fp-bg bg-stripe-portfolio"></div>
+      <div class="blob w-72 h-72" style="background:#FFF53E; top:12%; left:10%"></div>
+      <div class="blob w-64 h-64" style="background:#77FD3E; bottom:12%; right:12%"></div>
+      <div class="blob w-56 h-56" style="background:#ffffff; top:60%; left:55%"></div>
 
       <div>
-        <h2 class="text-6xl md:text-8xl lg:text-9xl xl:text-[9rem] font-black mb-12" style="color: var(--secondary);">Our Work</h2>
+        <h2 class="text-glow text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-12" style="color:#FFF53E">
+          Our Work
+        </h2>
         <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <img src="https://picsum.photos/500/300?random=1" class="rounded-xl shadow-xl border-4 border-white" alt="work">
           <img src="https://picsum.photos/500/300?random=2" class="rounded-xl shadow-xl border-4 border-white" alt="work">
@@ -97,68 +105,61 @@
     </div>
 
     <!-- Contact + Footer -->
-    <div class="section contact relative">
-      <div class="fp-bg" style="background: var(--contact-bg);"></div>
-      <div class="blob w-72 h-72 bg-[var(--main)]"></div>
-      <div class="blob w-64 h-64 bg-[var(--highlight)]"></div>
-      <div class="blob w-56 h-56 bg-[var(--secondary)]"></div>
+    <div class="section contact">
+      <div class="fp-bg bg-stripe-contact"></div>
+      <div class="blob w-72 h-72" style="background:#D2009E; top:14%; right:18%"></div>
+      <div class="blob w-64 h-64" style="background:#77FD3E; bottom:12%; left:14%"></div>
+      <div class="blob w-56 h-56" style="background:#FFF53E; top:55%; left:55%"></div>
 
-      <div>
-        <h2 class="text-6xl md:text-8xl lg:text-9xl xl:text-[9rem] font-black mb-6" style="color: var(--main);">Get in Touch</h2>
-        <p class="mb-8 text-2xl font-semibold">Ready to push some paper? Let’s get quirky together.</p>
+      <div class="text-on-light">
+        <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-6" style="color:#D2009E">
+          Get in Touch
+        </h2>
+        <p class="mb-8 text-lg md:text-2xl lg:text-3xl font-semibold">
+          Ready to push some paper? Let’s get quirky together.
+        </p>
         <form class="max-w-xl mx-auto grid gap-4 mb-8">
           <input type="text" placeholder="Your Name" class="border px-4 py-3 rounded-md text-lg" />
           <input type="email" placeholder="Your Email" class="border px-4 py-3 rounded-md text-lg" />
           <textarea placeholder="Your Message" class="border px-4 py-3 rounded-md text-lg" rows="5"></textarea>
-          <button type="submit" class="bg-[var(--main)] hover:bg-pink-700 text-white font-black py-4 px-6 rounded-full text-xl">
+          <button type="submit" class="text-white font-black py-4 px-6 rounded-full text-xl"
+            style="background:#D2009E">
             Send Message
           </button>
         </form>
-        <p class="text-lg text-gray-700">© <span id="year"></span> PaperPushers. All rights reserved.</p>
+        <p class="text-base md:text-lg" style="color:#4b5563">
+          © <span id="year"></span> PaperPushers. All rights reserved.
+        </p>
       </div>
     </div>
   </div>
 
   <script>
-    // fullPage init
-    new fullpage('#fullpage', {
-      autoScrolling: true,
-      navigation: true,
-      navigationPosition: 'right',
-      scrollingSpeed: 900,
-      parallax: true,
-      parallaxOptions: { type: 'reveal', percentage: 62, property: 'translate' },
-      responsiveWidth: 768
+    /* fullPage init */
+    new fullpage('#fullpage',{
+      autoScrolling:true,
+      navigation:true,
+      navigationPosition:'right',
+      scrollingSpeed:900,
+      parallax:true,
+      parallaxOptions:{type:'reveal',percentage:62,property:'translate'},
+      responsiveWidth:768
     });
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent=new Date().getFullYear();
 
-    // Floating CTA logic
- const cta = document.getElementById('floating-cta');
-  let x = 200, y = 200;
-  let dx = 2, dy = 2;
-  let colors = ["#D2009E", "#FFF53E", "#77FD3E"];
-
-  function animateCTA() {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    const btnW = cta.offsetWidth;
-    const btnH = cta.offsetHeight;
-
-    if (x + btnW >= w || x <= 0) {
-      dx = -dx;
-      cta.style.background = colors[Math.floor(Math.random() * colors.length)];
+    /* Floating CTA screensaver bounce — fixed size, color swap on edge */
+    const cta=document.getElementById('floating-cta');
+    let x=160, y=120, dx=2.2, dy=2.0;
+    const palette=['#D2009E','#FFF53E','#77FD3E'];
+    function tick(){
+      const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
+      if(x<=0 || x+bw>=w){dx=-dx; cta.style.background=palette[Math.floor(Math.random()*palette.length)];}
+      if(y<=0 || y+bh>=h){dy=-dy; cta.style.background=palette[Math.floor(Math.random()*palette.length)];}
+      x+=dx; y+=dy;
+      cta.style.transform=`translate(${x}px, ${y}px)`;
+      requestAnimationFrame(tick);
     }
-    if (y + btnH >= h || y <= 0) {
-      dy = -dy;
-      cta.style.background = colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    x += dx;
-    y += dy;
-    cta.style.transform = `translate(${x}px, ${y}px)`;
-    requestAnimationFrame(animateCTA);
-  }
-  animateCTA();
+    tick();
   </script>
 </body>
 </html>
