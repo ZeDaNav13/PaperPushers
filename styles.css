@@ -167,3 +167,20 @@ textarea{min-height:120px}
 
 /* Focus */
 :focus-visible{outline:3px solid color-mix(in oklab, var(--secondary) 60%, black); outline-offset:2px}
+
+
+/* Accessibility improvements */
+.floating-cta:focus-visible,
+nav a:focus-visible,
+.btn:focus-visible { outline: 3px solid color-mix(in oklab, var(--secondary) 60%, black); outline-offset: 2px; text-decoration: underline; }
+
+/* Form status */
+.form-status { min-height: 1.5rem; font-size: .95rem; margin-top: .25rem; }
+.form-status.error { color: var(--danger, #b00020); }
+.form-status.success { color: var(--success, #0a7a0a); }
+
+/* Hide honeypot container if CSS loads (progressive) */
+.hidden-honeypot { display: none; }
+
+/* Hero microcopy */
+.hero-microcopy { opacity: .9; margin-top: .5rem; font-size: clamp(.95rem, 1.2vw, 1.05rem); }
