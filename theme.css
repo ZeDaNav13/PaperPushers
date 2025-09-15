@@ -1,4 +1,4 @@
-/* === PaperPushers Theme (solid header, visible tuner, working CTA) === */
+/* === PaperPushers Theme (fixed vignette + glass above it) === */
 :root{
   --main:#D2009E;
   --secondary:#FFF53E;
@@ -16,11 +16,11 @@
 html, body{height:100%;}
 body{font-family:'Montserrat',sans-serif;}
 
-/* Header: solid top bar (no transparency) */
+/* Header: solid top bar */
 .header{
   position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;
   display:flex;align-items:center;
-  background:#0b0b0e; /* solid */
+  background:#0b0b0e;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 .header .inner{
@@ -46,7 +46,7 @@ body{font-family:'Montserrat',sans-serif;}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem;color:var(--text-light);
 }
-/* Smooth bottom vignette for whole slide (fixes abrupt cut) */
+/* Smooth bottom vignette */
 .section::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%);
@@ -68,17 +68,17 @@ body{font-family:'Montserrat',sans-serif;}
   mix-blend-mode:overlay;opacity:.35;
 }
 
-/* Floating CTA — always above everything, two-color gradients */
+/* Floating CTA */
 #floating-cta{
   position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;
   font-weight:900;font-size:1.05rem;color:#0b0b0e;
   background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB));
-  z-index:12000; /* higher than fullPage controls */
+  z-index:12000;
   user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
   cursor:pointer;
 }
 
-/* Color tuner UI — bottom-left and very visible */
+/* Color tuner button + panel */
 #tuner-toggle{
   position:fixed;left:16px;bottom:16px;z-index:12000;
   width:54px;height:54px;border-radius:14px;border:1px solid rgba(0,0,0,.1);cursor:pointer;
@@ -98,7 +98,7 @@ body{font-family:'Montserrat',sans-serif;}
 .tuner select, .tuner input[type="range"]{flex:1}
 .tuner .tuner-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
 
-/* Ambient blobs (optional; remove if you want cleaner) */
+/* Ambient blobs */
 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;
   animation:blobMove 22s ease-in-out infinite alternate;}
 @keyframes blobMove{
@@ -107,8 +107,10 @@ body{font-family:'Montserrat',sans-serif;}
   100%{transform:translate(15%, -8%) scale(0.95)}
 }
 
-/* Glass cards (parallax perf) */
+/* Glass cards */
 .glass{
+  position: relative;   /* new */
+  z-index: 2;           /* new: ensures above vignette */
   background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.25);
   border-radius:20px;
@@ -118,7 +120,7 @@ body{font-family:'Montserrat',sans-serif;}
   transition: transform .18s ease-out;
 }
 
-/* Buttons use two-color gradients */
+/* Buttons */
 .btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900;cursor:pointer}
 .btn-primary{
   background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB));
@@ -140,9 +142,9 @@ body{font-family:'Montserrat',sans-serif;}
 .text-on-light{color:var(--text-dark)}
 .text-glow{text-shadow:0 6px 30px rgba(0,0,0,.45)}
 
-/* Contact card sizing + visible footer strip */
+/* Contact */
 .contact-card{
-  max-height:calc(100vh - 72px - 170px); /* leave room for title + footer strip */
+  max-height:calc(100vh - 72px - 170px);
   overflow:auto;
   scrollbar-width:thin;
 }
@@ -160,7 +162,7 @@ body{font-family:'Montserrat',sans-serif;}
 }
 .contact-footer a{color:#0b0b0e;text-decoration:underline}
 
-/* Stripe-inspired backgrounds (kept) */
+/* Stripe-inspired backgrounds */
 .bg-stripe-intro{
   background:
     radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),
