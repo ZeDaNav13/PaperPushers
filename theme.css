@@ -46,10 +46,22 @@ body{font-family:'Montserrat',sans-serif;}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem;color:var(--text-light);
 }
-/* Smooth bottom vignette */
-.section::after{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+/* Default vignette (Hero slide) */
+.section::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
   background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%);
+}
+
+/* Remove vignette for slides with cards */
+.section.services::after,
+.section.work::after,
+.section.about::after,
+.section.contact::after {
+  display: none;
 }
 .section > .container{position:relative;z-index:1}
 .section h1,.section h2{
