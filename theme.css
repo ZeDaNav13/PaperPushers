@@ -108,16 +108,14 @@ body{font-family:'Montserrat',sans-serif;}
 }
 
 /* Glass cards */
-.glass{
-  position: relative;   /* new */
-  z-index: 2;           /* new: ensures above vignette */
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:20px;
-  backdrop-filter:blur(14px);
-  box-shadow:0 16px 50px rgba(0,0,0,.25);
-  will-change: transform;
-  transition: transform .18s ease-out;
+.glass {
+  position: relative;  /* new */
+  z-index: 2;          /* new */
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 50px rgba(0,0,0,.25);
 }
 
 /* Buttons */
