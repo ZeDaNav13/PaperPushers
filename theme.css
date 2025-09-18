@@ -212,3 +212,6 @@ body{font-family:'Montserrat',sans-serif;}
   0%{background-position:0% 40%, 100% 60%, 50% 50%}
   100%{background-position:100% 60%, 0% 40%, 50% 50%}
 }
+
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="app.js?v=2" defer></script>
