@@ -42,7 +42,7 @@ body{font-family:'Montserrat',sans-serif;}
 
 /* Sections (fullPage controls height) */
 .section{
-  position:relative;overflow:hidden;
+  position:relative;overflow:visible;overflow-y:visible;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem;color:var(--text-light);
 }
@@ -155,7 +155,7 @@ body{font-family:'Montserrat',sans-serif;}
 /* Contact */
 .contact-card{
   max-height:calc(100vh - 72px - 170px);
-  overflow:auto;
+  overflow:visible;
   scrollbar-width:thin;
 }
 .contact-title{line-height:1.05}
@@ -221,4 +221,12 @@ body{font-family:'Montserrat',sans-serif;}
 .fp-is-overflow .fp-overflow.fp-auto-height-responsive,
 .fp-is-overflow > .fp-overflow {
   overflow-y: visible !important;
+}
+
+@media (min-width: 768px) {
+  .fp-is-overflow .fp-overflow.fp-auto-height,
+  .fp-is-overflow .fp-overflow.fp-auto-height-responsive,
+  .fp-is-overflow > .fp-overflow {
+    overflow-y: visible !important;
+  }
 }
