@@ -40,34 +40,6 @@
   <!-- Floating CTA (works + click to Contact) -->
   <button id="floating-cta" aria-label="Start a project" title="Start a project">Start a project</button>
 
-  <!-- Color Tuner -->
-  <button id="tuner-toggle" aria-label="Open color tuner" title="Color tuner">🎛️</button>
-  <div id="tuner" class="tuner hidden">
-    <div class="tuner-row"><label>Main</label><input type="color" id="col-main" value="#D2009E" /></div>
-    <div class="tuner-row"><label>Secondary</label><input type="color" id="col-secondary" value="#FFF53E" /></div>
-    <div class="tuner-row"><label>Highlight</label><input type="color" id="col-highlight" value="#77FD3E" /></div>
-    <div class="tuner-row"><label>Off-white</label><input type="color" id="col-offwhite" value="#F9F9F9" /></div>
-    <div class="tuner-row"><label>Buttons: A</label>
-      <select id="btnA">
-        <option value="var(--main)">Main</option>
-        <option value="var(--secondary)" selected>Secondary</option>
-        <option value="var(--highlight)">Highlight</option>
-      </select>
-    </div>
-    <div class="tuner-row"><label>Buttons: B</label>
-      <select id="btnB">
-        <option value="var(--main)">Main</option>
-        <option value="var(--secondary)">Secondary</option>
-        <option value="var(--highlight)" selected>Highlight</option>
-      </select>
-    </div>
-    <div class="tuner-row"><label>Angle</label><input type="range" id="grad-angle" min="0" max="360" value="135" /></div>
-    <div class="tuner-actions">
-      <button id="close-tuner" class="btn btn-outline" type="button">Close</button>
-      <button id="reset-tuner" class="btn btn-primary" type="button">Reset</button>
-    </div>
-  </div>
-
   <!-- Slides -->
   <div id="fullpage">
     <!-- HERO -->
@@ -268,42 +240,6 @@
         });
       }
 
-      // Color Tuner
-      const toggle = document.getElementById('tuner-toggle');
-      const tuner = document.getElementById('tuner');
-      const closeBtn = document.getElementById('close-tuner');
-      const resetBtn = document.getElementById('reset-tuner');
-      const inputs = {
-        main: document.getElementById('col-main'),
-        secondary: document.getElementById('col-secondary'),
-        highlight: document.getElementById('col-highlight'),
-        offwhite: document.getElementById('col-offwhite'),
-        btnA: document.getElementById('btnA'),
-        btnB: document.getElementById('btnB'),
-        angle: document.getElementById('grad-angle'),
-      };
-      const setVar=(n,v)=> document.documentElement.style.setProperty(n,v);
-      function applyButtonGradient(){
-        setVar('--btnA', inputs.btnA.value);
-        setVar('--btnB', inputs.btnB.value);
-        setVar('--grad-angle', inputs.angle.value + 'deg');
-      }
-      function applyColors(){
-        setVar('--main', inputs.main.value);
-        setVar('--secondary', inputs.secondary.value);
-        setVar('--highlight', inputs.highlight.value);
-        setVar('--offwhite', inputs.offwhite.value);
-        applyButtonGradient();
-      }
-      toggle.addEventListener('click', ()=> tuner.classList.toggle('hidden'));
-      closeBtn.addEventListener('click', ()=> tuner.classList.add('hidden'));
-      Object.values(inputs).forEach(el=>{ el.addEventListener('input', applyColors); el.addEventListener('change', applyColors); });
-      resetBtn.addEventListener('click', ()=>{
-        inputs.main.value='#D2009E'; inputs.secondary.value='#FFF53E'; inputs.highlight.value='#77FD3E'; inputs.offwhite.value='#F9F9F9';
-        inputs.btnA.value='var(--secondary)'; inputs.btnB.value='var(--highlight)'; inputs.angle.value=135; applyColors();
-      });
-      applyColors();
-    });
   </script>
 </body>
 </html>
