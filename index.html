@@ -226,36 +226,7 @@
                 });
               }
             
-              // Color Tuner
-              const toggle = document.getElementById('tuner-toggle');
-              const tuner = document.getElementById('tuner');
-              const closeBtn = document.getElementById('close-tuner');
-              const resetBtn = document.getElementById('reset-tuner');
-              const inputs = {
-                main: document.getElementById('col-main'),
-                secondary: document.getElementById('col-secondary'),
-                highlight: document.getElementById('col-highlight'),
-                offwhite: document.getElementById('col-offwhite'),
-                btnA: document.getElementById('btnA'),
-                btnB: document.getElementById('btnB'),
-                angle: document.getElementById('grad-angle'),
-              };
-              const setVar=(n,v)=> document.documentElement.style.setProperty(n,v);
-              function applyButtonGradient(){
-                setVar('--btnA', inputs.btnA.value);
-                setVar('--btnB', inputs.btnB.value);
-                setVar('--grad-angle', inputs.angle.value + 'deg');
-              }
-              function applyColors(){
-                setVar('--main', inputs.main.value);
-                setVar('--secondary', inputs.secondary.value);
-                setVar('--highlight', inputs.highlight.value);
-                setVar('--offwhite', inputs.offwhite.value);
-                applyButtonGradient();
-              }
-              toggle.addEventListener('click', ()=> tuner.classList.toggle('hidden'));
-              closeBtn.addEventListener('click', ()=> tuner.classList.add('hidden'));
-              Object.values(inputs).forEach(el=>{ el.addEventListener('input', applyColors); el.addEventListener('change', applyColors); });
+
               resetBtn.addEventListener('click', ()=>{
                 inputs.main.value='#D2009E'; inputs.secondary.value='#FFF53E'; inputs.highlight.value='#77FD3E'; inputs.offwhite.value='#F9F9F9';
                 inputs.btnA.value='var(--secondary)'; inputs.btnB.value='var(--highlight)'; inputs.angle.value=135; applyColors();
