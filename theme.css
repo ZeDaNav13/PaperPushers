@@ -82,25 +82,6 @@ z-index:12000;
 user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
 cursor:pointer;
 }
-/* Color tuner button + panel */
-#tuner-toggle{
-position:fixed;left:16px;bottom:16px;z-index:12000;
-width:54px;height:54px;border-radius:14px;border:1px solid rgba(0,0,0,.1);cursor:pointer;
-background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB));
-color:#0b0b0e;font-weight:900;box-shadow:0 10px 28px rgba(0,0,0,.25);
-}
-.tuner{
-position:fixed;left:16px;bottom:80px;z-index:12000;
-width:300px;padding:14px;border-radius:16px;
-background:#ffffff;box-shadow:0 20px 50px rgba(0,0,0,.25);
-color:#0b0b0e;border:1px solid #e5e7eb;
-}
-.tuner.hidden{display:none}
-.tuner .tuner-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
-.tuner .tuner-row label{font-weight:800}
-.tuner input[type="color"]{width:42px;height:30px;border:1px solid #ddd;border-radius:6px;padding:0}
-.tuner select, .tuner input[type="range"]{flex:1}
-.tuner .tuner-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
 /* Ambient blobs */
 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;z-index:-1;
 animation:blobMove 22s ease-in-out infinite alternate;}
