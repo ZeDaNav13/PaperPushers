@@ -108,8 +108,9 @@ color:#0b0b0e; box-shadow:0 8px 22px rgba(0,0,0,.18);
 }
 .btn-outline{
 color:#fff; 
-background:transparent;
-border:2px solid #fff53e;
+background:linear-gradient(var(--grad-angle), rgba(255,255,255,.20), rgba(255,255,255,.08));
+border:1px solid rgba(255,255,255,.5); 
+box-shadow:0 8px 22px rgba(0,0,0,.25);
 }
 /* Utilities */
 .container{max-width:1200px;margin-inline:auto;padding-inline:1rem}
@@ -162,20 +163,34 @@ animation:bg-pan 24s ease-in-out infinite alternate-reverse;
 }
 .bg-stripe-about{
 background:
-radial-gradient(1000px 700px at 40% 10%, rgba(77,124,254,.15), transparent 60%),
-radial-gradient(900px 700px at 70% 80%, rgba(255,53,62,.22), transparent 60%),
-conic-gradient(from 260deg at 50% 50%, #7c3aed, #3b82f6, #D2009E, #7c3aed);
-animation:bg-pan 18s ease-in-out infinite alternate;
+radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),
+radial-gradient(700px 400px at 85% 20%, rgba(168,85,247,.28), transparent 60%),
+linear-gradient(180deg, #0b1020, #0f172a);
+animation:bg-pan 22s ease-in-out infinite alternate-reverse;
 }
 .bg-stripe-contact{
 background:
-radial-gradient(900px 700px at 10% 90%, rgba(255,53,62,.22), transparent 60%),
-radial-gradient(900px 700px at 90% 10%, rgba(119,253,62,.22), transparent 60%),
-conic-gradient(from 120deg at 50% 50%, #3b0764, #D2009E, #FFF53E, #3b0764);
-animation:bg-pan 24s ease-in-out infinite alternate-reverse;
+radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),
+radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),
+linear-gradient(180deg, var(--offwhite), #f3f4f6);
+animation:bg-pan 26s ease-in-out infinite alternate;
 }
-/* Animate backgrounds */
 @keyframes bg-pan{
 0%{background-position:0% 40%, 100% 60%, 50% 50%}
 100%{background-position:100% 60%, 0% 40%, 50% 50%}
+}
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="app.js?v=2" defer></script>
+/* Fix fullPage.js overflow behavior */
+.fp-is-overflow .fp-overflow.fp-auto-height,
+.fp-is-overflow .fp-overflow.fp-auto-height-responsive,
+.fp-is-overflow > .fp-overflow {
+overflow-y: visible !important;
+}
+@media (min-width: 768px) {
+.fp-is-overflow .fp-overflow.fp-auto-height,
+.fp-is-overflow .fp-overflow.fp-auto-height-responsive,
+.fp-is-overflow > .fp-overflow {
+overflow-y: visible !important;
+}
 }
