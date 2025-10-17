@@ -1,3 +1,4 @@
+/* === PaperPushers Theme (fixed vignette + glass above it) === */
 :root{
   --main:#D2009E;
   --secondary:#FFF53E;
@@ -95,8 +96,7 @@ body {font-family:'Montserrat',sans-serif;}
 
 /* Sections */
 .section{
-  position:relative;
-  overflow:visible;
+  position:relative;overflow:visible;overflow-y:visible;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem;color:var(--text-light);
 }
@@ -105,7 +105,7 @@ body {font-family:'Montserrat',sans-serif;}
   font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;
   opacity:0;animation:fadeInUp 900ms ease forwards;
 }
-@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
 /* Container */
 .container{
@@ -134,7 +134,7 @@ body {font-family:'Montserrat',sans-serif;}
   bottom:32px; right:16px;
 }
 @media (max-width:767px){
-  #floating-cta{width:90vw;left:5vw;bottom:15px;right:auto;}
+  #floating-cta{width:90vw;left:5vw;bottom:10px;right:auto;}
 }
 
 /* Glass cards */
@@ -169,22 +169,6 @@ body {font-family:'Montserrat',sans-serif;}
   }
 }
 
-/* Contact Form */
-.contact-form {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  padding: 24px;
-  margin: 0 auto;
-  max-width: 400px;
-}
-@media (max-width:767px){
-  .contact-form {
-    padding: 16px;
-    max-width: 90vw;
-  }
-}
-
 /* Utilities */
 .text-on-dark{color:rgba(255,255,255,.96)}
 .text-soft-on-dark{color:rgba(255,255,255,.82)}
@@ -212,14 +196,14 @@ body {font-family:'Montserrat',sans-serif;}
 }
 .contact-footer a{color:#0b0b0e;text-decoration:underline}
 
-/* Stripe-inspired backgrounds */
+/* Stripe-inspired backgrounds (unchanged) */
 .bg-stripe-intro{background:radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),conic-gradient(from 200deg at 70% 30%, #5b21b6, #7c3aed, #d946ef, #4f46e5, #5b21b6);animation:bg-pan 18s ease-in-out infinite alternate;}
 .bg-stripe-services{background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(34,211,238,.35), transparent 60%),linear-gradient(160deg, #0ea5e9 0%, #22d3ee 50%, #0ea5e9 100%);animation:bg-pan 20s ease-in-out infinite alternate;}
 .bg-stripe-portfolio{background:radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),conic-gradient(from 120deg at 50% 50%, #3b0764, #7e22ce, #D2009E, #3b0764);animation:bg-pan 24s ease-in-out infinite alternate-reverse;}
 .bg-stripe-about{background:radial-gradient(1000px 700px at 40% 10%, rgba(77,124,254,.15), transparent 60%),radial-gradient(900px 700px at 70% 80%, rgba(255,53,62,.22), transparent 60%),conic-gradient(from 260deg at 50% 50%, #7c3aed, #3b82f6, #D2009E, #7c3aed);animation:bg-pan 18s ease-in-out infinite alternate;}
 .bg-stripe-contact{background:radial-gradient(900px 700px at 10% 90%, rgba(255,53,62,.22), transparent 60%),radial-gradient(900px 700px at 90% 10%, rgba(119,253,62,.22), transparent 60%),conic-gradient(from 120deg at 50% 50%, #3b0764, #D2009E, #FFF53E, #3b0764);animation:bg-pan 24s ease-in-out infinite alternate-reverse;}
 
-/* Animate backgrounds */
+/* Animate backgrounds (unchanged) */
 @keyframes bg-pan{
   0%{background-position:0% 40%, 100% 60%, 50% 50%}
   100%{background-position:100% 60%, 0% 40%, 50% 50%}

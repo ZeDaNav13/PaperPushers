@@ -23,17 +23,23 @@
   <header class="header">
     <div class="inner">
       <a href="#home" class="brand" data-menuanchor="home" title="Back to top">PAPERPUSHERS</a>
+      
+      <!-- Hamburger toggle for mobile -->
       <button id="nav-toggle" class="nav-toggle" aria-label="Open navigation">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
+      <!-- Navigation -->
       <nav id="menu" class="nav">
         <a href="#services" data-menuanchor="services">The Toolbox</a>
         <a href="#work" data-menuanchor="work">Works</a>
         <a href="#about" data-menuanchor="about">About</a>
         <a href="#contact" data-menuanchor="contact">Contact</a>
       </nav>
+
+      <!-- Header CTA -->
       <div class="header-cta">
         <button class="btn-quote" onclick="fullpage_api.moveTo('contact')">Open the Toolbox</button>
       </div>
@@ -46,7 +52,8 @@
   <!-- Slides -->
   <div id="fullpage">
     <!-- HERO -->
-    <div class="section bg-stripe-intro" data-anchor="home">
+    <div class="section" data-anchor="home">
+      <div class="fp-bg bg-stripe-intro"></div>
       <div class="container">
         <h1 class="text-glow text-4xl sm:text-6xl md:text-8xl mb-6" style="color:#FFF53E">
           PaperPushers
@@ -62,7 +69,8 @@
     </div>
 
     <!-- SERVICES -->
-    <div class="section bg-stripe-services" data-anchor="services">
+    <div class="section" data-anchor="services">
+      <div class="fp-bg bg-stripe-services"></div>
       <div class="container text-on-dark">
         <h2 class="text-3xl sm:text-5xl md:text-7xl mb-4" style="color:#D2009E">The Toolbox</h2>
         <p class="text-lg sm:text-xl md:text-2xl font-semibold max-w-xl mx-auto mb-8">
@@ -98,7 +106,8 @@
     </div>
 
     <!-- WORK -->
-    <div class="section bg-stripe-portfolio" data-anchor="work">
+    <div class="section" data-anchor="work">
+      <div class="fp-bg bg-stripe-portfolio"></div>
       <div class="container">
         <h2 class="text-glow text-3xl sm:text-5xl md:text-7xl mb-8" style="color:#FFF53E">Works</h2>
         <div class="grid-3">
@@ -115,7 +124,8 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="section bg-stripe-about" data-anchor="about">
+    <div class="section" data-anchor="about">
+      <div class="fp-bg bg-stripe-about"></div>
       <div class="container">
         <h2 class="text-3xl sm:text-5xl md:text-7xl mb-8" style="color:#D2009E">About us</h2>
         <div class="grid-3">
@@ -143,16 +153,17 @@
     </div>
 
     <!-- CONTACT -->
-    <div class="section bg-stripe-contact" data-anchor="contact">
+    <div class="section" data-anchor="contact">
+      <div class="fp-bg bg-stripe-contact"></div>
       <div class="container text-on-dark">
-        <form class="contact-form grid gap-3 bg-white/90 rounded-lg shadow-lg p-4 mt-4 max-w-md mx-auto">
-          <label class="font-bold text-left" for="name">Name</label>
-          <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85 w-full" placeholder="Your name here" />
-          <label class="font-bold text-left" for="email">Email</label>
-          <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85 w-full" placeholder="your.email.here@example.com" />
-          <label class="font-bold text-left" for="details">What’s the project?</label>
-          <textarea id="details" rows="5" class="border px-4 py-3 rounded-md text-lg bg-white/85 w-full" placeholder="Tell us about scope, timeline, and budget"></textarea>
-          <button type="submit" class="btn btn-primary mt-1 w-full">Hand me the wrench</button>
+        <form class="grid gap-3">
+          <label class="font-bold" for="name">Name</label>
+          <input id="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" />
+          <label class="font-bold" for="email">Email</label>
+          <input id="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" />
+          <label class="font-bold" for="details">What’s the project?</label>
+          <textarea id="details" rows="5" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget"></textarea>
+          <button type="submit" class="btn btn-primary mt-1">Hand me the wrench</button>
         </form>
         <aside class="grid gap-2 mt-6">
           <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-1">Contact us</h3>
