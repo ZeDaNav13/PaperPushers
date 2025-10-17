@@ -104,7 +104,7 @@
             <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
 
             <label class="font-bold" for="details">What’s the project?</label>
-            <textarea id="details" name="message" rows="5" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
+            <textarea id="details" name="message" rows="3" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
 
             <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
 
@@ -148,7 +148,7 @@
         scrollBar: false,
         keyboardScrolling: true,
         paddingTop: '72px',
-        normalScrollElements: '.contact-card',
+        normalScrollElements: '#details'  // antes: '.contact-card'
         responsiveWidth: 768
       });
 
