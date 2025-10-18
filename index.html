@@ -262,7 +262,7 @@
           newChallenge();
           startTs = Date.now();
         } else {
-          setStatus(data?.error || 'Send failed. Check endpoint and access.');
+          setStatus(data?.error || 'Send failed. Check endpoint and/or access.');
         }
       } catch {
         setStatus('Network error. Check endpoint or deployment.');

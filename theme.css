@@ -263,7 +263,7 @@ html{
   100%{background-position:100% 60%, 0% 40%, 50% 50%}
 }
 
-/* Reduce GPU load on phones and for users who prefer less motion */
+/* Reduce GPU load on phones and for users who prefer less motioon */
 @media (max-width:767px), (prefers-reduced-motion:reduce){
   .bg-stripe-intro,.bg-stripe-services,.bg-stripe-portfolio,.bg-stripe-about,.bg-stripe-contact{animation:none}
 }
