@@ -11,32 +11,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js" defer></script>
   <link rel="stylesheet" href="theme.css"/>
 </head>
-
-<style>
-html{scroll-padding-top:72px;scroll-behavior:smooth}
-
-/* Hide bouncing CTA on phones and touch devices */
-@media (max-width:900px),(pointer:coarse),(prefers-reduced-motion:reduce){
-  #floating-cta{display:none!important}
-}
-
-/* Burger + mobile nav */
-.burger{display:none;border:0;background:transparent;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;gap:5px}
-.burger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
-@media (max-width:900px){
-  .header{height:72px}
-  .header .inner{grid-template-columns:auto auto;gap:8px}
-  .header-cta{display:none}
-  .burger{display:flex;margin-left:auto}
-  .nav{
-    display:none;position:fixed;top:72px;left:0;right:0;padding:12px 16px;
-    background:#0b0b0e;border-bottom:1px solid rgba(255,255,255,.08);
-    flex-direction:column;gap:12px;z-index:1300
-  }
-  .nav.open{display:flex}
-}
-</style>
-
 <body class="font-sans">
   <header class="header">
     <div class="inner">
@@ -295,37 +269,5 @@ html{scroll-padding-top:72px;scroll-behavior:smooth}
       }
     });
   </script>
-
-  <script>
-  document.addEventListener('DOMContentLoaded',function(){
-    // Insert burger if missing
-    var inner=document.querySelector('.header .inner');
-    if(inner && !document.getElementById('menu-toggle')){
-      var btn=document.createElement('button');
-      btn.id='menu-toggle'; btn.className='burger';
-      btn.setAttribute('aria-label','Open menu');
-      btn.setAttribute('aria-expanded','false');
-      btn.setAttribute('aria-controls','menu');
-      btn.innerHTML='<span></span><span></span><span></span>';
-      var brand=inner.querySelector('.brand');
-      (brand||inner.firstChild).insertAdjacentElement('afterend',btn);
-    }
-    var toggle=document.getElementById('menu-toggle');
-    var nav=document.getElementById('menu');
-    if(toggle && nav){
-      toggle.addEventListener('click',function(){
-        var open=nav.classList.toggle('open');
-        toggle.setAttribute('aria-expanded',open?'true':'false');
-      });
-    }
-
-    // Kill floating CTA on phones or reduced motion
-    var cta=document.getElementById('floating-cta');
-    if(cta && (matchMedia('(max-width: 900px)').matches || matchMedia('(pointer:coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches)){
-      cta.style.display='none';
-    }
-  });
-  </script>
-
 </body>
 </html>
