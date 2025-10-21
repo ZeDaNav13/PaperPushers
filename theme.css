@@ -165,4 +165,59 @@ body{font-family:'Montserrat',sans-serif;}
 
   /* allow full scroll in contact form while fullpage is responsive */
   .contact-card{max-height:none}
+
+  /* ===== HERO (home) ===== */
+.section[data-anchor="home"]{
+  min-height: calc(100svh - 64px);            /* desconta header */
+  padding: 1.25rem 1rem 2rem;
+}
+.section[data-anchor="home"] .container{max-width: 680px}
+
+/* Título */
+.section[data-anchor="home"] h1{
+  text-transform: none;                        /* legibilidade */
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.12;
+  /* 2.6rem–3.2rem conforme viewport */
+  font-size: clamp(2.6rem, 6.2vw + 0.6rem, 3.2rem) !important;
+  text-shadow: 0 4px 18px rgba(0,0,0,.35);     /* menos “glow” */
+}
+
+/* Parágrafo introdutório */
+.section[data-anchor="home"] p{
+  margin-top: .75rem;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: 0;
+  font-size: clamp(1.05rem, 1.5vw + .9rem, 1.35rem);
+  text-wrap: balance;                          /* onde suportado */
+}
+
+/* Botões */
+.section[data-anchor="home"] .btn{
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1.05rem;
+}
+.section[data-anchor="home"] .mt-10,
+.section[data-anchor="home"] .btn-row{
+  margin-top: 1.25rem !important;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Espaçamentos gerais do mobile */
+.section{ padding: 1.25rem }
+h2{ font-size: clamp(1.8rem, 4.8vw + .6rem, 2.4rem) }
+
+@media (min-width:360px) and (max-width:767px){
+  .section[data-anchor="home"] .mt-10,
+  .section[data-anchor="home"] .btn-row{
+    grid-template-columns: 1fr 1fr;            /* 2 colunas */
+  }
+}
+
+
 }
