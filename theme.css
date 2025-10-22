@@ -106,3 +106,43 @@ body{font-family:'Montserrat',sans-serif}
 @media (min-width:360px) and (max-width:767px){
   .section[data-anchor="home"] .btn-row,.section[data-anchor="home"] .mt-10{grid-template-columns:1fr 1fr}
 }
+
+/* Desktop headings back to strong sizes */
+@media (min-width:768px){
+  .section[data-anchor="services"] h2,
+  .section[data-anchor="work"] h2,
+  .section[data-anchor="about"] h2,
+  .section[data-anchor="contact"] h2{
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    /* matches previous scales */
+    font-size: clamp(3.5rem, 7vw, 9rem);
+  }
+}
+
+/* ===== MOBILE SECTION SNAP + HORIZONTAL CARDS ===== */
+@media (max-width:767px){
+  #fullpage{ scroll-snap-type:y mandatory; }
+  .section{ min-height:100svh; scroll-snap-align:start; padding:1.5rem 1rem; }
+
+  .grid-3{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:85%;
+    overflow-x:auto;
+    gap:16px;
+    padding-bottom:8px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .grid-3>*{ scroll-snap-align:start; }
+}
+
+/* ===== MOBILE SECTION VISUAL TIGHTENING ===== */
+@media (max-width:767px){
+  .section::after{ display:none; }
+  .section > .container{ margin:0 auto; }
+  .section p:last-child{ margin-bottom:0; }
+}

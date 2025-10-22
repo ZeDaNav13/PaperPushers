@@ -85,6 +85,11 @@
       <div class="fp-bg bg-stripe-about"></div>
       <div class="container">
         <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">About us</h2>
+        <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere,
+        facilisis et aliquet, cria momentum sem vitae lectus. We work fast, stay sharp,
+        and deliver outcomes that compound.
+        </p>
         <div class="grid-3 max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>Our values:</strong> </br>- Agility over rigidity </br>- Sleight over noise </br>- Outcomes over outputs </p></article>
@@ -172,6 +177,38 @@
         x+=dx; y+=dy; cta.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
       })();
     });
+
+    <script>
+      // floating CTA: animate only on >=768px
+      function startCtaBounce() {
+        const cta = document.getElementById('floating-cta');
+        if (!cta) return;
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          cta.style.position = 'fixed';
+          cta.style.bottom = '12px';
+          cta.style.right  = '12px';
+          cta.style.transform = 'none';
+          return; // no animation on mobile
+        }
+        let x=160, y=120, dx=2.2, dy=2.0;
+        const getVar = (n)=> getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+        const grad = (a,b)=> `linear-gradient(${getComputedStyle(document.documentElement).getPropertyValue('--grad-angle').trim() || '135deg'}, ${a}, ${b})`;
+        const pickTwo = ()=>{
+          const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
+          const i=Math.floor(Math.random()*cols.length);
+          const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
+          return [cols[i], cols[j]];
+        };
+        (function tick(){
+          const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60, cta=document.getElementById('floating-cta');
+          if(!cta) return;
+          if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); cta.style.background=grad(a,b);}
+          if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); cta.style.background=grad(a,b);}
+          x+=dx; y+=dy; cta.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
+        })();
+      }
+      window.addEventListener('load', startCtaBounce);
+    </script>
 
     // Mobile menu toggle
     (function(){
