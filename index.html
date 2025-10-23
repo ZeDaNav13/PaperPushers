@@ -12,11 +12,12 @@
   <link rel="stylesheet" href="theme.css"/>
 </head>
 <body class="font-sans">
-  <!-- Header desktop intact; adiciona toggle para mobile -->
+  <!-- Header -->
   <header class="header">
     <div class="inner">
       <a href="#home" class="brand" data-menuanchor="home" title="Back to top">PAPERPUSHERS</a>
 
+      <!-- Mobile toggle -->
       <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu">Menu</button>
 
       <nav id="menu" class="nav">
@@ -31,9 +32,11 @@
     </div>
   </header>
 
+  <!-- Floating CTA -->
   <button id="floating-cta" aria-label="Start a project" title="Start a project">Start a project</button>
 
   <div id="fullpage">
+    <!-- HOME -->
     <div class="section" data-anchor="home">
       <div class="fp-bg bg-stripe-intro"></div>
       <div class="container">
@@ -42,18 +45,21 @@
           The adaptive toolbox for businesses that grow.</br>Digital, physical, pixels or places — we build what you need now.</br>Made to fit, flex and perform.
         </p>
         <div class="mt-10 btn-row flex items-center justify-center gap-4">
-          <button class="btn btn-primary" onclick="fullpage_api.moveTo('contact')">Start building</button>
+          <button class="btn btn-primary" onclick="fullpage_api.moveTo('contact')">Start</button>
           <button class="btn btn-outline" onclick="fullpage_api.moveTo('work')">Peek inside</button>
         </div>
       </div>
     </div>
 
+    <!-- SERVICES -->
     <div class="section" data-anchor="services">
       <div class="fp-bg bg-stripe-services"></div>
       <div class="container text-on-dark">
         <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">The Toolbox</h2>
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-          We don’t have “one thing.” We have a set. A kit. A box.</br>Things that fit your shape of business.</br>Grab what you need, and we’ll make it work together.
+          We don’t have “one thing.” We have a set. A kit. A box.</br>
+          Things that fit your shape of business.</br>
+          Grab what you need, and we’ll make it work together.
         </p>
         <div class="grid-3 max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Web & Digital</h3><p class="text-base md:text-lg">Sites, systems, and SEO that grow with you. From first click to full platform.</p></article>
@@ -66,29 +72,31 @@
       </div>
     </div>
 
+    <!-- WORK -->
     <div class="section" data-anchor="work">
       <div class="fp-bg bg-stripe-portfolio"></div>
       <div class="container">
         <h2 class="text-glow text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#FFF53E">Works</h2>
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-          Things we did for ourselves.</br>Small to large scopes. Digital and not digital.</br>In common: optimized and efective delivery.
+          Things we did for ourselves.</br>Small to large scopes. Digital and not digital.</br>In common: optimized and effective delivery.
         </p>
         <div class="grid-3 max-w-6xl mx-auto text-left">
-          <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → </br>+2.5M downloads</h3><p class="text-base md:text-lg">Groundbreaking fantasy-football startup with peak 250k daily active users, redefining how fans compete. Raised over 9M in series A and B.</p></article>
-          <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">MiliLand Digital → Online Studio</h3><p class="text-base md:text-lg">Agile media studio blending branding, web, social, and ads — trusted by clients across the world. Successfully running since 2010.</p></article>
-          <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">Pentagon Lisboa → From ruin to icon</h3><p class="text-base md:text-lg">A hybrid café + visual culture hub in Lisbon, mixing specialty coffee, vegetarian food, art, and community space. 12 inside seats, +275k projected revenue in 2025.</p></article>
+          <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → </br>+2.5M downloads</h3><p class="text-base md:text-lg">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p></article>
+          <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">MiliLand Digital → Online Studio</h3><p class="text-base md:text-lg">Agile media studio blending branding, web, social, and ads — running since 2010.</p></article>
+          <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">Pentagon Lisboa → From ruin to icon</h3><p class="text-base md:text-lg">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p></article>
         </div>
       </div>
     </div>
 
+    <!-- ABOUT -->
     <div class="section" data-anchor="about">
       <div class="fp-bg bg-stripe-about"></div>
       <div class="container">
         <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">About us</h2>
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere,
-        facilisis et aliquet, cria momentum sem vitae lectus. We work fast, stay sharp,
-        and deliver outcomes that compound.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere,
+          facilisis et aliquet, cria momentum sem vitae lectus. We work fast, stay sharp,
+          and deliver outcomes that compound.
         </p>
         <div class="grid-3 max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
@@ -98,6 +106,7 @@
       </div>
     </div>
 
+    <!-- CONTACT -->
     <div class="section" data-anchor="contact">
       <div class="fp-bg bg-stripe-contact"></div>
       <div class="container text-on-light">
@@ -115,7 +124,15 @@
             <label class="font-bold" for="details">What’s the project?</label>
             <textarea id="details" name="message" rows="3" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
 
+            <!-- honeypot -->
             <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
+
+            <!-- simple math captcha -->
+            <div class="flex items-center gap-3">
+              <label for="captcha" class="font-bold">Prove you are human:</label>
+              <span id="captcha-question" class="inline-block px-2 py-1 rounded border text-sm"></span>
+              <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
+            </div>
 
             <p id="form-status" class="text-sm font-semibold mt-1" role="status" aria-live="polite" hidden></p>
 
@@ -135,6 +152,7 @@
     </div>
   </div>
 
+  <!-- Scripts placed after all content -->
   <script>
     // fullPage init
     window.addEventListener('load', function () {
@@ -158,38 +176,46 @@
       const yEl = document.getElementById('year');
       if (yEl) yEl.textContent = new Date().getFullYear();
 
-      // floating CTA bounce kept as-is
-      const cta = document.getElementById('floating-cta');
-      cta.addEventListener('click', () => fullpage_api.moveTo('contact'));
-      let x=160, y=120, dx=2.2, dy=2.0;
-      const getVar = (n)=> getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-      const grad = (a,b)=> `linear-gradient(${getComputedStyle(document.documentElement).getPropertyValue('--grad-angle').trim() || '135deg'}, ${a}, ${b})`;
-      const pickTwo = ()=>{
-        const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
-        const i=Math.floor(Math.random()*cols.length);
-        const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
-        return [cols[i], cols[j]];
-      };
-      (function tick(){
-        const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
-        if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); cta.style.background=grad(a,b);}
-        if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); cta.style.background=grad(a,b);}
-        x+=dx; y+=dy; cta.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
-      })();
+      setupCaptcha();
+      startCtaBounce();
     });
 
-    <script>
-      // floating CTA: animate only on >=768px
-      function startCtaBounce() {
-        const cta = document.getElementById('floating-cta');
-        if (!cta) return;
+    // Captcha setup and validation
+    function setupCaptcha(){
+      const a = Math.floor(1 + Math.random()*9);
+      const b = Math.floor(1 + Math.random()*9);
+      const q = document.getElementById('captcha-question');
+      if(q) q.textContent = a + " + " + b + " = ?";
+      const form = document.getElementById('contact-form');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        const hp = document.getElementById('website');
+        const ans = parseInt(document.getElementById('captcha').value, 10);
+        const ok = (ans === a + b) && (!hp || hp.value === '');
+        if(!ok){
+          e.preventDefault();
+          const s = document.getElementById('form-status');
+          if(s){ s.hidden = false; s.textContent = 'Captcha incorrecto.'; }
+        }
+      });
+    }
+
+    // floating CTA: animate only on >=768px; on mobile fixed bottom-right
+    function startCtaBounce() {
+      const cta = document.getElementById('floating-cta');
+      if (!cta) return;
+
+      function applyMode(){
         if (window.matchMedia('(max-width: 767px)').matches) {
           cta.style.position = 'fixed';
+          cta.style.top = 'auto';
+          cta.style.left = 'auto';
           cta.style.bottom = '12px';
           cta.style.right  = '12px';
           cta.style.transform = 'none';
-          return; // no animation on mobile
+          return;
         }
+        // desktop animation
         let x=160, y=120, dx=2.2, dy=2.0;
         const getVar = (n)=> getComputedStyle(document.documentElement).getPropertyValue(n).trim();
         const grad = (a,b)=> `linear-gradient(${getComputedStyle(document.documentElement).getPropertyValue('--grad-angle').trim() || '135deg'}, ${a}, ${b})`;
@@ -200,15 +226,17 @@
           return [cols[i], cols[j]];
         };
         (function tick(){
-          const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60, cta=document.getElementById('floating-cta');
-          if(!cta) return;
-          if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); cta.style.background=grad(a,b);}
-          if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); cta.style.background=grad(a,b);}
-          x+=dx; y+=dy; cta.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
+          const el=document.getElementById('floating-cta');
+          if(!el) return;
+          const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
+          if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
+          if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
+          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
         })();
       }
-      window.addEventListener('load', startCtaBounce);
-    </script>
+      applyMode();
+      window.addEventListener('resize', applyMode);
+    }
 
     // Mobile menu toggle
     (function(){
