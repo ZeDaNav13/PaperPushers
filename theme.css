@@ -135,3 +135,11 @@ body{font-family:'Montserrat',sans-serif}
   /* limpar sombras estranhas de overlay nas secções no mobile */
   .section::after{ display:none; }
 }
+
+@media (max-width:767px){
+  .tabs{display:flex; gap:8px; justify-content:center; margin:.5rem 0;}
+  .tab{padding:10px 12px; border-radius:10px; font-weight:800;
+       background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.18)}
+  .tab.is-active{background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB)); color:#0b0b0e}
+  #tab-panel{margin-top:.75rem}
+}
