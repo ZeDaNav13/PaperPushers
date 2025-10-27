@@ -5,11 +5,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
 
+  <!-- libs -->
   <script src="https://cdn.tailwindcss.com" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js" defer></script>
+
+  <!-- site css -->
   <link rel="stylesheet" href="theme.css"/>
+
+  <!-- tiny CSS just for mobile tabs visibility (safe even without theme change) -->
+  <style>
+    /* desktop: show grids, hide tabs */
+    @media (min-width:768px){
+      .toolbox-tabs,.toolbox-panel,
+      .works-tabs,.works-panel,
+      .about-tabs,.about-panel{display:none}
+    }
+    /* mobile: hide grids, show tabs + panels */
+    @media (max-width:767px){
+      .services-grid, .works-grid, .about-grid{display:none !important}
+      .toolbox-tabs,.toolbox-panel,
+      .works-tabs,.works-panel,
+      .about-tabs,.about-panel{display:block}
+      .tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:.5rem 0 .75rem;padding:0 8px}
+      .tab{padding:10px 12px;border-radius:10px;font-weight:800;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)}
+      .tab.is-active{color:#0b0b0e;background:linear-gradient(var(--grad-angle,135deg), var(--btnA,#FFF53E), var(--btnB,#77FD3E));border-color:transparent}
+      .panel{margin:.25rem 1rem 0}
+      .panel h3{font-size:1.5rem}
+      .panel p{font-size:1.05rem;line-height:1.4}
+    }
+  </style>
 </head>
 <body class="font-sans">
   <!-- Header -->
@@ -61,7 +87,23 @@
           Things that fit your shape of business.</br>
           Grab what you need, and we’ll make it work together.
         </p>
-        <div class="grid-3 max-w-6xl mx-auto text-left">
+
+        <!-- Mobile tabs -->
+        <div class="toolbox-tabs tabs" role="tablist" aria-label="Toolbox">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="web">Web & Digital</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="brand">Brand & Identity</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="biz">Business Design</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="social">Social & Media</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="tools">Tools & Systems</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="spaces">Spaces & Interiors</button>
+        </div>
+        <article id="toolbox-panel" class="glass toolbox-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
+          <h3 class="text-2xl md:text-3xl font-black mb-2" id="toolbox-title">Web & Digital</h3>
+          <p id="toolbox-body">Sites, systems, and SEO that grow with you. From first click to full platform.</p>
+        </article>
+
+        <!-- Desktop grid (kept) -->
+        <div class="grid-3 services-grid max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Web & Digital</h3><p class="text-base md:text-lg">Sites, systems, and SEO that grow with you. From first click to full platform.</p></article>
           <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Brand & Identity</h3><p class="text-base md:text-lg">Logos, language, and design systems that speak your truth — loud, clear, and consistent.</p></article>
           <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Business Design</h3><p class="text-base md:text-lg">Where creativity meets spreadsheets. We design how your business actually works.</p></article>
@@ -69,33 +111,6 @@
           <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Tools & Systems</h3><p class="text-base md:text-lg">Custom tools that link the dots — automate, align, and make things flow.</p></article>
           <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Spaces & Interiors</h3><p class="text-base md:text-lg">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p></article>
         </div>
-        <div class="tabs" role="tablist" aria-label="Toolbox">
-  <button class="tab is-active" role="tab" aria-selected="true" data-tab="web">Web & Digital</button>
-  <button class="tab" role="tab" aria-selected="false" data-tab="brand">Brand & Identity</button>
-  <button class="tab" role="tab" aria-selected="false" data-tab="biz">Business Design</button>
-</div>
-
-<article id="tab-panel" class="glass p-6 md:p-8" role="tabpanel">
-  <h3 class="text-2xl md:text-3xl font-black mb-2" id="tab-title">Web & Digital</h3>
-  <p id="tab-body">Sites, systems, and SEO that grow with you. From first click to full platform.</p>
-</article>
-
-<script>
-  const data = {
-    web:  ["Web & Digital","Sites, systems, and SEO that grow with you. From first click to full platform."],
-    brand:["Brand & Identity","Logos, language, and design systems that speak your truth — loud, clear, and consistent."],
-    biz:  ["Business Design","Where creativity meets spreadsheets. We design how your business actually works."]
-  };
-  document.querySelectorAll('.tabs .tab').forEach(b=>{
-    b.addEventListener('click',()=>{
-      document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.remove('is-active'));
-      b.classList.add('is-active');
-      const [t,body]=data[b.dataset.tab];
-      document.getElementById('tab-title').textContent=t;
-      document.getElementById('tab-body').textContent=body;
-    });
-  });
-</script>
       </div>
     </div>
 
@@ -107,7 +122,20 @@
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
           Things we did for ourselves.</br>Small to large scopes. Digital and not digital.</br>In common: optimized and effective delivery.
         </p>
-        <div class="grid-3 max-w-6xl mx-auto text-left">
+
+        <!-- Mobile tabs -->
+        <div class="works-tabs tabs" role="tablist" aria-label="Works">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="fevr">RealFevr</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="mili">MiliLand</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
+        </div>
+        <article id="works-panel" class="glass works-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
+          <h3 class="text-2xl md:text-3xl font-black mb-2" id="works-title">RealFevr → +2.5M downloads</h3>
+          <p id="works-body">Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+.</p>
+        </article>
+
+        <!-- Desktop grid (kept) -->
+        <div class="grid-3 works-grid max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → </br>+2.5M downloads</h3><p class="text-base md:text-lg">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p></article>
           <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">MiliLand Digital → Online Studio</h3><p class="text-base md:text-lg">Agile media studio blending branding, web, social, and ads — running since 2010.</p></article>
           <article class="glass parallax-card p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">Pentagon Lisboa → From ruin to icon</h3><p class="text-base md:text-lg">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p></article>
@@ -125,7 +153,20 @@
           facilisis et aliquet, cria momentum sem vitae lectus. We work fast, stay sharp,
           and deliver outcomes that compound.
         </p>
-        <div class="grid-3 max-w-6xl mx-auto text-left">
+
+        <!-- Mobile tabs -->
+        <div class="about-tabs tabs" role="tablist" aria-label="About">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="team">Team</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="values">Values</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="quote">Quote</button>
+        </div>
+        <article id="about-panel" class="glass about-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
+          <h3 class="text-2xl md:text-3xl font-black mb-2" id="about-title">We’re a Lisbon-based business toolbox team</h3>
+          <p id="about-body">A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p>
+        </article>
+
+        <!-- Desktop grid (kept) -->
+        <div class="grid-3 about-grid max-w-6xl mx-auto text-left">
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>Our values:</strong> </br>- Agility over rigidity </br>- Sleight over noise </br>- Outcomes over outputs </p></article>
           <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg italic">“They didn’t just bring the right tools, they invented a few on the way.” </br> — Bruno, CEO Proeza Colossal</p></article>
@@ -179,7 +220,7 @@
     </div>
   </div>
 
-  <!-- Scripts placed after all content -->
+  <!-- Scripts -->
   <script>
     // fullPage init
     window.addEventListener('load', function () {
@@ -204,10 +245,11 @@
       if (yEl) yEl.textContent = new Date().getFullYear();
 
       setupCaptcha();
-      startCtaBounce();
+      startCtaMode();
+      setupTabs();
     });
 
-    // Captcha setup and validation
+    // Captcha
     function setupCaptcha(){
       const a = Math.floor(1 + Math.random()*9);
       const b = Math.floor(1 + Math.random()*9);
@@ -227,12 +269,12 @@
       });
     }
 
-    // floating CTA: animate only on >=768px; on mobile fixed bottom-right
-    function startCtaBounce() {
+    // Floating CTA: fixed on mobile, animated on desktop
+    function startCtaMode() {
       const cta = document.getElementById('floating-cta');
       if (!cta) return;
 
-      function applyMode(){
+      function apply(){
         if (window.matchMedia('(max-width: 767px)').matches) {
           cta.style.position = 'fixed';
           cta.style.top = 'auto';
@@ -242,7 +284,7 @@
           cta.style.transform = 'none';
           return;
         }
-        // desktop animation
+        // desktop bounce
         let x=160, y=120, dx=2.2, dy=2.0;
         const getVar = (n)=> getComputedStyle(document.documentElement).getPropertyValue(n).trim();
         const grad = (a,b)=> `linear-gradient(${getComputedStyle(document.documentElement).getPropertyValue('--grad-angle').trim() || '135deg'}, ${a}, ${b})`;
@@ -261,8 +303,55 @@
           x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
         })();
       }
-      applyMode();
-      window.addEventListener('resize', applyMode);
+      apply();
+      window.addEventListener('resize', apply);
+    }
+
+    // Mobile tabs (Toolbox, Works, About)
+    function setupTabs(){
+      // Toolbox
+      const toolboxData = {
+        web:["Web & Digital","Sites, systems, and SEO that grow with you. From first click to full platform."],
+        brand:["Brand & Identity","Logos, language, and design systems that speak your truth — loud, clear, and consistent."],
+        biz:["Business Design","Where creativity meets spreadsheets. We design how your business actually works."],
+        social:["Social & Media","Content that connects, campaigns that convert, and stories people actually share."],
+        tools:["Tools & Systems","Custom tools that link the dots — automate, align, and make things flow."],
+        spaces:["Spaces & Interiors","Brands that don’t stop at screens — they spill into walls, chairs, and vibes."]
+      };
+      bindTabs('.toolbox-tabs','.toolbox-panel','#toolbox-title','#toolbox-body', toolboxData);
+
+      // Works
+      const worksData = {
+        fevr:["RealFevr → +2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
+        mili:["MiliLand Digital → Online Studio","Agile media studio blending branding, web, social, and ads — running since 2010."],
+        pent:["Pentagon Lisboa → From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."]
+      };
+      bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData);
+
+      // About
+      const aboutData = {
+        team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
+        values:["Our values","Agility over rigidity. Sleight over noise. Outcomes over outputs."],
+        quote:["What clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO Proeza Colossal"]
+      };
+      bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData);
+
+      function bindTabs(tabsSel,panelSel,titleSel,bodySel,data){
+        const tabs = document.querySelectorAll(tabsSel+' .tab');
+        const panel = document.querySelector(panelSel);
+        const title = document.querySelector(titleSel);
+        const body  = document.querySelector(bodySel);
+        if(!tabs.length || !panel || !title || !body) return;
+        tabs.forEach(b=>{
+          b.addEventListener('click', ()=>{
+            tabs.forEach(x=>x.classList.remove('is-active'));
+            b.classList.add('is-active');
+            const key = b.dataset.tab;
+            const val = data[key];
+            if(val){ title.textContent = val[0]; body.textContent = val[1]; }
+          });
+        });
+      }
     }
 
     // Mobile menu toggle
