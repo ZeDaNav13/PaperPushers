@@ -190,3 +190,40 @@ body{font-family:'Montserrat',sans-serif}
     mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
   }
 }
+
+/* ===== MOBILE: fix overflow from horizontal tabs ===== */
+@media (max-width:767px){
+  /* nunca deixar nada passar a largura do ecrã */
+  html, body, #fullpage, .section{ max-width:100%; overflow-x:hidden; }
+
+  /* conteúdo centrado com padding interno, não aumenta a largura total */
+  .section > .container{ padding-inline:16px; box-sizing:border-box; }
+
+  /* tabs em “chip row” sem spill */
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    gap:10px !important;
+
+    /* crítico: largura controlada + box-sizing */
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box;
+
+    /* padding que não rebenta a largura */
+    padding:8px 8px !important;
+    margin:8px auto 12px !important;
+
+    /* impedir efeitos que criam “bordas” fora */
+    mask-image:none !important;
+  }
+
+  /* evitar que cada chip force quebra/duas linhas */
+  .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    padding:10px 14px !important;
+    border-radius:999px !important;
+    font-weigh
