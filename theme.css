@@ -349,3 +349,26 @@ body{font-family:'Montserrat',sans-serif; background:#0b0b0e;}
   }
 }
 
+/* ===== MOBILE: tabs full width, not clipped, first chip fully visible ===== */
+@media (max-width:767px){
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    position:relative; z-index:3;               /* above card shadow */
+    width:100% !important; max-width:100% !important;
+    /* extend to screen edges without exceeding viewport */
+    margin-left:-16px !important; margin-right:-16px !important;
+    padding-left:16px !important; padding-right:16px !important;
+
+    display:flex !important; flex-wrap:nowrap !important;
+    gap:12px !important;
+    overflow-x:auto !important; overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:16px;                   /* keep first chip fully in view */
+  }
+  .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
+    flex:0 0 auto !important; white-space:nowrap !important;
+    padding:10px 14px !important; border-radius:999px !important;
+    font-weight:800 !important; font-size:.95rem !important;
+  }
+  .panel{ margin-top:14px !important; }        /* space so card shadow never overlaps tabs */
+}
