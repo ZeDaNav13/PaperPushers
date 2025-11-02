@@ -1,9 +1,5 @@
-Segue o `theme.css` completo, limpo e com as correções do footer e das tabs móveis.
-
-```css
 /* ========================= PaperPushers — theme.css ========================= */
-
-/* ---- Design tokens ---- */
+/* ---- Tokens ---- */
 :root{
   --main:#D2009E;
   --secondary:#FFF53E;
@@ -14,120 +10,43 @@ Segue o `theme.css` completo, limpo e com as correções do footer e das tabs m�
   --grad-angle:135deg;
 }
 html,body{height:100%}
-body{font-family:'Montserrat',sans-serif;background:#0b0b0e;color:var(--text-light)}
+body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 
 /* ---- Header ---- */
-.header{
-  position:fixed;inset:0 0 auto 0;height:72px;z-index:1200;
-  display:flex;align-items:center;background:#0b0b0e;
-  border-bottom:1px solid rgba(255,255,255,.08)
-}
-.header .inner{
-  width:100%;max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 16px
-}
+.header{position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;display:flex;align-items:center;background:#0b0b0e;border-bottom:1px solid rgba(255,255,255,.08)}
+.header .inner{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 16px}
 .brand{font-weight:900;letter-spacing:-.5px;color:#fff;font-size:1.1rem;text-decoration:none}
 .nav{display:flex;gap:20px;justify-content:center}
 .nav a{color:#fff;text-decoration:none;font-weight:700;opacity:.92}
 .nav a:hover{opacity:1}
 .header-cta{display:flex;justify-content:flex-end}
-.header-cta .btn-quote{
-  border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#0b0b0e;
-  background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));
-  box-shadow:0 6px 18px rgba(0,0,0,.18);cursor:pointer
-}
+.header-cta .btn-quote{border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#0b0b0e;background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));box-shadow:0 6px 18px rgba(0,0,0,.18);cursor:pointer}
 
 /* ---- Floating CTA ---- */
-#floating-cta{
-  position:fixed;width:180px;height:60px;line-height:60px;text-align:center;
-  border-radius:14px;font-weight:900;font-size:1.05rem;color:#0b0b0e;
-  background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));
-  z-index:12000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);cursor:pointer
-}
+#floating-cta{position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;font-weight:900;font-size:1.05rem;color:#0b0b0e;background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));z-index:12000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);cursor:pointer}
 
-/* ---- Section shell ---- */
-.section{
-  position:relative;overflow:visible;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;padding:2rem
-}
-.section::after{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%)
-}
+/* ---- Sections ---- */
+.section{position:relative;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;color:var(--text-light)}
+.section::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%)}
 .section>.container{position:relative;z-index:1}
-.section h1,.section h2{
-  font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;
-  opacity:0;animation:fadeInUp 900ms ease forwards
-}
+.section h1,.section h2{font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;opacity:0;animation:fadeInUp 900ms ease forwards}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
 /* ---- Backgrounds ---- */
 .fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%}
-.fp-bg::after{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
-  background-image:
-    radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);
-  mix-blend-mode:overlay;opacity:.35
-}
-.bg-stripe-intro{
-  background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),
-    radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),
-    conic-gradient(from 200deg at 70% 30%, #5b21b6,#7c3aed,#d946ef,#4f46e5,#5b21b6);
-  animation:bg-pan 18s ease-in-out infinite alternate
-}
-.bg-stripe-services{
-  background:
-    radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),
-    radial-gradient(600px 400px at 20% 70%, rgba(34,211,238,.35), transparent 60%),
-    linear-gradient(160deg,#0ea5e9 0%,#22d3ee 50%,#0ea5e9 100%);
-  animation:bg-pan 20s ease-in-out infinite alternate
-}
-.bg-stripe-portfolio{
-  background:
-    radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),
-    radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),
-    conic-gradient(from 120deg at 50% 50%, #3b0764,#7e22ce,#D2009E,#3b0764);
-  animation:bg-pan 24s ease-in-out infinite alternate-reverse
-}
-.bg-stripe-about{
-  background:
-    radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),
-    radial-gradient(700px 400px at 85% 20%, rgba(168,85,247,.28), transparent 60%),
-    linear-gradient(180deg, #0b1020, #0f172a);
-  animation:bg-pan 22s ease-in-out infinite alternate-reverse
-}
-.bg-stripe-contact{
-  background:
-    radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),
-    radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),
-    linear-gradient(180deg,var(--offwhite),#f3f4f6);
-  animation:bg-pan 26s ease-in-out infinite alternate
-}
-@keyframes bg-pan{
-  0%{background-position:0% 40%,100% 60%,50% 50%}
-  100%{background-position:100% 60%,0% 40%,50% 50%}
-}
+.fp-bg::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background-image:radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);mix-blend-mode:overlay;opacity:.35}
+.bg-stripe-intro{background:radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),conic-gradient(from 200deg at 70% 30%, #5b21b6,#7c3aed,#d946ef,#4f46e5,#5b21b6);animation:bg-pan 18s ease-in-out infinite alternate}
+.bg-stripe-services{background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(34,211,238,.35), transparent 60%),linear-gradient(160deg,#0ea5e9 0%,#22d3ee 50%,#0ea5e9 100%);animation:bg-pan 20s ease-in-out infinite alternate}
+.bg-stripe-portfolio{background:radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),conic-gradient(from 120deg at 50% 50%, #3b0764,#7e22ce,#D2009E,#3b0764);animation:bg-pan 24s ease-in-out infinite alternate-reverse}
+.bg-stripe-about{background:radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),radial-gradient(700px 400px at 85% 20%, rgba(168,85,247,.28), transparent 60%),linear-gradient(180deg, #0b1020, #0f172a);animation:bg-pan 22s ease-in-out infinite alternate-reverse}
+.bg-stripe-contact{background:radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),linear-gradient(180deg,var(--offwhite),#f3f4f6);animation:bg-pan 26s ease-in-out infinite alternate}
+@keyframes bg-pan{0%{background-position:0% 40%,100% 60%,50% 50%}100%{background-position:100% 60%,0% 40%,50% 50%}}
 
 /* ---- Cards + Buttons ---- */
-.glass{
-  position:relative;z-index:2;
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:20px;
-  backdrop-filter:blur(14px);
-  box-shadow:0 16px 50px rgba(0,0,0,.25)
-}
+.glass{position:relative;z-index:2;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 16px 50px rgba(0,0,0,.25)}
 .btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900;cursor:pointer}
-.btn-primary{
-  background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));
-  color:#0b0b0e;box-shadow:0 8px 22px rgba(0,0,0,.18)
-}
-.btn-outline{
-  color:#fff;background:linear-gradient(var(--grad-angle),rgba(255,255,255,.20),rgba(255,255,255,.08));
-  border:1px solid rgba(255,255,255,.05);box-shadow:0 8px 22px rgba(0,0,0,.25)
-}
+.btn-primary{background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));color:#0b0b0e;box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.btn-outline{color:#fff;background:linear-gradient(var(--grad-angle),rgba(255,255,255,.20),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.05);box-shadow:0 8px 22px rgba(0,0,0,.25)}
 
 /* ---- Layout helpers ---- */
 .container{max-width:1200px;margin-inline:auto;padding-inline:1rem}
@@ -138,11 +57,16 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e;color:var(--text-lig
 .text-on-light{color:var(--text-dark)}
 .text-glow{text-shadow:0 6px 30px rgba(0,0,0,.45)}
 
-/* ---- fullPage.js tweaks ---- */
+/* ---- Contact ---- */
+.contact-card{max-height:calc(100vh - 72px - 170px);overflow:visible;scrollbar-width:thin}
+.contact-title{line-height:1.05}
+.contact-footer{display:block;clear:both;margin-top:24px;font-size:.95rem;color:#111827;background:#ffffffcc;backdrop-filter:saturate(120%) blur(6px);padding:10px 14px;border-radius:12px;border:1px solid #e5e7eb;position:relative;z-index:0}
+.contact-footer a{color:#0b0b0e;text-decoration:underline}
+
+/* ---- fullPage.js adjustments ---- */
 .fp-is-overflow .fp-overflow.fp-auto-height,
 .fp-is-overflow .fp-overflow.fp-auto-height-responsive,
 .fp-is-overflow > .fp-overflow{overflow-y:visible !important}
-.fp-watermark{display:none !important}
 
 /* ---- Desktop headings scale restore ---- */
 @media (min-width:768px){
@@ -155,67 +79,31 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e;color:var(--text-lig
   }
 }
 
-/* ========================= CONTACT ========================= */
-
-/* Layout da secção (desktop e mobile) */
-.section[data-anchor="contact"] .container{
-  display:flex;flex-direction:column;min-height:calc(100svh - 64px)
-}
-.section[data-anchor="contact"] .contact-card{
-  order:1;flex:1 0 auto;position:relative;z-index:0
-}
-
-/* Footer sem “pílula”, sempre depois do cartão */
-.section[data-anchor="contact"] .contact-footer{
-  order:2;display:block;position:static;float:none;clear:both;transform:none;
-  background:transparent;padding:0;border-radius:0;box-shadow:none;border:0;
-  margin-top:24px;z-index:auto;color:#111827;font-size:.95rem
-}
-.section[data-anchor="contact"] .contact-footer a{color:inherit;text-decoration:underline}
-
-/* Captcha empilhado e com respiro */
-#contact-form{padding-bottom:16px}
-#contact-form .flex.items-center{
-  display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0 12px;
-  position:relative;z-index:2
-}
-#captcha-question{
-  display:inline-block;padding:6px 10px;border-radius:8px;
-  background:rgba(0,0,0,.08);color:#111827;border:1px solid rgba(0,0,0,.06)
-}
-
-/* ========================= MOBILE ========================= */
+/* ========================= MOBILE OVERRIDES ========================= */
+.mobile-only{display:none}
 @media (max-width:767px){
-  /* base */
+  /* universal clamp */
   *,*::before,*::after{box-sizing:border-box}
-  html,body,#fullpage,.fp-section,.fp-table,.fp-overflow,.section{
-    width:100% !important;max-width:100% !important;overflow-x:hidden !important
-  }
-  .section>.container{
-    width:100% !important;max-width:100% !important;
-    padding-left:16px !important;padding-right:16px !important;margin-left:0 !important;margin-right:0 !important
-  }
+  html,body,#fullpage,.fp-section,.fp-table,.fp-overflow,.section{width:100% !important;max-width:100% !important;overflow-x:hidden !important}
+  .section>.container{width:100% !important;max-width:100% !important;padding-left:16px !important;padding-right:16px !important;margin-left:0 !important;margin-right:0 !important}
 
   /* header + menu */
   .header{height:64px;padding-top:env(safe-area-inset-top)}
   .header .inner{grid-template-columns:auto 1fr;gap:8px;padding:0 12px}
   .brand{font-size:1rem}
   .header-cta{display:none}
+  #menu-toggle.mobile-only{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 12px;border:1px solid #2b2b31;border-radius:8px;color:#fff;background:#0b0b0e}
+  #menu{display:none}
+  #menu.is-open{display:block;position:absolute;top:64px;left:0;right:0;background:#0b0b0e;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+  #menu a{display:block;padding:12px 6px;font-size:16px}
 
   /* hero */
   .bg-stripe-intro{background:linear-gradient(180deg,#1e1140 0%,#0f1230 60%,#080a1a 100%);animation:none}
   .section[data-anchor="home"]::after{display:none}
   .section[data-anchor="home"]{min-height:calc(100svh - 64px);padding:2rem 1rem 2rem}
   .section[data-anchor="home"] .container{max-width:680px}
-  .section[data-anchor="home"] h1{
-    text-transform:none;line-height:1.1;margin-bottom:.8rem;
-    font-size:clamp(2.8rem,7vw + .4rem,3.4rem) !important;
-    text-shadow:0 4px 18px rgba(0,0,0,.35)
-  }
-  .section[data-anchor="home"] p{
-    font-size:clamp(1.1rem,1.6vw + .8rem,1.4rem);line-height:1.35;
-    font-weight:600;max-width:90%;margin-inline:auto
-  }
+  .section[data-anchor="home"] h1{text-transform:none;line-height:1.1;margin-bottom:.8rem;font-size:clamp(2.8rem,7vw + .4rem,3.4rem) !important;text-shadow:0 4px 18px rgba(0,0,0,.35)}
+  .section[data-anchor="home"] p{font-size:clamp(1.1rem,1.6vw + .8rem,1.4rem);line-height:1.35;font-weight:600;max-width:90%;margin-inline:auto}
   .section[data-anchor="home"] .btn{width:100%;height:56px;line-height:56px;padding:0 18px;font-size:1.05rem;font-weight:900}
   .section[data-anchor="home"] .btn-row{margin-top:1.5rem !important;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
@@ -224,45 +112,261 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e;color:var(--text-lig
   .section[data-anchor="work"] h2,
   .section[data-anchor="about"] h2,
   .section[data-anchor="contact"] h2{
-    text-transform:none;font-weight:900;letter-spacing:-1px;line-height:1.15;
-    font-size:clamp(2rem,6.2vw + .6rem,2.6rem)
+    text-transform:none;font-weight:900;letter-spacing:-1px;line-height:1.15;font-size:clamp(2rem,6.2vw + .6rem,2.6rem)
   }
 
-  /* Tabs mobile: linha única com scroll (full-bleed) */
-  .section[data-anchor="services"] .toolbox-tabs,
-  .section[data-anchor="work"] .works-tabs,
-  .section[data-anchor="about"] .about-tabs{
-    display:flex;flex-wrap:nowrap;gap:12px;
-    overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;
-    padding:8px 16px;margin:8px -16px 12px;width:calc(100% + 32px)
+  /* tabs full-bleed */
+  .toolbox-tabs,.works-tabs,.about-tabs{
+    position:relative;z-index:3;width:100%;max-width:100%;
+    margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;
+    display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;overflow-y:visible;
+    -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:16px
   }
-  .section[data-anchor="services"] .toolbox-tabs .tab,
-  .section[data-anchor="work"] .works-tabs .tab,
-  .section[data-anchor="about"] .about-tabs .tab{
-    flex:0 0 auto;white-space:nowrap;min-width:max-content;
-    padding:10px 14px;border-radius:999px;font-weight:800;font-size:.95rem;
-    border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.12);color:#fff
+  .toolbox-tabs .tab,.works-tabs .tab,.about-tabs .tab{
+    flex:0 0 auto;white-space:nowrap;padding:10px 14px;border-radius:999px;font-weight:800;font-size:.95rem;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.12);color:#fff
   }
-  .toolbox-tabs .tab.is-active,.works-tabs .tab.is-active,.about-tabs .tab.is-active{
-    background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));
-    color:#0b0b0e;border-color:transparent
-  }
+  .toolbox-tabs .tab.is-active,.works-tabs .tab.is-active,.about-tabs .tab.is-active{background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));color:#0b0b0e;border-color:transparent}
+  .panel{margin-top:14px !important}
+  .services-grid,.works-grid,.about-grid{display:none !important}
+  .toolbox-panel,.works-panel,.about-panel{display:block}
 
-  /* Glass suavizado no mobile */
+  /* card glow off on mobile to avoid edge halos */
   .glass{box-shadow:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);backdrop-filter:none}
 
-  /* Espaço para o CTA flutuante não tapar conteúdo */
+  /* spacing so floating CTA never covers content */
   .section[data-anchor="services"],.section[data-anchor="work"],.section[data-anchor="about"]{padding-bottom:3.5rem !important}
 
-  /* Contact mobile: ordem e respiro garantidos */
-  .section[data-anchor="contact"]{padding-bottom:5.5rem !important}
+  /* contact: captcha stacked + footer pinned visually to bottom */
+  #contact-form .flex.items-center{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px;margin-bottom:12px}
+  #captcha-question{display:inline-block;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.08);color:#111827;border:1px solid rgba(0,0,0,.06)}
   #captcha{width:120px;max-width:50vw}
+  .section[data-anchor="contact"] .container{min-height:calc(100svh - 64px);display:flex;flex-direction:column}
+  .contact-card{flex:1 0 auto}
+  .contact-footer{align-self:flex-start;margin-top:16px}
+  .section[data-anchor="contact"]{padding-bottom:5.5rem !important}
 }
 
-/* ---- Desktop: esconder tabs/painéis móveis ---- */
+/* ---- Desktop: hide mobile tabs/panels ---- */
 @media (min-width:768px){
   .toolbox-tabs,.toolbox-panel,
   .works-tabs,.works-panel,
   .about-tabs,.about-panel{display:none}
 }
-```
+
+/* --- MOBILE: force tabs to be one row with horizontal scroll --- */
+@media (max-width:767px){
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 16px !important;
+    margin:8px -16px 12px !important;   /* full-bleed row */
+    width:calc(100% + 32px) !important;
+  }
+  .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
+    display:inline-flex !important;
+    align-items:center; justify-content:center;
+    width:auto !important;               /* stop full-width pills */
+    min-width:max-content !important;    /* keep text on one line */
+    flex:0 0 auto !important;            /* prevent wrapping */
+    white-space:nowrap !important;
+  }
+}
+
+/* --- MOBILE: contact layout + captcha stack, footer after the card --- */
+@media (max-width:767px){
+  /* stack captcha cleanly */
+  #contact-form .flex.items-center{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+    margin:8px 0 12px !important;
+  }
+  #captcha{ width:120px; max-width:50vw; }
+
+  /* container is a column; force visual order: card then footer */
+  .section[data-anchor="contact"] .container{
+    display:flex !important;
+    flex-direction:column !important;
+    min-height:calc(100svh - 64px);
+  }
+  .contact-card{ order:1; flex:1 0 auto; }
+  .contact-footer{
+    order:2;
+    align-self:flex-start;
+    margin-top:16px !important;
+    position:relative !important;  /* never overlay */
+    z-index:0 !important;
+  }
+
+  /* room for floating CTA */
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
+
+/* força horizontal no mobile, com bleed até às bordas */
+@media (max-width:767px){
+  .section[data-anchor="services"] .toolbox-tabs,
+  .section[data-anchor="work"] .works-tabs,
+  .section[data-anchor="about"] .about-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 16px !important;
+    margin:8px -16px 12px !important;   /* full-bleed */
+    width:calc(100% + 32px) !important;
+  }
+  .section[data-anchor="services"] .toolbox-tabs .tab,
+  .section[data-anchor="work"] .works-tabs .tab,
+  .section[data-anchor="about"] .about-tabs .tab{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    min-width:max-content !important;
+  }
+}
+
+@media (max-width:767px){
+  .section[data-anchor="contact"] .container{
+    display:flex !important; flex-direction:column !important;
+    min-height:calc(100svh - 64px);
+  }
+  .contact-card{ order:1; flex:1 0 auto; position:relative; z-index:0; }
+  .contact-footer{ order:2; position:static !important; z-index:0 !important; margin-top:16px !important; }
+  #contact-form .flex.items-center{ display:grid !important; grid-template-columns:1fr !important; gap:8px !important; }
+  #captcha{ width:120px; max-width:50vw; }
+}
+/* remove a marca d'água do fullPage */
+.fp-watermark{ display:none !important; }
+
+/* CONTACT: layout robusto no mobile e no desktop */
+.section[data-anchor="contact"] .container{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:calc(100svh - 64px);
+}
+.section[data-anchor="contact"] .contact-card{
+  order:1 !important;
+  flex:1 0 auto;
+  position:relative;
+  z-index:0;
+}
+.section[data-anchor="contact"] .contact-footer{
+  order:2 !important;
+  position:static !important;
+  z-index:0 !important;
+  margin-top:16px !important;
+}
+
+/* MOBILE: captcha em coluna, sem sobreposição */
+@media (max-width:767px){
+  #contact-form .flex.items-center{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+    margin:8px 0 12px !important;
+  }
+  #captcha{ width:120px; max-width:50vw }
+  /* espaço para o CTA flutuante não tapar o footer */
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
+
+@media (max-width:767px){
+  .section[data-anchor="services"] .toolbox-tabs,
+  .section[data-anchor="work"] .works-tabs,
+  .section[data-anchor="about"] .about-tabs{
+    display:flex !important; flex-wrap:nowrap !important;
+    gap:12px !important; overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 16px !important; margin:8px -16px 12px !important;
+    width:calc(100% + 32px) !important;
+  }
+  .section[data-anchor="services"] .toolbox-tabs .tab,
+  .section[data-anchor="work"] .works-tabs .tab,
+  .section[data-anchor="about"] .about-tabs .tab{
+    flex:0 0 auto !important; white-space:nowrap !important; min-width:max-content !important;
+  }
+}
+
+/* --- CONTACT: garantir ordem visual e afastamento --- */
+.section[data-anchor="contact"] .container{
+  display:flex !important; flex-direction:column !important;
+  min-height:calc(100svh - 64px);
+}
+.section[data-anchor="contact"] .contact-card{ order:1 !important; }
+.section[data-anchor="contact"] .contact-footer{
+  order:2 !important;
+  position:static !important;
+  z-index:0 !important;
+  margin-top:24px !important;      /* mais espaço abaixo do form */
+}
+
+/* captcha acima do footer e com respiro extra */
+#contact-form{ padding-bottom:16px !important; }
+#contact-form .flex.items-center{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:8px !important;
+  position:relative; z-index:1;     /* fica por cima só enquanto toca */
+}
+
+@media (max-width:767px){
+  #captcha{ width:120px; max-width:50vw }
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
+
+/* opcional: tira a marca d'água do fullPage */
+.fp-watermark{ display:none !important; }
+
+/* ---------- CONTACT: footer plano, depois do formulário ---------- */
+.section[data-anchor="contact"] .container{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:calc(100svh - 64px);
+}
+
+.section[data-anchor="contact"] .contact-card{
+  order:1 !important;
+  flex:1 0 auto;
+}
+
+/* mata qualquer estilo de "pílula" e de posicionamento */
+.section[data-anchor="contact"] .contact-footer{
+  order:2 !important;
+  display:block !important;
+  position:static !important;
+  float:none !important;
+  clear:both !important;
+  transform:none !important;
+
+  background:transparent !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+
+  margin-top:24px !important;
+  z-index:0 !important;
+}
+
+/* captcha em coluna com respiro, sem z-index acima do footer */
+#contact-form{ padding-bottom:16px !important; }
+#contact-form .flex.items-center{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:8px !important;
+  position:relative !important;
+  z-index:auto !important;
+}
+#captcha{ width:120px; max-width:50vw; }
+
+/* espaço para o CTA flutuante no mobile */
+@media (max-width:767px){
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
+
+/* opcional: esconder watermark do fullPage */
+.fp-watermark{ display:none !important; }
