@@ -339,3 +339,13 @@ body{font-family:'Montserrat',sans-serif; background:#0b0b0e;}
   .section[data-anchor="about"]{ padding-bottom:3.5rem !important; }
 }
 
+/* ===== MOBILE PATCH: remover brilho lateral dos cartões ===== */
+@media (max-width:767px){
+  .glass {
+    box-shadow:none !important;
+    background:rgba(255,255,255,0.12) !important;
+    border:1px solid rgba(255,255,255,0.15) !important;
+    backdrop-filter:none !important;
+  }
+}
+
