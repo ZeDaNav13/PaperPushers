@@ -260,3 +260,27 @@ body{font-family:'Montserrat',sans-serif; background:#0b0b0e;}
   .works-tabs,.works-panel,
   .about-tabs,.about-panel{display:none;}
 }
+
+/* ===== MOBILE PATCH: remove overlay band + make tabs fully visible ===== */
+@media (max-width:767px){
+  /* 1) Kill the section overlay that draws the dark band */
+  .section::after{ display:none !important; }
+  .fp-bg::after{ display:none !important; }  /* extra safety */
+
+  /* 2) Softer card shadow on mobile so it doesn't look like a frame */
+  .glass{ box-shadow: 0 8px 24px rgba(0,0,0,.16) !important; }
+
+  /* 3) Tabs: ensure the first/last chip are not cut inside the container padding */
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 4) Absolute clamp for safety */
+  html, body, #fullpage, .fp-section, .fp-table, .fp-overflow, .section, .section > .container{
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
