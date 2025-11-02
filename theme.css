@@ -320,3 +320,53 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 
 /* opcional: tira a marca d'água do fullPage */
 .fp-watermark{ display:none !important; }
+
+/* ---------- CONTACT: footer plano, depois do formulário ---------- */
+.section[data-anchor="contact"] .container{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:calc(100svh - 64px);
+}
+
+.section[data-anchor="contact"] .contact-card{
+  order:1 !important;
+  flex:1 0 auto;
+}
+
+/* mata qualquer estilo de "pílula" e de posicionamento */
+.section[data-anchor="contact"] .contact-footer{
+  order:2 !important;
+  display:block !important;
+  position:static !important;
+  float:none !important;
+  clear:both !important;
+  transform:none !important;
+
+  background:transparent !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  outline:none !important;
+
+  margin-top:24px !important;
+  z-index:0 !important;
+}
+
+/* captcha em coluna com respiro, sem z-index acima do footer */
+#contact-form{ padding-bottom:16px !important; }
+#contact-form .flex.items-center{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:8px !important;
+  position:relative !important;
+  z-index:auto !important;
+}
+#captcha{ width:120px; max-width:50vw; }
+
+/* espaço para o CTA flutuante no mobile */
+@media (max-width:767px){
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
+
+/* opcional: esconder watermark do fullPage */
+.fp-watermark{ display:none !important; }
