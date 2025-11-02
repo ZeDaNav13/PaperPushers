@@ -152,3 +152,56 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   .works-tabs,.works-panel,
   .about-tabs,.about-panel{display:none}
 }
+
+/* --- MOBILE: force tabs to be one row with horizontal scroll --- */
+@media (max-width:767px){
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    overflow-y:visible !important;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 16px !important;
+    margin:8px -16px 12px !important;   /* full-bleed row */
+    width:calc(100% + 32px) !important;
+  }
+  .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
+    display:inline-flex !important;
+    align-items:center; justify-content:center;
+    width:auto !important;               /* stop full-width pills */
+    min-width:max-content !important;    /* keep text on one line */
+    flex:0 0 auto !important;            /* prevent wrapping */
+    white-space:nowrap !important;
+  }
+}
+
+/* --- MOBILE: contact layout + captcha stack, footer after the card --- */
+@media (max-width:767px){
+  /* stack captcha cleanly */
+  #contact-form .flex.items-center{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+    margin:8px 0 12px !important;
+  }
+  #captcha{ width:120px; max-width:50vw; }
+
+  /* container is a column; force visual order: card then footer */
+  .section[data-anchor="contact"] .container{
+    display:flex !important;
+    flex-direction:column !important;
+    min-height:calc(100svh - 64px);
+  }
+  .contact-card{ order:1; flex:1 0 auto; }
+  .contact-footer{
+    order:2;
+    align-self:flex-start;
+    margin-top:16px !important;
+    position:relative !important;  /* never overlay */
+    z-index:0 !important;
+  }
+
+  /* room for floating CTA */
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
