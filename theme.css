@@ -205,3 +205,71 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   /* room for floating CTA */
   .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
 }
+
+/* força horizontal no mobile, com bleed até às bordas */
+@media (max-width:767px){
+  .section[data-anchor="services"] .toolbox-tabs,
+  .section[data-anchor="work"] .works-tabs,
+  .section[data-anchor="about"] .about-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 16px !important;
+    margin:8px -16px 12px !important;   /* full-bleed */
+    width:calc(100% + 32px) !important;
+  }
+  .section[data-anchor="services"] .toolbox-tabs .tab,
+  .section[data-anchor="work"] .works-tabs .tab,
+  .section[data-anchor="about"] .about-tabs .tab{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    min-width:max-content !important;
+  }
+}
+
+@media (max-width:767px){
+  .section[data-anchor="contact"] .container{
+    display:flex !important; flex-direction:column !important;
+    min-height:calc(100svh - 64px);
+  }
+  .contact-card{ order:1; flex:1 0 auto; position:relative; z-index:0; }
+  .contact-footer{ order:2; position:static !important; z-index:0 !important; margin-top:16px !important; }
+  #contact-form .flex.items-center{ display:grid !important; grid-template-columns:1fr !important; gap:8px !important; }
+  #captcha{ width:120px; max-width:50vw; }
+}
+/* remove a marca d'água do fullPage */
+.fp-watermark{ display:none !important; }
+
+/* CONTACT: layout robusto no mobile e no desktop */
+.section[data-anchor="contact"] .container{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:calc(100svh - 64px);
+}
+.section[data-anchor="contact"] .contact-card{
+  order:1 !important;
+  flex:1 0 auto;
+  position:relative;
+  z-index:0;
+}
+.section[data-anchor="contact"] .contact-footer{
+  order:2 !important;
+  position:static !important;
+  z-index:0 !important;
+  margin-top:16px !important;
+}
+
+/* MOBILE: captcha em coluna, sem sobreposição */
+@media (max-width:767px){
+  #contact-form .flex.items-center{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+    margin:8px 0 12px !important;
+  }
+  #captcha{ width:120px; max-width:50vw }
+  /* espaço para o CTA flutuante não tapar o footer */
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
