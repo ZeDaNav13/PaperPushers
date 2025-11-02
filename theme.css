@@ -348,7 +348,6 @@ body{font-family:'Montserrat',sans-serif; background:#0b0b0e;}
     backdrop-filter:none !important;
   }
 }
-
 /* ===== MOBILE: tabs full width, not clipped, first chip fully visible ===== */
 @media (max-width:767px){
   .toolbox-tabs, .works-tabs, .about-tabs{
