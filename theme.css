@@ -143,3 +143,50 @@ body{font-family:'Montserrat',sans-serif}
   .tab.is-active{background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB)); color:#0b0b0e}
   #tab-panel{margin-top:.75rem}
 }
+
+/* --- Mobile: tabs become a horizontal chip row --- */
+@media (max-width:767px){
+  /* shared tabs */
+  .tabs{
+    display:flex;
+    flex-wrap:nowrap;        /* no wrapping */
+    overflow-x:auto;         /* horizontal scroll */
+    -webkit-overflow-scrolling:touch;
+    gap:10px;
+    padding:8px 16px;
+    margin:.5rem 0 .75rem;
+    scroll-snap-type:x mandatory;
+    max-width:100%;
+  }
+  .tabs .tab{
+    flex:0 0 auto;           /* chips keep size */
+    white-space:nowrap;      /* avoid multi-line labels */
+    scroll-snap-align:start;
+    padding:10px 14px;
+    border-radius:999px;
+    font-weight:800;
+    color:#fff;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    font-size:0.95rem;       /* slightly smaller to fit */
+  }
+  .tabs .tab.is-active{
+    color:#0b0b0e;
+    background:linear-gradient(var(--grad-angle), var(--btnA), var(--btnB));
+    border-color:transparent;
+  }
+
+  /* keep panel visible + comfortable with floating CTA */
+  .panel{ margin:.25rem 16px 0; }
+  .section[data-anchor="services"], 
+  .section[data-anchor="work"],
+  .section[data-anchor="about"]{
+    padding-bottom:3.75rem;  /* space above floating CTA */
+  }
+
+  /* optional: subtle edge masks to hint scroll */
+  .tabs{
+    position:relative;
+    mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  }
+}
