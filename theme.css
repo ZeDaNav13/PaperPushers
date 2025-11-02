@@ -284,3 +284,58 @@ body{font-family:'Montserrat',sans-serif; background:#0b0b0e;}
     overflow-x: hidden !important;
   }
 }
+
+/* ===== MOBILE: tabs full-bleed + sem vinheta ===== */
+@media (max-width:767px){
+  /* remove banda/overlay e suaviza o shadow dos cards */
+  .section::after, .fp-bg::after{ display:none !important; }
+  .glass{ box-shadow:0 6px 16px rgba(0,0,0,.12) !important; }
+
+  /* tabs ocupam a largura total do viewport, fora do padding do container */
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+
+    display:flex !important;
+    justify-content:flex-start !important;
+    flex-wrap:nowrap !important;
+    gap:12px !important;
+
+    padding:8px 16px !important;
+    margin:8px 0 12px !important;
+
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .toolbox-tabs::-webkit-scrollbar,
+  .works-tabs::-webkit-scrollbar,
+  .about-tabs::-webkit-scrollbar{ display:none; }
+
+  .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    padding:10px 14px !important;
+    border-radius:999px !important;
+    font-weight:800 !important;
+    font-size:.95rem !important;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.12);
+    color:#fff;
+  }
+  .toolbox-tabs .tab.is-active,
+  .works-tabs .tab.is-active,
+  .about-tabs .tab.is-active{
+    background:linear-gradient(var(--grad-angle), var(--secondary), var(--highlight));
+    color:#0b0b0e; border-color:transparent;
+  }
+
+  /* espaço para o CTA flutuante */
+  .section[data-anchor="services"],
+  .section[data-anchor="work"],
+  .section[data-anchor="about"]{ padding-bottom:3.5rem !important; }
+}
+
