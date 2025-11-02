@@ -1,396 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8"/>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-      <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
-      <!-- libs -->
-      <script src="https://cdn.tailwindcss.com" defer></script>
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css"/>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js" defer></script>
-      <!-- site css -->
-      <link rel="stylesheet" href="theme.css?v=4">
-      <!-- tiny CSS just for mobile tabs visibility (safe even without theme change) -->
-      <style>
-         /* desktop: show grids, hide tabs */
-         @media (min-width:768px){
-         .toolbox-tabs,.toolbox-panel,
-         .works-tabs,.works-panel,
-         .about-tabs,.about-panel{display:none}
-         }
-         /* mobile: hide grids, show tabs + panels */
-         @media (max-width:767px){
-         .services-grid, .works-grid, .about-grid{display:none !important}
-         .toolbox-tabs,.toolbox-panel,
-         .works-tabs,.works-panel,
-         .about-tabs,.about-panel{display:block}
-         .tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:.5rem 0 .75rem;padding:0 8px}
-         .tab{padding:10px 12px;border-radius:10px;font-weight:800;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)}
-         .tab.is-active{color:#0b0b0e;background:linear-gradient(var(--grad-angle,135deg), var(--btnA,#FFF53E), var(--btnB,#77FD3E));border-color:transparent}
-         .panel{margin:.25rem 1rem 0}
-         .panel h3{font-size:1.5rem}
-         .panel p{font-size:1.05rem;line-height:1.4}
-         }
-      </style>
-   </head>
-   <body class="font-sans">
-      <!-- Header -->
-      <header class="header">
-         <div class="inner">
-            <a href="#home" class="brand" data-menuanchor="home" title="Back to top">PAPERPUSHERS</a>
-            <!-- Mobile toggle -->
-            <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu">Menu</button>
-            <nav id="menu" class="nav">
-               <a href="#services" data-menuanchor="services">The Toolbox</a>
-               <a href="#work" data-menuanchor="work">Works</a>
-               <a href="#about" data-menuanchor="about">About</a>
-               <a href="#contact" data-menuanchor="contact">Contact</a>
-            </nav>
-            <div class="header-cta">
-               <button class="btn-quote" onclick="fullpage_api.moveTo('contact')">Open the Toolbox</button>
-            </div>
-         </div>
-      </header>
-      <!-- Floating CTA -->
-      <button id="floating-cta" aria-label="Start a project" title="Start a project">Start a project</button>
-      <div id="fullpage">
-         <!-- HOME -->
-         <div class="section" data-anchor="home">
-            <div class="fp-bg bg-stripe-intro"></div>
-            <div class="container">
-               <h1 class="text-glow text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] mb-6" style="color:#FFF53E">PaperPushers</h1>
-               <p class="text-on-dark text-2xl md:text-3xl font-bold max-w-4xl mx-auto">
-                  The adaptive toolbox for businesses that grow.</br>Digital, physical, pixels or places — we build what you need now.</br>Made to fit, flex and perform.
-               </p>
-               <div class="mt-10 btn-row flex items-center justify-center gap-4">
-                  <button class="btn btn-primary" onclick="fullpage_api.moveTo('contact')">Start</button>
-                  <button class="btn btn-outline" onclick="fullpage_api.moveTo('work')">Peek inside</button>
-               </div>
-            </div>
-         </div>
-         <!-- SERVICES -->
-         <div class="section" data-anchor="services">
-            <div class="fp-bg bg-stripe-services"></div>
-            <div class="container text-on-dark">
-               <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">The Toolbox</h2>
-               <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-                  We don’t have “one thing.” We have a set. A kit. A box.</br>
-                  Things that fit your shape of business.</br>
-                  Grab what you need, and we’ll make it work together.
-               </p>
-               <!-- Mobile tabs -->
-               <div class="toolbox-tabs tabs" role="tablist" aria-label="Toolbox">
-                  <button class="tab is-active" role="tab" aria-selected="true" data-tab="web">Web & Digital</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="brand">Brand & Identity</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="biz">Business Design</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="social">Social & Media</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="tools">Tools & Systems</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="spaces">Spaces & Interiors</button>
-               </div>
-               <article id="toolbox-panel" class="glass toolbox-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
-                  <h3 class="text-2xl md:text-3xl font-black mb-2" id="toolbox-title">Web & Digital</h3>
-                  <p id="toolbox-body">Sites, systems, and SEO that grow with you. From first click to full platform.</p>
-               </article>
-               <!-- Desktop grid (kept) -->
-               <div class="grid-3 services-grid max-w-6xl mx-auto text-left">
-                  <article class="glass parallax-card p-6 md:p-8">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Web & Digital</h3>
-                     <p class="text-base md:text-lg">Sites, systems, and SEO that grow with you. From first click to full platform.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Brand & Identity</h3>
-                     <p class="text-base md:text-lg">Logos, language, and design systems that speak your truth — loud, clear, and consistent.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Business Design</h3>
-                     <p class="text-base md:text-lg">Where creativity meets spreadsheets. We design how your business actually works.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Social & Media</h3>
-                     <p class="text-base md:text-lg">Content that connects, campaigns that convert, and stories people actually share.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Tools & Systems</h3>
-                     <p class="text-base md:text-lg">Custom tools that link the dots — automate, align, and make things flow.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Spaces & Interiors</h3>
-                     <p class="text-base md:text-lg">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p>
-                  </article>
-               </div>
-            </div>
-         </div>
-         <!-- WORK -->
-         <div class="section" data-anchor="work">
-            <div class="fp-bg bg-stripe-portfolio"></div>
-            <div class="container">
-               <h2 class="text-glow text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#FFF53E">Works</h2>
-               <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-                  Things we did for ourselves.</br>Small to large scopes. Digital and not digital.</br>In common: optimized and effective delivery.
-               </p>
-               <!-- Mobile tabs -->
-               <div class="works-tabs tabs" role="tablist" aria-label="Works">
-                  <button class="tab is-active" role="tab" aria-selected="true" data-tab="fevr">RealFevr</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="mili">MiliLand</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
-               </div>
-               <article id="works-panel" class="glass works-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
-                  <h3 class="text-2xl md:text-3xl font-black mb-2" id="works-title">RealFevr → +2.5M downloads</h3>
-                  <p id="works-body">Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+.</p>
-               </article>
-               <!-- Desktop grid (kept) -->
-               <div class="grid-3 works-grid max-w-6xl mx-auto text-left">
-                  <article class="glass parallax-card p-6 md:p-8 text-on-dark">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → </br>+2.5M downloads</h3>
-                     <p class="text-base md:text-lg">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8 text-on-dark">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">MiliLand Digital → Online Studio</h3>
-                     <p class="text-base md:text-lg">Agile media studio blending branding, web, social, and ads — running since 2010.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8 text-on-dark">
-                     <h3 class="text-2xl md:text-3xl font-black mb-2">Pentagon Lisboa → From ruin to icon</h3>
-                     <p class="text-base md:text-lg">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p>
-                  </article>
-               </div>
-            </div>
-         </div>
-         <!-- ABOUT -->
-         <div class="section" data-anchor="about">
-            <div class="fp-bg bg-stripe-about"></div>
-            <div class="container">
-               <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">About us</h2>
-               <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere,
-                  facilisis et aliquet, cria momentum sem vitae lectus. We work fast, stay sharp,
-                  and deliver outcomes that compound.
-               </p>
-               <!-- Mobile tabs -->
-               <div class="about-tabs tabs" role="tablist" aria-label="About">
-                  <button class="tab is-active" role="tab" aria-selected="true" data-tab="team">Team</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="values">Values</button>
-                  <button class="tab" role="tab" aria-selected="false" data-tab="quote">Quote</button>
-               </div>
-               <article id="about-panel" class="glass about-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
-                  <h3 class="text-2xl md:text-3xl font-black mb-2" id="about-title">We’re a Lisbon-based business toolbox team</h3>
-                  <p id="about-body">A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p>
-               </article>
-               <!-- Desktop grid (kept) -->
-               <div class="grid-3 about-grid max-w-6xl mx-auto text-left">
-                  <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark">
-                     <p class="text-base md:text-lg"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark">
-                     <p class="text-base md:text-lg"><strong>Our values:</strong> </br>- Agility over rigidity </br>- Sleight over noise </br>- Outcomes over outputs </p>
-                  </article>
-                  <article class="glass parallax-card p-6 md:p-8 text-soft-on-dark">
-                     <p class="text-base md:text-lg italic">“They didn’t just bring the right tools, they invented a few on the way.” </br> — Bruno, CEO Proeza Colossal</p>
-                  </article>
-               </div>
-            </div>
-         </div>
-         <!-- CONTACT -->
-         <div class="section" data-anchor="contact">
-            <div class="fp-bg bg-stripe-contact"></div>
-            <div class="container text-on-light">
-               <h2 class="contact-title text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] mb-4" style="color:#D2009E">Let’s open the box</h2>
-               <p class="mb-6 text-lg md:text-2xl lg:text-2xl font-semibold">Tell us what you’re building, breaking, or dreaming up. We’ll reply within 1 business day with the right tools in hand.</p>
-               <div class="glass contact-card parallax-card max-w-6xl mx-auto p-6 md:p-8 grid gap-6 md:grid-cols-2 text-left">
-                  <form id="contact-form" class="grid gap-3" novalidate>
-                     <label class="font-bold" for="name">Name</label>
-                     <input id="name" name="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" required/>
-                     <label class="font-bold" for="email">Email</label>
-                     <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
-                     <label class="font-bold" for="details">What’s the project?</label>
-                     <textarea id="details" name="message" rows="3" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
-                     <!-- honeypot -->
-                     <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
-                     <!-- simple math captcha -->
-                     <div class="flex items-center gap-3">
-                        <label for="captcha" class="font-bold">Prove you are human:</label>
-                        <span id="captcha-question" class="inline-block px-2 py-1 rounded border text-sm"></span>
-                        <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
-                     </div>
-                     <p id="form-status" class="text-sm font-semibold mt-1" role="status" aria-live="polite" hidden></p>
-                     <button type="submit" class="btn btn-primary mt-1">Hand me the wrench</button>
-                  </form>
-                  <aside class="grid gap-2">
-                     <h3 class="text-2xl md:text-3xl font-black mb-1">Contact us</h3>
-                     <p class="text-base md:text-lg">Prefer email? <a href="mailto:hello@paperpushers.biz" class="underline font-bold">hello@paperpushers.biz</a></p>
-                     <p class="text-base md:text-lg">HQ: Lisbon, Portugal</p>
-                     <p class="text-base md:text-lg">Hours: Dawn, Day and Dusk, Monday to Sunday</p>
-                  </aside>
-               </div>
-               <div class="contact-footer">© <span id="year"></span> PaperPushers · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a></div>
-            </div>
-         </div>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
+
+  <!-- libs -->
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js" defer></script>
+
+  <!-- site css -->
+  <link rel="stylesheet" href="theme.css?v=5">
+
+  <!-- tiny helper so tabs show on mobile even if CSS cache lags -->
+  <style>
+    @media (min-width:768px){
+      .toolbox-tabs,.toolbox-panel,.works-tabs,.works-panel,.about-tabs,.about-panel{display:none}
+    }
+    @media (max-width:767px){
+      .services-grid,.works-grid,.about-grid{display:none !important}
+      .toolbox-tabs,.toolbox-panel,.works-tabs,.works-panel,.about-tabs,.about-panel{display:block}
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="inner">
+      <a href="#home" class="brand" data-menuanchor="home" title="Back to top">PAPERPUSHERS</a>
+      <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu">Menu</button>
+      <nav id="menu" class="nav">
+        <a href="#services" data-menuanchor="services">The Toolbox</a>
+        <a href="#work" data-menuanchor="work">Works</a>
+        <a href="#about" data-menuanchor="about">About</a>
+        <a href="#contact" data-menuanchor="contact">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <button class="btn-quote" onclick="fullpage_api.moveTo('contact')">Open the Toolbox</button>
       </div>
-      <!-- Scripts -->
-      <script>
-         // fullPage init
-         window.addEventListener('load', function () {
-           new fullpage('#fullpage', {
-             licenseKey: 'gplv3-license',
-             anchors: ['home','services','work','about','contact'],
-             menu: '#menu',
-             navigation: true,
-             navigationPosition: 'right',
-             autoScrolling: true,
-             fitToSection: true,
-             scrollingSpeed: 900,
-             css3: true,
-             scrollBar: false,
-             keyboardScrolling: true,
-             paddingTop: '72px',
-             normalScrollElements: '.contact-card',
-             responsiveWidth: 768,
-             afterLoad: function(origin, destination){
-               toggleCTA(destination.anchor);
-             }
-           });
-         
-           const yEl = document.getElementById('year');
-           if (yEl) yEl.textContent = new Date().getFullYear();
-         
-           setupCaptcha();
-           startCtaMode();
-           setupTabs();
-           toggleCTA(fullpage_api.getActiveSection().anchor);
-           window.addEventListener('resize', function(){
-           toggleCTA(fullpage_api.getActiveSection().anchor);
-           });
-         });
-         
-         // Captcha
-         function setupCaptcha(){
-           const a = Math.floor(1 + Math.random()*9);
-           const b = Math.floor(1 + Math.random()*9);
-           const q = document.getElementById('captcha-question');
-           if(q) q.textContent = a + " + " + b + " = ?";
-           const form = document.getElementById('contact-form');
-           if(!form) return;
-           form.addEventListener('submit', function(e){
-             const hp = document.getElementById('website');
-             const ans = parseInt(document.getElementById('captcha').value, 10);
-             const ok = (ans === a + b) && (!hp || hp.value === '');
-             if(!ok){
-               e.preventDefault();
-               const s = document.getElementById('form-status');
-               if(s){ s.hidden = false; s.textContent = 'Captcha incorrecto.'; }
-             }
-           });
-         }
-         
-         // Floating CTA: fixed on mobile, animated on desktop
-           function toggleCTA(anchor){
-             var cta = document.getElementById('floating-cta');
-             if (!cta) return;
-             var hideOn = ['home','contact'];
-             var isMobile = window.matchMedia('(max-width: 767px)').matches;
-             cta.style.display = (isMobile && hideOn.includes(anchor)) ? 'none' : '';
-           }
-         
-           function apply(){
-             if (window.matchMedia('(max-width: 767px)').matches) {
-               cta.style.position = 'fixed';
-               cta.style.top = 'auto';
-               cta.style.left = 'auto';
-               cta.style.bottom = '12px';
-               cta.style.right  = '12px';
-               cta.style.transform = 'none';
-               return;
-             }
-             // desktop bounce
-             let x=160, y=120, dx=2.2, dy=2.0;
-             const getVar = (n)=> getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-             const grad = (a,b)=> `linear-gradient(${getComputedStyle(document.documentElement).getPropertyValue('--grad-angle').trim() || '135deg'}, ${a}, ${b})`;
-             const pickTwo = ()=>{
-               const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
-               const i=Math.floor(Math.random()*cols.length);
-               const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
-               return [cols[i], cols[j]];
-             };
-             (function tick(){
-               const el=document.getElementById('floating-cta');
-               if(!el) return;
-               const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
-               if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
-               if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
-               x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
-             })();
-           }
-           apply();
-           window.addEventListener('resize', apply);
-         }
-         
-         // Mobile tabs (Toolbox, Works, About)
-         function setupTabs(){
-           // Toolbox
-           const toolboxData = {
-             web:["Web & Digital","Sites, systems, and SEO that grow with you. From first click to full platform."],
-             brand:["Brand & Identity","Logos, language, and design systems that speak your truth — loud, clear, and consistent."],
-             biz:["Business Design","Where creativity meets spreadsheets. We design how your business actually works."],
-             social:["Social & Media","Content that connects, campaigns that convert, and stories people actually share."],
-             tools:["Tools & Systems","Custom tools that link the dots — automate, align, and make things flow."],
-             spaces:["Spaces & Interiors","Brands that don’t stop at screens — they spill into walls, chairs, and vibes."]
-           };
-           bindTabs('.toolbox-tabs','.toolbox-panel','#toolbox-title','#toolbox-body', toolboxData);
-         
-           // Works
-           const worksData = {
-             fevr:["RealFevr → +2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
-             mili:["MiliLand Digital → Online Studio","Agile media studio blending branding, web, social, and ads — running since 2010."],
-             pent:["Pentagon Lisboa → From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."]
-           };
-           bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData);
-         
-           // About
-           const aboutData = {
-             team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
-             values:["Our values","Agility over rigidity. Sleight over noise. Outcomes over outputs."],
-             quote:["What clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO Proeza Colossal"]
-           };
-           bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData);
-         
-           function bindTabs(tabsSel,panelSel,titleSel,bodySel,data){
-             const tabs = document.querySelectorAll(tabsSel+' .tab');
-             const panel = document.querySelector(panelSel);
-             const title = document.querySelector(titleSel);
-             const body  = document.querySelector(bodySel);
-             if(!tabs.length || !panel || !title || !body) return;
-             tabs.forEach(b=>{
-               b.addEventListener('click', ()=>{
-                 tabs.forEach(x=>x.classList.remove('is-active'));
-                 b.classList.add('is-active');
-                 const key = b.dataset.tab;
-                 const val = data[key];
-                 if(val){ title.textContent = val[0]; body.textContent = val[1]; }
-               });
-             });
-           }
-         }
-         
-         // Mobile menu toggle
-         (function(){
-           var btn = document.getElementById('menu-toggle');
-           var nav = document.getElementById('menu');
-           if(!btn || !nav) return;
-           btn.addEventListener('click', function(){
-             var open = nav.classList.toggle('is-open');
-             btn.setAttribute('aria-expanded', String(open));
-           });
-           nav.addEventListener('click', function(e){
-             if(e.target.tagName === 'A'){
-               nav.classList.remove('is-open');
-               btn.setAttribute('aria-expanded','false');
-             }
-           });
-         })();
-      </script>
-      <script>
-         document.querySelectorAll('.toolbox-tabs, .works-tabs, .about-tabs')
-           .forEach(el => { el.scrollLeft = 0; });
-      </script>
-   </body>
+    </div>
+  </header>
+
+  <!-- Floating CTA -->
+  <button id="floating-cta" aria-label="Start a project" title="Start a project">Start a project</button>
+
+  <div id="fullpage">
+    <!-- HOME -->
+    <div class="section" data-anchor="home">
+      <div class="fp-bg bg-stripe-intro"></div>
+      <div class="container">
+        <h1 class="text-glow text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] mb-6" style="color:#FFF53E">PaperPushers</h1>
+        <p class="text-on-dark text-2xl md:text-3xl font-bold max-w-4xl mx-auto">
+          The adaptive toolbox for businesses that grow.</br>Digital, physical, pixels or places — we build what you need now.</br>Made to fit, flex and perform.
+        </p>
+        <div class="mt-10 btn-row flex items-center justify-center gap-4">
+          <button class="btn btn-primary" onclick="fullpage_api.moveTo('contact')">Start</button>
+          <button class="btn btn-outline" onclick="fullpage_api.moveTo('work')">Peek inside</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section" data-anchor="services">
+      <div class="fp-bg bg-stripe-services"></div>
+      <div class="container text-on-dark">
+        <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">The Toolbox</h2>
+        <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
+          We don’t have “one thing.” We have a set. A kit. A box.</br>
+          Things that fit your shape of business.</br>
+          Grab what you need, and we’ll make it work together.
+        </p>
+
+        <!-- Mobile tabs -->
+        <div class="toolbox-tabs tabs" role="tablist" aria-label="Toolbox">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="web">Web & Digital</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="brand">Brand & Identity</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="biz">Business Design</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="social">Social & Media</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="tools">Tools & Systems</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="spaces">Spaces & Interiors</button>
+        </div>
+        <article id="toolbox-panel" class="glass toolbox-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
+          <h3 class="text-2xl md:text-3xl font-black mb-2" id="toolbox-title">Web & Digital</h3>
+          <p id="toolbox-body">Sites, systems, and SEO that grow with you. From first click to full platform.</p>
+        </article>
+
+        <!-- Desktop grid -->
+        <div class="grid-3 services-grid max-w-6xl mx-auto text-left">
+          <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Web & Digital</h3><p class="text-base md:text-lg">Sites, systems, and SEO that grow with you. From first click to full platform.</p></article>
+          <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Brand & Identity</h3><p class="text-base md:text-lg">Logos, language, and design systems that speak your truth — loud, clear, and consistent.</p></article>
+          <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Business Design</h3><p class="text-base md:text-lg">Where creativity meets spreadsheets. We design how your business actually works.</p></article>
+          <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Social & Media</h3><p class="text-base md:text-lg">Content that connects, campaigns that convert, and stories people actually share.</p></article>
+          <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Tools & Systems</h3><p class="text-base md:text-lg">Custom tools that link the dots — automate, align, and make things flow.</p></article>
+          <article class="glass parallax-card p-6 md:p-8"><h3 class="text-2xl md:text-3xl font-black mb-2">Spaces & Interiors</h3><p class="text-base md:text-lg">Brands that don’t stop at screens — they spill into walls, chairs, and vibes.</p></article>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORK -->
+    <div class="section" data-anchor="work">
+      <div class="fp-bg bg-stripe-portfolio"></div>
+      <div class="container">
+        <h2 class="text-glow text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#FFF53E">Works</h2>
+        <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
+          Things we did for ourselves.</br>Small to large scopes. Digital and not digital.</br>In common: optimized and effective delivery.
+        </p>
+
+        <!-- Mobile tabs -->
+        <div class="works-tabs tabs" role="tablist" aria-label="Works">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="fevr">RealFevr</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="mili">MiliLand</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
+        </div>
+        <article id="works-panel" class="glass works-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
+          <h3 class="text-2xl md:text-3xl font-black mb-2" id="works-title">RealFevr → +2.5M downloads</h3>
+          <p id="works-body">Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+.</p>
+        </article>
+
+        <!-- Desktop grid -->
+        <div class="grid-3 works-grid max-w-6xl mx-auto text-left">
+          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → </br>+2.5M downloads</h3><p class="text-base md:text-lg">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p></article>
+          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">MiliLand Digital → Online Studio</h3><p class="text-base md:text-lg">Agile media studio blending branding, web, social, and ads — running since 2010.</p></article>
+          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">Pentagon Lisboa → From ruin to icon</h3><p class="text-base md:text-lg">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p></article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section" data-anchor="about">
+      <div class="fp-bg bg-stripe-about"></div>
+      <div class="container">
+        <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">About us</h2>
+        <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere,
+          facilisis et aliquet, cria momentum sem vitae lectus. We work fast, stay sharp,
+          and deliver outcomes that compound.
+        </p>
+
+        <!-- Mobile tabs -->
+        <div class="about-tabs tabs" role="tablist" aria-label="About">
+          <button class="tab is-active" role="tab" aria-selected="true" data-tab="team">Team</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="values">Values</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="quote">Quote</button>
+        </div>
+        <article id="about-panel" class="glass about-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
+          <h3 class="text-2xl md:text-3xl font-black mb-2" id="about-title">We’re a Lisbon-based business toolbox team</h3>
+          <p id="about-body">A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p>
+        </article>
+
+        <!-- Desktop grid -->
+        <div class="grid-3 about-grid max-w-6xl mx-auto text-left">
+          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
+          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>Our values:</strong> </br>- Agility over rigidity </br>- Sleight over noise </br>- Outcomes over outputs</p></article>
+          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg italic">“They didn’t just bring the right tools, they invented a few on the way.” </br>— Bruno, CEO Proeza Colossal</p></article>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section" data-anchor="contact">
+      <div class="fp-bg bg-stripe-contact"></div>
+      <div class="container text-on-light">
+        <h2 class="contact-title text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] mb-4" style="color:#D2009E">Let’s open the box</h2>
+        <p class="mb-6 text-lg md:text-2xl lg:text-2xl font-semibold">Tell us what you’re building, breaking, or dreaming up. We’ll reply within 1 business day with the right tools in hand.</p>
+
+        <div class="glass contact-card max-w-6xl mx-auto p-6 md:p-8 grid gap-6 md:grid-cols-2 text-left">
+          <form id="contact-form" class="grid gap-3" novalidate>
+            <label class="font-bold" for="name">Name</label>
+            <input id="name" name="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" required/>
+
+            <label class="font-bold" for="email">Email</label>
+            <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
+
+            <label class="font-bold" for="details">What’s the project?</label>
+            <textarea id="details" name="message" rows="3" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
+
+            <!-- honeypot -->
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
+
+            <!-- simple math captcha -->
+            <div class="flex items-center gap-3">
+              <label for="captcha" class="font-bold">Prove you are human:</label>
+              <span id="captcha-question" class="inline-block px-2 py-1 rounded border text-sm"></span>
+              <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
+            </div>
+
+            <p id="form-status" class="text-sm font-semibold mt-1" role="status" aria-live="polite" hidden></p>
+            <button type="submit" class="btn btn-primary mt-1">Hand me the wrench</button>
+          </form>
+
+          <aside class="grid gap-2">
+            <h3 class="text-2xl md:text-3xl font-black mb-1">Contact us</h3>
+            <p class="text-base md:text-lg">Prefer email? <a href="mailto:hello@paperpushers.biz" class="underline font-bold">hello@paperpushers.biz</a></p>
+            <p class="text-base md:text-lg">HQ: Lisbon, Portugal</p>
+            <p class="text-base md:text-lg">Hours: Dawn, Day and Dusk, Monday to Sunday</p>
+          </aside>
+        </div>
+
+        <div class="contact-footer">© <span id="year"></span> PaperPushers · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // fullPage init
+    window.addEventListener('load', function () {
+      new fullpage('#fullpage', {
+        licenseKey: 'gplv3-license',
+        anchors: ['home','services','work','about','contact'],
+        menu: '#menu',
+        navigation: true,
+        navigationPosition: 'right',
+        autoScrolling: true,
+        fitToSection: true,
+        scrollingSpeed: 900,
+        css3: true,
+        scrollBar: false,
+        keyboardScrolling: true,
+        paddingTop: '72px',
+        normalScrollElements: '.contact-card',
+        responsiveWidth: 768,
+        afterLoad: function(origin, destination){ toggleCTA(destination.anchor); }
+      });
+
+      const yEl = document.getElementById('year');
+      if (yEl) yEl.textContent = new Date().getFullYear();
+
+      setupCaptcha();
+      startCtaMode();
+      setupTabs();
+
+      // initial CTA state
+      toggleCTA(fullpage_api.getActiveSection().anchor);
+      window.addEventListener('resize', () => toggleCTA(fullpage_api.getActiveSection().anchor));
+    });
+
+    // Captcha
+    function setupCaptcha(){
+      const a = Math.floor(1 + Math.random()*9);
+      const b = Math.floor(1 + Math.random()*9);
+      const q = document.getElementById('captcha-question');
+      if(q) q.textContent = a + " + " + b + " = ?";
+      const form = document.getElementById('contact-form');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        const hp = document.getElementById('website');
+        const ans = parseInt(document.getElementById('captcha').value, 10);
+        const ok = (ans === a + b) && (!hp || hp.value === '');
+        if(!ok){
+          e.preventDefault();
+          const s = document.getElementById('form-status');
+          if(s){ s.hidden = false; s.textContent = 'Captcha incorrecto.'; }
+        }
+      });
+    }
+
+    // Floating CTA: fixed on mobile, animated on desktop
+    function startCtaMode() {
+      const cta = document.getElementById('floating-cta');
+      if (!cta) return;
+
+      function apply(){
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          cta.style.position = 'fixed';
+          cta.style.bottom = '12px';
+          cta.style.right  = '12px';
+          cta.style.left = 'auto';
+          cta.style.top  = 'auto';
+          cta.style.transform = 'none';
+          return;
+        }
+        // desktop bounce
+        let x=160, y=120, dx=2.2, dy=2.0;
+        const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+        const grad = (a,b)=> `linear-gradient(${getVar('--grad-angle')||'135deg'}, ${a}, ${b})`;
+        const pickTwo = ()=>{
+          const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
+          const i=Math.floor(Math.random()*cols.length);
+          const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
+          return [cols[i], cols[j]];
+        };
+        (function tick(){
+          const el=document.getElementById('floating-cta'); if(!el) return;
+          const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
+          if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
+          if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
+          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
+        })();
+      }
+      apply();
+      window.addEventListener('resize', apply);
+    }
+
+    // Show/Hide CTA on first + last section (mobile)
+    function toggleCTA(anchor){
+      const cta = document.getElementById('floating-cta');
+      if (!cta) return;
+      const hideOn = ['home','contact'];
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      cta.style.display = (isMobile && hideOn.includes(anchor)) ? 'none' : '';
+    }
+
+    // Mobile tabs (Toolbox, Works, About)
+    function setupTabs(){
+      const toolboxData = {
+        web:["Web & Digital","Sites, systems, and SEO that grow with you. From first click to full platform."],
+        brand:["Brand & Identity","Logos, language, and design systems that speak your truth — loud, clear, and consistent."],
+        biz:["Business Design","Where creativity meets spreadsheets. We design how your business actually works."],
+        social:["Social & Media","Content that connects, campaigns that convert, and stories people actually share."],
+        tools:["Tools & Systems","Custom tools that link the dots — automate, align, and make things flow."],
+        spaces:["Spaces & Interiors","Brands that don’t stop at screens — they spill into walls, chairs, and vibes."]
+      };
+      bindTabs('.toolbox-tabs','.toolbox-panel','#toolbox-title','#toolbox-body', toolboxData);
+
+      const worksData = {
+        fevr:["RealFevr → +2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
+        mili:["MiliLand Digital → Online Studio","Agile media studio blending branding, web, social, and ads — running since 2010."],
+        pent:["Pentagon Lisboa → From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."]
+      };
+      bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData);
+
+      const aboutData = {
+        team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
+        values:["Our values","Agility over rigidity. Sleight over noise. Outcomes over outputs."],
+        quote:["What clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO Proeza Colossal"]
+      };
+      bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData);
+
+      function bindTabs(tabsSel,panelSel,titleSel,bodySel,data){
+        const tabs = document.querySelectorAll(tabsSel+' .tab');
+        const panel = document.querySelector(panelSel);
+        const title = document.querySelector(titleSel);
+        const body  = document.querySelector(bodySel);
+        if(!tabs.length || !panel || !title || !body) return;
+        tabs.forEach(b=>{
+          b.addEventListener('click', ()=>{
+            tabs.forEach(x=>x.classList.remove('is-active'));
+            b.classList.add('is-active');
+            const key = b.dataset.tab;
+            const val = data[key];
+            if(val){ title.textContent = val[0]; body.textContent = val[1]; }
+          });
+        });
+      }
+    }
+
+    // Mobile menu toggle
+    (function(){
+      const btn = document.getElementById('menu-toggle');
+      const nav = document.getElementById('menu');
+      if(!btn || !nav) return;
+      btn.addEventListener('click', function(){
+        const open = nav.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      nav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A'){
+          nav.classList.remove('is-open');
+          btn.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    // make sure tab rows start aligned left on load
+    document.querySelectorAll('.toolbox-tabs, .works-tabs, .about-tabs').forEach(el => el.scrollLeft = 0);
+  </script>
+</body>
 </html>
