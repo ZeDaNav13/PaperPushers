@@ -273,3 +273,20 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   /* espaço para o CTA flutuante não tapar o footer */
   .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
 }
+
+@media (max-width:767px){
+  .section[data-anchor="services"] .toolbox-tabs,
+  .section[data-anchor="work"] .works-tabs,
+  .section[data-anchor="about"] .about-tabs{
+    display:flex !important; flex-wrap:nowrap !important;
+    gap:12px !important; overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 16px !important; margin:8px -16px 12px !important;
+    width:calc(100% + 32px) !important;
+  }
+  .section[data-anchor="services"] .toolbox-tabs .tab,
+  .section[data-anchor="work"] .works-tabs .tab,
+  .section[data-anchor="about"] .about-tabs .tab{
+    flex:0 0 auto !important; white-space:nowrap !important; min-width:max-content !important;
+  }
+}
