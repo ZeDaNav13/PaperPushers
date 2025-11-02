@@ -371,3 +371,33 @@ body{font-family:'Montserrat',sans-serif; background:#0b0b0e;}
   }
   .panel{ margin-top:14px !important; }        /* space so card shadow never overlaps tabs */
 }
+
+/* MOBILE: layout do captcha em coluna, sem spill */
+@media (max-width:767px){
+  #contact-form div.flex.items-center{
+    display:grid !important;
+    grid-template-columns: 1fr !important;
+    justify-items:start;
+    gap:8px !important;
+  }
+  #captcha-question{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:8px;
+    background:rgba(0,0,0,.08);
+    color:#111827;
+    border:1px solid rgba(0,0,0,.06);
+  }
+  #captcha{
+    width:120px !important;
+    max-width:50vw;
+  }
+}
+
+/* MOBILE: mais espaço no fundo do Contact */
+@media (max-width:767px){
+  .section[data-anchor="contact"]{
+    padding-bottom: 5.5rem !important; /* espaço para o botão flutuante */
+  }
+}
+
