@@ -290,3 +290,33 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
     flex:0 0 auto !important; white-space:nowrap !important; min-width:max-content !important;
   }
 }
+
+/* --- CONTACT: garantir ordem visual e afastamento --- */
+.section[data-anchor="contact"] .container{
+  display:flex !important; flex-direction:column !important;
+  min-height:calc(100svh - 64px);
+}
+.section[data-anchor="contact"] .contact-card{ order:1 !important; }
+.section[data-anchor="contact"] .contact-footer{
+  order:2 !important;
+  position:static !important;
+  z-index:0 !important;
+  margin-top:24px !important;      /* mais espaço abaixo do form */
+}
+
+/* captcha acima do footer e com respiro extra */
+#contact-form{ padding-bottom:16px !important; }
+#contact-form .flex.items-center{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:8px !important;
+  position:relative; z-index:1;     /* fica por cima só enquanto toca */
+}
+
+@media (max-width:767px){
+  #captcha{ width:120px; max-width:50vw }
+  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
+}
+
+/* opcional: tira a marca d'água do fullPage */
+.fp-watermark{ display:none !important; }
