@@ -36,6 +36,38 @@
       .panel p{font-size:1.05rem;line-height:1.4}
     }
   </style>
+
+  <style>
+@media (max-width:767px){
+  .toolbox-tabs, .works-tabs, .about-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+    gap:10px !important;
+    padding:8px 16px !important;
+    margin:.5rem 0 .75rem !important;
+    scroll-snap-type:x mandatory;
+    max-width:100% !important;
+    width:100% !important;
+  }
+  .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    scroll-snap-align:start;
+    padding:10px 14px !important;
+    border-radius:999px !important;
+    font-weight:800 !important;
+    font-size:0.95rem !important;
+  }
+  .toolbox-panel, .works-panel, .about-panel{ margin:.25rem 16px 0 !important; }
+  .section[data-anchor="services"],
+  .section[data-anchor="work"],
+  .section[data-anchor="about"]{ padding-bottom:3.75rem !important; }
+}
+</style>
+
+
 </head>
 <body class="font-sans">
   <!-- Header -->
