@@ -371,11 +371,11 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 /* opcional: esconder watermark do fullPage */
 .fp-watermark{ display:none !important; }
 
-/* A11y: foco visível */
+/* A11y: focus visible */
 :focus-visible{ outline:3px solid var(--secondary); outline-offset:3px }
 .tab:focus-visible, .btn:focus-visible, a:focus-visible{ border-radius:10px }
 
-/* Respeitar utilizadores sensíveis a movimento */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important }
 }

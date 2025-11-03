@@ -4,15 +4,15 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
-  <meta name="description" content="PaperPushers: toolbox ágil para marcas e produtos. Web, branding, sistemas e espaços. Lisboa.">
+
+    <meta name="description" content="PaperPushers: toolbox ágil para marcas e produtos. Web, branding, sistemas e espaços. Lisboa.">
   <meta property="og:title" content="PaperPushers">
   <meta property="og:description" content="Toolbox ágil: web, brand, sistemas e espaços.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://paperpushers.biz/">
   <meta property="og:image" content="https://paperpushers.biz/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- libs -->
+<!-- libs -->
   <script src="https://cdn.tailwindcss.com" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css"/>
@@ -254,25 +254,48 @@
       if(q) q.textContent = a + " + " + b + " = ?";
       const form = document.getElementById('contact-form');
       if(!form) return;
-      form.addEventListener('submit', function(e){
+      form.addEventListener('submit', async function(e){
         const hp = document.getElementById('website');
         const ans = parseInt(document.getElementById('captcha').value, 10);
         const ok = (ans === a + b) && (!hp || hp.value === '');
+        const s = document.getElementById('form-status');
         if(!ok){
           e.preventDefault();
-          const s = document.getElementById('form-status');
           if(s){ s.hidden = false; s.textContent = 'Captcha incorrecto.'; }
+          return;
+        }
+        e.preventDefault();
+        if(s){ s.hidden=false; s.textContent='A enviar...'; }
+        try{
+          const payload = {
+            name: form.name.value,
+            email: form.email.value,
+            message: form.details.value
+          };
+          const r = await fetch('https://example.com/contact', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(payload)
+          });
+          if(!r.ok) throw new Error('Bad response');
+          if(s){ s.textContent='Recebido. Voltamos em 1 dia útil.'; }
+          form.reset();
+        }catch(err){
+          if(s){ s.textContent='Erro a enviar. Tenta por email: hello@paperpushers.biz'; }
         }
       });
-    }
+}
 
     // Floating CTA: fixed on mobile, animated on desktop
     function startCtaMode() {
       const cta = document.getElementById('floating-cta');
       if (!cta) return;
+      // click moves to contact
       cta.addEventListener('click', () => { if (window.fullpage_api) fullpage_api.moveTo('contact'); });
-function apply(){
+      let rafId = null;
+      function apply(){
         if (window.matchMedia('(max-width: 767px)').matches) {
+          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
           cta.style.position = 'fixed';
           cta.style.bottom = '12px';
           cta.style.right  = '12px';
@@ -296,7 +319,8 @@ function apply(){
           const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
           if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
           if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
-          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
+          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`;
+          rafId = requestAnimationFrame(tick);
         })();
       }
       apply();
@@ -307,8 +331,7 @@ function apply(){
     function toggleCTA(anchor){
       const cta = document.getElementById('floating-cta');
       if (!cta) return;
-      cta.addEventListener('click', () => { if (window.fullpage_api) fullpage_api.moveTo('contact'); });
-const hideOn = ['home','contact'];
+      const hideOn = ['home','contact'];
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
       cta.style.display = (isMobile && hideOn.includes(anchor)) ? 'none' : '';
     }
@@ -362,13 +385,15 @@ const hideOn = ['home','contact'];
             if(val){ title.textContent = val[0]; body.textContent = val[1]; }
             b.focus();
           });
-          b.addEventListener('keydown',(e)=>{
+          b.addEventListener('keydown', (e)=>{
             if(e.key!=='ArrowRight' && e.key!=='ArrowLeft') return;
             const arr=[...tabs]; const idx=arr.indexOf(b);
             const nxt = e.key==='ArrowRight' ? (idx+1)%arr.length : (idx-1+arr.length)%arr.length;
             arr[nxt].click();
           });
         });
+      }
+});
         });
       }
     }
