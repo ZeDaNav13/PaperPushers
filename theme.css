@@ -370,3 +370,30 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 
 /* opcional: esconder watermark do fullPage */
 .fp-watermark{ display:none !important; }
+
+/* CONTACT: captcha em linha */
+#contact-form .flex.items-center{
+  display:grid !important;
+  grid-template-columns:auto auto 1fr !important; /* pergunta, input, espaço */
+  align-items:center !important;
+  gap:8px !important;
+  margin-top:8px;
+  margin-bottom:12px;
+}
+#contact-form .flex.items-center label{
+  grid-column:1 / -1;           /* label ocupa a linha toda */
+  margin-bottom:2px;
+}
+#contact-form #captcha{ width:120px; } /* evita quebrar */
+
+/* CONTACT: layout do cartão */
+.section[data-anchor="contact"] .contact-card{
+  align-items:start !important;   /* alinha conteúdo ao topo */
+}
+
+/* garante que o aside não “desce” */
+.section[data-anchor="contact"] .contact-card > aside{
+  align-self:start !important;
+  margin-top:0 !important;
+}
+
