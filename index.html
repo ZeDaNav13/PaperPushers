@@ -5,14 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
 
-    <meta name="description" content="PaperPushers: toolbox ágil para marcas e produtos. Web, branding, sistemas e espaços. Lisboa.">
-  <meta property="og:title" content="PaperPushers">
-  <meta property="og:description" content="Toolbox ágil: web, brand, sistemas e espaços.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://paperpushers.biz/">
-  <meta property="og:image" content="https://paperpushers.biz/og-image.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-<!-- libs -->
+  <!-- libs -->
   <script src="https://cdn.tailwindcss.com" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css"/>
@@ -61,7 +54,7 @@
       <div class="container">
         <h1 class="text-glow text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] mb-6" style="color:#FFF53E">PaperPushers</h1>
         <p class="text-on-dark text-2xl md:text-3xl font-bold max-w-4xl mx-auto">
-          The adaptive toolbox for businesses that grow.<br>Digital, physical, pixels or places — we build what you need now.<br>Made to fit, flex and perform.
+          The adaptive toolbox for businesses that grow.</br>Digital, physical, pixels or places — we build what you need now.</br>Made to fit, flex and perform.
         </p>
         <div class="mt-10 btn-row flex items-center justify-center gap-4">
           <button class="btn btn-primary" onclick="fullpage_api.moveTo('contact')">Start</button>
@@ -76,8 +69,8 @@
       <div class="container text-on-dark">
         <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#D2009E">The Toolbox</h2>
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-          We don’t have “one thing.” We have a set. A kit. A box.<br>
-          Things that fit your shape of business.<br>
+          We don’t have “one thing.” We have a set. A kit. A box.</br>
+          Things that fit your shape of business.</br>
           Grab what you need, and we’ll make it work together.
         </p>
 
@@ -113,7 +106,7 @@
       <div class="container">
         <h2 class="text-glow text-5xl md:text-7xl lg:text-8xl xl:text-[9rem] mb-4" style="color:#FFF53E">Works</h2>
         <p class="text-lg md:text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto mb-10">
-          Things we did for ourselves.<br>Small to large scopes. Digital and not digital.<br>In common: optimized and effective delivery.
+          Things we did for ourselves.</br>Small to large scopes. Digital and not digital.</br>In common: optimized and effective delivery.
         </p>
 
         <!-- Mobile tabs -->
@@ -129,7 +122,7 @@
 
         <!-- Desktop grid -->
         <div class="grid-3 works-grid max-w-6xl mx-auto text-left">
-          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → <br>+2.5M downloads</h3><p class="text-base md:text-lg">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p></article>
+          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">RealFevr → </br>+2.5M downloads</h3><p class="text-base md:text-lg">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p></article>
           <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">MiliLand Digital → Online Studio</h3><p class="text-base md:text-lg">Agile media studio blending branding, web, social, and ads — running since 2010.</p></article>
           <article class="glass p-6 md:p-8 text-on-dark"><h3 class="text-2xl md:text-3xl font-black mb-2">Pentagon Lisboa → From ruin to icon</h3><p class="text-base md:text-lg">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p></article>
         </div>
@@ -161,8 +154,8 @@
         <!-- Desktop grid -->
         <div class="grid-3 about-grid max-w-6xl mx-auto text-left">
           <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
-          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>Our values:</strong> <br>- Agility over rigidity <br>- Sleight over noise <br>- Outcomes over outputs</p></article>
-          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg italic">“They didn’t just bring the right tools, they invented a few on the way.” <br>— Bruno, CEO Proeza Colossal</p></article>
+          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg"><strong>Our values:</strong> </br>- Agility over rigidity </br>- Sleight over noise </br>- Outcomes over outputs</p></article>
+          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="text-base md:text-lg italic">“They didn’t just bring the right tools, they invented a few on the way.” </br>— Bruno, CEO Proeza Colossal</p></article>
         </div>
       </div>
     </div>
@@ -254,48 +247,25 @@
       if(q) q.textContent = a + " + " + b + " = ?";
       const form = document.getElementById('contact-form');
       if(!form) return;
-      form.addEventListener('submit', async function(e){
+      form.addEventListener('submit', function(e){
         const hp = document.getElementById('website');
         const ans = parseInt(document.getElementById('captcha').value, 10);
         const ok = (ans === a + b) && (!hp || hp.value === '');
-        const s = document.getElementById('form-status');
         if(!ok){
           e.preventDefault();
+          const s = document.getElementById('form-status');
           if(s){ s.hidden = false; s.textContent = 'Captcha incorrecto.'; }
-          return;
-        }
-        e.preventDefault();
-        if(s){ s.hidden=false; s.textContent='A enviar...'; }
-        try{
-          const payload = {
-            name: form.name.value,
-            email: form.email.value,
-            message: form.details.value
-          };
-          const r = await fetch('https://example.com/contact', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(payload)
-          });
-          if(!r.ok) throw new Error('Bad response');
-          if(s){ s.textContent='Recebido. Voltamos em 1 dia útil.'; }
-          form.reset();
-        }catch(err){
-          if(s){ s.textContent='Erro a enviar. Tenta por email: hello@paperpushers.biz'; }
         }
       });
-}
+    }
 
     // Floating CTA: fixed on mobile, animated on desktop
     function startCtaMode() {
       const cta = document.getElementById('floating-cta');
       if (!cta) return;
-      // click moves to contact
-      cta.addEventListener('click', () => { if (window.fullpage_api) fullpage_api.moveTo('contact'); });
-      let rafId = null;
+
       function apply(){
         if (window.matchMedia('(max-width: 767px)').matches) {
-          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
           cta.style.position = 'fixed';
           cta.style.bottom = '12px';
           cta.style.right  = '12px';
@@ -319,8 +289,7 @@
           const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
           if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
           if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
-          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`;
-          rafId = requestAnimationFrame(tick);
+          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
         })();
       }
       apply();
@@ -368,32 +337,14 @@
         const title = document.querySelector(titleSel);
         const body  = document.querySelector(bodySel);
         if(!tabs.length || !panel || !title || !body) return;
-        tabs.forEach((b)=>{
-          b.setAttribute('tabindex', b.classList.contains('is-active') ? '0' : '-1');
-          b.setAttribute('aria-selected', b.classList.contains('is-active') ? 'true' : 'false');
+        tabs.forEach(b=>{
           b.addEventListener('click', ()=>{
-            tabs.forEach(x=>{
-              x.classList.remove('is-active');
-              x.setAttribute('aria-selected','false');
-              x.setAttribute('tabindex','-1');
-            });
+            tabs.forEach(x=>x.classList.remove('is-active'));
             b.classList.add('is-active');
-            b.setAttribute('aria-selected','true');
-            b.setAttribute('tabindex','0');
             const key = b.dataset.tab;
             const val = data[key];
             if(val){ title.textContent = val[0]; body.textContent = val[1]; }
-            b.focus();
           });
-          b.addEventListener('keydown', (e)=>{
-            if(e.key!=='ArrowRight' && e.key!=='ArrowLeft') return;
-            const arr=[...tabs]; const idx=arr.indexOf(b);
-            const nxt = e.key==='ArrowRight' ? (idx+1)%arr.length : (idx-1+arr.length)%arr.length;
-            arr[nxt].click();
-          });
-        });
-      }
-});
         });
       }
     }
