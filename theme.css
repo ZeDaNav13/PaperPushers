@@ -397,3 +397,28 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   margin-top:0 !important;
 }
 
+/* MOBILE: manter o formulário acima do footer e empurrar o footer para baixo */
+@media (max-width: 767px){
+  /* o cartão/contacto fica numa camada acima */
+  .section[data-anchor="contact"] .contact-card{
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  /* o footer nunca sobrepõe conteúdo */
+  .section[data-anchor="contact"] .contact-footer{
+    position: relative !important;
+    z-index: 0 !important;
+    margin-top: 20px !important;
+    clear: both !important;
+  }
+  /* espaço extra no fundo do cartão para não “tocar” no footer */
+  #contact-form{ padding-bottom: 24px !important; }
+}
+
+/* Caso algum reset tenha dado z-index alto ao footer, neutraliza em todo o lado */
+.section[data-anchor="contact"] .contact-footer{
+  transform: none !important;
+  float: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
