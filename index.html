@@ -169,32 +169,39 @@
         <h2 class="contact-title text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] mb-4" style="color:#D2009E">Let’s open the box</h2>
         <p class="mb-6 text-lg md:text-2xl lg:text-2xl font-semibold">Tell us what you’re building, breaking, or dreaming up. We’ll reply within 1 business day with the right tools in hand.</p>
 
-        <div class="glass contact-card max-w-6xl mx-auto p-6 md:p-8 grid gap-6 md:grid-cols-2 text-left">
-          <form id="contact-form" class="grid gap-3" novalidate>
-            <label class="font-bold" for="name">Name</label>
-            <input id="name" name="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" required/>
+        <div class="glass contact-card max-w-6xl mx-auto p-6 md:p-8 text-left">
+          <form id="contact-form" class="contact-form grid" novalidate>
+            <div class="form-field field-name">
+              <label class="font-bold" for="name">Name</label>
+              <input id="name" name="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" required/>
+            </div>
 
-            <label class="font-bold" for="email">Email</label>
-            <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
-
-            <label class="font-bold" for="details">What’s the project?</label>
-            <textarea id="details" name="message" rows="2" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
+            <div class="form-field field-email">
+              <label class="font-bold" for="email">Email</label>
+              <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
+            </div>
 
             <!-- honeypot -->
             <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
 
-            <!-- simple math captcha -->
-            <div class="flex items-center gap-3">
-              <label for="captcha" class="font-bold">Prove you are human:</label>
-              <span id="captcha-question" class="inline-block px-2 py-1 rounded border text-sm"></span>
-              <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
+            <div class="form-field field-captcha">
+              <label class="font-bold" for="captcha">Prove you are human:</label>
+              <div class="captcha-row">
+                <span id="captcha-question" class="inline-block px-3 py-2 rounded-md border bg-white/70 text-base font-semibold"></span>
+                <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
+              </div>
             </div>
 
-            <p id="form-status" class="text-sm font-semibold mt-1" role="status" aria-live="polite" hidden></p>
-            <button type="submit" class="btn btn-primary mt-1">Hand me the wrench</button>
+            <div class="form-field field-project">
+              <label class="font-bold" for="details">What’s the project?</label>
+              <textarea id="details" name="message" rows="4" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
+            </div>
+
+            <p id="form-status" class="form-status field-status text-sm font-semibold" role="status" aria-live="polite" hidden></p>
+            <button type="submit" class="btn btn-primary field-button">Hand me the wrench</button>
           </form>
 
-          <aside class="grid gap-2">
+          <aside class="contact-meta grid gap-2">
             <h3 class="text-2xl md:text-3xl font-black mb-1">Contact us</h3>
             <p class="text-base md:text-lg">Prefer email? <a href="mailto:hello@paperpushers.biz" class="underline font-bold">hello@paperpushers.biz</a></p>
             <p class="text-base md:text-lg">HQ: Lisbon, Portugal</p>

@@ -59,10 +59,53 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .text-glow{text-shadow:0 6px 30px rgba(0,0,0,.45)}
 
 /* ---- Contact ---- */
-.contact-card{max-height:calc(100vh - 72px - 170px);overflow:visible;scrollbar-width:thin}
+.section[data-anchor="contact"] .container{display:flex;flex-direction:column;min-height:calc(100svh - 64px)}
+.section[data-anchor="contact"]{padding-bottom:5.5rem !important}
+.contact-card{position:relative;display:flex;flex-direction:column;gap:24px;max-height:calc(100vh - 72px - 170px);overflow:visible;scrollbar-width:thin;flex:1 0 auto;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08))}
 .contact-title{line-height:1.05}
 .contact-footer{display:block;clear:both;margin-top:24px;font-size:.95rem;color:#111827;background:#ffffffcc;backdrop-filter:saturate(120%) blur(6px);padding:10px 14px;border-radius:12px;border:1px solid #e5e7eb;position:relative;z-index:0}
 .contact-footer a{color:#0b0b0e;text-decoration:underline}
+.contact-meta{align-content:start;border-top:1px solid rgba(15,23,42,.12);padding-top:16px;margin-top:4px}
+.contact-form{position:relative;display:grid;gap:16px}
+.contact-form .form-field{display:flex;flex-direction:column;gap:10px}
+.contact-form .form-field label{font-size:1.05rem}
+.contact-form input,.contact-form textarea{width:100%;border:1px solid rgba(15,23,42,.12);border-radius:14px}
+.contact-form textarea{min-height:200px;resize:vertical}
+.contact-form .form-status{min-height:1.25rem;color:#D2009E}
+.captcha-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.captcha-row span{flex:0 0 auto}
+.captcha-row input{flex:0 0 auto;max-width:150px}
+.field-project{display:flex;flex-direction:column;gap:12px}
+.field-project textarea{flex:1 1 auto;min-height:240px}
+.field-status{align-self:flex-start}
+.field-button{justify-self:stretch}
+
+@media (min-width:768px){
+  .contact-card{gap:32px}
+  .contact-meta{border-top:1px solid rgba(15,23,42,.12);padding-top:20px;margin-top:0;padding-left:0}
+  .contact-form{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-areas:
+    "field-name field-project"
+    "field-email field-project"
+    "field-captcha field-project"
+    "field-status field-status"
+    "field-button field-button";
+    column-gap:28px;row-gap:16px;
+  }
+  .field-name{grid-area:field-name}
+  .field-email{grid-area:field-email}
+  .field-captcha{grid-area:field-captcha}
+  .field-project{grid-area:field-project;min-height:100%;}
+  .field-status{grid-area:field-status}
+  .field-button{grid-area:field-button}
+  .field-project textarea{min-height:320px}
+  .captcha-row{justify-content:flex-start}
+}
+
+@media (max-width:767px){
+  .contact-form textarea{min-height:200px}
+  .captcha-row{justify-content:flex-start}
+  .contact-card{max-height:none;gap:20px}
+}
 
 /* --- Responsive fallback when fullPage auto-scroll is disabled --- */
 body.fp-manual-scroll .section:not([data-anchor="home"]){justify-content:flex-start;padding-top:6rem;padding-bottom:4rem}
@@ -142,14 +185,6 @@ body.fp-manual-scroll .contact-card{max-height:none}
   /* spacing so floating CTA never covers content */
   .section[data-anchor="services"],.section[data-anchor="work"],.section[data-anchor="about"]{padding-bottom:3.5rem !important}
 
-  /* contact: captcha stacked + footer pinned visually to bottom */
-  #contact-form .flex.items-center{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px;margin-bottom:12px}
-  #captcha-question{display:inline-block;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.08);color:#111827;border:1px solid rgba(0,0,0,.06)}
-  #captcha{width:120px;max-width:50vw}
-  .section[data-anchor="contact"] .container{min-height:calc(100svh - 64px);display:flex;flex-direction:column}
-  .contact-card{flex:1 0 auto}
-  .contact-footer{align-self:flex-start;margin-top:16px}
-  .section[data-anchor="contact"]{padding-bottom:5.5rem !important}
 }
 
 /* ---- Desktop: hide mobile tabs/panels ---- */
@@ -188,36 +223,6 @@ body.fp-manual-scroll .contact-card{max-height:none}
   }
 }
 
-/* --- MOBILE: contact layout + captcha stack, footer after the card --- */
-@media (max-width:767px){
-  /* stack captcha cleanly */
-  #contact-form .flex.items-center{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-    gap:8px !important;
-    margin:8px 0 12px !important;
-  }
-  #captcha{ width:120px; max-width:50vw; }
-
-  /* container is a column; force visual order: card then footer */
-  .section[data-anchor="contact"] .container{
-    display:flex !important;
-    flex-direction:column !important;
-    min-height:calc(100svh - 64px);
-  }
-  .contact-card{ order:1; flex:1 0 auto; }
-  .contact-footer{
-    order:2;
-    align-self:flex-start;
-    margin-top:16px !important;
-    position:relative !important;  /* never overlay */
-    z-index:0 !important;
-  }
-
-  /* room for floating CTA */
-  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
-}
-
 /* força horizontal no mobile, com bleed até às bordas */
 @media (max-width:1119px){
   .section[data-anchor="services"] .toolbox-tabs,
@@ -241,196 +246,13 @@ body.fp-manual-scroll .contact-card{max-height:none}
   }
 }
 
-@media (max-width:767px){
-  .section[data-anchor="contact"] .container{
-    display:flex !important; flex-direction:column !important;
-    min-height:calc(100svh - 64px);
-  }
-  .contact-card{ order:1; flex:1 0 auto; position:relative; z-index:0; }
-  .contact-footer{ order:2; position:static !important; z-index:0 !important; margin-top:16px !important; }
-  #contact-form .flex.items-center{ display:grid !important; grid-template-columns:1fr !important; gap:8px !important; }
-  #captcha{ width:120px; max-width:50vw; }
-}
 /* remove a marca d'água do fullPage */
 .fp-watermark{ display:none !important; }
 
-/* CONTACT: layout robusto no mobile e no desktop */
-.section[data-anchor="contact"] .container{
-  display:flex !important;
-  flex-direction:column !important;
-  min-height:calc(100svh - 64px);
-}
-.section[data-anchor="contact"] .contact-card{
-  order:1 !important;
-  flex:1 0 auto;
-  position:relative;
-  z-index:0;
-}
-.section[data-anchor="contact"] .contact-footer{
-  order:2 !important;
-  position:static !important;
-  z-index:0 !important;
-  margin-top:16px !important;
-}
-
-/* MOBILE: captcha em coluna, sem sobreposição */
-@media (max-width:767px){
-  #contact-form .flex.items-center{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-    gap:8px !important;
-    margin:8px 0 12px !important;
-  }
-  #captcha{ width:120px; max-width:50vw }
-  /* espaço para o CTA flutuante não tapar o footer */
-  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
-}
-
-@media (max-width:1119px){
-  .section[data-anchor="services"] .toolbox-tabs,
-  .section[data-anchor="work"] .works-tabs,
-  .section[data-anchor="about"] .about-tabs{
-    display:flex !important; flex-wrap:nowrap !important;
-    gap:12px !important; overflow-x:auto !important;
-    -webkit-overflow-scrolling:touch;
-    padding:8px 16px !important; margin:8px -16px 12px !important;
-    width:calc(100% + 32px) !important;
-  }
-  .section[data-anchor="services"] .toolbox-tabs .tab,
-  .section[data-anchor="work"] .works-tabs .tab,
-  .section[data-anchor="about"] .about-tabs .tab{
-    flex:0 0 auto !important; white-space:nowrap !important; min-width:max-content !important;
-  }
-}
-
-/* --- CONTACT: garantir ordem visual e afastamento --- */
-.section[data-anchor="contact"] .container{
-  display:flex !important; flex-direction:column !important;
-  min-height:calc(100svh - 64px);
-}
-.section[data-anchor="contact"] .contact-card{ order:1 !important; }
-.section[data-anchor="contact"] .contact-footer{
-  order:2 !important;
-  position:static !important;
-  z-index:0 !important;
-  margin-top:24px !important;      /* mais espaço abaixo do form */
-}
-
-/* captcha acima do footer e com respiro extra */
-#contact-form{ padding-bottom:16px !important; }
-#contact-form .flex.items-center{
-  display:grid !important;
-  grid-template-columns:1fr !important;
-  gap:8px !important;
-  position:relative; z-index:1;     /* fica por cima só enquanto toca */
-}
-
-@media (max-width:767px){
-  #captcha{ width:120px; max-width:50vw }
-  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
-}
-
-/* opcional: tira a marca d'água do fullPage */
-.fp-watermark{ display:none !important; }
-
-/* ---------- CONTACT: footer plano, depois do formulário ---------- */
-.section[data-anchor="contact"] .container{
-  display:flex !important;
-  flex-direction:column !important;
-  min-height:calc(100svh - 64px);
-}
-
-.section[data-anchor="contact"] .contact-card{
-  order:1 !important;
-  flex:1 0 auto;
-}
-
-/* mata qualquer estilo de "pílula" e de posicionamento */
-.section[data-anchor="contact"] .contact-footer{
-  order:2 !important;
-  display:block !important;
-  position:static !important;
-  float:none !important;
-  clear:both !important;
-  transform:none !important;
-
-  background:transparent !important;
-  padding:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  outline:none !important;
-
-  margin-top:24px !important;
-  z-index:0 !important;
-}
-
-/* captcha em coluna com respiro, sem z-index acima do footer */
-#contact-form{ padding-bottom:16px !important; }
-#contact-form .flex.items-center{
-  display:grid !important;
-  grid-template-columns:1fr !important;
-  gap:8px !important;
-  position:relative !important;
-  z-index:auto !important;
-}
-#captcha{ width:120px; max-width:50vw; }
-
-/* espaço para o CTA flutuante no mobile */
-@media (max-width:767px){
-  .section[data-anchor="contact"]{ padding-bottom:5.5rem !important; }
-}
-
-/* opcional: esconder watermark do fullPage */
-.fp-watermark{ display:none !important; }
-
-/* CONTACT: captcha em linha */
-#contact-form .flex.items-center{
-  display:grid !important;
-  grid-template-columns:auto auto 1fr !important; /* pergunta, input, espaço */
-  align-items:center !important;
-  gap:8px !important;
-  margin-top:8px;
-  margin-bottom:12px;
-}
-#contact-form .flex.items-center label{
-  grid-column:1 / -1;           /* label ocupa a linha toda */
-  margin-bottom:2px;
-}
-#contact-form #captcha{ width:120px; } /* evita quebrar */
-
-/* CONTACT: layout do cartão */
-.section[data-anchor="contact"] .contact-card{
-  align-items:start !important;   /* alinha conteúdo ao topo */
-}
-
-/* garante que o aside não “desce” */
-.section[data-anchor="contact"] .contact-card > aside{
-  align-self:start !important;
-  margin-top:0 !important;
-}
-
-/* MOBILE: manter o formulário acima do footer e empurrar o footer para baixo */
-@media (max-width: 767px){
-  /* o cartão/contacto fica numa camada acima */
-  .section[data-anchor="contact"] .contact-card{
-    position: relative !important;
-    z-index: 2 !important;
-  }
-  /* o footer nunca sobrepõe conteúdo */
-  .section[data-anchor="contact"] .contact-footer{
-    position: relative !important;
-    z-index: 0 !important;
-    margin-top: 20px !important;
-    clear: both !important;
-  }
-  /* espaço extra no fundo do cartão para não “tocar” no footer */
-  #contact-form{ padding-bottom: 24px !important; }
-}
-
 /* Caso algum reset tenha dado z-index alto ao footer, neutraliza em todo o lado */
 .section[data-anchor="contact"] .contact-footer{
-  transform: none !important;
-  float: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  transform:none !important;
+  float:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
 }
