@@ -18,10 +18,10 @@
 
   <!-- tiny helper so tabs show on mobile even if CSS cache lags -->
   <style>
-    @media (min-width:768px){
+    @media (min-width:1120px){
       .toolbox-tabs,.toolbox-panel,.works-tabs,.works-panel,.about-tabs,.about-panel{display:none}
     }
-    @media (max-width:767px){
+    @media (max-width:1119px){
       .services-grid,.works-grid,.about-grid{display:none !important}
       .toolbox-tabs,.toolbox-panel,.works-tabs,.works-panel,.about-tabs,.about-panel{display:block}
     }
@@ -229,16 +229,34 @@
         afterLoad: function(origin, destination){ toggleCTA(destination.anchor); }
       });
 
+      let manualScrollActive = null;
+      const applyFullpageResponsive = () => {
+        if (!window.fullpage_api) return;
+        const shouldDisable = window.innerWidth < 1120 || window.innerHeight < 820;
+        if (shouldDisable === manualScrollActive) return;
+        manualScrollActive = shouldDisable;
+        fullpage_api.setAutoScrolling(!shouldDisable);
+        fullpage_api.setFitToSection(!shouldDisable);
+        if (!shouldDisable) fullpage_api.fitToSection();
+        document.body.classList.toggle('fp-manual-scroll', shouldDisable);
+      };
+
       const yEl = document.getElementById('year');
       if (yEl) yEl.textContent = new Date().getFullYear();
 
       setupCaptcha();
       startCtaMode();
       setupTabs();
+      applyFullpageResponsive();
 
       // initial CTA state
-      toggleCTA(fullpage_api.getActiveSection().anchor);
-      window.addEventListener('resize', () => toggleCTA(fullpage_api.getActiveSection().anchor));
+      const activeSection = fullpage_api.getActiveSection();
+      if (activeSection) toggleCTA(activeSection.anchor);
+      window.addEventListener('resize', () => {
+        applyFullpageResponsive();
+        const active = fullpage_api.getActiveSection();
+        if (active) toggleCTA(active.anchor);
+      });
     });
 
     // Captcha
