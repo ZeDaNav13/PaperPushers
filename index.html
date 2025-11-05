@@ -229,6 +229,10 @@
 
   <!-- Scripts -->
   <script>
+    let contactModalShouldOpen = false;
+    let contactModalOpenFn = null;
+    let contactModalCloseFn = null;
+
     // fullPage init
     window.addEventListener('load', function () {
       new fullpage('#fullpage', {
@@ -246,7 +250,13 @@
         paddingTop: '72px',
         normalScrollElements: '.contact-card, .contact-modal__content',
         responsiveWidth: 768,
-        afterLoad: function(origin, destination){ toggleCTA(destination.anchor); }
+        afterLoad: function(origin, destination){
+          toggleCTA(destination.anchor);
+          if(destination.anchor === 'contact' && contactModalShouldOpen && typeof contactModalOpenFn === 'function'){
+            contactModalShouldOpen = false;
+            contactModalOpenFn();
+          }
+        }
       });
 
       let manualScrollActive = null;
@@ -356,9 +366,21 @@
       const launchTriggers = Array.from(document.querySelectorAll('[data-open="contact-modal"]'));
       const floatingCta = document.getElementById('floating-cta');
       if(floatingCta) launchTriggers.push(floatingCta);
+      const contactSection = document.querySelector('.section[data-anchor="contact"]');
 
       let lastFocused = null;
       const focusableSelector = 'a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+
+      const isContactActive = ()=>{
+        if(window.fullpage_api && !document.body.classList.contains('fp-manual-scroll')){
+          const active = fullpage_api.getActiveSection();
+          return !!(active && active.anchor === 'contact');
+        }
+        if(!contactSection) return false;
+        const rect = contactSection.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top < vh * 0.4 && rect.bottom > vh * 0.35;
+      };
 
       const open = ()=>{
         if(modal.classList.contains('is-open')) return;
@@ -383,6 +405,7 @@
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden','true');
         document.body.classList.remove('is-modal-open');
+        contactModalShouldOpen = false;
         if(window.fullpage_api){
           fullpage_api.setAllowScrolling(true);
           fullpage_api.setKeyboardScrolling(true);
@@ -392,9 +415,39 @@
         }
       };
 
+      contactModalOpenFn = open;
+      contactModalCloseFn = close;
+
       launchTriggers.forEach(trigger=>{
         trigger.addEventListener('click', e=>{
           e.preventDefault();
+          if(isContactActive()){
+            open();
+            return;
+          }
+
+          if(window.fullpage_api && !document.body.classList.contains('fp-manual-scroll')){
+            contactModalShouldOpen = true;
+            fullpage_api.moveTo('contact');
+            return;
+          }
+
+          if(contactSection){
+            contactModalShouldOpen = true;
+            contactSection.scrollIntoView({ behavior:'smooth', block:'start' });
+            const waitForContact = ()=>{
+              if(!contactModalShouldOpen) return;
+              if(isContactActive()){
+                contactModalShouldOpen = false;
+                open();
+              }else{
+                requestAnimationFrame(waitForContact);
+              }
+            };
+            setTimeout(waitForContact, 250);
+            return;
+          }
+
           open();
         });
       });
