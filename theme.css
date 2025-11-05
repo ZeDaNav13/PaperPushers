@@ -61,10 +61,12 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 /* ---- Contact ---- */
 .section[data-anchor="contact"] .container{display:flex;flex-direction:column;min-height:calc(100svh - 64px)}
 .section[data-anchor="contact"]{padding-bottom:5.5rem !important}
-.contact-card{position:relative;display:flex;flex-direction:column;gap:24px;max-height:calc(100vh - 72px - 170px);overflow:visible;scrollbar-width:thin;flex:1 0 auto;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08))}
+.contact-card{position:relative;display:grid;gap:24px;align-items:start;overflow:visible;scrollbar-width:thin;flex:1 0 auto;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08))}
 .contact-title{line-height:1.05}
 .contact-footer{display:block;clear:both;margin-top:24px;font-size:.95rem;color:#111827;background:#ffffffcc;backdrop-filter:saturate(120%) blur(6px);padding:10px 14px;border-radius:12px;border:1px solid #e5e7eb;position:relative;z-index:0}
 .contact-footer a{color:#0b0b0e;text-decoration:underline}
+.contact-actions{display:flex;flex-direction:column;gap:16px}
+.contact-actions__button{align-self:flex-start}
 .contact-meta{align-content:start;border-top:1px solid rgba(15,23,42,.12);padding-top:16px;margin-top:4px}
 .contact-form{position:relative;display:grid;gap:16px}
 .contact-form .form-field{display:flex;flex-direction:column;gap:10px}
@@ -81,8 +83,8 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .field-button{justify-self:stretch}
 
 @media (min-width:768px){
-  .contact-card{gap:32px}
-  .contact-meta{border-top:1px solid rgba(15,23,42,.12);padding-top:20px;margin-top:0;padding-left:0}
+  .contact-card{gap:32px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+  .contact-meta{border-top:none;border-left:1px solid rgba(15,23,42,.12);padding-left:24px;padding-top:0;margin-top:0}
   .contact-form{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-areas:
     "field-name field-project"
     "field-email field-project"
@@ -104,13 +106,23 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 @media (max-width:767px){
   .contact-form textarea{min-height:200px}
   .captcha-row{justify-content:flex-start}
-  .contact-card{max-height:none;gap:20px}
+  .contact-card{gap:20px}
 }
 
 /* --- Responsive fallback when fullPage auto-scroll is disabled --- */
 body.fp-manual-scroll .section:not([data-anchor="home"]){justify-content:flex-start;padding-top:6rem;padding-bottom:4rem}
 body.fp-manual-scroll .section[data-anchor="home"]{padding-top:4rem;padding-bottom:4rem}
 body.fp-manual-scroll .contact-card{max-height:none}
+
+/* ---- Contact modal ---- */
+.contact-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:1200;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.contact-modal.is-open{opacity:1;pointer-events:auto}
+.contact-modal__overlay{position:absolute;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px)}
+.contact-modal__content{position:relative;width:100%;max-width:680px;max-height:calc(100vh - 80px);overflow:auto;padding:32px;border-radius:28px;box-shadow:0 40px 90px -30px rgba(15,23,42,.45)}
+.contact-modal__close{position:absolute;top:18px;right:18px;border:none;background:rgba(15,23,42,.08);color:#0f172a;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .2s ease}
+.contact-modal__close:hover{background:rgba(15,23,42,.15)}
+.contact-modal__close:focus{outline:2px solid var(--secondary);outline-offset:2px}
+body.is-modal-open{overflow:hidden}
 
 /* ---- fullPage.js adjustments ---- */
 .fp-is-overflow .fp-overflow.fp-auto-height,

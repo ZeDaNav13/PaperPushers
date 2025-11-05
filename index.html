@@ -170,36 +170,11 @@
         <p class="mb-6 text-lg md:text-2xl lg:text-2xl font-semibold">Tell us what you’re building, breaking, or dreaming up. We’ll reply within 1 business day with the right tools in hand.</p>
 
         <div class="glass contact-card max-w-6xl mx-auto p-6 md:p-8 text-left">
-          <form id="contact-form" class="contact-form grid" novalidate>
-            <div class="form-field field-name">
-              <label class="font-bold" for="name">Name</label>
-              <input id="name" name="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" required/>
-            </div>
-
-            <div class="form-field field-email">
-              <label class="font-bold" for="email">Email</label>
-              <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
-            </div>
-
-            <!-- honeypot -->
-            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
-
-            <div class="form-field field-captcha">
-              <label class="font-bold" for="captcha">Prove you are human:</label>
-              <div class="captcha-row">
-                <span id="captcha-question" class="inline-block px-3 py-2 rounded-md border bg-white/70 text-base font-semibold"></span>
-                <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
-              </div>
-            </div>
-
-            <div class="form-field field-project">
-              <label class="font-bold" for="details">What’s the project?</label>
-              <textarea id="details" name="message" rows="4" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
-            </div>
-
-            <p id="form-status" class="form-status field-status text-sm font-semibold" role="status" aria-live="polite" hidden></p>
-            <button type="submit" class="btn btn-primary field-button">Hand me the wrench</button>
-          </form>
+          <div class="contact-actions">
+            <h3 class="text-2xl md:text-3xl font-black mb-2">Start a project</h3>
+            <p class="text-base md:text-lg">Pop open the form and we’ll reply within 1 business day.</p>
+            <button type="button" class="btn btn-primary contact-actions__button" data-open="contact-modal">Hand me the wrench</button>
+          </div>
 
           <aside class="contact-meta grid gap-2">
             <h3 class="text-2xl md:text-3xl font-black mb-1">Contact us</h3>
@@ -207,6 +182,44 @@
             <p class="text-base md:text-lg">HQ: Lisbon, Portugal</p>
             <p class="text-base md:text-lg">Hours: Dawn, Day and Dusk, Monday to Sunday</p>
           </aside>
+        </div>
+
+        <div id="contact-modal" class="contact-modal" aria-hidden="true">
+          <div class="contact-modal__overlay" data-dismiss="contact-modal"></div>
+          <div class="glass contact-modal__content" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" tabindex="-1">
+            <button type="button" class="contact-modal__close" aria-label="Close form" data-dismiss="contact-modal">Close</button>
+            <h3 id="contact-modal-title" class="text-2xl md:text-3xl font-black mb-4">Let’s open the box</h3>
+            <form id="contact-form" class="contact-form grid" novalidate>
+              <div class="form-field field-name">
+                <label class="font-bold" for="name">Name</label>
+                <input id="name" name="name" type="text" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Your name here" required/>
+              </div>
+
+              <div class="form-field field-email">
+                <label class="font-bold" for="email">Email</label>
+                <input id="email" name="email" type="email" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="your.email.here@example.com" required/>
+              </div>
+
+              <!-- honeypot -->
+              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
+
+              <div class="form-field field-captcha">
+                <label class="font-bold" for="captcha">Prove you are human:</label>
+                <div class="captcha-row">
+                  <span id="captcha-question" class="inline-block px-3 py-2 rounded-md border bg-white/70 text-base font-semibold"></span>
+                  <input id="captcha" name="captcha" type="number" inputmode="numeric" class="border px-3 py-2 rounded-md text-lg bg-white/85 w-28" placeholder="Answer" required>
+                </div>
+              </div>
+
+              <div class="form-field field-project">
+                <label class="font-bold" for="details">What’s the project?</label>
+                <textarea id="details" name="message" rows="4" class="border px-4 py-3 rounded-md text-lg bg-white/85" placeholder="Tell us about scope, timeline, and budget" required></textarea>
+              </div>
+
+              <p id="form-status" class="form-status field-status text-sm font-semibold" role="status" aria-live="polite" hidden></p>
+              <button type="submit" class="btn btn-primary field-button">Hand me the wrench</button>
+            </form>
+          </div>
         </div>
 
         <div class="contact-footer">© <span id="year"></span> PaperPushers · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a></div>
@@ -231,7 +244,7 @@
         scrollBar: false,
         keyboardScrolling: true,
         paddingTop: '72px',
-        normalScrollElements: '.contact-card',
+        normalScrollElements: '.contact-card, .contact-modal__content',
         responsiveWidth: 768,
         afterLoad: function(origin, destination){ toggleCTA(destination.anchor); }
       });
@@ -253,6 +266,7 @@
 
       setupCaptcha();
       startCtaMode();
+      setupContactModal();
       setupTabs();
       applyFullpageResponsive();
 
@@ -330,6 +344,97 @@
       const hideOn = ['home','contact'];
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
       cta.style.display = (isMobile && hideOn.includes(anchor)) ? 'none' : '';
+    }
+
+    // Contact modal open/close
+    function setupContactModal(){
+      const modal = document.getElementById('contact-modal');
+      if(!modal) return;
+      const content = modal.querySelector('.contact-modal__content');
+      const overlay = modal.querySelector('.contact-modal__overlay');
+      const dismissTriggers = modal.querySelectorAll('[data-dismiss="contact-modal"]');
+      const launchTriggers = Array.from(document.querySelectorAll('[data-open="contact-modal"]'));
+      const floatingCta = document.getElementById('floating-cta');
+      if(floatingCta) launchTriggers.push(floatingCta);
+
+      let lastFocused = null;
+      const focusableSelector = 'a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+
+      const open = ()=>{
+        if(modal.classList.contains('is-open')) return;
+        lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.classList.add('is-modal-open');
+        if(window.fullpage_api){
+          fullpage_api.setAllowScrolling(false);
+          fullpage_api.setKeyboardScrolling(false);
+        }
+        requestAnimationFrame(()=>{
+          const focusTarget = modal.querySelector('#name') || modal.querySelector(focusableSelector);
+          if(focusTarget && focusTarget instanceof HTMLElement){
+            focusTarget.focus({preventScroll:true});
+          }
+        });
+      };
+
+      const close = ()=>{
+        if(!modal.classList.contains('is-open')) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.classList.remove('is-modal-open');
+        if(window.fullpage_api){
+          fullpage_api.setAllowScrolling(true);
+          fullpage_api.setKeyboardScrolling(true);
+        }
+        if(lastFocused && typeof lastFocused.focus === 'function'){
+          lastFocused.focus({preventScroll:true});
+        }
+      };
+
+      launchTriggers.forEach(trigger=>{
+        trigger.addEventListener('click', e=>{
+          e.preventDefault();
+          open();
+        });
+      });
+
+      dismissTriggers.forEach(trigger=>{
+        trigger.addEventListener('click', e=>{
+          e.preventDefault();
+          close();
+        });
+      });
+
+      if(overlay){
+        overlay.addEventListener('click', close);
+      }
+
+      document.addEventListener('keydown', e=>{
+        if(e.key === 'Escape'){
+          close();
+        }
+        if(e.key === 'Tab' && modal.classList.contains('is-open')){
+          const focusable = Array.from(modal.querySelectorAll(focusableSelector)).filter(el=>el instanceof HTMLElement && !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
+          if(!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          const active = document.activeElement;
+          if(e.shiftKey && active === first){
+            e.preventDefault();
+            last.focus();
+          }else if(!e.shiftKey && active === last){
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      if(content){
+        content.addEventListener('click', e=>{
+          e.stopPropagation();
+        });
+      }
     }
 
     // Mobile tabs (Toolbox, Works, About)
