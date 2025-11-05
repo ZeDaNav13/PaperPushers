@@ -229,9 +229,17 @@
 
   <!-- Scripts -->
   <script>
-    let contactModalShouldOpen = false;
+    let contactModalPending = false;
     let contactModalOpenFn = null;
     let contactModalCloseFn = null;
+    let contactModalObserver = null;
+
+    function stopContactObserver(){
+      if(contactModalObserver){
+        contactModalObserver.disconnect();
+        contactModalObserver = null;
+      }
+    }
 
     // fullPage init
     window.addEventListener('load', function () {
@@ -252,8 +260,9 @@
         responsiveWidth: 768,
         afterLoad: function(origin, destination){
           toggleCTA(destination.anchor);
-          if(destination.anchor === 'contact' && contactModalShouldOpen && typeof contactModalOpenFn === 'function'){
-            contactModalShouldOpen = false;
+          if(destination.anchor === 'contact' && contactModalPending && typeof contactModalOpenFn === 'function'){
+            stopContactObserver();
+            contactModalPending = false;
             contactModalOpenFn();
           }
         }
@@ -371,6 +380,17 @@
       let lastFocused = null;
       const focusableSelector = 'a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
+      function waitForContactVisibility(){
+        if(!contactModalPending) return;
+        if(isContactActive()){
+          contactModalPending = false;
+          stopContactObserver();
+          open();
+        }else{
+          requestAnimationFrame(waitForContactVisibility);
+        }
+      }
+
       const isContactActive = ()=>{
         if(window.fullpage_api && !document.body.classList.contains('fp-manual-scroll')){
           const active = fullpage_api.getActiveSection();
@@ -384,6 +404,8 @@
 
       const open = ()=>{
         if(modal.classList.contains('is-open')) return;
+        stopContactObserver();
+        contactModalPending = false;
         lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden','false');
@@ -405,7 +427,8 @@
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden','true');
         document.body.classList.remove('is-modal-open');
-        contactModalShouldOpen = false;
+        contactModalPending = false;
+        stopContactObserver();
         if(window.fullpage_api){
           fullpage_api.setAllowScrolling(true);
           fullpage_api.setKeyboardScrolling(true);
@@ -422,32 +445,37 @@
         trigger.addEventListener('click', e=>{
           e.preventDefault();
           if(isContactActive()){
-            open();
-            return;
+            return open();
+          }
+
+          contactModalPending = true;
+          if(contactSection && 'IntersectionObserver' in window){
+            stopContactObserver();
+            contactModalObserver = new IntersectionObserver(entries=>{
+              entries.forEach(entry=>{
+                if(entry.target === contactSection && entry.isIntersecting && contactModalPending){
+                  stopContactObserver();
+                  contactModalPending = false;
+                  open();
+                }
+              });
+            }, { threshold: 0.6 });
+            contactModalObserver.observe(contactSection);
           }
 
           if(window.fullpage_api && !document.body.classList.contains('fp-manual-scroll')){
-            contactModalShouldOpen = true;
             fullpage_api.moveTo('contact');
             return;
           }
 
           if(contactSection){
-            contactModalShouldOpen = true;
             contactSection.scrollIntoView({ behavior:'smooth', block:'start' });
-            const waitForContact = ()=>{
-              if(!contactModalShouldOpen) return;
-              if(isContactActive()){
-                contactModalShouldOpen = false;
-                open();
-              }else{
-                requestAnimationFrame(waitForContact);
-              }
-            };
-            setTimeout(waitForContact, 250);
+            waitForContactVisibility();
             return;
           }
 
+          stopContactObserver();
+          contactModalPending = false;
           open();
         });
       });
