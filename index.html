@@ -41,7 +41,7 @@
         <a href="#contact" data-menuanchor="contact">Contact</a>
       </nav>
       <div class="header-cta">
-        <button class="btn-quote" onclick="fullpage_api.moveTo('contact')">Open the Toolbox</button>
+        <button class="btn-quote" data-open="contact-modal">Open the Toolbox</button>
       </div>
     </div>
   </header>
@@ -59,7 +59,7 @@
           The adaptive toolbox for businesses that grow.</br>Digital, physical, pixels or places — we build what you need now.</br>Made to fit, flex and perform.
         </p>
         <div class="mt-10 btn-row flex items-center justify-center gap-4">
-          <button class="btn btn-primary" onclick="fullpage_api.moveTo('contact')">Start</button>
+          <button class="btn btn-primary" data-open="contact-modal">Start</button>
           <button class="btn btn-outline" onclick="fullpage_api.moveTo('work')">Peek inside</button>
         </div>
       </div>
@@ -229,17 +229,8 @@
 
   <!-- Scripts -->
   <script>
-    let contactModalPending = false;
     let contactModalOpenFn = null;
     let contactModalCloseFn = null;
-    let contactModalObserver = null;
-
-    function stopContactObserver(){
-      if(contactModalObserver){
-        contactModalObserver.disconnect();
-        contactModalObserver = null;
-      }
-    }
 
     // fullPage init
     window.addEventListener('load', function () {
@@ -260,11 +251,6 @@
         responsiveWidth: 768,
         afterLoad: function(origin, destination){
           toggleCTA(destination.anchor);
-          if(destination.anchor === 'contact' && contactModalPending && typeof contactModalOpenFn === 'function'){
-            stopContactObserver();
-            contactModalPending = false;
-            contactModalOpenFn();
-          }
         }
       });
 
@@ -369,43 +355,21 @@
     function setupContactModal(){
       const modal = document.getElementById('contact-modal');
       if(!modal) return;
+      if(modal.parentElement !== document.body){
+        document.body.appendChild(modal);
+      }
       const content = modal.querySelector('.contact-modal__content');
       const overlay = modal.querySelector('.contact-modal__overlay');
       const dismissTriggers = modal.querySelectorAll('[data-dismiss="contact-modal"]');
       const launchTriggers = Array.from(document.querySelectorAll('[data-open="contact-modal"]'));
       const floatingCta = document.getElementById('floating-cta');
       if(floatingCta) launchTriggers.push(floatingCta);
-      const contactSection = document.querySelector('.section[data-anchor="contact"]');
 
       let lastFocused = null;
       const focusableSelector = 'a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
-      function waitForContactVisibility(){
-        if(!contactModalPending) return;
-        if(isContactActive()){
-          contactModalPending = false;
-          stopContactObserver();
-          open();
-        }else{
-          requestAnimationFrame(waitForContactVisibility);
-        }
-      }
-
-      const isContactActive = ()=>{
-        if(window.fullpage_api && !document.body.classList.contains('fp-manual-scroll')){
-          const active = fullpage_api.getActiveSection();
-          return !!(active && active.anchor === 'contact');
-        }
-        if(!contactSection) return false;
-        const rect = contactSection.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top < vh * 0.4 && rect.bottom > vh * 0.35;
-      };
-
       const open = ()=>{
         if(modal.classList.contains('is-open')) return;
-        stopContactObserver();
-        contactModalPending = false;
         lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden','false');
@@ -427,8 +391,6 @@
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden','true');
         document.body.classList.remove('is-modal-open');
-        contactModalPending = false;
-        stopContactObserver();
         if(window.fullpage_api){
           fullpage_api.setAllowScrolling(true);
           fullpage_api.setKeyboardScrolling(true);
@@ -444,38 +406,6 @@
       launchTriggers.forEach(trigger=>{
         trigger.addEventListener('click', e=>{
           e.preventDefault();
-          if(isContactActive()){
-            return open();
-          }
-
-          contactModalPending = true;
-          if(contactSection && 'IntersectionObserver' in window){
-            stopContactObserver();
-            contactModalObserver = new IntersectionObserver(entries=>{
-              entries.forEach(entry=>{
-                if(entry.target === contactSection && entry.isIntersecting && contactModalPending){
-                  stopContactObserver();
-                  contactModalPending = false;
-                  open();
-                }
-              });
-            }, { threshold: 0.6 });
-            contactModalObserver.observe(contactSection);
-          }
-
-          if(window.fullpage_api && !document.body.classList.contains('fp-manual-scroll')){
-            fullpage_api.moveTo('contact');
-            return;
-          }
-
-          if(contactSection){
-            contactSection.scrollIntoView({ behavior:'smooth', block:'start' });
-            waitForContactVisibility();
-            return;
-          }
-
-          stopContactObserver();
-          contactModalPending = false;
           open();
         });
       });

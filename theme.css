@@ -116,7 +116,7 @@ body.fp-manual-scroll .section[data-anchor="home"]{padding-top:4rem;padding-bott
 body.fp-manual-scroll .contact-card{max-height:none}
 
 /* ---- Contact modal ---- */
-.contact-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:1200;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.contact-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:14000;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .contact-modal.is-open{opacity:1;pointer-events:auto}
 .contact-modal__overlay{position:absolute;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px)}
 .contact-modal__content{position:relative;width:100%;max-width:680px;max-height:calc(100vh - 80px);overflow:auto;padding:32px;border-radius:28px;box-shadow:0 40px 90px -30px rgba(15,23,42,.45)}
