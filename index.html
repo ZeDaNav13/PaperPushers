@@ -305,39 +305,111 @@
       });
     }
 
-    // Floating CTA: fixed on mobile, animated on desktop
+    // Floating CTA: fixed on mobile, animated on desktop (pauses on hover)
     function startCtaMode() {
       const cta = document.getElementById('floating-cta');
       if (!cta) return;
 
-      function apply(){
-        if (window.matchMedia('(max-width: 767px)').matches) {
-          cta.style.position = 'fixed';
-          cta.style.bottom = '12px';
-          cta.style.right  = '12px';
-          cta.style.left = 'auto';
-          cta.style.top  = 'auto';
-          cta.style.transform = 'none';
+      let x = 160;
+      let y = 120;
+      let dx = 2.2;
+      let dy = 2.0;
+      let rafId = null;
+      let desktopActive = false;
+      let isPaused = false;
+
+      const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+      const grad = (a,b)=> `linear-gradient(${getVar('--grad-angle')||'135deg'}, ${a}, ${b})`;
+      const pickTwo = ()=>{
+        const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
+        const i=Math.floor(Math.random()*cols.length);
+        const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
+        return [cols[i], cols[j]];
+      };
+
+      function tick(){
+        if(!desktopActive){
+          rafId = null;
           return;
         }
-        // desktop bounce
-        let x=160, y=120, dx=2.2, dy=2.0;
-        const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-        const grad = (a,b)=> `linear-gradient(${getVar('--grad-angle')||'135deg'}, ${a}, ${b})`;
-        const pickTwo = ()=>{
-          const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
-          const i=Math.floor(Math.random()*cols.length);
-          const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
-          return [cols[i], cols[j]];
-        };
-        (function tick(){
-          const el=document.getElementById('floating-cta'); if(!el) return;
-          const w=window.innerWidth, h=window.innerHeight, bw=180, bh=60;
-          if(x<=0||x+bw>=w){dx=-dx; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
-          if(y<=0||y+bh>=h){dy=-dy; const [a,b]=pickTwo(); el.style.background=grad(a,b);}
-          x+=dx; y+=dy; el.style.transform=`translate(${x}px, ${y}px)`; requestAnimationFrame(tick);
-        })();
+        if(!isPaused){
+          const w = window.innerWidth;
+          const h = window.innerHeight;
+          const bw = cta.offsetWidth || 180;
+          const bh = cta.offsetHeight || 60;
+          if(x <= 0 || x + bw >= w){
+            dx = -dx;
+            const [a,b]=pickTwo();
+            cta.style.background = grad(a,b);
+            x = Math.min(Math.max(x, 0), w - bw);
+          }
+          if(y <= 0 || y + bh >= h){
+            dy = -dy;
+            const [a,b]=pickTwo();
+            cta.style.background = grad(a,b);
+            y = Math.min(Math.max(y, 0), h - bh);
+          }
+          x += dx;
+          y += dy;
+          cta.style.transform = `translate(${x}px, ${y}px)`;
+        }
+        rafId = requestAnimationFrame(tick);
       }
+
+      function start(){
+        if(rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function stop(){
+        if(rafId){
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      }
+
+      function setMobile(){
+        desktopActive = false;
+        stop();
+        isPaused = false;
+        cta.style.position = 'fixed';
+        cta.style.bottom = '12px';
+        cta.style.right  = '12px';
+        cta.style.left = 'auto';
+        cta.style.top  = 'auto';
+        cta.style.transform = 'none';
+      }
+
+      function setDesktop(){
+        desktopActive = true;
+        cta.style.position = 'fixed';
+        cta.style.bottom = '';
+        cta.style.right = '';
+        cta.style.left = '';
+        cta.style.top = '';
+        start();
+      }
+
+      function apply(){
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          setMobile();
+        }else{
+          setDesktop();
+        }
+      }
+
+      cta.addEventListener('mouseenter', ()=>{
+        if(!desktopActive) return;
+        isPaused = true;
+      });
+      cta.addEventListener('mouseleave', ()=>{
+        if(!desktopActive) return;
+        isPaused = false;
+        if(!rafId){
+          start();
+        }
+      });
+
       apply();
       window.addEventListener('resize', apply);
     }

@@ -119,9 +119,18 @@ body.fp-manual-scroll .contact-card{max-height:none}
 .contact-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:14000;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .contact-modal.is-open{opacity:1;pointer-events:auto}
 .contact-modal__overlay{position:absolute;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px)}
-.contact-modal__content{position:relative;width:100%;max-width:680px;max-height:calc(100vh - 80px);overflow:auto;padding:32px;border-radius:28px;box-shadow:0 40px 90px -30px rgba(15,23,42,.45)}
-.contact-modal__close{position:absolute;top:18px;right:18px;border:none;background:rgba(15,23,42,.08);color:#0f172a;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .2s ease}
-.contact-modal__close:hover{background:rgba(15,23,42,.15)}
+.contact-modal__content{position:relative;width:100%;max-width:680px;max-height:calc(100vh - 80px);overflow:auto;padding:32px;border-radius:28px;box-shadow:0 40px 90px -30px rgba(15,23,42,.45);color:#fff}
+.contact-modal__content h3,
+.contact-modal__content p,
+.contact-modal__content label,
+.contact-modal__content .form-status{color:#fff}
+.contact-modal__content input,
+.contact-modal__content textarea{color:#0f172a}
+.contact-modal__content input::placeholder,
+.contact-modal__content textarea::placeholder{color:rgba(15,23,42,.7)}
+.contact-modal__content #captcha-question{color:#0f172a}
+.contact-modal__close{position:absolute;top:18px;right:18px;border:none;background:rgba(255,255,255,.18);color:#fff;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.contact-modal__close:hover{background:rgba(255,255,255,.26)}
 .contact-modal__close:focus{outline:2px solid var(--secondary);outline-offset:2px}
 body.is-modal-open{overflow:hidden}
 
