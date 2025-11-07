@@ -287,6 +287,9 @@
     function setupInfoModal(modalId){
       const modal = document.getElementById(modalId);
       if(!modal) return;
+      if(modal.parentElement !== document.body){
+        document.body.appendChild(modal);
+      }
       const overlay = modal.querySelector('.info-modal__overlay');
       const content = modal.querySelector('.info-modal__content');
       const dismissTriggers = modal.querySelectorAll(`[data-dismiss="${modalId}"]`);

@@ -237,7 +237,7 @@ body.is-modal-open{overflow:hidden}
 .info-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:13000;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .info-modal.is-open{opacity:1;pointer-events:auto}
 .info-modal__overlay{position:absolute;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px)}
-.info-modal__content{position:relative;width:100%;max-width:640px;padding:32px;border-radius:28px;box-shadow:0 32px 80px -26px rgba(15,23,42,.5);color:#fff;font-size:0.95rem;line-height:1.5}
+.info-modal__content{position:relative;width:100%;max-width:640px;padding:32px;border-radius:28px;box-shadow:0 32px 80px -26px rgba(15,23,42,.5);color:#fff;font-size:0.95rem;line-height:1.5;text-align:left}
 .info-modal__content .card-title,
 .info-modal__content .card-text{color:#fff}
 .info-modal__content .card-title{font-size:1.5rem}
