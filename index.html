@@ -186,7 +186,7 @@
         </div>
 
         <footer class="site-footer">
-          © <span id="year"></span> PaperPushers · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          © <span id="year"></span> PaperPushers · <a href="#" data-open="privacy-modal">Privacy</a> · <a href="#" data-open="terms-modal">Terms</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a>
         </footer>
 
         <div id="contact-modal" class="contact-modal" aria-hidden="true">
@@ -229,6 +229,24 @@
             </form>
           </div>
         </div>
+        <div id="privacy-modal" class="info-modal" aria-hidden="true">
+          <div class="info-modal__overlay" data-dismiss="privacy-modal"></div>
+          <div class="glass info-modal__content" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" tabindex="-1">
+            <button type="button" class="info-modal__close" aria-label="Close privacy policy" data-dismiss="privacy-modal">Close</button>
+            <h3 id="privacy-modal-title" class="card-title">Privacy Policy</h3>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae fermentum turpis. Proin egestas laoreet neque non hendrerit. Pellentesque et sodales risus, non convallis est. Proin vitae dictum sapien. Integer volutpat erat sit amet lacus convallis, a finibus magna maximus.</p>
+            <p class="card-text">Morbi condimentum, augue id luctus efficitur, nibh enim efficitur urna, eu tristique ligula lacus id augue. Quisque sed convallis ipsum. Integer dapibus vestibulum scelerisque. Pellentesque suscipit, orci eget rhoncus gravida, sem arcu ultricies mauris, et consequat enim quam ac magna.</p>
+          </div>
+        </div>
+        <div id="terms-modal" class="info-modal" aria-hidden="true">
+          <div class="info-modal__overlay" data-dismiss="terms-modal"></div>
+          <div class="glass info-modal__content" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title" tabindex="-1">
+            <button type="button" class="info-modal__close" aria-label="Close terms of service" data-dismiss="terms-modal">Close</button>
+            <h3 id="terms-modal-title" class="card-title">Terms of Service</h3>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet semper diam, sed aliquet arcu. Integer semper sem a odio scelerisque, vel tristique elit bibendum. Suspendisse accumsan nisl sit amet eros dignissim, vel suscipit mi blandit.</p>
+            <p class="card-text">Donec mattis tellus a dui pharetra, non ornare mauris ullamcorper. Vivamus egestas diam vel dolor dapibus rutrum. Phasellus semper sapien sit amet lectus malesuada, ut volutpat diam mollis. Integer in bibendum libero, nec eleifend massa.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -243,6 +261,105 @@
     let toastTimer = null;
     let contactModalOpenFn = null;
     let contactModalCloseFn = null;
+
+    function lockBodyScroll(){
+      document.body.classList.add('is-modal-open');
+    }
+
+    function setupInfoModal(modalId){
+      const modal = document.getElementById(modalId);
+      if(!modal) return;
+      const overlay = modal.querySelector('.info-modal__overlay');
+      const content = modal.querySelector('.info-modal__content');
+      const dismissTriggers = modal.querySelectorAll(`[data-dismiss="${modalId}"]`);
+      const launchTriggers = document.querySelectorAll(`[data-open="${modalId}"]`);
+      const focusableSelector = 'a[href],area[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+      let lastFocused = null;
+
+      const open = ()=>{
+        if(modal.classList.contains('is-open')) return;
+        lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden','false');
+        lockBodyScroll();
+        updateFullpageScrollLock();
+        requestAnimationFrame(()=>{
+          const focusTarget = modal.querySelector(focusableSelector);
+          if(focusTarget && focusTarget instanceof HTMLElement){
+            focusTarget.focus({preventScroll:true});
+          }
+        });
+      };
+
+      const close = ()=>{
+        if(!modal.classList.contains('is-open')) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        unlockBodyScroll();
+        updateFullpageScrollLock();
+        if(lastFocused && typeof lastFocused.focus === 'function'){
+          lastFocused.focus({preventScroll:true});
+        }
+      };
+
+      launchTriggers.forEach(trigger=>{
+        trigger.addEventListener('click', e=>{
+          e.preventDefault();
+          open();
+        });
+      });
+
+      dismissTriggers.forEach(trigger=>{
+        trigger.addEventListener('click', e=>{
+          e.preventDefault();
+          close();
+        });
+      });
+
+      if(overlay){
+        overlay.addEventListener('click', close);
+      }
+
+      if(content){
+        content.addEventListener('click', e=>e.stopPropagation());
+      }
+
+      document.addEventListener('keydown', e=>{
+        if(!modal.classList.contains('is-open')) return;
+        if(e.key === 'Escape'){
+          close();
+        }
+        if(e.key === 'Tab'){
+          const focusable = Array.from(modal.querySelectorAll(focusableSelector)).filter(el=>el instanceof HTMLElement && !el.hasAttribute('disabled') && el.getAttribute('tabindex') !== '-1');
+          if(!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          const active = document.activeElement;
+          if(e.shiftKey && active === first){
+            e.preventDefault();
+            last.focus();
+          }else if(!e.shiftKey && active === last){
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+    }
+
+    function unlockBodyScroll(){
+      const anyOpen = document.querySelector('.contact-modal.is-open, .info-modal.is-open');
+      if(!anyOpen){
+        document.body.classList.remove('is-modal-open');
+      }
+    }
+
+    function updateFullpageScrollLock(){
+      const anyOpen = document.querySelector('.contact-modal.is-open, .info-modal.is-open');
+      if(window.fullpage_api){
+        fullpage_api.setAllowScrolling(!anyOpen);
+        fullpage_api.setKeyboardScrolling(!anyOpen);
+      }
+    }
 
     // fullPage init
     window.addEventListener('load', function () {
@@ -285,6 +402,8 @@
       setupFormSubmission();
       startCtaMode();
       setupContactModal();
+      setupInfoModal('privacy-modal');
+      setupInfoModal('terms-modal');
       setupTabs();
       applyFullpageResponsive();
 
@@ -550,11 +669,8 @@
         formStartAt = Date.now();
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden','false');
-        document.body.classList.add('is-modal-open');
-        if(window.fullpage_api){
-          fullpage_api.setAllowScrolling(false);
-          fullpage_api.setKeyboardScrolling(false);
-        }
+        lockBodyScroll();
+        updateFullpageScrollLock();
         requestAnimationFrame(()=>{
           const focusTarget = modal.querySelector('#name') || modal.querySelector(focusableSelector);
           if(focusTarget && focusTarget instanceof HTMLElement){
@@ -567,11 +683,8 @@
         if(!modal.classList.contains('is-open')) return;
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden','true');
-        document.body.classList.remove('is-modal-open');
-        if(window.fullpage_api){
-          fullpage_api.setAllowScrolling(true);
-          fullpage_api.setKeyboardScrolling(true);
-        }
+        unlockBodyScroll();
+        updateFullpageScrollLock();
         if(lastFocused && typeof lastFocused.focus === 'function'){
           lastFocused.focus({preventScroll:true});
         }

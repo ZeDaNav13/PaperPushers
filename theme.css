@@ -234,6 +234,16 @@ body.fp-manual-scroll .contact-card{max-height:none}
 .contact-modal__close:focus{outline:2px solid var(--secondary);outline-offset:2px}
 body.is-modal-open{overflow:hidden}
 
+.info-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;z-index:13000;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.info-modal.is-open{opacity:1;pointer-events:auto}
+.info-modal__overlay{position:absolute;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px)}
+.info-modal__content{position:relative;width:100%;max-width:640px;padding:32px;border-radius:28px;box-shadow:0 32px 80px -26px rgba(15,23,42,.5);color:#fff}
+.info-modal__content .card-title,
+.info-modal__content .card-text{color:#fff}
+.info-modal__close{position:absolute;top:18px;right:18px;border:none;background:rgba(255,255,255,.18);color:#fff;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.info-modal__close:hover{background:rgba(255,255,255,.26)}
+.info-modal__close:focus{outline:2px solid var(--secondary);outline-offset:2px}
+
 /* ---- fullPage.js adjustments ---- */
 .fp-is-overflow .fp-overflow.fp-auto-height,
 .fp-is-overflow .fp-overflow.fp-auto-height-responsive,
