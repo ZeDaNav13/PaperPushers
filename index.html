@@ -48,6 +48,7 @@
 
   <!-- Floating CTA -->
   <button id="floating-cta" aria-label="Start a project" title="Start a project">Start a project</button>
+  <div id="site-toast" class="toast" role="status" aria-live="polite"></div>
 
   <div id="fullpage">
     <!-- HOME -->
@@ -206,6 +207,9 @@
 
               <!-- honeypot -->
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0" aria-hidden="true">
+              <input type="hidden" name="a" id="captcha-a" value="">
+              <input type="hidden" name="b" id="captcha-b" value="">
+              <input type="hidden" name="elapsed" id="form-elapsed" value="">
 
               <div class="form-field field-captcha">
                 <label class="font-bold" for="captcha">Prove you are human:</label>
@@ -231,6 +235,12 @@
 
   <!-- Scripts -->
   <script>
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxGAHW0v9I-ikvKO9hvhSbyBm3cm0u5Rcq5xIYijTF8Qqz4mndBU2XL20bI6jBYDP6y4A/exec';
+    let captchaA = null;
+    let captchaB = null;
+    let captchaSum = null;
+    let formStartAt = null;
+    let toastTimer = null;
     let contactModalOpenFn = null;
     let contactModalCloseFn = null;
 
@@ -272,6 +282,7 @@
       if (yEl) yEl.textContent = new Date().getFullYear();
 
       setupCaptcha();
+      setupFormSubmission();
       startCtaMode();
       setupContactModal();
       setupTabs();
@@ -287,25 +298,116 @@
       });
     });
 
-    // Captcha
+    // Captcha + form submit
     function setupCaptcha(){
       const a = Math.floor(1 + Math.random()*9);
       const b = Math.floor(1 + Math.random()*9);
+      captchaA = a;
+      captchaB = b;
+      captchaSum = a + b;
       const q = document.getElementById('captcha-question');
-      if(q) q.textContent = a + " + " + b + " = ?";
+      if(q) q.textContent = `${a} + ${b} = ?`;
+      const captchaInput = document.getElementById('captcha');
+      if(captchaInput) captchaInput.value = '';
+      const aField = document.getElementById('captcha-a');
+      const bField = document.getElementById('captcha-b');
+      if(aField) aField.value = String(a);
+      if(bField) bField.value = String(b);
+    }
+
+    function setupFormSubmission(){
       const form = document.getElementById('contact-form');
-      if(!form) return;
-      form.addEventListener('submit', function(e){
+      if(!form || !FORM_ENDPOINT) return;
+
+      formStartAt = Date.now();
+      form.setAttribute('method','POST');
+      form.setAttribute('action', FORM_ENDPOINT);
+
+      const statusEl = document.getElementById('form-status');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const defaultBtnText = submitBtn ? submitBtn.textContent : '';
+      const elapsedField = document.getElementById('form-elapsed');
+
+      const setStatus = (message, tone='info')=>{
+        if(!statusEl) return;
+        statusEl.hidden = false;
+        statusEl.textContent = message;
+        statusEl.dataset.tone = tone;
+      };
+
+      const toggleSubmitting = isSending=>{
+        if(!submitBtn) return;
+        submitBtn.disabled = isSending;
+        submitBtn.textContent = isSending ? 'Sending…' : defaultBtnText;
+      };
+
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
         const hp = document.getElementById('website');
-        const ans = parseInt(document.getElementById('captcha').value, 10);
-        const ok = (ans === a + b) && (!hp || hp.value === '');
-        if(!ok){
-          e.preventDefault();
-          const s = document.getElementById('form-status');
-          if(s){ s.hidden = false; s.textContent = 'Captcha incorrecto.'; }
+        const captchaInput = document.getElementById('captcha');
+        if(elapsedField){
+          const since = Date.now() - (formStartAt || Date.now());
+          elapsedField.value = String(Math.max(0, since));
+        }
+        const ans = parseInt(captchaInput ? captchaInput.value : '', 10);
+        const isHuman = (!hp || hp.value.trim() === '') && Number.isFinite(ans) && captchaSum !== null && ans === captchaSum;
+        if(!isHuman){
+          setStatus('Captcha incorrect. Try again.', 'error');
+          setupCaptcha();
+          return;
+        }
+
+        toggleSubmitting(true);
+        setStatus('Sending…', 'pending');
+
+        try{
+          const response = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            mode: 'cors',
+            body: new FormData(form)
+          });
+          if(!response.ok){
+            throw new Error(`Request failed: ${response.status}`);
+          }
+          form.reset();
+          setupCaptcha();
+          formStartAt = Date.now();
+          setStatus('Got it. Expect a reply within 1 business day.', 'success');
+          showToast('Message sent. We’ll get back within one business day.', 'success');
+        }catch(err){
+          console.error(err);
+          setStatus('Something went wrong. Email hello@paperpushers.biz instead.', 'error');
+        }finally{
+          toggleSubmitting(false);
         }
       });
     }
+
+    function showToast(message, tone='info'){
+      const toast = document.getElementById('site-toast');
+      if(!toast) return;
+      toast.textContent = message;
+      toast.dataset.tone = tone;
+      toast.classList.add('is-visible');
+      if(toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>hideToast(), 4200);
+    }
+
+    function hideToast(){
+      const toast = document.getElementById('site-toast');
+      if(!toast) return;
+      toast.classList.remove('is-visible');
+      if(toastTimer){
+        clearTimeout(toastTimer);
+        toastTimer = null;
+      }
+    }
+
+    document.addEventListener('click', function(e){
+      if(e.target && e.target.id === 'site-toast'){
+        hideToast();
+      }
+    });
 
     // Floating CTA: fixed on mobile, animated on desktop (pauses on hover)
     function startCtaMode() {
@@ -445,6 +547,7 @@
       const open = ()=>{
         if(modal.classList.contains('is-open')) return;
         lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        formStartAt = Date.now();
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden','false');
         document.body.classList.add('is-modal-open');
