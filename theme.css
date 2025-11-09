@@ -4,8 +4,10 @@
   --main:#D2009E;
   --secondary:#FFF53E;
   --highlight:#77FD3E;
-  --accent-blue:#0ea5e9;
-  --offwhite:#F9F9F9;
+  --accent-blue:#12ABE9;
+  --deep-purple:#7A3CE6;
+  --dark-blue:#132445;
+  --offwhite:#F7F7F8;
   --text-dark:#0b0b0e;
   --text-light:#ffffff;
   --grad-angle:135deg;
@@ -52,10 +54,12 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .nav a{color:#fff;text-decoration:none;font-weight:700;opacity:.92}
 .nav a:hover{opacity:1}
 .header-cta{display:flex;justify-content:flex-end}
-.header-cta .btn-quote{border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#fff;background:linear-gradient(120deg,#5b21b6 0%,var(--main) 48%,#ff7ee5 100%);box-shadow:0 10px 28px rgba(0,0,0,.25);cursor:pointer}
+.header-cta .btn-quote{border:none;border-radius:12px;padding:10px 16px;font-weight:900;color:#fff;background:linear-gradient(120deg,var(--deep-purple) 0%,var(--main) 100%);background-size:200% 200%;background-position:0% 50%;box-shadow:0 10px 28px rgba(0,0,0,.25);cursor:pointer;transition:background-position .3s ease}
+.header-cta .btn-quote:hover{background-position:100% 50%}
 
 /* ---- Floating CTA ---- */
-#floating-cta{position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;font-weight:900;font-size:1.05rem;color:#0b0b0e;background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));z-index:12000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);cursor:pointer}
+#floating-cta{position:fixed;width:180px;height:60px;line-height:60px;text-align:center;border-radius:14px;font-weight:900;font-size:1.05rem;color:#fff;background:linear-gradient(var(--grad-angle),var(--deep-purple),var(--main));background-size:200% 200%;background-position:0% 50%;z-index:12000;user-select:none;box-shadow:0 10px 30px rgba(0,0,0,.15);cursor:pointer;transition:background-position .3s ease}
+#floating-cta:hover{background-position:100% 50%}
 
 /* ---- Sections ---- */
 .section{position:relative;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;color:var(--text-light)}
@@ -67,22 +71,22 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 /* ---- Backgrounds ---- */
 .fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%}
 .fp-bg::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background-image:radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);mix-blend-mode:overlay;opacity:.35}
-.bg-stripe-intro{background:radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),conic-gradient(from 200deg at 70% 30%, #5b21b6,#7c3aed,#d946ef,#4f46e5,#5b21b6);animation:bg-pan 18s ease-in-out infinite alternate}
-.bg-stripe-services{background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(34,211,238,.35), transparent 60%),linear-gradient(160deg,#0ea5e9 0%,#22d3ee 50%,#0ea5e9 100%);animation:bg-pan 20s ease-in-out infinite alternate}
-.bg-stripe-portfolio{background:radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),conic-gradient(from 120deg at 50% 50%, #3b0764,#7e22ce,#D2009E,#3b0764);animation:bg-pan 24s ease-in-out infinite alternate-reverse}
-.bg-stripe-about{background:radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),radial-gradient(700px 400px at 85% 20%, rgba(168,85,247,.28), transparent 60%),linear-gradient(180deg, #0b1020, #0f172a);animation:bg-pan 22s ease-in-out infinite alternate-reverse}
+.bg-stripe-intro{background:radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),conic-gradient(from 200deg at 70% 30%, #7A3CE6,#9a5ef2,#d946ef,#4f46e5,#7A3CE6);animation:bg-pan 18s ease-in-out infinite alternate}
+.bg-stripe-services{background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(18,171,233,.35), transparent 60%),linear-gradient(160deg,#12ABE9 0%,#45c7ff 50%,#12ABE9 100%);animation:bg-pan 20s ease-in-out infinite alternate}
+.bg-stripe-portfolio{background:radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),conic-gradient(from 120deg at 50% 50%, #3b0764,#7A3CE6,#D2009E,#3b0764);animation:bg-pan 24s ease-in-out infinite alternate-reverse}
+.bg-stripe-about{background:radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),radial-gradient(700px 400px at 85% 20%, rgba(122,60,230,.28), transparent 60%),linear-gradient(180deg, #0b1020, #132445);animation:bg-pan 22s ease-in-out infinite alternate-reverse}
 .bg-stripe-contact{background:radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),linear-gradient(180deg,var(--offwhite),#f3f4f6);animation:bg-pan 26s ease-in-out infinite alternate}
 @keyframes bg-pan{0%{background-position:0% 40%,100% 60%,50% 50%}100%{background-position:100% 60%,0% 40%,50% 50%}}
 
 /* ---- Cards + Buttons ---- */
 .glass{position:relative;z-index:2;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 16px 50px rgba(0,0,0,.25)}
-.btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900;cursor:pointer;border:none;box-shadow:0 8px 22px rgba(0,0,0,.18);transition:transform .15s ease,box-shadow .15s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900;cursor:pointer;border:none;box-shadow:0 8px 22px rgba(0,0,0,.18);transition:transform .18s ease,box-shadow .18s ease,background-size .3s ease;background-size:150% 150%;background-position:0% 50%;color:#fff}
+.btn:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 14px 32px rgba(0,0,0,.25);background-size:200% 200%}
 .btn:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:3px}
-.btn-primary{background:linear-gradient(var(--grad-angle),var(--secondary),var(--highlight));color:#0b0b0e}
+.btn-primary{background:linear-gradient(115deg,var(--secondary) 0%,var(--main) 100%);color:#fff}
 .btn-outline{color:#fff;background:linear-gradient(var(--grad-angle),rgba(255,255,255,.20),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 22px rgba(0,0,0,.25)}
-.btn-peek{background:linear-gradient(var(--grad-angle),#ffb6f2,var(--main));color:#fff}
-.btn-cta-blue{background:linear-gradient(var(--grad-angle),#7dd3fc,var(--accent-blue));color:#0b0b0e}
+.btn-peek{background:linear-gradient(115deg,var(--accent-blue) 0%,var(--main) 100%);color:#fff}
+.btn-cta-blue{background:linear-gradient(115deg,var(--deep-purple) 0%,var(--secondary) 100%);color:#fff}
 .toast{
   position:fixed;
   left:50%;
@@ -136,7 +140,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   gap:32px;
   min-height:calc(100svh - 112px);
   padding-top:96px;
-  padding-bottom:32px;
+  padding-bottom:24px;
 }
 .section[data-anchor="contact"] .contact-title{color:var(--main)}
 .section[data-anchor="contact"]{padding-bottom:0 !important}
@@ -163,14 +167,14 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   align-self:stretch;
   width:100%;
   margin-top:auto;
-  padding:24px 16px 24px;
-  border-top:1px solid rgba(255,255,255,.25);
-  background:var(--main);
+  padding:16px;
+  border-top:1px solid rgba(122,60,230,.25);
+  background:transparent;
   text-align:center;
   font-size:.9rem;
-  color:#fff;
+  color:var(--deep-purple);
 }
-.site-footer a{color:#fff;font-weight:700;text-decoration:underline}
+.site-footer a{color:var(--deep-purple);font-weight:700;text-decoration:underline}
 .site-footer a:hover{color:var(--secondary)}
 
 @media (min-width:768px){

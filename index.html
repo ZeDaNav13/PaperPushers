@@ -565,11 +565,25 @@
       const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
       const grad = (a,b)=> `linear-gradient(${getVar('--grad-angle')||'135deg'}, ${a}, ${b})`;
       const pickTwo = ()=>{
-        const cols=[getVar('--main'), getVar('--secondary'), getVar('--highlight')];
+        const cols=[
+          getVar('--deep-purple') || '#7A3CE6',
+          getVar('--main') || '#D2009E',
+          getVar('--secondary') || '#FFF53E',
+          getVar('--accent-blue') || '#12ABE9',
+          getVar('--dark-blue') || '#132445',
+          getVar('--offwhite') || '#F7F7F8'
+        ];
         const i=Math.floor(Math.random()*cols.length);
         const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
         return [cols[i], cols[j]];
       };
+      const applyGradient = ()=>{
+        const [a,b]=pickTwo();
+        cta.style.background = grad(a,b);
+        cta.style.backgroundSize = '200% 200%';
+        cta.style.backgroundPosition = '0% 50%';
+      };
+      applyGradient();
 
       function tick(){
         if(!desktopActive){
@@ -583,14 +597,12 @@
           const bh = cta.offsetHeight || 60;
           if(x <= 0 || x + bw >= w){
             dx = -dx;
-            const [a,b]=pickTwo();
-            cta.style.background = grad(a,b);
+            applyGradient();
             x = Math.min(Math.max(x, 0), w - bw);
           }
           if(y <= 0 || y + bh >= h){
             dy = -dy;
-            const [a,b]=pickTwo();
-            cta.style.background = grad(a,b);
+            applyGradient();
             y = Math.min(Math.max(y, 0), h - bh);
           }
           x += dx;
