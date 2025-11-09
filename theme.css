@@ -11,7 +11,7 @@
   --grad-angle:135deg;
 }
 html,body{height:100%}
-body{font-family:'Montserrat',sans-serif;background:#0b0b0e;padding-bottom:80px}
+body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 
 /* ---- Typography ---- */
 .section-title{
@@ -160,17 +160,14 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e;padding-bottom:80px}
 .field-button{justify-self:stretch}
 
 .site-footer{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:1200;
-  padding:20px 16px;
-  background:#0b0b0e;
-  border-top:1px solid rgba(255,255,255,.08);
+  align-self:stretch;
+  width:100%;
+  margin-top:auto;
+  padding:32px 16px 16px;
+  border-top:1px solid rgba(255,255,255,.15);
   text-align:center;
   font-size:.9rem;
-  color:rgba(255,255,255,.9);
+  color:rgba(255,255,255,.92);
 }
 .site-footer a{color:#fff;font-weight:700;text-decoration:underline}
 .site-footer a:hover{color:var(--secondary)}
