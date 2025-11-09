@@ -180,9 +180,36 @@
 
         <!-- Desktop grid -->
         <div class="grid-3 works-grid max-w-6xl mx-auto text-left">
-          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="card-title">RealFevr → </br>+2.5M downloads</h3><p class="card-text">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p></article>
-          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="card-title">MiliLand Digital → Online Studio</h3><p class="card-text">Agile media studio blending branding, web, social, and ads — running since 2010.</p></article>
-          <article class="glass p-6 md:p-8 text-on-dark"><h3 class="card-title">Pentagon Lisboa → From ruin to icon</h3><p class="card-text">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p></article>
+          <article class="work-card glass">
+            <div class="work-card__inner">
+              <div class="work-card__face work-card__front">
+                <h3 class="card-title">RealFevr → </br>+2.5M downloads</h3>
+              </div>
+              <div class="work-card__face work-card__back">
+                <p class="card-text">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p>
+              </div>
+            </div>
+          </article>
+          <article class="work-card glass">
+            <div class="work-card__inner">
+              <div class="work-card__face work-card__front">
+                <h3 class="card-title">MiliLand Digital → Online Studio</h3>
+              </div>
+              <div class="work-card__face work-card__back">
+                <p class="card-text">Agile media studio blending branding, web, social, and ads — running since 2010.</p>
+              </div>
+            </div>
+          </article>
+          <article class="work-card glass">
+            <div class="work-card__inner">
+              <div class="work-card__face work-card__front">
+                <h3 class="card-title">Pentagon Lisboa → From ruin to icon</h3>
+              </div>
+              <div class="work-card__face work-card__back">
+                <p class="card-text">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -838,6 +865,7 @@
       };
       bindTabs('.toolbox-tabs','.toolbox-panel','#toolbox-title','#toolbox-body', toolboxData);
       shuffleServiceCards();
+      shuffleWorkCards();
 
       const worksData = {
         fevr:["RealFevr → +2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
@@ -900,6 +928,34 @@
         .sort((a,b)=>a.sort - b.sort)
         .map(entry=>entry.card);
       shuffled.forEach(card=>grid.appendChild(card));
+    }
+
+    function paintWorkCards(){
+      const cards = document.querySelectorAll('.works-grid .work-card__back');
+      if(!cards.length) return;
+      const palette = [
+        ['var(--accent-blue)','var(--dark-blue)'],
+        ['var(--deep-purple)','var(--main)'],
+        ['#7A3CE6','#132445'],
+        ['#00c9ff','#7A3CE6'],
+        ['#12ABE9','#D2009E'],
+        ['#FFF53E','#132445']
+      ];
+      const shuffledPalette = shuffleArray(palette.slice());
+      cards.forEach((card, idx)=>{
+        const pick = shuffledPalette[idx % shuffledPalette.length];
+        card.style.background = `linear-gradient(140deg, ${pick[0]}, ${pick[1]})`;
+      });
+    }
+
+    function shuffleWorkCards(){
+      const grid = document.querySelector('.works-grid');
+      if(!grid) return;
+      const cards = Array.from(grid.children);
+      if(!cards.length) return;
+      const shuffled = shuffleArray(cards);
+      shuffled.forEach(card=>grid.appendChild(card));
+      paintWorkCards();
     }
 
     function shuffleArray(arr){
