@@ -837,6 +837,7 @@
         spaces:["Spaces & Interiors","Brands that don’t stop at screens — they spill into walls, chairs, and vibes."]
       };
       bindTabs('.toolbox-tabs','.toolbox-panel','#toolbox-title','#toolbox-body', toolboxData);
+      shuffleServiceCards();
 
       const worksData = {
         fevr:["RealFevr → +2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
@@ -886,6 +887,18 @@
         const pick = palette[Math.floor(Math.random()*palette.length)];
         card.style.background = `linear-gradient(140deg, ${pick[0]}, ${pick[1]})`;
       });
+    }
+
+    function shuffleServiceCards(){
+      const grid = document.querySelector('.services-grid');
+      if(!grid) return;
+      const cards = Array.from(grid.children);
+      if(!cards.length) return;
+      const shuffled = cards
+        .map(card => ({card, sort: Math.random()}))
+        .sort((a,b)=>a.sort - b.sort)
+        .map(entry=>entry.card);
+      shuffled.forEach(card=>grid.appendChild(card));
     }
 
     // Mobile menu toggle
