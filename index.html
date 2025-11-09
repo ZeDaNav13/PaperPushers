@@ -883,8 +883,9 @@
         ['#00c9ff','#132445'],
         ['#D2009E','#12ABE9']
       ];
-      cards.forEach(card=>{
-        const pick = palette[Math.floor(Math.random()*palette.length)];
+      const shuffledPalette = shuffleArray(palette.slice());
+      cards.forEach((card, idx)=>{
+        const pick = shuffledPalette[idx % shuffledPalette.length];
         card.style.background = `linear-gradient(140deg, ${pick[0]}, ${pick[1]})`;
       });
     }
@@ -899,6 +900,14 @@
         .sort((a,b)=>a.sort - b.sort)
         .map(entry=>entry.card);
       shuffled.forEach(card=>grid.appendChild(card));
+    }
+
+    function shuffleArray(arr){
+      for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     }
 
     // Mobile menu toggle
