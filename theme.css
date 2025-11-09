@@ -80,14 +80,16 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 
 /* ---- Cards + Buttons ---- */
 .glass{position:relative;z-index:2;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 16px 50px rgba(0,0,0,.25)}
-.service-card{position:relative;padding:0;overflow:visible}
-.service-card__inner{position:relative;width:100%;height:100%;min-height:220px;border-radius:20px;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.2,.2,1)}
-.service-card__face{position:absolute;inset:0;border-radius:20px;padding:1.75rem;display:flex;align-items:center;justify-content:center;text-align:center;backface-visibility:hidden}
-.service-card__front{background:transparent}
-.service-card__back{transform:rotateY(180deg);color:#fff;font-weight:600}
-.services-grid .card-title{text-align:center;width:100%;margin-bottom:0}
+.service-card{position:relative;padding:0;overflow:hidden}
+.service-card.glass{border:none;background:rgba(255,255,255,.08)}
+.service-card__inner{position:relative;width:100%;height:100%;min-height:220px;border-radius:20px;overflow:hidden}
+.service-card__face{position:absolute;inset:0;padding:1.75rem;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:20px;transition:opacity .45s ease,transform .45s ease}
+.service-card__front{background:transparent;opacity:1;transform:translateY(0)}
+.service-card__back{opacity:0;transform:translateY(16px);color:#fff;font-weight:500}
+.services-grid .card-title{text-align:center;width:100%;margin-bottom:0;font-weight:700;letter-spacing:-.2px}
 @media (hover:hover) and (pointer:fine){
-  .service-card:hover .service-card__inner{transform:rotateY(180deg)}
+  .service-card:hover .service-card__front{opacity:.1;transform:translateY(-12px)}
+  .service-card:hover .service-card__back{opacity:1;transform:translateY(0)}
 }
 .services-grid .service-card:nth-child(6n+1) .service-card__back{background:linear-gradient(140deg,var(--deep-purple),var(--main))}
 .services-grid .service-card:nth-child(6n+2) .service-card__back{background:linear-gradient(140deg,var(--accent-blue),var(--dark-blue))}
