@@ -25,7 +25,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .section-lead{
   font-size:clamp(1.125rem,1.1vw + 1rem,1.85rem);
   line-height:1.45;
-  font-weight:600;
+  font-weight:400;
   margin-bottom:2.5rem;
   color:inherit;
 }
@@ -136,9 +136,9 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   gap:32px;
   min-height:calc(100svh - 112px);
   padding-top:96px;
-  padding-bottom:96px;
+  padding-bottom:32px;
 }
-.section[data-anchor="contact"] .contact-title{color:#5b21b6}
+.section[data-anchor="contact"] .contact-title{color:var(--main)}
 .section[data-anchor="contact"]{padding-bottom:0 !important}
 .contact-card{position:relative;display:grid;gap:24px;align-items:start;overflow:visible;scrollbar-width:thin;flex:none;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08));width:100%;max-width:860px;margin:0 auto}
 .contact-title{line-height:1.05}
@@ -163,11 +163,12 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   align-self:stretch;
   width:100%;
   margin-top:auto;
-  padding:32px 16px 16px;
-  border-top:1px solid rgba(255,255,255,.15);
+  padding:24px 16px 24px;
+  border-top:1px solid rgba(255,255,255,.25);
+  background:var(--main);
   text-align:center;
   font-size:.9rem;
-  color:rgba(255,255,255,.92);
+  color:#fff;
 }
 .site-footer a{color:#fff;font-weight:700;text-decoration:underline}
 .site-footer a:hover{color:var(--secondary)}
