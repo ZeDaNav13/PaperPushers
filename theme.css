@@ -38,6 +38,14 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   line-height:1.2;
   margin:0 0 .75rem;
 }
+.card-subtitle{
+  font-size:1.05rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin:0 0 .65rem;
+  color:var(--card-subtitle-color,var(--secondary));
+}
 .card-text{
   font-size:clamp(1rem,0.6vw + .95rem,1.2rem);
   line-height:1.6;
@@ -71,11 +79,29 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 /* ---- Backgrounds ---- */
 .fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%}
 .fp-bg::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background-image:radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);mix-blend-mode:overlay;opacity:.35}
-.bg-stripe-intro{background:radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.10), transparent 60%),radial-gradient(800px 600px at 80% 20%, rgba(255,255,255,.06), transparent 60%),conic-gradient(from 200deg at 70% 30%, #7A3CE6,#9a5ef2,#d946ef,#4f46e5,#7A3CE6);animation:bg-pan 18s ease-in-out infinite alternate}
+.bg-stripe-intro{
+  background:
+    radial-gradient(1000px 520px at 10% 0%, rgba(255,255,255,.12), transparent 60%),
+    radial-gradient(800px 520px at 95% 20%, rgba(255,255,255,.08), transparent 68%),
+    linear-gradient(160deg,#7A3CE6 0%,#9a5ef2 40%,#d946ef 70%,#4f46e5 100%);
+  animation:bg-pan 18s ease-in-out infinite alternate;
+}
 .bg-stripe-services{background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(18,171,233,.35), transparent 60%),linear-gradient(160deg,#12ABE9 0%,#45c7ff 50%,#12ABE9 100%);animation:bg-pan 20s ease-in-out infinite alternate}
-.bg-stripe-portfolio{background:radial-gradient(900px 600px at 15% 20%, rgba(255,85,214,.35), transparent 60%),radial-gradient(900px 600px at 85% 70%, rgba(119,253,62,.22), transparent 60%),conic-gradient(from 120deg at 50% 50%, #3b0764,#7A3CE6,#D2009E,#3b0764);animation:bg-pan 24s ease-in-out infinite alternate-reverse}
+.bg-stripe-portfolio{
+  background:
+    radial-gradient(1200px 640px at 15% 15%, rgba(255,122,217,.45), transparent 58%),
+    radial-gradient(1000px 640px at 90% 65%, rgba(255,96,171,.32), transparent 60%),
+    linear-gradient(135deg,#52003f 0%,#B5007A 40%,#D2009E 70%,#FF7FD1 100%);
+  animation:bg-pan 24s ease-in-out infinite alternate-reverse;
+}
 .bg-stripe-about{background:radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),radial-gradient(700px 400px at 85% 20%, rgba(122,60,230,.28), transparent 60%),linear-gradient(180deg, #0b1020, #132445);animation:bg-pan 22s ease-in-out infinite alternate-reverse}
-.bg-stripe-contact{background:radial-gradient(700px 500px at 75% 30%, rgba(210,0,158,.18), transparent 60%),radial-gradient(700px 500px at 25% 70%, rgba(14,165,233,.18), transparent 60%),linear-gradient(180deg,var(--offwhite),#f3f4f6);animation:bg-pan 26s ease-in-out infinite alternate}
+.bg-stripe-contact{
+  background:
+    radial-gradient(800px 520px at 75% 30%, rgba(255,245,62,.35), transparent 58%),
+    radial-gradient(800px 520px at 25% 70%, rgba(255,200,80,.28), transparent 60%),
+    linear-gradient(165deg,#FFF53E 0%,#FFD84D 45%,#FFB347 100%);
+  animation:bg-pan 26s ease-in-out infinite alternate;
+}
 @keyframes bg-pan{0%{background-position:0% 40%,100% 60%,50% 50%}100%{background-position:100% 60%,0% 40%,50% 50%}}
 
 /* ---- Cards + Buttons ---- */
@@ -97,13 +123,27 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .work-card__inner{position:relative;width:100%;height:100%;min-height:220px;border-radius:20px;overflow:hidden}
 .work-card__face{position:absolute;inset:0;padding:1.75rem;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:20px;transition:opacity .45s ease,transform .45s ease}
 .work-card__front{background:transparent;opacity:1;transform:translateY(0)}
-.work-card__back{opacity:0;transform:translateY(16px);color:#fff;font-weight:500}
+.work-card__back{
+  opacity:0;
+  transform:translateY(16px);
+  color:#fff;
+  font-weight:500;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  text-align:left;
+  gap:.8rem;
+}
+.work-card__back .card-subtitle{margin-bottom:0}
+.work-card__back .card-text{margin:0;color:#fff}
 .works-grid .card-title{text-align:center;width:100%;margin-bottom:0;font-weight:700;letter-spacing:-.2px}
 @media (hover:hover) and (pointer:fine){
   .work-card:hover .work-card__front{opacity:.1;transform:translateY(-12px)}
   .work-card:hover .work-card__back{opacity:1;transform:translateY(0)}
 }
 .works-grid .work-card__back{background:linear-gradient(140deg,var(--accent-blue),var(--dark-blue))}
+.works-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.works-grid .work-card__inner{min-height:280px}
 .btn{display:inline-block;border-radius:14px;padding:14px 22px;font-weight:900;cursor:pointer;border:none;box-shadow:0 10px 28px rgba(0,0,0,.25);transition:transform .3s ease,background-position .55s ease,color .3s ease;background-size:200% 200%;background-position:0% 50%;color:#fff}
 .btn:hover{transform:translateY(-2px);background-position:100% 50%}
 .btn:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:3px}
@@ -202,7 +242,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   color:var(--deep-purple);
 }
 .site-footer a{color:var(--deep-purple);font-weight:700;text-decoration:underline}
-.site-footer a:hover{color:var(--secondary)}
+.site-footer a:hover{color:var(--main)}
 
 @media (min-width:768px){
   .contact-card{gap:32px;grid-template-columns:repeat(2,minmax(0,1fr))}

@@ -174,7 +174,8 @@
           <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
         </div>
         <article id="works-panel" class="glass works-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
-          <h3 class="card-title" id="works-title">RealFevr → +2.5M downloads</h3>
+          <h3 class="card-title" id="works-title">RealFevr</h3>
+          <p class="card-subtitle" id="works-subtitle">+2.5M downloads</p>
           <p id="works-body" class="card-text">Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+.</p>
         </article>
 
@@ -183,9 +184,10 @@
           <article class="work-card glass">
             <div class="work-card__inner">
               <div class="work-card__face work-card__front">
-                <h3 class="card-title">RealFevr → </br>+2.5M downloads</h3>
+                <h3 class="card-title">RealFevr</h3>
               </div>
               <div class="work-card__face work-card__back">
+                <p class="card-subtitle">+2.5M downloads</p>
                 <p class="card-text">Fantasy-football startup with peak 250k daily active users. Raised 9M+.</p>
               </div>
             </div>
@@ -193,9 +195,10 @@
           <article class="work-card glass">
             <div class="work-card__inner">
               <div class="work-card__face work-card__front">
-                <h3 class="card-title">MiliLand Digital → Online Studio</h3>
+                <h3 class="card-title">MiliLand Digital</h3>
               </div>
               <div class="work-card__face work-card__back">
+                <p class="card-subtitle">Online Studio</p>
                 <p class="card-text">Agile media studio blending branding, web, social, and ads — running since 2010.</p>
               </div>
             </div>
@@ -203,9 +206,10 @@
           <article class="work-card glass">
             <div class="work-card__inner">
               <div class="work-card__face work-card__front">
-                <h3 class="card-title">Pentagon Lisboa → From ruin to icon</h3>
+                <h3 class="card-title">Pentagon Lisboa</h3>
               </div>
               <div class="work-card__face work-card__back">
+                <p class="card-subtitle">From ruin to icon</p>
                 <p class="card-text">Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue.</p>
               </div>
             </div>
@@ -868,11 +872,11 @@
       shuffleWorkCards();
 
       const worksData = {
-        fevr:["RealFevr → +2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
-        mili:["MiliLand Digital → Online Studio","Agile media studio blending branding, web, social, and ads — running since 2010."],
-        pent:["Pentagon Lisboa → From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."]
+        fevr:["RealFevr","+2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
+        mili:["MiliLand Digital","Online Studio","Agile media studio blending branding, web, social, and ads — running since 2010."],
+        pent:["Pentagon Lisboa","From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."]
       };
-      bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData);
+      bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData,'#works-subtitle');
 
       const aboutData = {
         team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
@@ -882,11 +886,12 @@
       bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData);
       paintServiceCards();
 
-      function bindTabs(tabsSel,panelSel,titleSel,bodySel,data){
+      function bindTabs(tabsSel,panelSel,titleSel,bodySel,data,subtitleSel){
         const tabs = document.querySelectorAll(tabsSel+' .tab');
         const panel = document.querySelector(panelSel);
         const title = document.querySelector(titleSel);
         const body  = document.querySelector(bodySel);
+        const subtitle = subtitleSel ? document.querySelector(subtitleSel) : null;
         if(!tabs.length || !panel || !title || !body) return;
         tabs.forEach(b=>{
           b.addEventListener('click', ()=>{
@@ -894,7 +899,16 @@
             b.classList.add('is-active');
             const key = b.dataset.tab;
             const val = data[key];
-            if(val){ title.textContent = val[0]; body.textContent = val[1]; }
+            if(!val) return;
+            title.textContent = val[0] || '';
+            if(subtitle){
+              const subtitleText = val[1] || '';
+              subtitle.textContent = subtitleText;
+              subtitle.hidden = !subtitleText;
+              body.textContent = val[2] || '';
+            }else{
+              body.textContent = val[1] || '';
+            }
           });
         });
       }
@@ -933,18 +947,27 @@
     function paintWorkCards(){
       const cards = document.querySelectorAll('.works-grid .work-card__back');
       if(!cards.length) return;
+      const themeColors = {
+        main:'var(--main)',
+        accent:'var(--accent-blue)',
+        deepPurple:'var(--deep-purple)',
+        darkBlue:'var(--dark-blue)',
+        offwhite:'var(--offwhite)'
+      };
       const palette = [
-        ['var(--accent-blue)','var(--dark-blue)'],
-        ['var(--deep-purple)','var(--main)'],
-        ['#7A3CE6','#132445'],
-        ['#00c9ff','#7A3CE6'],
-        ['#12ABE9','#D2009E'],
-        ['#FFF53E','#132445']
+        {colors:[themeColors.accent, themeColors.darkBlue], uses:[themeColors.accent, themeColors.darkBlue]},
+        {colors:[themeColors.deepPurple, themeColors.main], uses:[themeColors.deepPurple, themeColors.main]},
+        {colors:[themeColors.deepPurple, themeColors.darkBlue], uses:[themeColors.deepPurple, themeColors.darkBlue]},
+        {colors:['#00c9ff', themeColors.deepPurple], uses:[themeColors.deepPurple]},
+        {colors:[themeColors.accent, themeColors.main], uses:[themeColors.accent, themeColors.main]},
+        {colors:[themeColors.offwhite, themeColors.darkBlue], uses:[themeColors.offwhite, themeColors.darkBlue]}
       ];
+      const subtitleColor = 'var(--secondary)';
       const shuffledPalette = shuffleArray(palette.slice());
       cards.forEach((card, idx)=>{
         const pick = shuffledPalette[idx % shuffledPalette.length];
-        card.style.background = `linear-gradient(140deg, ${pick[0]}, ${pick[1]})`;
+        card.style.background = `linear-gradient(140deg, ${pick.colors[0]}, ${pick.colors[1]})`;
+        card.style.setProperty('--card-subtitle-color', subtitleColor);
       });
     }
 
