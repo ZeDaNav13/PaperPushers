@@ -77,30 +77,123 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
 /* ---- Backgrounds ---- */
-.fp-bg{position:absolute;inset:0;z-index:-2;background-size:200% 200%}
-.fp-bg::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background-image:radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);mix-blend-mode:overlay;opacity:.35}
+.fp-bg{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-size:200% 200%;
+  overflow:hidden;
+  isolation:isolate;
+  filter:saturate(1.08) contrast(1.05);
+  --glow-1-color:rgba(210,0,158,.38);
+  --glow-2-color:rgba(255,245,62,.28);
+  --glow-3-color:rgba(18,171,233,.25);
+  --glow-1-pos:18% 28%;
+  --glow-2-pos:82% 24%;
+  --glow-3-pos:58% 78%;
+  --glow-speed:20s;
+}
+.fp-bg::before{
+  content:'';
+  position:absolute;
+  inset:-25%;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at var(--glow-1-pos), var(--glow-1-color) 0%, transparent 58%),
+    radial-gradient(circle at var(--glow-2-pos), var(--glow-2-color) 0%, transparent 60%),
+    radial-gradient(circle at var(--glow-3-pos), var(--glow-3-color) 0%, transparent 65%);
+  mix-blend-mode:screen;
+  opacity:.8;
+  animation:glowPulse var(--glow-speed) ease-in-out infinite alternate;
+}
+.fp-bg::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background-image:radial-gradient(transparent 0, rgba(0,0,0,.03) 100%),repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px);
+  mix-blend-mode:overlay;
+  opacity:.45;
+}
 .bg-stripe-intro{
+  --glow-1-color:rgba(122,60,230,.5);
+  --glow-2-color:rgba(255,245,62,.32);
+  --glow-3-color:rgba(18,171,233,.28);
+  --glow-1-pos:12% 22%;
+  --glow-2-pos:88% 32%;
+  --glow-3-pos:46% 82%;
+  --glow-speed:18s;
   background:
     radial-gradient(1000px 520px at 10% 0%, rgba(255,255,255,.12), transparent 60%),
     radial-gradient(800px 520px at 95% 20%, rgba(255,255,255,.08), transparent 68%),
     linear-gradient(160deg,#7A3CE6 0%,#9a5ef2 40%,#d946ef 70%,#4f46e5 100%);
   animation:bg-pan 18s ease-in-out infinite alternate;
 }
-.bg-stripe-services{background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(18,171,233,.35), transparent 60%),linear-gradient(160deg,#12ABE9 0%,#45c7ff 50%,#12ABE9 100%);animation:bg-pan 20s ease-in-out infinite alternate}
+.bg-stripe-services{
+  --glow-1-color:rgba(255,245,62,.38);
+  --glow-2-color:rgba(119,253,62,.22);
+  --glow-3-color:rgba(18,171,233,.38);
+  --glow-1-pos:76% 26%;
+  --glow-2-pos:26% 70%;
+  --glow-3-pos:48% 86%;
+  --glow-speed:20s;
+  background:radial-gradient(700px 500px at 80% 30%, rgba(255,245,62,.35), transparent 60%),radial-gradient(600px 400px at 20% 70%, rgba(18,171,233,.35), transparent 60%),linear-gradient(160deg,#12ABE9 0%,#45c7ff 50%,#12ABE9 100%);
+  animation:bg-pan 20s ease-in-out infinite alternate;
+}
 .bg-stripe-portfolio{
+  --glow-1-color:rgba(210,0,158,.5);
+  --glow-2-color:rgba(255,122,217,.42);
+  --glow-3-color:rgba(255,96,171,.32);
+  --glow-1-pos:18% 18%;
+  --glow-2-pos:78% 62%;
+  --glow-3-pos:52% 86%;
+  --glow-speed:22s;
   background:
     radial-gradient(1200px 640px at 15% 15%, rgba(255,122,217,.45), transparent 58%),
     radial-gradient(1000px 640px at 90% 65%, rgba(255,96,171,.32), transparent 60%),
     linear-gradient(135deg,#52003f 0%,#B5007A 40%,#D2009E 70%,#FF7FD1 100%);
   animation:bg-pan 24s ease-in-out infinite alternate-reverse;
 }
-.bg-stripe-about{background:radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),radial-gradient(700px 400px at 85% 20%, rgba(122,60,230,.28), transparent 60%),linear-gradient(180deg, #0b1020, #132445);animation:bg-pan 22s ease-in-out infinite alternate-reverse}
+.bg-stripe-about{
+  --glow-1-color:rgba(59,130,246,.35);
+  --glow-2-color:rgba(122,60,230,.38);
+  --glow-3-color:rgba(119,253,62,.22);
+  --glow-1-pos:18% 78%;
+  --glow-2-pos:84% 22%;
+  --glow-3-pos:46% 40%;
+  --glow-speed:22s;
+  background:radial-gradient(900px 500px at 15% 80%, rgba(59,130,246,.25), transparent 60%),radial-gradient(700px 400px at 85% 20%, rgba(122,60,230,.28), transparent 60%),linear-gradient(180deg, #0b1020, #132445);
+  animation:bg-pan 22s ease-in-out infinite alternate-reverse;
+}
 .bg-stripe-contact{
+  --glow-1-color:rgba(255,245,62,.42);
+  --glow-2-color:rgba(255,200,80,.38);
+  --glow-3-color:rgba(210,0,158,.28);
+  --glow-1-pos:72% 32%;
+  --glow-2-pos:24% 72%;
+  --glow-3-pos:48% 88%;
+  --glow-speed:26s;
   background:
     radial-gradient(800px 520px at 75% 30%, rgba(255,245,62,.35), transparent 58%),
     radial-gradient(800px 520px at 25% 70%, rgba(255,200,80,.28), transparent 60%),
     linear-gradient(165deg,#FFF53E 0%,#FFD84D 45%,#FFB347 100%);
   animation:bg-pan 26s ease-in-out infinite alternate;
+}
+@keyframes glowPulse{
+  0%{
+    transform:translate3d(0,0,0) scale(.95);
+    opacity:.7;
+  }
+  50%{
+    transform:translate3d(-2.5%,2.5%,0) scale(1.05);
+    opacity:.85;
+  }
+  100%{
+    transform:translate3d(3%, -3%,0) scale(1.12);
+    opacity:1;
+  }
 }
 @keyframes bg-pan{0%{background-position:0% 40%,100% 60%,50% 50%}100%{background-position:100% 60%,0% 40%,50% 50%}}
 
