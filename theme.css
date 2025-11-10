@@ -118,17 +118,17 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   opacity:.45;
 }
 .bg-stripe-intro{
-  --glow-1-color:rgba(122,60,230,.5);
-  --glow-2-color:rgba(255,245,62,.32);
-  --glow-3-color:rgba(18,171,233,.28);
+  --glow-1-color:rgba(122,60,230,.4);
+  --glow-2-color:rgba(255,245,62,.18);
+  --glow-3-color:rgba(18,171,233,.22);
   --glow-1-pos:12% 22%;
   --glow-2-pos:88% 32%;
   --glow-3-pos:46% 82%;
   --glow-speed:18s;
   background:
-    radial-gradient(1000px 520px at 10% 0%, rgba(255,255,255,.12), transparent 60%),
-    radial-gradient(800px 520px at 95% 20%, rgba(255,255,255,.08), transparent 68%),
-    linear-gradient(160deg,#7A3CE6 0%,#9a5ef2 40%,#d946ef 70%,#4f46e5 100%);
+    radial-gradient(1000px 520px at 12% 8%, rgba(255,255,255,.08), transparent 58%),
+    radial-gradient(820px 520px at 92% 24%, rgba(255,255,255,.05), transparent 68%),
+    linear-gradient(160deg,#3c1f74 0%,#5b2fa8 35%,#7A3CE6 65%,#431fb2 100%);
   animation:bg-pan 18s ease-in-out infinite alternate;
 }
 .bg-stripe-services{
