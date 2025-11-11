@@ -284,7 +284,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 /* ---- Layout helpers ---- */
 .container{max-width:1200px;margin-inline:auto;padding-inline:1rem}
 .grid-3{display:grid;gap:24px}
-@media(min-width:768px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:901px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1120px){.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .text-on-dark{color:rgba(255,255,255,.96)}
 .text-soft-on-dark{color:rgba(255,255,255,.82)}
@@ -303,7 +303,11 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   padding-bottom:24px;
 }
 .section[data-anchor="contact"] .contact-title{color:var(--main)}
-.section[data-anchor="contact"]{padding-bottom:0 !important}
+.section[data-anchor="contact"]{
+  padding-bottom:0 !important;
+  background-color:#FFD84D; /* fallback so footer never falls onto body background */
+}
+.section[data-anchor="contact"]::after{background:none}
 .contact-card{position:relative;display:grid;gap:24px;align-items:start;overflow:visible;scrollbar-width:thin;flex:none;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08));width:100%;max-width:860px;margin:0 auto}
 .contact-title{line-height:1.05}
 .contact-actions{display:flex;flex-direction:column;gap:16px}
@@ -337,7 +341,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .site-footer a{color:var(--deep-purple);font-weight:700;text-decoration:underline}
 .site-footer a:hover{color:var(--main)}
 
-@media (min-width:768px){
+@media (min-width:901px){
   .contact-card{gap:32px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact-card{margin-left:auto;margin-right:auto}
   .contact-meta{border-top:none;border-left:1px solid rgba(15,23,42,.12);padding-left:24px;padding-top:0;margin-top:0}
@@ -359,7 +363,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
   .captcha-row{justify-content:flex-start}
 }
 
-@media (max-width:767px){
+@media (max-width:900px){
   .contact-form textarea{min-height:200px}
   .captcha-row{justify-content:flex-start}
   .contact-card{gap:20px}
@@ -414,7 +418,7 @@ body.is-modal-open{overflow:hidden}
 
 /* ========================= MOBILE OVERRIDES ========================= */
 .mobile-only{display:none}
-@media (max-width:767px){
+@media (max-width:900px){
   /* universal clamp */
   *,*::before,*::after{box-sizing:border-box}
   html,body,#fullpage,.fp-section,.fp-table,.fp-overflow,.section{width:100% !important;max-width:100% !important;overflow-x:hidden !important}
@@ -477,20 +481,14 @@ body.is-modal-open{overflow:hidden}
 }
 
 /* ---- Desktop: hide mobile tabs/panels ---- */
-@media (min-width:1120px){
+@media (min-width:901px){
   .toolbox-tabs,.toolbox-panel,
   .works-tabs,.works-panel,
   .about-tabs,.about-panel{display:none}
 }
 
-@media (min-width:768px) and (max-width:1119px){
-  .services-grid,.works-grid,.about-grid{display:none !important}
-  .toolbox-tabs,.works-tabs,.about-tabs{display:flex !important}
-  .toolbox-panel,.works-panel,.about-panel{display:block !important}
-}
-
 /* --- MOBILE: force tabs to be one row with horizontal scroll --- */
-@media (max-width:1119px){
+@media (max-width:900px){
   .toolbox-tabs, .works-tabs, .about-tabs{
     display:flex !important;
     flex-wrap:nowrap !important;
@@ -513,7 +511,7 @@ body.is-modal-open{overflow:hidden}
 }
 
 /* força horizontal no mobile, com bleed até às bordas */
-@media (max-width:1119px){
+@media (max-width:900px){
   .section[data-anchor="services"] .toolbox-tabs,
   .section[data-anchor="work"] .works-tabs,
   .section[data-anchor="about"] .about-tabs{
