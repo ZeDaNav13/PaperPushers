@@ -33,7 +33,7 @@
   <header class="header">
     <div class="inner">
       <a href="#home" class="brand" data-menuanchor="home" title="Back to top">PAPERPUSHERS</a>
-      <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu">Menu</button>
+      <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span>Menu</span></button>
       <nav id="menu" class="nav">
         <a href="#services" data-menuanchor="services">The Toolbox</a>
         <a href="#work" data-menuanchor="work">Works</a>
@@ -485,7 +485,7 @@
         keyboardScrolling: true,
         paddingTop: '72px',
         normalScrollElements: '.contact-card, .contact-modal__content',
-        responsiveWidth: 768,
+        responsiveWidth: 901,
         afterLoad: function(origin, destination){
           toggleCTA(destination.anchor);
         }
@@ -494,7 +494,7 @@
       let manualScrollActive = null;
       const applyFullpageResponsive = () => {
         if (!window.fullpage_api) return;
-        const shouldDisable = window.innerWidth < 1120 || window.innerHeight < 820;
+        const shouldDisable = window.innerWidth <= 900 || window.innerHeight < 820;
         if (shouldDisable === manualScrollActive) return;
         manualScrollActive = shouldDisable;
         fullpage_api.setAutoScrolling(!shouldDisable);
@@ -513,6 +513,7 @@
       setupInfoModal('privacy-modal');
       setupInfoModal('terms-modal');
       setupTabs();
+      applyMenuPalette();
       applyFullpageResponsive();
 
       // initial CTA state
@@ -715,10 +716,13 @@
         stop();
         isPaused = false;
         cta.style.position = 'fixed';
-        cta.style.bottom = '12px';
-        cta.style.right  = '12px';
-        cta.style.left = 'auto';
+        cta.style.bottom = 'calc(16px + env(safe-area-inset-bottom))';
+        cta.style.left = '16px';
+        cta.style.right  = '16px';
         cta.style.top  = 'auto';
+        cta.style.width = 'auto';
+        cta.style.height = '56px';
+        cta.style.lineHeight = '56px';
         cta.style.transform = 'none';
       }
 
@@ -729,11 +733,14 @@
         cta.style.right = '';
         cta.style.left = '';
         cta.style.top = '';
+        cta.style.width = '';
+        cta.style.height = '';
+        cta.style.lineHeight = '';
         start();
       }
 
       function apply(){
-        if (window.matchMedia('(max-width: 767px)').matches) {
+        if (window.matchMedia('(max-width: 900px)').matches) {
           setMobile();
         }else{
           setDesktop();
@@ -761,7 +768,7 @@
       const cta = document.getElementById('floating-cta');
       if (!cta) return;
       const hideOn = ['home','contact'];
-      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
       cta.style.display = (isMobile && hideOn.includes(anchor)) ? 'none' : '';
     }
 
@@ -987,6 +994,26 @@
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
+    }
+
+    function applyMenuPalette(){
+      const btn = document.getElementById('menu-toggle');
+      const menu = document.getElementById('menu');
+      const palettes = [
+        {button:['var(--secondary)','var(--main)'],panel:['var(--main)','var(--deep-purple)']},
+        {button:['var(--main)','var(--deep-purple)'],panel:['var(--deep-purple)','var(--accent-blue)']},
+        {button:['var(--deep-purple)','var(--accent-blue)'],panel:['var(--accent-blue)','var(--highlight)']},
+        {button:['var(--accent-blue)','var(--highlight)'],panel:['var(--main)','var(--highlight)']},
+        {button:['var(--secondary)','var(--deep-purple)'],panel:['var(--secondary)','var(--main)']},
+        {button:['var(--main)','var(--highlight)'],panel:['var(--deep-purple)','var(--main)']}
+      ];
+      const pick = palettes[Math.floor(Math.random()*palettes.length)];
+      if(btn){
+        btn.style.setProperty('--menu-toggle-gradient', `linear-gradient(130deg, ${pick.button[0]}, ${pick.button[1]})`);
+      }
+      if(menu){
+        menu.style.setProperty('--menu-panel-gradient', `linear-gradient(145deg, ${pick.panel[0]}, ${pick.panel[1]})`);
+      }
     }
 
     // Mobile menu toggle
