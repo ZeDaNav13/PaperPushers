@@ -172,6 +172,7 @@
           <button class="tab is-active" role="tab" aria-selected="true" data-tab="fevr">RealFevr</button>
           <button class="tab" role="tab" aria-selected="false" data-tab="mili">MiliLand</button>
           <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="more">And more...</button>
         </div>
         <article id="works-panel" class="glass works-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
           <h3 class="card-title" id="works-title">RealFevr</h3>
@@ -214,6 +215,16 @@
               </div>
             </div>
           </article>
+          <article class="work-card glass">
+            <div class="work-card__inner">
+              <div class="work-card__face work-card__front">
+                <h3 class="card-title">And more...</h3>
+              </div>
+              <div class="work-card__face work-card__back">
+                <p class="card-text">get in touch and find out about more success cases</p>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -252,7 +263,7 @@
     <div class="section" data-anchor="contact">
       <div class="fp-bg bg-stripe-contact"></div>
       <div class="container text-on-light">
-        <h2 class="section-title contact-title">Open the toolbox</h2>
+        <h2 class="section-title contact-title">Open the Toolbox</h2>
         <p class="section-lead text-center">
           Tell us what you’re building, breaking, or dreaming up.</br>
           We’ll reply within 1 business day with the right tools in hand.</p>
@@ -716,14 +727,14 @@
         stop();
         isPaused = false;
         cta.style.position = 'fixed';
-        cta.style.bottom = 'calc(16px + env(safe-area-inset-bottom))';
-        cta.style.left = '16px';
-        cta.style.right  = '16px';
+        cta.style.bottom = 'calc(20px + env(safe-area-inset-bottom))';
+        cta.style.left = '50%';
+        cta.style.right  = '';
         cta.style.top  = 'auto';
-        cta.style.width = 'auto';
+        cta.style.width = 'min(280px, calc(100% - 48px))';
         cta.style.height = '56px';
         cta.style.lineHeight = '56px';
-        cta.style.transform = 'none';
+        cta.style.transform = 'translateX(-50%)';
       }
 
       function setDesktop(){
@@ -881,7 +892,8 @@
       const worksData = {
         fevr:["RealFevr","+2.5M downloads","Fantasy-football startup with peak 250k DAU, redefining fan competition. Raised 9M+."],
         mili:["MiliLand Digital","Online Studio","Agile media studio blending branding, web, social, and ads — running since 2010."],
-        pent:["Pentagon Lisboa","From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."]
+        pent:["Pentagon Lisboa","From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."],
+        more:["And more...","", "get in touch and find out about more success cases"]
       };
       bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData,'#works-subtitle');
 
@@ -983,8 +995,13 @@
       if(!grid) return;
       const cards = Array.from(grid.children);
       if(!cards.length) return;
-      const shuffled = shuffleArray(cards);
+      const special = cards.find(card => card.querySelector('.card-title')?.textContent?.trim() === 'And more...');
+      const rest = special ? cards.filter(card => card !== special) : cards;
+      const shuffled = shuffleArray(rest);
       shuffled.forEach(card=>grid.appendChild(card));
+      if(special){
+        grid.appendChild(special);
+      }
       paintWorkCards();
     }
 
