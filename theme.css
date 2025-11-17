@@ -19,7 +19,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .section-title{
   font-weight:900;
   letter-spacing:-1.5px;
-  text-transform:uppercase;
+  text-transform:none;
   line-height:1.05;
   font-size:clamp(3rem,6vw,6.5rem);
   margin-bottom:1.5rem;
@@ -83,7 +83,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .section{position:relative;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;color:var(--text-light)}
 .section::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%)}
 .section>.container{position:relative;z-index:1}
-.section h1,.section h2{font-weight:900;letter-spacing:-2px;text-transform:uppercase;line-height:1.05;opacity:0;animation:fadeInUp 900ms ease forwards}
+.section h1,.section h2{font-weight:900;letter-spacing:-2px;text-transform:none;line-height:1.05;opacity:0;animation:fadeInUp 900ms ease forwards}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
 /* ---- Backgrounds ---- */
@@ -554,11 +554,16 @@ body.is-modal-open{overflow:hidden}
   }
 
   /* tabs full-bleed */
-  .toolbox-tabs,.works-tabs,.about-tabs{
-    position:relative;z-index:3;width:100%;max-width:100%;
-    margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px;
+.tabs-nav{display:none}
+.toolbox-tabs,.works-tabs,.about-tabs{
+  position:relative;
+  z-index:3;
+  width:100% !important;
+  margin:8px 0 12px !important;
+  padding:8px 4px !important;
     display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;overflow-y:visible;
-    -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:16px
+    -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;
+    scroll-padding-left:8px;
   }
   .toolbox-tabs .tab,.works-tabs .tab,.about-tabs .tab{
     flex:0 0 auto;white-space:nowrap;padding:10px 14px;border-radius:18px;font-weight:800;font-size:.95rem;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.12);color:#fff;scroll-snap-align:start
@@ -601,10 +606,43 @@ body.is-modal-open{overflow:hidden}
   .toolbox-tabs,.toolbox-panel,
   .works-tabs,.works-panel,
   .about-tabs,.about-panel{display:none}
+  .tabs-nav{display:none !important}
 }
 
 /* --- MOBILE: force tabs to be one row with horizontal scroll --- */
 @media (max-width:900px){
+  .tabs-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    max-width:680px;
+    margin:8px auto 12px;
+  }
+  .tabs-nav .tabs{flex:1;min-width:0}
+  .tabs-nav__arrow{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    height:32px;
+    border:none;
+    background:transparent;
+    color:#fff;
+    font-size:1.6rem;
+    font-weight:900;
+    line-height:1;
+    transition:opacity .2s ease;
+  }
+  .tabs-nav.is-scrollable .tabs-nav__arrow{display:inline-flex}
+  .tabs-nav__arrow:disabled{
+    opacity:.35;
+    pointer-events:none;
+  }
+  .tabs-nav__arrow:not(:disabled){opacity:.82}
+  .tabs-nav__arrow:not(:disabled):active{opacity:1}
+
   .toolbox-tabs, .works-tabs, .about-tabs{
     display:flex !important;
     flex-wrap:nowrap !important;
@@ -612,9 +650,9 @@ body.is-modal-open{overflow:hidden}
     overflow-x:auto !important;
     overflow-y:visible !important;
     -webkit-overflow-scrolling:touch;
-    padding:8px 16px !important;
-    margin:8px -16px 12px !important;   /* full-bleed row */
-    width:calc(100% + 32px) !important;
+    padding:8px 4px !important;
+    margin:8px 0 12px !important;
+    width:100% !important;
   }
   .toolbox-tabs .tab, .works-tabs .tab, .about-tabs .tab{
     display:inline-flex !important;
@@ -639,9 +677,9 @@ body.is-modal-open{overflow:hidden}
     gap:12px !important;
     overflow-x:auto !important;
     -webkit-overflow-scrolling:touch;
-    padding:8px 16px !important;
-    margin:8px -16px 12px !important;   /* full-bleed */
-    width:calc(100% + 32px) !important;
+    padding:8px 4px !important;
+    margin:8px 0 12px !important;
+    width:100% !important;
   }
   .section[data-anchor="services"] .toolbox-tabs .tab,
   .section[data-anchor="work"] .works-tabs .tab,

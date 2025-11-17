@@ -78,13 +78,21 @@
         </p>
 
         <!-- Mobile tabs -->
-        <div class="toolbox-tabs tabs" role="tablist" aria-label="Toolbox">
-          <button class="tab is-active" role="tab" aria-selected="true" data-tab="web">Web & Digital</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="brand">Brand & Identity</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="biz">Business Design</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="social">Social & Media</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="tools">Tools & Systems</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="spaces">Spaces & Interiors</button>
+        <div class="tabs-nav">
+          <button class="tabs-nav__arrow tabs-nav__arrow--prev" type="button" aria-label="Scroll Toolbox tabs left">
+            <span aria-hidden="true">&lsaquo;</span>
+          </button>
+          <div class="toolbox-tabs tabs" role="tablist" aria-label="Toolbox">
+            <button class="tab is-active" role="tab" aria-selected="true" data-tab="web">Web & Digital</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="brand">Brand & Identity</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="biz">Business Design</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="social">Social & Media</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="tools">Tools & Systems</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="spaces">Spaces & Interiors</button>
+          </div>
+          <button class="tabs-nav__arrow tabs-nav__arrow--next" type="button" aria-label="Scroll Toolbox tabs right">
+            <span aria-hidden="true">&rsaquo;</span>
+          </button>
         </div>
         <article id="toolbox-panel" class="glass toolbox-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
           <h3 class="card-title" id="toolbox-title">Web & Digital</h3>
@@ -168,11 +176,19 @@
         </p>
 
         <!-- Mobile tabs -->
-        <div class="works-tabs tabs" role="tablist" aria-label="Works">
-          <button class="tab is-active" role="tab" aria-selected="true" data-tab="fevr">RealFevr</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="mili">MiliLand</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="more">And more...</button>
+        <div class="tabs-nav">
+          <button class="tabs-nav__arrow tabs-nav__arrow--prev" type="button" aria-label="Scroll Works tabs left">
+            <span aria-hidden="true">&lsaquo;</span>
+          </button>
+          <div class="works-tabs tabs" role="tablist" aria-label="Works">
+            <button class="tab is-active" role="tab" aria-selected="true" data-tab="fevr">RealFevr</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="mili">MiliLand</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="pent">Pentagon</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="more">And more...</button>
+          </div>
+          <button class="tabs-nav__arrow tabs-nav__arrow--next" type="button" aria-label="Scroll Works tabs right">
+            <span aria-hidden="true">&rsaquo;</span>
+          </button>
         </div>
         <article id="works-panel" class="glass works-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
           <h3 class="card-title" id="works-title">RealFevr</h3>
@@ -240,10 +256,18 @@
         </p>
 
         <!-- Mobile tabs -->
-        <div class="about-tabs tabs" role="tablist" aria-label="About">
-          <button class="tab is-active" role="tab" aria-selected="true" data-tab="team">Team</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="values">Values</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="quote">Quote</button>
+        <div class="tabs-nav">
+          <button class="tabs-nav__arrow tabs-nav__arrow--prev" type="button" aria-label="Scroll About tabs left">
+            <span aria-hidden="true">&lsaquo;</span>
+          </button>
+          <div class="about-tabs tabs" role="tablist" aria-label="About">
+            <button class="tab is-active" role="tab" aria-selected="true" data-tab="team">Team</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="values">Values</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="quote">Quote</button>
+          </div>
+          <button class="tabs-nav__arrow tabs-nav__arrow--next" type="button" aria-label="Scroll About tabs right">
+            <span aria-hidden="true">&rsaquo;</span>
+          </button>
         </div>
         <article id="about-panel" class="glass about-panel panel p-6 md:p-8" role="tabpanel" aria-live="polite">
           <h3 class="card-title" id="about-title">We’re a Lisbon-based business toolbox team</h3>
@@ -895,41 +919,118 @@
         pent:["Pentagon Lisboa","From ruin to icon","Hybrid café + visual culture hub in Lisbon. 12 seats. +275k projected revenue."],
         more:["And more...","", "get in touch and find out about more success cases"]
       };
-      bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData,'#works-subtitle');
+      bindTabs('.works-tabs','.works-panel','#works-title','#works-body', worksData,{subtitleSel:'#works-subtitle',stickLastKey:'more'});
 
       const aboutData = {
         team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
         values:["Our values","Agility over rigidity. Sleight over noise. Outcomes over outputs."],
         quote:["What clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO Proeza Colossal"]
       };
-      bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData);
+      bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData,{shuffle:false});
       paintServiceCards();
 
-      function bindTabs(tabsSel,panelSel,titleSel,bodySel,data,subtitleSel){
-        const tabs = document.querySelectorAll(tabsSel+' .tab');
+      function bindTabs(tabsSel,panelSel,titleSel,bodySel,data,options){
+        if(typeof options === 'string'){options={subtitleSel:options};}
+        const cfg = options || {};
+        const tabsContainer = document.querySelector(tabsSel);
+        let tabs = Array.from(document.querySelectorAll(tabsSel+' .tab'));
         const panel = document.querySelector(panelSel);
         const title = document.querySelector(titleSel);
         const body  = document.querySelector(bodySel);
-        const subtitle = subtitleSel ? document.querySelector(subtitleSel) : null;
+        const subtitle = cfg.subtitleSel ? document.querySelector(cfg.subtitleSel) : null;
+        const mobileTabsQuery = window.matchMedia('(max-width: 900px)');
         if(!tabs.length || !panel || !title || !body) return;
-        tabs.forEach(b=>{
-          b.addEventListener('click', ()=>{
-            tabs.forEach(x=>x.classList.remove('is-active'));
-            b.classList.add('is-active');
-            const key = b.dataset.tab;
-            const val = data[key];
-            if(!val) return;
-            title.textContent = val[0] || '';
-            if(subtitle){
-              const subtitleText = val[1] || '';
-              subtitle.textContent = subtitleText;
-              subtitle.hidden = !subtitleText;
-              body.textContent = val[2] || '';
-            }else{
-              body.textContent = val[1] || '';
+        if(cfg.shuffle !== false && tabsContainer){
+          const initialKeys = tabs.map(tab=>tab.dataset.tab).filter(Boolean);
+          let order = initialKeys.slice();
+          if(cfg.stickLastKey){
+            order = order.filter(key=>key !== cfg.stickLastKey);
+            shuffleArray(order);
+            if(initialKeys.includes(cfg.stickLastKey)){
+              order.push(cfg.stickLastKey);
             }
-          });
+          }else{
+            shuffleArray(order);
+          }
+          const reordered = order
+            .map(key=>tabs.find(tab=>tab.dataset.tab === key))
+            .filter(Boolean);
+          if(reordered.length){
+            reordered.forEach(tab=>tabsContainer.appendChild(tab));
+            tabs = reordered;
+          }
+        }
+        const tabsNav = tabsContainer?.closest('.tabs-nav');
+        const prevArrow = tabsNav?.querySelector('.tabs-nav__arrow--prev');
+        const nextArrow = tabsNav?.querySelector('.tabs-nav__arrow--next');
+        const updateArrows = ()=>{
+          if(!tabsContainer) return;
+          const maxScroll = Math.max(0, tabsContainer.scrollWidth - tabsContainer.clientWidth);
+          const current = tabsContainer.scrollLeft;
+          if(prevArrow){prevArrow.disabled = current <= 4;}
+          if(nextArrow){nextArrow.disabled = current >= (maxScroll - 4);}
+        };
+        const updateScrollability = ()=>{
+          if(!tabsContainer || !tabsNav) return;
+          const scrollable = mobileTabsQuery.matches && (tabsContainer.scrollWidth - tabsContainer.clientWidth > 6);
+          tabsNav.classList.toggle('is-scrollable', scrollable);
+          if(!scrollable){
+            tabsContainer.scrollLeft = 0;
+          }
+          updateArrows();
+        };
+        const activateByOffset = (offset)=>{
+          const currentIdx = tabs.findIndex(tab=>tab.classList.contains('is-active'));
+          const targetIdx = currentIdx === -1 ? 0 : Math.min(tabs.length - 1, Math.max(0, currentIdx + offset));
+          if(targetIdx === currentIdx || !tabs[targetIdx]) return;
+          selectTab(tabs[targetIdx]);
+        };
+        prevArrow?.addEventListener('click', ()=>activateByOffset(-1));
+        nextArrow?.addEventListener('click', ()=>activateByOffset(1));
+        tabsContainer?.addEventListener('scroll', ()=>{
+          if(mobileTabsQuery.matches){
+            updateArrows();
+          }
         });
+        mobileTabsQuery.addEventListener?.('change', updateScrollability);
+        window.addEventListener('resize', updateScrollability);
+        const centerTab = (tab) => {
+          if(!tabsContainer || !mobileTabsQuery.matches || !tab) return;
+          const containerRect = tabsContainer.getBoundingClientRect();
+          const tabRect = tab.getBoundingClientRect();
+          const desiredCenter = containerRect.width / 2 - tabRect.width / 2;
+          const delta = (tabRect.left - containerRect.left) - desiredCenter;
+          tabsContainer.scrollTo({
+            left: tabsContainer.scrollLeft + delta,
+            behavior: 'smooth'
+          });
+          requestAnimationFrame(updateArrows);
+        };
+        const selectTab = (tab)=>{
+          if(!tab) return;
+          tabs.forEach(x=>x.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          const key = tab.dataset.tab;
+          const val = data[key];
+          if(!val) return;
+          title.textContent = val[0] || '';
+          if(subtitle){
+            const subtitleText = val[1] || '';
+            subtitle.textContent = subtitleText;
+            subtitle.hidden = !subtitleText;
+            body.textContent = val[2] || '';
+          }else{
+            body.textContent = val[1] || '';
+          }
+          centerTab(tab);
+        };
+        tabs.forEach(tab=>{
+          tab.addEventListener('click', ()=>selectTab(tab));
+        });
+        tabs.forEach(tab=>tab.classList.remove('is-active'));
+        updateScrollability();
+        const initialActive = tabs[0];
+        selectTab(initialActive);
       }
     }
 
@@ -1038,16 +1139,28 @@
       const btn = document.getElementById('menu-toggle');
       const nav = document.getElementById('menu');
       if(!btn || !nav) return;
-      btn.addEventListener('click', function(){
+      const closeMenu = ()=>{
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded','false');
+      };
+      const toggleMenu = ()=>{
         const open = nav.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', String(open));
+      };
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        toggleMenu();
       });
       nav.addEventListener('click', function(e){
         if(e.target.tagName === 'A'){
-          nav.classList.remove('is-open');
-          btn.setAttribute('aria-expanded','false');
+          closeMenu();
         }
       });
+      document.addEventListener('click', function(e){
+        if(!nav.classList.contains('is-open')) return;
+        if(nav.contains(e.target) || btn.contains(e.target)) return;
+        closeMenu();
+      }, true);
     })();
   </script>
 
