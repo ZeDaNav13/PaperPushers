@@ -279,7 +279,7 @@
         <div class="grid-3 about-grid max-w-6xl mx-auto text-left">
           <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="card-text"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
           <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="card-text"><strong>We stand for</strong> </br>- Agility over rigidity </br>- Craft over noise </br>- Outcomes over outputs</p></article>
-          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="card-text"><strong>What our clients say</strong> </br> <italic>“They didn’t just bring the right tools, they invented a few on the way.”</italic> </br>— Bruno, CEO Proeza Colossal</p></article>
+          <article class="glass p-6 md:p-8 text-soft-on-dark"><p class="card-text"><strong>What our clients say</strong> </br> <em>“They didn’t just bring the right tools, they invented a few on the way.”</em> </br>— Bruno, CEO Proeza Colossal</p></article>
         </div>
       </div>
     </div>
@@ -925,9 +925,9 @@
       const aboutData = {
         team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
         values:["We stand for","Agility over rigidity. Craft over noise. Outcomes over outputs."],
-        quote:["What our clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO ProezaColossal"]
+        quote:["What our clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO Proeza Colossal"]
       };
-      bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData,{shuffle:false});
+      bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData,{shuffle:false,italicKeys:['quote']});
       paintServiceCards();
 
       function bindTabs(tabsSel,panelSel,titleSel,bodySel,data,options){
@@ -1022,6 +1022,12 @@
             body.textContent = val[2] || '';
           }else{
             body.textContent = val[1] || '';
+          }
+          if(cfg.italicKeys && body){
+            const shouldItalic = cfg.italicKeys.includes(key);
+            body.classList.toggle('is-italic', shouldItalic);
+          }else if(body){
+            body.classList.remove('is-italic');
           }
           centerTab(tab);
         };
