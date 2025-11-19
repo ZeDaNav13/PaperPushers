@@ -285,7 +285,7 @@
     </div>
 
     <!-- CONTACT -->
-    <div class="section" data-anchor="contact">
+    <div class="section fp-auto-height" data-anchor="contact">
       <div class="fp-bg bg-stripe-contact"></div>
       <div class="container text-on-light">
         <h2 class="section-title contact-title">Open the Toolbox</h2>
@@ -427,6 +427,9 @@
         modal.setAttribute('aria-hidden','false');
         lockBodyScroll();
         updateFullpageScrollLock();
+        if(content){
+          content.scrollTop = 0;
+        }
         requestAnimationFrame(()=>{
           const focusTarget = modal.querySelector(focusableSelector);
           if(focusTarget && focusTarget instanceof HTMLElement){
@@ -833,6 +836,9 @@
         modal.setAttribute('aria-hidden','false');
         lockBodyScroll();
         updateFullpageScrollLock();
+        if(content){
+          content.scrollTop = 0;
+        }
         requestAnimationFrame(()=>{
           const focusTarget = modal.querySelector('#name') || modal.querySelector(focusableSelector);
           if(focusTarget && focusTarget instanceof HTMLElement){
