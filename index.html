@@ -542,6 +542,23 @@
         if (!shouldDisable) fullpage_api.fitToSection();
         document.body.classList.toggle('fp-manual-scroll', shouldDisable);
       };
+      const applySectionScale = () => {
+        const root = document.documentElement;
+        if (manualScrollActive) {
+          root.classList.remove('tight-viewport');
+          root.style.removeProperty('--section-scale');
+          return;
+        }
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+        const scale = Math.min(1, Math.max(0.82, viewportHeight / 900));
+        if (scale < 0.999) {
+          root.classList.add('tight-viewport');
+          root.style.setProperty('--section-scale', scale.toFixed(3));
+        } else {
+          root.classList.remove('tight-viewport');
+          root.style.removeProperty('--section-scale');
+        }
+      };
 
       const yEl = document.getElementById('year');
       if (yEl) yEl.textContent = new Date().getFullYear();
@@ -555,12 +572,14 @@
       setupTabs();
       applyMenuPalette();
       applyFullpageResponsive();
+      applySectionScale();
 
       // initial CTA state
       const activeSection = fullpage_api.getActiveSection();
       if (activeSection) toggleCTA(activeSection.anchor);
       window.addEventListener('resize', () => {
         applyFullpageResponsive();
+        applySectionScale();
         const active = fullpage_api.getActiveSection();
         if (active) toggleCTA(active.anchor);
       });

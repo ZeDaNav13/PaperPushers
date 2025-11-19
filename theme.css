@@ -11,6 +11,7 @@
   --text-dark:#0b0b0e;
   --text-light:#ffffff;
   --grad-angle:135deg;
+  --section-scale:1;
 }
 html,body{height:100%}
 body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
@@ -84,6 +85,12 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .section{position:relative;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.25rem;color:var(--text-light)}
 .section::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 62%, rgba(0,0,0,.18) 100%)}
 .section>.container{position:relative;z-index:1}
+.tight-viewport .section>.container{
+  transform:scale(var(--section-scale));
+  transform-origin:center top;
+  transition:transform .2s ease;
+}
+body.fp-manual-scroll .section>.container{transform:none !important}
 .section h1,.section h2{font-weight:800;letter-spacing:-2px;text-transform:none;line-height:1.05;opacity:0;animation:fadeInUp 900ms ease forwards}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
@@ -212,7 +219,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .glass{position:relative;z-index:2;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);border-radius:18px;backdrop-filter:blur(14px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
 .service-card{position:relative;padding:0;overflow:hidden}
 .service-card.glass{border:none;background:rgba(255,255,255,.08)}
-.service-card__inner{position:relative;width:100%;height:100%;min-height:170px;border-radius:18px;overflow:hidden}
+.service-card__inner{position:relative;width:100%;height:100%;min-height:160px;border-radius:18px;overflow:hidden}
 .service-card__face{position:absolute;inset:0;padding:1.5rem;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:18px;transition:opacity .45s ease,transform .45s ease}
 .service-card__front{background:transparent;opacity:1;transform:translateY(0)}
 .service-card__back{opacity:0;transform:translateY(12px);color:#fff;font-weight:500}
@@ -224,7 +231,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 .services-grid .service-card__back{background:linear-gradient(140deg,var(--deep-purple),var(--main))}
 .work-card{position:relative;padding:0;overflow:hidden}
 .work-card.glass{border:none;background:rgba(255,255,255,.12)}
-.work-card__inner{position:relative;width:100%;height:100%;min-height:170px;border-radius:18px;overflow:hidden}
+.work-card__inner{position:relative;width:100%;height:100%;min-height:160px;border-radius:18px;overflow:hidden}
 .work-card__face{position:absolute;inset:0;padding:1.5rem;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:18px;transition:opacity .45s ease,transform .45s ease}
 .work-card__front{background:transparent;opacity:1;transform:translateY(0)}
 .work-card__back{
@@ -247,7 +254,7 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 }
 .works-grid .work-card__back{background:linear-gradient(140deg,var(--accent-blue),var(--dark-blue))}
 .works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.works-grid .work-card__inner{min-height:170px}
+.works-grid .work-card__inner{min-height:160px}
 .btn{display:inline-block;border-radius:12px;padding:12px 18px;font-weight:800;font-size:.95rem;cursor:pointer;border:none;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .3s ease,background-position .55s ease,color .3s ease;background-size:200% 200%;background-position:0% 50%;color:#fff}
 .btn:hover{transform:translateY(-2px);background-position:100% 50%}
 .btn:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:3px}
@@ -398,19 +405,37 @@ body{font-family:'Montserrat',sans-serif;background:#0b0b0e}
 }
 
 @media (max-height:900px){
-  .section{padding:1.25rem}
-  .section-title{font-size:clamp(2.3rem,4vw,4.6rem)}
-  .section-lead{margin-bottom:1.75rem}
+  .section{padding:1rem}
+  .section-title{font-size:clamp(1.8rem,3.1vw,3.4rem)}
+  .section-lead{
+    font-size:clamp(.95rem,0.7vw + .75rem,1.2rem);
+    margin-bottom:1.25rem;
+  }
+  .card-title{font-size:clamp(1.05rem,0.6vw + .9rem,1.4rem)}
+  .card-text{font-size:clamp(.85rem,0.4vw + .78rem,.98rem)}
+  .services-grid,.works-grid{gap:16px}
+  .grid-3{gap:18px}
   .service-card__inner,
-  .work-card__inner{min-height:170px}
-  .contact-card{gap:18px}
-  .contact-form textarea{min-height:170px}
-  .section[data-anchor="contact"] .container{padding-top:56px}
+  .work-card__inner,
+  .works-grid .work-card__inner{min-height:140px}
+  .section[data-anchor="home"] .btn-row .btn{width:190px}
+  .btn{padding:10px 16px;font-size:.9rem}
+  .contact-card{gap:16px;max-width:700px}
+  .contact-form textarea{min-height:160px}
+  .section[data-anchor="contact"] .container{padding-top:50px}
 }
 @media (max-height:780px){
-  .section{padding:1rem}
-  .btn{padding:12px 18px}
-  .field-project textarea{min-height:150px}
+  .section{padding:.75rem}
+  .section-title{font-size:clamp(1.6rem,2.6vw,3rem)}
+  .services-grid,.works-grid{gap:12px}
+  .grid-3{gap:14px}
+  .service-card__inner,
+  .work-card__inner,
+  .works-grid .work-card__inner{min-height:120px}
+  .section[data-anchor="home"] .btn-row .btn{width:170px}
+  .contact-card{max-width:640px}
+  .contact-form textarea{min-height:140px}
+  .field-project textarea{min-height:130px}
 }
 
 /* --- Responsive fallback when fullPage auto-scroll is disabled --- */
