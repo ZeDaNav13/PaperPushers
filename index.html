@@ -531,9 +531,10 @@
       });
 
       let manualScrollActive = null;
+      const MIN_FULLPAGE_HEIGHT = 720; // allow slides on most tablets/laptops
       const applyFullpageResponsive = () => {
         if (!window.fullpage_api) return;
-        const shouldDisable = window.innerWidth <= 900 || window.innerHeight < 820;
+        const shouldDisable = window.innerWidth <= 900 || window.innerHeight < MIN_FULLPAGE_HEIGHT;
         if (shouldDisable === manualScrollActive) return;
         manualScrollActive = shouldDisable;
         fullpage_api.setAutoScrolling(!shouldDisable);
