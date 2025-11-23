@@ -628,9 +628,24 @@
         e.preventDefault();
         const hp = document.getElementById('website');
         const captchaInput = document.getElementById('captcha');
+        const emailInput = document.getElementById('email');
         if(elapsedField){
           const since = Date.now() - (formStartAt || Date.now());
           elapsedField.value = String(Math.max(0, since));
+        }
+        const emailValue = (emailInput?.value || '').trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailIsValid = emailPattern.test(emailValue);
+        const formIsValid = typeof form.checkValidity === 'function' ? form.checkValidity() : true;
+        if(!formIsValid || !emailIsValid){
+          setStatus(emailIsValid ? 'Please complete the required fields.' : 'Add a valid email so we can reply.', 'error');
+          if(typeof form.reportValidity === 'function'){
+            form.reportValidity();
+          }
+          if(!emailIsValid && emailInput){
+            emailInput.focus({preventScroll:true});
+          }
+          return;
         }
         const ans = parseInt(captchaInput ? captchaInput.value : '', 10);
         const isHuman = (!hp || hp.value.trim() === '') && Number.isFinite(ans) && captchaSum !== null && ans === captchaSum;
