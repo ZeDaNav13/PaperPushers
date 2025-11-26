@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
   <!-- site css -->
-  <link rel="stylesheet" href="theme.css?v=20240209">
+  <link rel="stylesheet" href="theme.css?v=20240209e">
 
   <!-- tiny yadayadayada if CSS cache lags -->
 
@@ -30,7 +30,14 @@
   <header class="header">
     <div class="inner">
       <a href="#home" class="brand" data-menuanchor="home" title="Back to top">PaperPushers</a>
-      <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span>Menu</span></button>
+      <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <span class="sr-only">Menu</span>
+        <span class="menu-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
       <nav id="menu" class="nav">
         <a href="#services" data-menuanchor="services">The Toolbox</a>
         <a href="#work" data-menuanchor="work">Works</a>
@@ -312,7 +319,10 @@
         <div id="contact-modal" class="contact-modal" aria-hidden="true">
           <div class="contact-modal__overlay" data-dismiss="contact-modal"></div>
           <div class="glass contact-modal__content" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" tabindex="-1">
-            <button type="button" class="contact-modal__close" aria-label="Close form" data-dismiss="contact-modal">Close</button>
+            <button type="button" class="contact-modal__close" aria-label="Close form" data-dismiss="contact-modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
             <h3 id="contact-modal-title" class="card-title">Let’s open the box</h3>
             <form id="contact-form" class="contact-form" novalidate>
               <div class="form-field field-name">
@@ -352,7 +362,10 @@
         <div id="privacy-modal" class="info-modal" aria-hidden="true">
           <div class="info-modal__overlay" data-dismiss="privacy-modal"></div>
           <div class="glass info-modal__content" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" tabindex="-1">
-            <button type="button" class="info-modal__close" aria-label="Close privacy policy" data-dismiss="privacy-modal">Close</button>
+            <button type="button" class="info-modal__close" aria-label="Close privacy policy" data-dismiss="privacy-modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
             <h3 id="privacy-modal-title" class="card-title">Privacy Disclosure</h3>
             <div class="info-modal__body">
               <p class="card-text"><strong>1. Controller</strong><br>We are the operator of this website. Contact: <a href="mailto:hello@paperpushers.biz">hello@paperpushers.biz</a>.</p>
@@ -370,7 +383,10 @@
         <div id="terms-modal" class="info-modal" aria-hidden="true">
           <div class="info-modal__overlay" data-dismiss="terms-modal"></div>
           <div class="glass info-modal__content" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title" tabindex="-1">
-            <button type="button" class="info-modal__close" aria-label="Close terms of service" data-dismiss="terms-modal">Close</button>
+            <button type="button" class="info-modal__close" aria-label="Close terms of service" data-dismiss="terms-modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
             <h3 id="terms-modal-title" class="card-title">Terms of Use</h3>
             <div class="info-modal__body">
               <p class="card-text"><strong>1. Scope</strong><br>Using this website implies acceptance of these terms.</p>
