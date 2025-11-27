@@ -958,6 +958,14 @@
 
     // Mobile tabs (Toolbox, Works, About)
     function setupTabs(){
+      const testimonials = [
+        {quote:"They didn’t just bring the right tools, they invented a few on the way.", name:"Bruno", title:"CEO, Proeza Colossal"},
+        {quote:"The results elevated our data analysis and directly support our company's profitability.", name:"Ricardo", title:"Technical Director, Watercare"}
+      ];
+      const pickTestimonial = ()=> testimonials[Math.floor(Math.random()*testimonials.length)];
+      const testimonial = pickTestimonial();
+      const testimonialLine = `“${testimonial.quote}” — ${testimonial.name}${testimonial.title ? ', '+testimonial.title : ''}`;
+
       const toolboxData = {
         web:["Web & Digital","Sites, systems, and SEO that grow with you. From first click to full platform."],
         brand:["Brand & Identity","Logos, language, and design systems that speak your truth — loud, clear, and consistent."],
@@ -981,10 +989,19 @@
       const aboutData = {
         team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
         values:["We stand for","Agility over rigidity. Craft over noise. Outcomes over outputs."],
-        quote:["What our clients say","“They didn’t just bring the right tools, they invented a few on the way.” — Bruno, CEO ProezaColossal"]
+        quote:["What our clients say",testimonialLine]
       };
       bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData,{shuffle:false});
       paintServiceCards();
+      updateDesktopTestimonial(testimonial);
+
+      function updateDesktopTestimonial(t){
+        const target = document.querySelector('.about-grid .about-card:nth-child(3) .card-text');
+        if(!target) return;
+        const title = 'What our clients say';
+        const person = `${t.name}${t.title ? ', '+t.title : ''}`;
+        target.innerHTML = `<strong>${title}</strong> </br> “${t.quote}” </br>— ${person}`;
+      }
 
       function bindTabs(tabsSel,panelSel,titleSel,bodySel,data,options){
         if(typeof options === 'string'){options={subtitleSel:options};}
