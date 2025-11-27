@@ -136,7 +136,9 @@ button{
 /* ---- Header ---- */
 .header{position:fixed;top:0;left:0;right:0;height:72px;z-index:1200;display:flex;align-items:center;background:#0b0b0e;border-bottom:1px solid rgba(255,255,255,.08)}
 .header .inner{width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 16px}
-.brand{font-weight:800;letter-spacing:-.2px;color:#fff;font-size:1.1rem;text-decoration:none}
+.brand{font-weight:800;letter-spacing:-.2px;color:#fff;font-size:1.1rem;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.brand__icon{width:28px;height:28px;display:block;border-radius:8px}
+.brand__text{line-height:1}
 .nav{display:flex;gap:20px;justify-content:center}
 .nav a{
   color:#fff;
@@ -756,10 +758,12 @@ body.is-modal-open{overflow:hidden}
   .header .inner{grid-template-columns:auto auto;gap:8px;padding:0 12px;justify-content:space-between}
   .brand{
     font-size:1rem;
-    font-weight:700;
+    font-weight:800;
     letter-spacing:-.05em;
     text-transform:none;
+    gap:8px;
   }
+  .brand__icon{width:24px;height:24px}
   .header-cta{display:none}
   #menu-toggle.mobile-only{
     display:inline-flex;
