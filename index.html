@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="PaperPushers helps small teams get unstuck with web, brand, and ops fixes. Tell us the mess; we bring the toolbox."/>
   <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
   <link rel="icon" type="image/png" href="favicon.png?v=1" sizes="32x32"/>
   <link rel="icon" type="image/png" href="favicon.png?v=1" sizes="192x192"/>
 
   <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/Montserrat-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/Montserrat-700.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/Montserrat-800.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/Montserrat-900.ttf" as="font" type="font/ttf" crossorigin>
 
   <!-- site css -->
-  <link rel="stylesheet" href="theme.css?v=20240209g">
+  <link rel="preload" as="style" href="theme.css?v=20240209g" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="theme.css?v=20240209g"></noscript>
 
   <!-- tiny yadayadayada if CSS cache lags -->
 
@@ -61,12 +66,12 @@
 
   <div id="fullpage">
     <!-- HOME -->
-    <div class="section" data-anchor="home">
+    <div class="section" data-anchor="home" id="home">
       <div class="fp-bg bg-stripe-intro"></div>
       <div class="container">
         <h1 class="text-glow hero-title" style="color:#FFF53E">PaperPushers</h1>
         <p class="section-lead text-on-dark hero-lead">
-          The adaptive toolbox for businesses that grow.</br>
+          The adaptive toolbox for businesses that grow.<br>
           Made to fit, flex and perform.
         </p>
         <div class="btn-row hero-actions">
@@ -77,13 +82,13 @@
     </div>
 
     <!-- SERVICES -->
-    <div class="section" data-anchor="services">
+    <div class="section" data-anchor="services" id="services">
       <div class="fp-bg bg-stripe-services"></div>
       <div class="container text-on-dark">
         <h2 class="section-title" style="color:#D2009E">The Toolbox</h2>
         <p class="section-lead section-lead--narrow">
-          We don’t have “one thing.” We have a set. A kit. A box.</br>
-          Things that fit your shape of business.</br>
+          We don’t have “one thing.” We have a set. A kit. A box.<br>
+          Things that fit your shape of business.<br>
         </p>
 
         <!-- Mobile tabs -->
@@ -175,12 +180,12 @@
     </div>
 
     <!-- WORK -->
-    <div class="section" data-anchor="work">
+    <div class="section" data-anchor="work" id="work">
       <div class="fp-bg bg-stripe-portfolio"></div>
       <div class="container">
         <h2 class="section-title text-glow" style="color:#FFF53E">Works</h2>
         <p class="section-lead section-lead--narrow">
-          Fast-turn projects across media, markets, and communities.</br>
+          Fast-turn projects across media, markets, and communities.<br>
           Small to large. In common: optimized and effective delivery.
         </p>
 
@@ -256,12 +261,12 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="section" data-anchor="about">
+    <div class="section" data-anchor="about" id="about">
       <div class="fp-bg bg-stripe-about"></div>
       <div class="container">
         <h2 class="section-title" style="color:#D2009E">About us</h2>
         <p class="section-lead section-lead--narrow">
-          Strategists, builders, and brand makers under one roof.</br>
+          Strategists, builders, and brand makers under one roof.<br>
           From goals to touchpoints to wheels turning. Fast and sharp.
         </p>
 
@@ -281,25 +286,34 @@
         </div>
         <article id="about-panel" class="glass about-panel panel" role="tabpanel" aria-live="polite">
           <h3 class="card-title" id="about-title">We’re a Lisbon-based business toolbox team</h3>
-          <p id="about-body" class="card-text">A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p>
+          <div id="about-body" class="card-text">A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</div>
         </article>
 
         <!-- Desktop grid -->
         <div class="grid-3 about-grid section-grid">
           <article class="glass about-card text-soft-on-dark"><p class="card-text"><strong>We’re a Lisbon-based business toolbox team.</strong> A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum.</p></article>
-          <article class="glass about-card text-soft-on-dark"><p class="card-text"><strong>We stand for</strong> </br>- Agility over rigidity </br>- Craft over noise </br>- Outcomes over outputs</p></article>
-          <article class="glass about-card text-soft-on-dark"><p class="card-text"><strong>What our clients say</strong> </br> <italic>“They didn’t just bring the right tools, they invented a few on the way.”</italic> </br>— Bruno, CEO Proeza Colossal</p></article>
+          <article class="glass about-card text-soft-on-dark">
+            <div class="card-text">
+              <strong>We stand for</strong>
+              <ul class="card-list">
+                <li>Agility over rigidity</li>
+                <li>Craft over noise</li>
+                <li>Outcomes over outputs</li>
+              </ul>
+            </div>
+          </article>
+          <article class="glass about-card text-soft-on-dark"><p class="card-text"><strong>What our clients say</strong> <br> <em>“They didn’t just bring the right tools, they invented a few on the way.”</em> <br>— Bruno, CEO Proeza Colossal</p></article>
         </div>
       </div>
     </div>
 
     <!-- CONTACT -->
-    <div class="section" data-anchor="contact">
+    <div class="section" data-anchor="contact" id="contact">
       <div class="fp-bg bg-stripe-contact"></div>
       <div class="container text-on-light">
         <h2 class="section-title contact-title">Open the Toolbox</h2>
         <p class="section-lead text-center">
-          Tell us what you’re building, breaking, or dreaming up.</br>
+          Tell us what you’re building, breaking, or dreaming up.<br>
           We’ll reply within 1 business day with the right tools in hand.</p>
 
         <div class="glass contact-card">
@@ -318,7 +332,7 @@
         </div>
 
         <footer class="site-footer">
-          © <span id="year"></span> PaperPushers · <a href="#" data-open="privacy-modal">Privacy</a> · <a href="#" data-open="terms-modal">Terms</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          © <span id="year"></span> PaperPushers · <a href="#" data-open="privacy-modal">Privacy</a> · <a href="#" data-open="terms-modal">Terms</a> · <a href="https://www.linkedin.com/company/paperpushers/" target="_blank" rel="noopener">LinkedIn</a>
         </footer>
 
         <div id="contact-modal" class="contact-modal" aria-hidden="true">
@@ -988,7 +1002,7 @@
 
       const aboutData = {
         team:["We’re a Lisbon-based business toolbox team","A solid core team, flexed by the right specialists for every project. We don’t just deliver work — we build momentum."],
-        values:["We stand for","Agility over rigidity. Craft over noise. Outcomes over outputs."],
+        values:["We stand for",["Agility over rigidity","Craft over noise","Outcomes over outputs"]],
         quote:["What our clients say",testimonialLine]
       };
       bindTabs('.about-tabs','.about-panel','#about-title','#about-body', aboutData,{shuffle:false});
@@ -1000,7 +1014,7 @@
         if(!target) return;
         const title = 'What our clients say';
         const person = `${t.name}${t.title ? ', '+t.title : ''}`;
-        target.innerHTML = `<strong>${title}</strong> </br> “${t.quote}” </br>— ${person}`;
+        target.innerHTML = `<strong>${title}</strong> <br> “${t.quote}” <br>— ${person}`;
       }
 
       function bindTabs(tabsSel,panelSel,titleSel,bodySel,data,options){
@@ -1080,6 +1094,21 @@
           });
           requestAnimationFrame(updateArrows);
         };
+        const renderBody = (content)=>{
+          if(Array.isArray(content)){
+            const list = document.createElement('ul');
+            list.className = 'card-list';
+            content.forEach(item=>{
+              const li = document.createElement('li');
+              li.textContent = item;
+              list.appendChild(li);
+            });
+            body.innerHTML = '';
+            body.appendChild(list);
+            return;
+          }
+          body.textContent = content || '';
+        };
         const selectTab = (tab)=>{
           if(!tab) return;
           tabs.forEach(x=>x.classList.remove('is-active'));
@@ -1092,9 +1121,9 @@
             const subtitleText = val[1] || '';
             subtitle.textContent = subtitleText;
             subtitle.hidden = !subtitleText;
-            body.textContent = val[2] || '';
+            renderBody(val[2]);
           }else{
-            body.textContent = val[1] || '';
+            renderBody(val[1]);
           }
           centerTab(tab);
         };
