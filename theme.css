@@ -613,11 +613,12 @@ button{
   align-items:center;
   justify-content:center;
   min-width:72px;
-  padding:0.4rem 0.75rem;
-  border-radius:10px;
+  padding:0.9rem 1rem;
+  border-radius:14px;
   border:1px solid rgba(15,23,42,.12);
   background:rgba(255,255,255,.7);
   font-weight:700;
+  font-size:1rem;
   color:var(--text-dark);
 }
 .captcha-row input{
@@ -639,9 +640,9 @@ button{
   background:transparent;
   text-align:center;
   font-size:.9rem;
-  color:var(--deep-purple);
+  color:#1B2450;
 }
-.site-footer a{color:var(--deep-purple);font-weight:700;text-decoration:underline}
+.site-footer a{color:#1D4ED8;font-weight:700;text-decoration:underline}
 .site-footer a:hover{color:var(--main)}
 
 @media (min-width:901px){

@@ -788,19 +788,21 @@
         ctaHeight = rect.height || 60;
       };
 
-      const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-      const grad = (a,b)=> `linear-gradient(${getVar('--grad-angle')||'135deg'}, ${a}, ${b})`;
+      const rootStyles = getComputedStyle(document.documentElement);
+      const getVar = (n, fallback) => rootStyles.getPropertyValue(n).trim() || fallback;
+      const gradAngle = getVar('--grad-angle', '135deg');
+      const palette = [
+        getVar('--deep-purple', '#7A3CE6'),
+        getVar('--main', '#D2009E'),
+        getVar('--secondary', '#FFF53E'),
+        getVar('--accent-blue', '#12ABE9'),
+        getVar('--dark-blue', '#132445')
+      ];
+      const grad = (a,b)=> `linear-gradient(${gradAngle}, ${a}, ${b})`;
       const pickTwo = ()=>{
-        const cols=[
-          getVar('--deep-purple') || '#7A3CE6',
-          getVar('--main') || '#D2009E',
-          getVar('--secondary') || '#FFF53E',
-          getVar('--accent-blue') || '#12ABE9',
-          getVar('--dark-blue') || '#132445'
-        ];
-        const i=Math.floor(Math.random()*cols.length);
-        const j=(i+1+Math.floor(Math.random()*(cols.length-1)))%cols.length;
-        return [cols[i], cols[j]];
+        const i=Math.floor(Math.random()*palette.length);
+        const j=(i+1+Math.floor(Math.random()*(palette.length-1)))%palette.length;
+        return [palette[i], palette[j]];
       };
       const applyGradient = ()=>{
         const [a,b]=pickTwo();
@@ -1099,13 +1101,13 @@
         };
         const updateScrollability = ()=>{
           if(!tabsContainer || !tabsNav) return;
-          const metrics = {
-            scrollWidth: tabsContainer.scrollWidth,
-            clientWidth: tabsContainer.clientWidth,
-            scrollLeft: tabsContainer.scrollLeft
-          };
-          const scrollable = mobileTabsQuery.matches && (metrics.scrollWidth - metrics.clientWidth > 6);
           requestAnimationFrame(()=>{
+            const metrics = {
+              scrollWidth: tabsContainer.scrollWidth,
+              clientWidth: tabsContainer.clientWidth,
+              scrollLeft: tabsContainer.scrollLeft
+            };
+            const scrollable = mobileTabsQuery.matches && (metrics.scrollWidth - metrics.clientWidth > 6);
             tabsNav.classList.toggle('is-scrollable', scrollable);
             if(!scrollable){
               tabsContainer.scrollLeft = 0;
@@ -1135,15 +1137,24 @@
         window.addEventListener('resize', updateScrollability);
         const centerTab = (tab) => {
           if(!tabsContainer || !mobileTabsQuery.matches || !tab) return;
-          const containerRect = tabsContainer.getBoundingClientRect();
-          const tabRect = tab.getBoundingClientRect();
-          const desiredCenter = containerRect.width / 2 - tabRect.width / 2;
-          const delta = (tabRect.left - containerRect.left) - desiredCenter;
-          tabsContainer.scrollTo({
-            left: tabsContainer.scrollLeft + delta,
-            behavior: 'smooth'
+          requestAnimationFrame(()=>{
+            if(!tabsContainer || !mobileTabsQuery.matches || !tab) return;
+            const containerRect = tabsContainer.getBoundingClientRect();
+            const tabRect = tab.getBoundingClientRect();
+            const desiredCenter = containerRect.width / 2 - tabRect.width / 2;
+            const delta = (tabRect.left - containerRect.left) - desiredCenter;
+            tabsContainer.scrollTo({
+              left: tabsContainer.scrollLeft + delta,
+              behavior: 'smooth'
+            });
+            requestAnimationFrame(()=>{
+              updateArrows({
+                scrollWidth: tabsContainer.scrollWidth,
+                clientWidth: tabsContainer.clientWidth,
+                scrollLeft: tabsContainer.scrollLeft
+              });
+            });
           });
-          requestAnimationFrame(updateArrows);
         };
         const renderBody = (content)=>{
           if(Array.isArray(content)){
@@ -1317,7 +1328,11 @@
     }
 
     function resetTabScroll(){
-      document.querySelectorAll('.toolbox-tabs, .works-tabs, .about-tabs').forEach(el => el.scrollLeft = 0);
+      requestAnimationFrame(()=>{
+        document.querySelectorAll('.toolbox-tabs, .works-tabs, .about-tabs').forEach(el => {
+          el.scrollLeft = 0;
+        });
+      });
     }
   </script>
 </body>
