@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="description" content="PaperPushers helps small teams get unstuck with web, brand, and ops fixes. Tell us the mess; we bring the toolbox."/>
   <title>PaperPushers — the adaptive toolbox for businesses that move.</title>
-  <link rel="icon" type="image/png" href="favicon.png?v=1" sizes="32x32"/>
-  <link rel="icon" type="image/png" href="favicon.png?v=1" sizes="192x192"/>
+  <link rel="icon" type="image/png" href="assets/favicon-32.png?v=1" sizes="32x32"/>
+  <link rel="icon" type="image/png" href="assets/favicon-192.png?v=1" sizes="192x192"/>
 
   <!-- fonts -->
   <link rel="preload" href="fonts/Montserrat-400.ttf" as="font" type="font/ttf" crossorigin>
@@ -37,7 +37,13 @@
   <header class="header">
     <div class="inner">
       <a href="#home" class="brand" data-menuanchor="home" title="Back to top">
-        <img src="favicon.png" alt="" class="brand__icon" aria-hidden="true">
+        <img
+          src="assets/favicon-28.png"
+          srcset="assets/favicon-56.png 2x"
+          alt=""
+          class="brand__icon"
+          aria-hidden="true"
+        >
         <span class="brand__text">PaperPushers</span>
       </a>
       <button id="menu-toggle" class="mobile-only" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
@@ -325,7 +331,7 @@
 
           <aside class="contact-meta">
             <h3 class="card-title">Contact us</h3>
-            <p class="card-text">Prefer email? <a href="mailto:jose@paperpushers.biz">hello@paperpushers.biz</a></p>
+            <p class="card-text">Prefer email? <a class="js-email" href="#" data-user="hello" data-domain="paperpushers.biz">Email us</a></p>
             <p class="card-text">HQ: Lisbon, Portugal</p>
             <p class="card-text">Hours: Dawn, Day and Dusk, Monday to Sunday</p>
           </aside>
@@ -387,7 +393,7 @@
             </button>
             <h3 id="privacy-modal-title" class="card-title">Privacy Disclosure</h3>
             <div class="info-modal__body">
-              <p class="card-text"><strong>1. Controller</strong><br>We are the operator of this website. Contact: <a href="mailto:hello@paperpushers.biz">hello@paperpushers.biz</a>.</p>
+              <p class="card-text"><strong>1. Controller</strong><br>We are the operator of this website. Contact: <a class="js-email" href="#" data-user="hello" data-domain="paperpushers.biz">Email us</a>.</p>
               <p class="card-text"><strong>2. Purpose & lawful basis</strong><br>We process submitted personal data (name, email, message) only to respond to contact requests.<br><em>Lawful basis:</em> Article 6(1)(b) GDPR – pre-contractual communication.</p>
               <p class="card-text"><strong>3. Data collected</strong><br>- Name<br>- Email<br>- Message contents<br>- Technical data (IP, browser, timestamp) automatically logged by the server</p>
               <p class="card-text"><strong>4. Retention</strong><br>Data are kept only as long as needed to handle your request or as required by law.</p>
@@ -436,6 +442,7 @@
     let contactModalCloseFn = null;
 
     document.addEventListener('DOMContentLoaded', () => {
+      setupEmailLinks();
       initYear();
       setupCaptcha();
       setupFormSubmission();
@@ -455,6 +462,23 @@
     function initYear(){
       const yEl = document.getElementById('year');
       if (yEl) yEl.textContent = new Date().getFullYear();
+    }
+
+    function setupEmailLinks(){
+      const emailLinks = document.querySelectorAll('.js-email[data-user][data-domain]');
+      if(!emailLinks.length) return;
+      emailLinks.forEach(link=>{
+        const user = link.getAttribute('data-user') || '';
+        const domain = link.getAttribute('data-domain') || '';
+        if(!user || !domain) return;
+        const address = `${user}@${domain}`;
+        link.textContent = address;
+        link.setAttribute('href', `mailto:${address}`);
+      });
+    }
+
+    function getSupportEmail(){
+      return 'hello' + '@' + 'paperpushers.biz';
     }
 
     function lockBodyScroll(){
@@ -709,7 +733,7 @@
           showToast('Message sent. We’ll get back within one business day.', 'success');
         }catch(err){
           console.error(err);
-          setStatus('Something went wrong. Email hello@paperpushers.biz instead.', 'error');
+          setStatus(`Something went wrong. Email ${getSupportEmail()} instead.`, 'error');
         }finally{
           toggleSubmitting(false);
         }
@@ -754,6 +778,15 @@
       let rafId = null;
       let desktopActive = false;
       let isPaused = false;
+      let ctaWidth = 180;
+      let ctaHeight = 60;
+      let ctaResizeObserver = null;
+
+      const measureCta = ()=>{
+        const rect = cta.getBoundingClientRect();
+        ctaWidth = rect.width || 180;
+        ctaHeight = rect.height || 60;
+      };
 
       const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
       const grad = (a,b)=> `linear-gradient(${getVar('--grad-angle')||'135deg'}, ${a}, ${b})`;
@@ -785,8 +818,8 @@
         if(!isPaused){
           const w = window.innerWidth;
           const h = window.innerHeight;
-          const bw = cta.offsetWidth || 180;
-          const bh = cta.offsetHeight || 60;
+          const bw = ctaWidth;
+          const bh = ctaHeight;
           if(x <= 0 || x + bw >= w){
             dx = -dx;
             applyGradient();
@@ -806,6 +839,7 @@
 
       function start(){
         if(rafId) cancelAnimationFrame(rafId);
+        measureCta();
         rafId = requestAnimationFrame(tick);
       }
 
@@ -841,6 +875,7 @@
         cta.style.width = '';
         cta.style.height = '';
         cta.style.lineHeight = '';
+        measureCta();
         start();
       }
 
@@ -866,6 +901,10 @@
 
       apply();
       window.addEventListener('resize', apply);
+      if('ResizeObserver' in window){
+        ctaResizeObserver = new ResizeObserver(()=>measureCta());
+        ctaResizeObserver.observe(cta);
+      }
     }
 
     // Show/Hide CTA on first + last section (mobile)
@@ -1051,21 +1090,29 @@
         const tabsNav = tabsContainer?.closest('.tabs-nav');
         const prevArrow = tabsNav?.querySelector('.tabs-nav__arrow--prev');
         const nextArrow = tabsNav?.querySelector('.tabs-nav__arrow--next');
-        const updateArrows = ()=>{
+        const updateArrows = (metrics)=>{
           if(!tabsContainer) return;
-          const maxScroll = Math.max(0, tabsContainer.scrollWidth - tabsContainer.clientWidth);
-          const current = tabsContainer.scrollLeft;
+          const maxScroll = Math.max(0, metrics.scrollWidth - metrics.clientWidth);
+          const current = metrics.scrollLeft;
           if(prevArrow){prevArrow.disabled = current <= 4;}
           if(nextArrow){nextArrow.disabled = current >= (maxScroll - 4);}
         };
         const updateScrollability = ()=>{
           if(!tabsContainer || !tabsNav) return;
-          const scrollable = mobileTabsQuery.matches && (tabsContainer.scrollWidth - tabsContainer.clientWidth > 6);
-          tabsNav.classList.toggle('is-scrollable', scrollable);
-          if(!scrollable){
-            tabsContainer.scrollLeft = 0;
-          }
-          updateArrows();
+          const metrics = {
+            scrollWidth: tabsContainer.scrollWidth,
+            clientWidth: tabsContainer.clientWidth,
+            scrollLeft: tabsContainer.scrollLeft
+          };
+          const scrollable = mobileTabsQuery.matches && (metrics.scrollWidth - metrics.clientWidth > 6);
+          requestAnimationFrame(()=>{
+            tabsNav.classList.toggle('is-scrollable', scrollable);
+            if(!scrollable){
+              tabsContainer.scrollLeft = 0;
+              metrics.scrollLeft = 0;
+            }
+            updateArrows(metrics);
+          });
         };
         const activateByOffset = (offset)=>{
           const currentIdx = tabs.findIndex(tab=>tab.classList.contains('is-active'));
@@ -1077,7 +1124,11 @@
         nextArrow?.addEventListener('click', ()=>activateByOffset(1));
         tabsContainer?.addEventListener('scroll', ()=>{
           if(mobileTabsQuery.matches){
-            updateArrows();
+            updateArrows({
+              scrollWidth: tabsContainer.scrollWidth,
+              clientWidth: tabsContainer.clientWidth,
+              scrollLeft: tabsContainer.scrollLeft
+            });
           }
         });
         mobileTabsQuery.addEventListener?.('change', updateScrollability);
