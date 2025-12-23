@@ -639,10 +639,10 @@ button{
   background:transparent;
   text-align:center;
   font-size:.9rem;
-  color:var(--text-dark);
+  color:var(--deep-purple);
 }
-.site-footer a{color:var(--text-dark);font-weight:700;text-decoration:underline}
-.site-footer a:hover{color:#3a0a2a}
+.site-footer a{color:var(--deep-purple);font-weight:700;text-decoration:underline}
+.site-footer a:hover{color:var(--main)}
 
 @media (min-width:901px){
   .contact-card{
@@ -808,9 +808,10 @@ body.is-modal-open{overflow:hidden}
   .section{scroll-margin-top:72px}
   .section>.container{width:100% !important;max-width:100% !important;padding-left:16px !important;padding-right:16px !important;margin-left:0 !important;margin-right:0 !important}
   .section-title{font-size:clamp(2.4rem,6.2vw + .6rem,3.1rem);letter-spacing:-1.1px;margin-bottom:1.3rem}
-  .section-lead{font-size:1.15rem;margin-bottom:1.9rem}
+  .section-lead{font-size:1.05rem;margin-bottom:1.9rem}
   .card-title{font-size:1.4rem;margin-bottom:.6rem}
-  .card-text{font-size:1rem;margin-bottom:.85rem}
+  .card-text{font-size:.95rem;margin-bottom:.85rem}
+  .card-subtitle{font-size:.85rem}
   .card-text:last-child{margin-bottom:0}
 
   /* header + menu */
